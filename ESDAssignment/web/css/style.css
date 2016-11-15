@@ -1,0 +1,29 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2016年11月15日, 下午11:44:28
+    Author     : lichi
+*/
+body{
+    font-family: Arial;
+    margin:0;
+    padding:0;
+}
+
+#bg{
+    height: 900px;
+    weight: 100%;
+    background: rgb(255,153,29); /* Old browsers */
+    background: -moz-linear-gradient(left,  rgba(255,153,29,1) 0%, rgba(255,1,147,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left,  rgba(255,153,29,1) 0%,rgba(255,1,147,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right,  rgba(255,153,29,1) 0%,rgba(255,1,147,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff991d', endColorstr='#ff0193',GradientType=1 ); /* IE6-9 */
+    
+}
+
+.logo{
+    font-size: 18px;
+}
