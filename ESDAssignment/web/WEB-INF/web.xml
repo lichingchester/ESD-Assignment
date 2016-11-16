@@ -25,4 +25,19 @@
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+     <display-name>Shopping Cart</display-name>
+  <description>
+    Simple Shopping Cart
+  </description>
+ 
+  <servlet>
+    <servlet-name>CartController</servlet-name>
+    <servlet-class>servlet.CartController</servlet-class>
+  </servlet>
+ 
+  <servlet-mapping>
+    <servlet-name>CartController</servlet-name>
+      <url-pattern>/servlet/*</url-pattern>
+  </servlet-mapping>
+ 
 </web-app>
