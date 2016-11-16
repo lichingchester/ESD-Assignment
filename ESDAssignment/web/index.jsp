@@ -31,7 +31,7 @@ and open the template in the editor.
                 <img src="ESDAssignment\web\img\LOGO.png">
                 <a href="register" class="navbar">Join us</a>
                 <a href="login" class="navbar">Login</a>
-                <a href="order" class="navbar">Login</a>
+                <a href="order.jsp" class="navbar">Order</a>
                 
 
             </div>
@@ -51,8 +51,17 @@ and open the template in the editor.
                     <span>Search</span>
                 </button>
             </div>
-            
         </section>
+            <hr size="2" width="80%">
+            <div id="order">
+                <a href="itemdetail"  id="btn"  >News</a>
+                <a href="itemdetail"  id="btn"  >Shoes</a>
+                <a href="itemdetail"  id="btn"  >Women</a>
+                <a href="itemdetail"  id="btn"   >Men</a>
+                <a href="itemdetail"  id="btn" >Order</a>
+            
+            </div>
+            <hr size="2" width="80%">   
         
     </body>
 </html>
