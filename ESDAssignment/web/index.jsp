@@ -29,9 +29,10 @@ and open the template in the editor.
             
             <div id="bg">
                 <img src="ESDAssignment\web\img\LOGO.png">
-                <a href="#join" class="navbar">Join us</a>
-
-                <a href="#login" class="navbar">Login</a>
+                <a href="register" class="navbar">Join us</a>
+                <a href="login" class="navbar">Login</a>
+                <a href="order" class="navbar">Login</a>
+                
 
             </div>
              
