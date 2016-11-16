@@ -12,10 +12,13 @@
         <title>JSP Page</title>
     </head>
     <body>
-        Name<input type="text" name="id">
-        Password<input type="text" name="pw">
-        Tel<input type="text" name="tel">
-        Email<input type="text" name="email">
-        Address<input type="text" name="address">
+        <Form >
+            <p>Name<input type="text" name="id"></p>
+        <p>Password<input type="text" name="pw"></p>
+        <p>Tel<input type="text" name="tel"></p>
+        <p>Email<input type="text" name="email"></p>
+       <p> Address<input type="text" name="address"></p>
+       <p> <input type="submit"></p>
+        </form>
     </body>
 </html>
