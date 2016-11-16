@@ -28,9 +28,9 @@ and open the template in the editor.
         <section class="header">
             
             <div id="bg">
-                <img src="ESDAssignment\web\img\LOGO.png">
-                <a href="register" class="navbar">Join us</a>
-                <a href="login" class="navbar">Login</a>
+                <img src="img\LOGO.png">
+                <a href="register.jsp" class="navbar">Join us</a>
+                <a href="login.jsp" class="navbar">Login</a>
                 <a href="order.jsp" class="navbar">Order</a>
                 
 
