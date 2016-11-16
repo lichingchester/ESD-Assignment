@@ -10,7 +10,7 @@ package db;
  * @author lichingchester
  */
 
-import bean.ItemsBean;
+import bean.ItemBean;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -71,13 +71,13 @@ public class ItemsDB {
             ArrayList list = new ArrayList();
 
             while (rs.next()) {
-                ItemsBean ib = new ItemsBean();
+                ItemBean ib = new ItemBean();
                 ib.setItemID(rs.getString(1));
                 ib.setItemName(rs.getString(2));
                 ib.setDesc(rs.getString(3));
                 ib.setCategory(rs.getString(4));
                 ib.setDesignerName(rs.getString(5));
-                ib.setPrice(rs.getInt(6));
+                ib.setPrice(rs.getDouble(6));
                 ib.setPath(rs.getString(7));
                 ib.setSize(rs.getString(8));
                 list.add(ib);
@@ -121,13 +121,13 @@ public class ItemsDB {
             ArrayList list = new ArrayList();
 
             while (rs.next()) {
-                ItemsBean ib = new ItemsBean();
+                ItemBean ib = new ItemBean();
                 ib.setItemID(rs.getString(1));
                 ib.setItemName(rs.getString(2));
                 ib.setDesc(rs.getString(3));
                 ib.setCategory(rs.getString(4));
                 ib.setDesignerName(rs.getString(5));
-                ib.setPrice(rs.getInt(6));
+                ib.setPrice(rs.getDouble(6));
                 ib.setPath(rs.getString(7));
                 ib.setSize(rs.getString(8));
                 list.add(ib);
@@ -155,5 +155,109 @@ public class ItemsDB {
             }
         }
         return null;
+    }
+    
+    public boolean addRecord(String itemID, String itemName, 
+            String desc, String category, String designerName, 
+            double price, String path, String size){
+        
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        boolean isSuccess = false;
+        try{
+            cnnct = getConnection();
+            String preQueryStatement = "INSERT INTO ItemsDB VALUES(?,?,?,?,?,?,?,?)";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setString(1, itemID);
+            pStmnt.setString(2, itemName);
+            pStmnt.setString(3, desc);
+            pStmnt.setString(4, category);
+            pStmnt.setString(5, designerName);
+            pStmnt.setDouble(6, price);
+            pStmnt.setString(7, path);
+            pStmnt.setString(8, size);
+            int rowCount = pStmnt.executeUpdate();
+            if(rowCount >= 1){
+                isSuccess = true;
+            }
+            pStmnt.close();
+            cnnct.close();
+        }catch(SQLException ex){
+            while(ex != null){
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+        return isSuccess;
+    }
+    
+    public int delRecord(String itemID){
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        
+        int rs = 0;
+        try{
+            cnnct = getConnection();
+            String preQueryStatement = "delete from itemDB where itemID = ?";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            
+            pStmnt.setString(1, itemID);
+            
+            rs = pStmnt.executeUpdate();
+            
+            pStmnt.close();
+            cnnct.close();
+            
+        }catch(SQLException ex){
+            while(ex != null){
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+        return rs;
+    }
+    
+    
+    public int editRecord(ItemBean cb){
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        
+        int rs = 0;
+        try{
+            cnnct = getConnection();
+            String preQueryStatement = 
+                    "update itemDB set itemName = ?, desc = ?, "
+                    + "category = ?, designerName = ?"
+                    + "price = ?, path = ?"
+                    + "size = ? where itemID = ?";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            
+            pStmnt.setString(1, cb.getItemName());
+            pStmnt.setString(2, cb.getDesc());
+            pStmnt.setString(3, cb.getCategory());
+            pStmnt.setString(4, cb.getDesignerName());
+            pStmnt.setDouble(4, cb.getPrice());
+            pStmnt.setString(4, cb.getPath());
+            pStmnt.setString(4, cb.getSize());
+            pStmnt.setString(4, cb.getItemID());
+            
+            rs = pStmnt.executeUpdate();
+            
+            pStmnt.close();
+            cnnct.close();
+            
+        }catch(SQLException ex){
+            while(ex != null){
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+        return rs;
     }
 }

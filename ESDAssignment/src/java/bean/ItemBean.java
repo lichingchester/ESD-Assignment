@@ -9,7 +9,7 @@ package bean;
  *
  * @author lichi
  */
-public class ItemsBean {
+public class ItemBean {
     String itemID;
     String itemName;
     String desc;
