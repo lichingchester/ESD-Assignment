@@ -26,15 +26,10 @@ and open the template in the editor.
     </head>
     <body>
         <section class="header">
-            
             <div id="bg">
-                <img src="ESDAssignment\web\img\LOGO.png">
                 <a href="#join" class="navbar">Join us</a>
                 <a href="#login" class="navbar">Login</a>
-                <a href="order.jsp" class="navbar">Order</a>
             </div>
-             
-            
             
         </section>
         <section class="logo">
