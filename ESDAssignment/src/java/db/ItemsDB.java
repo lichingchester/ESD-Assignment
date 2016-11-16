@@ -10,6 +10,7 @@ package db;
  * @author lichingchester
  */
 
+import bean.ItemsBean;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -42,7 +43,7 @@ public class ItemsDB {
             String sql = "CREATE  TABLE  Items  ("
                     + "itemID  VARCHAR(10)  CONSTRAINT  pk_itemID  PRIMARY  KEY,  "
                     + "itemName  VARCHAR(50),  desc  VARCHAR(100),  category  VARCHAR(50),"
-                    + "designerName  VARCHAR(50), price double(8), path VARCHAR(100))";
+                    + "designerName  VARCHAR(50), price double(8), path VARCHAR(100), size VARCHAR(10))";
             stmnt.execute(sql);
 
             stmnt.close();
@@ -56,73 +57,103 @@ public class ItemsDB {
             ex.printStackTrace();
         }
     }
-     
-//     public boolean addRecord(String Id, String Pw, String Tel , String Email, String Address) {
-//        Connection cnnct = null;
-//        PreparedStatement pStmnt = null;
-//        boolean isSuccess = false;
-//        try {
-//            cnnct = getConnection();
-//            String preQueryStatement = "INSERT  INTO  User  VALUES  (?,?,?,?,?)";
-//            pStmnt = cnnct.prepareStatement(preQueryStatement);
-//            pStmnt.setString(1, Id);
-//            pStmnt.setString(2, Pw);
-//            pStmnt.setString(3, Tel);
-//            pStmnt.setString(4, Email);
-//            pStmnt.setString(5, Address);
-//            int rowCount = pStmnt.executeUpdate();
-//            if (rowCount >= 1) {
-//                isSuccess = true;
-//            }
-//            pStmnt.close();
-//            cnnct.close();
-//        } catch (SQLException ex) {
-//            while (ex != null) {
-//                ex.printStackTrace();
-//                ex = ex.getNextException();
-//            }
-//        } catch (IOException ex) {
-//            ex.printStackTrace();
-//        }
-//        return isSuccess;
-//     }
-     
-//     public CustomerBean queryUserByID(String id) {
-//        Connection cnnct = null;
-//        PreparedStatement pStmnt = null;
-//
-//        CustomerBean cb = null;
-//        try {
-//            //1.  get Connection
-//            cnnct = getConnection();
-//            String preQueryStatement = "SELECT * FROM  User WHERE Id=?";
-//            //2.  get the prepare Statement
-//            pStmnt = cnnct.prepareStatement(preQueryStatement);
-//            //3. update the placehoder with id
-//            pStmnt.setString(1, id);
-//            ResultSet rs = null;
-//            //4. execute the query and assign to the result 
-//            rs = pStmnt.executeQuery();
-//            if (rs.next()) {
-//                cb = new CustomerBean();
-//                // set the record detail to the customer bean
-//                cb = new CustomerBean();
-//                cb.setCustid(rs.getString(1));
-//                cb.setName(rs.getString(2));
-//                cb.setTel(rs.getString(3));
-//                cb.setAge(rs.getInt(4));
-//            }
-//                pStmnt.close();
-//                    cnnct.close();
-//                } catch (SQLException ex) {
-//                    while (ex != null) {
-//                        ex.printStackTrace();
-//                        ex = ex.getNextException();
-//                    }
-//                } catch (IOException ex) {
-//                    ex.printStackTrace();
-//                }
-//                return cb;
-//            }
-     
+
+    public ArrayList queryItems() {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        try {
+            cnnct = getConnection();
+            String preQueryStatement = "SELECT * FROM  Items";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            //Statement s = cnnct.createStatement();
+            ResultSet rs = pStmnt.executeQuery();
+
+            ArrayList list = new ArrayList();
+
+            while (rs.next()) {
+                ItemsBean ib = new ItemsBean();
+                ib.setItemID(rs.getString(1));
+                ib.setItemName(rs.getString(2));
+                ib.setDesc(rs.getString(3));
+                ib.setCategory(rs.getString(4));
+                ib.setDesignerName(rs.getString(5));
+                ib.setPrice(rs.getInt(6));
+                ib.setPath(rs.getString(7));
+                ib.setSize(rs.getString(8));
+                list.add(ib);
+            }
+            return list;
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            if (pStmnt != null) {
+                try {
+                    pStmnt.close();
+                } catch (SQLException e) {
+                }
+            }
+            if (cnnct != null) {
+                try {
+                    cnnct.close();
+                } catch (SQLException sqlEx) {
+                }
+            }
+        }
+        return null;
+    }
+
+    public ArrayList queryItemsByName(String name) {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        try {
+            cnnct = getConnection();
+            String preQueryStatement = "SELECT * FROM  Items WHERE itemName LIKE ?";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setString(1, "%" + name + "%");
+            //Statement s = cnnct.createStatement();
+            ResultSet rs = pStmnt.executeQuery();
+
+            ArrayList list = new ArrayList();
+
+            while (rs.next()) {
+                ItemsBean ib = new ItemsBean();
+                ib.setItemID(rs.getString(1));
+                ib.setItemName(rs.getString(2));
+                ib.setDesc(rs.getString(3));
+                ib.setCategory(rs.getString(4));
+                ib.setDesignerName(rs.getString(5));
+                ib.setPrice(rs.getInt(6));
+                ib.setPath(rs.getString(7));
+                ib.setSize(rs.getString(8));
+                list.add(ib);
+            }
+            return list;
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            if (pStmnt != null) {
+                try {
+                    pStmnt.close();
+                } catch (SQLException e) {
+                }
+            }
+            if (cnnct != null) {
+                try {
+                    cnnct.close();
+                } catch (SQLException sqlEx) {
+                }
+            }
+        }
+        return null;
+    }
 }
