@@ -31,7 +31,7 @@ and open the template in the editor.
                 <img src="ESDAssignment\web\img\LOGO.png">
                 <a href="register" class="navbar">Join us</a>
                 <a href="login" class="navbar">Login</a>
-                <a href="order" class="navbar">Login</a>
+                <a href="order" class="navbar">Order</a>
                 
 
             </div>
