@@ -43,7 +43,7 @@ and open the template in the editor.
         
         <section class="search-bar">
             <div class="center-search-bar">
-                <input type="text" name="search" class="search-box" placeholder="Search..">
+                <input type="text" name="search" class="search-box" placeholder="Search...">
                 <button class="search-btn" style="vertical-align:middle">
                     <span>Search</span>
                 </button>
