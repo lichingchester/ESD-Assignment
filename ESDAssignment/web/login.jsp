@@ -12,8 +12,9 @@
         <title>login Page</title>
     </head>
     <body>
-        <p>Name<input type="text" name="id"></p>
-        <p>Password<input type="text" name="pw"></p>
-        <input type="submit"><input type="reset">
+        <p>Name <input type="text" name="id"></p>
+        <p>Password <input type="text" name="pw"></p>
+        <input type="submit">  <input type="reset">
+        <a href="register.jsp">register</a>
     </body>
 </html>

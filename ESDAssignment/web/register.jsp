@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <Form >
+        <form action="process.jsp">  
             <p>Name<input type="text" name="id"></p>
         <p>Password<input type="text" name="pw"></p>
         <p>Tel<input type="text" name="tel"></p>

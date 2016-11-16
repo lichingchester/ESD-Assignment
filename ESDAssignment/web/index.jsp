@@ -28,7 +28,7 @@ and open the template in the editor.
         <section class="header">
             <div id="bg">
                 <a href="#join" class="navbar">Join us</a>
-                <a href="#login" class="navbar">Login</a>
+                <a href="login.jsp" class="navbar">Login</a>
             </div>
             
         </section>
