@@ -1,3 +1,4 @@
+<%@page import="bean.ItemBean"%>
 <!DOCTYPE html>
 <!-- 
 emmet key
@@ -57,11 +58,16 @@ and open the template in the editor.
         </div>
         <hr size="2" width="80%">
         <div id="container">
-            <div id="item1" ><img src="img\clothes\Men\1.png">100$</div>
+            <%
+                for(int i=0;i<list.size();i++){
+                    out.print("<div id='item1'>"+((ItemBean) list.get(i)).getPath()+l((ItemBean) list.get(i)).getPrice()+"</div>");
+                }
+            %>
+           <!--<div id="item1" ><img src="img\clothes\Men\1.png">100$</div>
 
             <div id="item2" ><img src="img\clothes\Men\2.jpg">200$</div>
 
-            <div id="item3" ><img src="img\clothes\Men\3.jpg">300$</div>
+            <div id="item3" ><img src="img\clothes\Men\3.jpg">300$</div>-->
 
         </div>
     </body>
