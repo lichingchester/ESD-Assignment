@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author lichi
  */
-@WebServlet(name = "itemsServlet", urlPatterns = {"/itemsServlet"})
+@WebServlet(name = "ItemsServlet", urlPatterns = {"/ItemsServlet"})
 public class ItemsServlet extends HttpServlet {
     ItemsDB db;
     ItemBean ib;
@@ -41,6 +41,7 @@ public class ItemsServlet extends HttpServlet {
         String url = this.getServletContext().getInitParameter("dbUrl");   
         db = new ItemsDB(url, username, password);  
         db.createItemsTable();
+//        db.addRecord(url, username, url, password, username, 0, url, url)
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

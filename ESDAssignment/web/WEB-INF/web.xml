@@ -34,10 +34,18 @@
     <servlet-name>CartController</servlet-name>
     <servlet-class>servlet.CartController</servlet-class>
   </servlet>
- 
   <servlet-mapping>
     <servlet-name>CartController</servlet-name>
-      <url-pattern>/servlet/*</url-pattern>
+      <url-pattern>/servlet/CartController.java</url-pattern>
   </servlet-mapping>
+  
+<!--  <servlet>
+    <servlet-name>ItemsServlet</servlet-name>
+    <servlet-class>servlet.ItemsServlet.java</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ItemsServlet</servlet-name>
+      <url-pattern>/servlet/ItemsServlet.java</url-pattern>
+  </servlet-mapping>-->
  
 </web-app>

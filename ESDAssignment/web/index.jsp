@@ -28,7 +28,7 @@ and open the template in the editor.
         <%@page import="java.util.ArrayList"%>
         
         <!--list load-->
-        <jsp:include page="/ItemsServlet.java" />
+        <jsp:include page="ItemsServlet?action=list" />
         <%
             ArrayList list = (ArrayList) request.getAttribute("list");
         %>
