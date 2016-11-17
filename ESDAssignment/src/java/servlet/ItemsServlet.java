@@ -54,10 +54,9 @@ public class ItemsServlet extends HttpServlet {
             // call the query db to get retrieve for all customer
             ArrayList list = db.queryItems();
             // set the result into the attribute
-            request.setAttribute("list", list); 
-            // redirect the result to the listCustomers.jsp
-            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/index.jsp");
-            rd.forward(request, response);
+            request.getSession().setAttribute("list", list);
+            // redirect the result to the listCustomers.jsp	
+            response.sendRedirect("index.jsp");
         }
         else if ("edit".equalsIgnoreCase(action)) {
             //get the id from request
@@ -65,15 +64,13 @@ public class ItemsServlet extends HttpServlet {
             //get the customer record by Id
             ib = db.queryItemByID(itemID);
             // set the result into the attribute
-            request.setAttribute("item", ib);
+            request.getSession().setAttribute("list", ib);	
             // redirect the result to the editCustomerById.jsp
-            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/editItem.jsp");
-            rd.forward(request, response);
+            response.sendRedirect("index.jsp");
         }        
         else if ("add".equalsIgnoreCase(action)) {
             // redirect the result to the addCustomer.jsp
-            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/addItem.jsp");
-            rd.forward(request, response);
+            response.sendRedirect("manage/addItem.jsp");
         }        
         else if ("delete".equalsIgnoreCase(action)) {
             //get the id from request
@@ -83,8 +80,8 @@ public class ItemsServlet extends HttpServlet {
                 int result = db.delRecord(itemID);
                 // reload data and update into the attribute
                 // redirect the result to the listCustomers.jsp
-                RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/deleteItem.jsp");
-                rd.forward(request, response);
+                request.getSession().setAttribute("list", ib);	
+                response.sendRedirect("index.jsp");
             }
 
         } else if ("searchByName".equalsIgnoreCase(action)) {
