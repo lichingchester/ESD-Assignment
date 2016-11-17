@@ -5,6 +5,7 @@
  */
 package servlet;
 
+import bean.ItemBean;
 import db.ItemsDB;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "itemsServlet", urlPatterns = {"/itemsServlet"})
 public class ItemsServlet extends HttpServlet {
     ItemsDB db;
+    ItemBean ib;
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -51,43 +53,60 @@ public class ItemsServlet extends HttpServlet {
             // call the query db to get retrieve for all customer
             ArrayList list = db.queryItems();
             // set the result into the attribute
-            request.setAttribute("list", list);
+            request.setAttribute("list", list); 
             // redirect the result to the listCustomers.jsp
             RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/index.jsp");
             rd.forward(request, response);
         }
-        else if ("editById".equalsIgnoreCase(action)) {
-			//get the id from request
-			............
-			//get the customer record by Id
-			............
-			// set the result into the attribute
-            ............
+        else if ("edit".equalsIgnoreCase(action)) {
+            //get the id from request
+            String itemID = request.getParameter("itemID");
+            //get the customer record by Id
+            ib = db.queryItemByID(itemID);
+            // set the result into the attribute
+            request.setAttribute("item", ib);
             // redirect the result to the editCustomerById.jsp
-			............
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/editItem.jsp");
+            rd.forward(request, response);
         }        
         else if ("add".equalsIgnoreCase(action)) {
-			// redirect the result to the addCustomer.jsp
-			............
+            // redirect the result to the addCustomer.jsp
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/addItem.jsp");
+            rd.forward(request, response);
         }        
         else if ("delete".equalsIgnoreCase(action)) {
             //get the id from request
-            ............
-            if (id != null) {
-				//delete record
-                ............
+            String itemID = request.getParameter("itemID");
+            if (itemID != null) {
+                //delete record
+                int result = db.delRecord(itemID);
                 // reload data and update into the attribute
                 // redirect the result to the listCustomers.jsp
-				............
+                RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/deleteItem.jsp");
+                rd.forward(request, response);
             }
 
-        } else if ("search".equalsIgnoreCase(action)) {
+        } else if ("searchByName".equalsIgnoreCase(action)) {
             // call the query db to get retrieve for all customer
-            ............
-            if (name != null) {
+            String itemName = request.getParameter("itemName");
+            if (itemName != null) {
                 // set the result into the attribute
+                ArrayList list = db.queryItemsByName(itemName);
+                request.setAttribute("list", list);
                 // redirect the result to the listCustomers.jsp
-                ............
+                RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/index.jsp");
+                rd.forward(request, response);
+            }
+        } else if ("searchByCategory".equalsIgnoreCase(action)) {
+            // call the query db to get retrieve for all customer
+            String category = request.getParameter("category");
+            if (category != null) {
+                // set the result into the attribute
+                ArrayList list = db.queryItemsByName(category);
+                request.setAttribute("list", list);
+                // redirect the result to the listCustomers.jsp
+                RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/index.jsp");
+                rd.forward(request, response);
             }
         } 
         else {
