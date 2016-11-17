@@ -10,7 +10,6 @@ import db.ItemsDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author lichi
+ * @author lichingchester
  */
 @WebServlet(name = "ItemsServlet", urlPatterns = {"/ItemsServlet"})
 public class ItemsServlet extends HttpServlet {
@@ -41,7 +40,56 @@ public class ItemsServlet extends HttpServlet {
         String url = this.getServletContext().getInitParameter("dbUrl");   
         db = new ItemsDB(url, username, password);  
         db.createItemsTable();
-//        db.addRecord(url, username, url, password, username, 0, url, url)
+        System.out.println("table created");
+        
+//        long dress
+        db.addRecord("item001", "Brown dress", "Long dress for party", 
+                "long", "Chester Li", 599, "ESDAssignment/img/long/lng001.jpg", "M");
+        db.addRecord("item002", "White dress", "Long dress for party", 
+                "long", "Enriqueta Como", 230, "ESDAssignment/img/long/lng002.jpg", "L");
+        db.addRecord("item003", "Colorful dress", "Long dress for wedding", 
+                "long", "Meda Germaine", 167, "ESDAssignment/img/long/lng003.jpg", "M");
+        db.addRecord("item004", "Red dress", "Long dress for travel", 
+                "long", "Meda Germaine", 1099, "ESDAssignment/img/long/lng004.jpg", "XL");
+        db.addRecord("item005", "Red dress", "Long dress for travel", 
+                "long", "Antwan Potter", 689, "ESDAssignment/img/long/lng005.jpg", "S");
+    
+//        middle dress
+        db.addRecord("item006", "Black dress", "Middle dress for party", 
+                "middle", "Enriqueta Como", 1000, "ESDAssignment/img/long/mid001.jpg", "XS");
+        db.addRecord("item007", "White dress", "Middle dress for party", 
+                    "middle", "Enriqueta Como", 520, "ESDAssignment/img/long/mid002.jpg", "S");
+        db.addRecord("item008", "Yellow dress", "Middle dress for wedding", 
+                    "middle", "Harriet Scicchitano", 1000, "ESDAssignment/img/long/mid003.jpg", "XL");
+        db.addRecord("item009", "Brown dress", "Middle dress for travel", 
+                    "middle", "Katharyn Smalling", 3999, "ESDAssignment/img/long/mid004.jpg", "M");
+        db.addRecord("item010", "White dress", "Middle dress for travel", 
+                    "middle", "Clarinda Ardrey ", 350, "ESDAssignment/img/long/mid005.jpg", "M");
+    
+//        short dress
+        db.addRecord("item011", "White dress", "Middle dress for party", 
+                "middle", "Enriqueta Como", 560, "ESDAssignment/img/long/sht001.jpg", "XS");
+        db.addRecord("item012", "White dress", "Middle dress for party", 
+                    "middle", "Enriqueta Como", 689, "ESDAssignment/img/long/sht002.jpg", "S");
+        db.addRecord("item013", "Yellow dress", "Middle dress for wedding", 
+                    "middle", "Harriet Scicchitano", 689, "ESDAssignment/img/long/sht003.jpg", "XXL");
+        db.addRecord("item014", "Brown dress", "Middle dress for travel", 
+                    "middle", "Katharyn Smalling", 689, "ESDAssignment/img/long/sht004.jpg", "M");
+        db.addRecord("item015", "White dress", "Middle dress for travel", 
+                    "middle", "Clarinda Ardrey ", 999, "ESDAssignment/img/long/sht005.jpg", "M");
+        
+    //        sheath dress
+        db.addRecord("item016", "Deep Blue dress", "Sheath dress for party", 
+                "middle", "Enriqueta Como", 560, "ESDAssignment/img/long/shh001.jpg", "XL");
+        db.addRecord("item017", "Blue dress", "Sheath dress for party", 
+                    "middle", "Enriqueta Como", 786, "ESDAssignment/img/long/shh002.jpg", "S");
+        db.addRecord("item018", "White dress", "Sheath dress for wedding", 
+                    "middle", "Harriet Scicchitano", 344, "ESDAssignment/img/long/shh003.jpg", "XXS");
+        db.addRecord("item019", "White dress", "Sheath dress for travel", 
+                    "middle", "Katharyn Smalling", 8000, "ESDAssignment/img/long/shh004.jpg", "M");
+        db.addRecord("item020", "Red dress", "Sheath dress for travel", 
+                    "middle", "Clarinda Ardrey ", 999, "ESDAssignment/img/long/shh005.jpg", "M");
+    
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -92,8 +140,8 @@ public class ItemsServlet extends HttpServlet {
                 ArrayList list = db.queryItemsByName(itemName);
                 request.setAttribute("list", list);
                 // redirect the result to the listCustomers.jsp
-                RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/index.jsp");
-                rd.forward(request, response);
+                request.getSession().setAttribute("list", list);	
+                response.sendRedirect("index.jsp");
             }
         } else if ("searchByCategory".equalsIgnoreCase(action)) {
             // call the query db to get retrieve for all customer
@@ -103,8 +151,8 @@ public class ItemsServlet extends HttpServlet {
                 ArrayList list = db.queryItemsByName(category);
                 request.setAttribute("list", list);
                 // redirect the result to the listCustomers.jsp
-                RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/index.jsp");
-                rd.forward(request, response);
+                request.getSession().setAttribute("list", list);	
+                response.sendRedirect("index.jsp");
             }
         } 
         else {

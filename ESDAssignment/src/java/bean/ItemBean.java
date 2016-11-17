@@ -7,7 +7,7 @@ package bean;
 
 /**
  *
- * @author lichi
+ * @author lichingchester
  */
 public class ItemBean {
     String itemID;

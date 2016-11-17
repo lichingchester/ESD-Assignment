@@ -55,6 +55,8 @@ public class ItemsDB {
             }
         } catch (IOException ex) {
             ex.printStackTrace();
+        }finally{
+            System.out.println("::::::::::::::::::::::::::::::table created:::::::::::::::::::::");
         }
     }
 
