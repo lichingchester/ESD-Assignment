@@ -17,6 +17,7 @@
         
         <div class="div-center additem">
             <h1><b>Add new item</b></h1>
+            <form action=""></form>
         </div>
     </body>
 </html>

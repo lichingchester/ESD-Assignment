@@ -8,6 +8,8 @@ package servlet;
 import db.ItemsDB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,17 +44,55 @@ public class ItemsServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet itemsServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet itemsServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String action = request.getParameter("action");
+        System.out.println("action:"+action);
+
+        if ("list".equalsIgnoreCase(action)) {
+            // call the query db to get retrieve for all customer
+            ArrayList list = db.queryItems();
+            // set the result into the attribute
+            request.setAttribute("list", list);
+            // redirect the result to the listCustomers.jsp
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/index.jsp");
+            rd.forward(request, response);
+        }
+        else if ("editById".equalsIgnoreCase(action)) {
+			//get the id from request
+			............
+			//get the customer record by Id
+			............
+			// set the result into the attribute
+            ............
+            // redirect the result to the editCustomerById.jsp
+			............
+        }        
+        else if ("add".equalsIgnoreCase(action)) {
+			// redirect the result to the addCustomer.jsp
+			............
+        }        
+        else if ("delete".equalsIgnoreCase(action)) {
+            //get the id from request
+            ............
+            if (id != null) {
+				//delete record
+                ............
+                // reload data and update into the attribute
+                // redirect the result to the listCustomers.jsp
+				............
+            }
+
+        } else if ("search".equalsIgnoreCase(action)) {
+            // call the query db to get retrieve for all customer
+            ............
+            if (name != null) {
+                // set the result into the attribute
+                // redirect the result to the listCustomers.jsp
+                ............
+            }
+        } 
+        else {
+            PrintWriter out = response.getWriter();
+            out.println("No such action!!!");
         }
     }
 

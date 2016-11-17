@@ -156,6 +156,56 @@ public class ItemsDB {
         }
         return null;
     }
+
+    public ArrayList queryItemsByCategory(String category) {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        try {
+            cnnct = getConnection();
+            String preQueryStatement = "SELECT * FROM  Items WHERE category LIKE ?";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setString(1, "%" + category + "%");
+            //Statement s = cnnct.createStatement();
+            ResultSet rs = pStmnt.executeQuery();
+
+            ArrayList list = new ArrayList();
+
+            while (rs.next()) {
+                ItemBean ib = new ItemBean();
+                ib.setItemID(rs.getString(1));
+                ib.setItemName(rs.getString(2));
+                ib.setDesc(rs.getString(3));
+                ib.setCategory(rs.getString(4));
+                ib.setDesignerName(rs.getString(5));
+                ib.setPrice(rs.getDouble(6));
+                ib.setPath(rs.getString(7));
+                ib.setSize(rs.getString(8));
+                list.add(ib);
+            }
+            return list;
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            if (pStmnt != null) {
+                try {
+                    pStmnt.close();
+                } catch (SQLException e) {
+                }
+            }
+            if (cnnct != null) {
+                try {
+                    cnnct.close();
+                } catch (SQLException sqlEx) {
+                }
+            }
+        }
+        return null;
+    }
     
     public boolean addRecord(String itemID, String itemName, 
             String desc, String category, String designerName, 

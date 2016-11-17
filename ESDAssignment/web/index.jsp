@@ -23,6 +23,15 @@ and open the template in the editor.
         
         <!-- css import-->
         <link rel="stylesheet" href="css/style.css">
+        
+        <!--java import-->
+        <%@page import="java.util.ArrayList"%>
+        
+        <!--list load-->
+        <jsp:include page="/ItemsServlet.java" />
+        <%
+            ArrayList list = (ArrayList) request.getAttribute("list");
+        %>
     </head>
     <body>
         
