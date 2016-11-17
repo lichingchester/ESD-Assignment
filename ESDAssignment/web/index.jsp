@@ -25,23 +25,10 @@ and open the template in the editor.
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <section class="header">
-            
-            <div id="bg">
-                <img src="img\LOGO.png">
-                <a href="register.jsp" class="navbar">Join us</a>
-                <a href="login.jsp" class="navbar">Login</a>
-                <a href="order.jsp" class="navbar">Order</a>
-            </div>         
-        </section>
         
-        <section class="logo">
-            <div class="brand">
-                <a href="#home" class="brand-name"><font id="font-red">C</font>&<font id="font-red">F</font> <font id="font-red">D</font>ress</a>
-            </div>
-        </section>
-        
-        <section class="search-bar">
+       <jsp:include page="include/header.jsp" />
+       
+       <section class="search-bar">
             <div class="center-search-bar">
                 <input type="text" name="search" class="search-box" placeholder="Search...">
                 <button class="search-btn" style="vertical-align:middle">
@@ -49,23 +36,24 @@ and open the template in the editor.
                 </button>
             </div>
         </section>
-            <hr size="2" width="80%">
-            <div id="order">
-                <a href="itemdetail"  id="btn"  >News</a>
-                <a href="itemdetail"  id="btn"  >Shoes</a>
-                <a href="itemdetail"  id="btn"  >Women</a>
-                <a href="itemdetail"  id="btn"   >Men</a>
-                <a href="itemdetail"  id="btn" >Order</a>
-            
-            </div>
-            <hr size="2" width="80%">
-            <div id="container">
-                <div id="item1" ><img src="img\clothes\Men\1.png">100$</div>
-                
-                <div id="item2" ><img src="img\clothes\Men\2.jpg">200$</div>
-                
-                <div id="item3" ><img src="img\clothes\Men\3.jpg">300$</div>
-                
-            </div>
+       
+        <hr size="2" width="80%">
+        <div id="order">
+            <a href="itemdetail"  id="btn"  >News</a>
+            <a href="itemdetail"  id="btn"  >Short</a>
+            <a href="itemdetail"  id="btn"   >Middle</a>
+            <a href="itemdetail"  id="btn" >Long</a>
+            <a href="itemdetail"  id="btn"  >Sheath</a>
+
+        </div>
+        <hr size="2" width="80%">
+        <div id="container">
+            <div id="item1" ><img src="img\clothes\Men\1.png">100$</div>
+
+            <div id="item2" ><img src="img\clothes\Men\2.jpg">200$</div>
+
+            <div id="item3" ><img src="img\clothes\Men\3.jpg">300$</div>
+
+        </div>
     </body>
 </html>
