@@ -17,7 +17,7 @@
         
         <div class="div-center additem">
             <h1><b>Add new item</b></h1>
-            <form action="ItemsServlet" method="post" class="formadd">
+            <form action="ItemUpload" method="post" class="formadd">
                 <p>
                     <label for="name">Item Name</label><br>
                     <input type="text" id="name" name="name" class="input-add"><br>
@@ -49,7 +49,7 @@
                 </p>
                 <p>
                     <label for="path">Upload</label><br>
-                    <input type="text" id="path" name="path" class="input-add"><br>
+                    <input type="file" id="path" name="path" multiple="false" class="input-add"><br>
                 </p>
                 <p>
                     <input type="submit" value="Submit">

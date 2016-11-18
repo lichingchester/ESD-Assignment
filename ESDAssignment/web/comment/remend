@@ -1,2 +1,19 @@
 ----------Error solution----------
 [Servlet] change "forward" to "redirect"  @cheukwang2
+
+
+
+
+
+----------System structure----------
+[manager] add item ::  click "add" button on the "member page" 
+(the add button will appear in manage items function(page))
+// link to manager/addItem.jsp
+
+[manager] edit item :: click "edit" button on the each item block of the manage items page
+// link to manager/editItem.jsp
+// pass parameter - itemID : String
+
+[manager] delete item :: click "delete" button on the each item block of the manage items page
+// link to manager/deleteItem.jsp
+// pass parameter - itemID : String
