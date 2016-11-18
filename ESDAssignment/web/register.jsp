@@ -18,7 +18,7 @@
         <p>Tel<input type="text" name="tel"></p>
         <p>Email<input type="text" name="email"></p>
        <p> Address<input type="text" name="address"></p>
-       <p> <input type="submit"></p>
+       <p> <input type="submit"> <input type="reset"><</p>
         </form>
     </body>
 </html>

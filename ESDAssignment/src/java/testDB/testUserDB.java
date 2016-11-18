@@ -14,7 +14,7 @@ import db.UserDB;
  */
 public class testUserDB {
     
-     public void main(String[]arg){
+     public static void main(String[]arg){
         String url = "jdbc:derby://localhost/User";
         String username = "abc";
         String password = "123";
@@ -22,7 +22,8 @@ public class testUserDB {
         UserDB db = new UserDB(url, username, password); 
         db.createCustTable();
         
-        //db.addRecord("1", "Peter", "12345688", "Peter@999.com","Flat 1");
-        //db.addRecord("2", "Nancy","12345678","Nancy@999.com","Flat 2");
+        //db.addRecord("admin", "admin", null, null, null);
+        db.addRecord("1", "Peter", "12345688", "Peter@999.com","Flat 1");
+        db.addRecord("2", "Nancy","12345678","Nancy@999.com","Flat 2");
     }
 }

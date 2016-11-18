@@ -40,9 +40,9 @@ public class UserDB {
             cnnct = getConnection();  // the connection 
             stmnt = cnnct.createStatement();  // create statement
             String sql = "CREATE  TABLE  CUSTOMER  ("
-                    + "CustId  VARCHAR(10)  CONSTRAINT  PK_CUSTOMER  PRIMARY  KEY,  "
-                    + "Password  VARCHAR(25),  Tel  VARCHAR(15),  Email  VARCHAR(20),"
-                    + "Address  VARCHAR(20) )";
+                    + "UserName  VARCHAR(10)  CONSTRAINT  PK_CUSTOMER  PRIMARY  KEY,  "
+                    + "Password  VARCHAR(25),  Tel  VARCHAR(15),  Email  VARCHAR(100),"
+                    + "Address  VARCHAR(200) )";
             stmnt.execute(sql);
 
             stmnt.close();
