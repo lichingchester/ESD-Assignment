@@ -2,19 +2,19 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <context-param>
         <param-name>dbUrluser</param-name>
-        <param-value>jdbc:derby://localhost/ITP4912_DB</param-value>
+        <param-value>jdbc:derby://localhost/User</param-value>
     </context-param>
     <context-param>
         <param-name>dbUrlitems</param-name>
-        <param-value>jdbc:derby://localhost/ITP4912_DB</param-value>
+        <param-value>jdbc:derby://localhost/ItemsDB</param-value>
     </context-param>
     <context-param>
         <param-name>dbUser</param-name>
-        <param-value>APP</param-value>
+        <param-value>abc</param-value>
     </context-param>
     <context-param>
         <param-name>dbPassword</param-name>
-        <param-value>APP</param-value>
+        <param-value>123</param-value>
     </context-param> 
     
     <session-config>

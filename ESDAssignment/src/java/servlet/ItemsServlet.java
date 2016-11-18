@@ -37,8 +37,9 @@ public class ItemsServlet extends HttpServlet {
     public void init() {
         String username = this.getServletContext().getInitParameter("dbUser");
         String password = this.getServletContext().getInitParameter("dbPassword");
-        String url = this.getServletContext().getInitParameter("dbUrl");   
+        String url = this.getServletContext().getInitParameter("dbUrlitems");   
         db = new ItemsDB(url, username, password);  
+        db.dropItemsTable();
         db.createItemsTable();
         System.out.println("table created");
         
@@ -56,39 +57,39 @@ public class ItemsServlet extends HttpServlet {
     
 //        middle dress
         db.addRecord("item006", "Black dress", "Middle dress for party", 
-                "middle", "Enriqueta Como", 1000, "ESDAssignment/img/long/mid001.jpg", "XS");
+                "middle", "Enriqueta Como", 1000, "ESDAssignment/img/middle/mid001.jpg", "XS");
         db.addRecord("item007", "White dress", "Middle dress for party", 
-                    "middle", "Enriqueta Como", 520, "ESDAssignment/img/long/mid002.jpg", "S");
+                    "middle", "Enriqueta Como", 520, "ESDAssignment/img/middle/mid002.jpg", "S");
         db.addRecord("item008", "Yellow dress", "Middle dress for wedding", 
-                    "middle", "Harriet Scicchitano", 1000, "ESDAssignment/img/long/mid003.jpg", "XL");
+                    "middle", "Harriet Scicchitano", 1000, "ESDAssignment/img/middle/mid003.jpg", "XL");
         db.addRecord("item009", "Brown dress", "Middle dress for travel", 
-                    "middle", "Katharyn Smalling", 3999, "ESDAssignment/img/long/mid004.jpg", "M");
+                    "middle", "Katharyn Smalling", 3999, "ESDAssignment/img/middle/mid004.jpg", "M");
         db.addRecord("item010", "White dress", "Middle dress for travel", 
-                    "middle", "Clarinda Ardrey ", 350, "ESDAssignment/img/long/mid005.jpg", "M");
+                    "middle", "Clarinda Ardrey ", 350, "ESDAssignment/img/middle/mid005.jpg", "M");
     
 //        short dress
         db.addRecord("item011", "White dress", "Middle dress for party", 
-                "middle", "Enriqueta Como", 560, "ESDAssignment/img/long/sht001.jpg", "XS");
+                "middle", "Enriqueta Como", 560, "ESDAssignment/img/short/sht001.jpg", "XS");
         db.addRecord("item012", "White dress", "Middle dress for party", 
-                    "middle", "Enriqueta Como", 689, "ESDAssignment/img/long/sht002.jpg", "S");
+                    "middle", "Enriqueta Como", 689, "ESDAssignment/img/short/sht002.jpg", "S");
         db.addRecord("item013", "Yellow dress", "Middle dress for wedding", 
-                    "middle", "Harriet Scicchitano", 689, "ESDAssignment/img/long/sht003.jpg", "XXL");
+                    "middle", "Harriet Scicchitano", 689, "ESDAssignment/img/short/sht003.jpg", "XXL");
         db.addRecord("item014", "Brown dress", "Middle dress for travel", 
-                    "middle", "Katharyn Smalling", 689, "ESDAssignment/img/long/sht004.jpg", "M");
+                    "middle", "Katharyn Smalling", 689, "ESDAssignment/img/short/sht004.jpg", "M");
         db.addRecord("item015", "White dress", "Middle dress for travel", 
-                    "middle", "Clarinda Ardrey ", 999, "ESDAssignment/img/long/sht005.jpg", "M");
+                    "middle", "Clarinda Ardrey ", 999, "ESDAssignment/img/short/sht005.jpg", "M");
         
     //        sheath dress
         db.addRecord("item016", "Deep Blue dress", "Sheath dress for party", 
-                "middle", "Enriqueta Como", 560, "ESDAssignment/img/long/shh001.jpg", "XL");
+                "middle", "Enriqueta Como", 560, "ESDAssignment/img/sheath/shh001.jpg", "XL");
         db.addRecord("item017", "Blue dress", "Sheath dress for party", 
-                    "middle", "Enriqueta Como", 786, "ESDAssignment/img/long/shh002.jpg", "S");
+                    "middle", "Enriqueta Como", 786, "ESDAssignment/img/sheath/shh002.jpg", "S");
         db.addRecord("item018", "White dress", "Sheath dress for wedding", 
-                    "middle", "Harriet Scicchitano", 344, "ESDAssignment/img/long/shh003.jpg", "XXS");
+                    "middle", "Harriet Scicchitano", 344, "ESDAssignment/img/sheath/shh003.jpg", "XXS");
         db.addRecord("item019", "White dress", "Sheath dress for travel", 
-                    "middle", "Katharyn Smalling", 8000, "ESDAssignment/img/long/shh004.jpg", "M");
+                    "middle", "Katharyn Smalling", 8000, "ESDAssignment/img/sheath/shh004.jpg", "M");
         db.addRecord("item020", "Red dress", "Sheath dress for travel", 
-                    "middle", "Clarinda Ardrey ", 999, "ESDAssignment/img/long/shh005.jpg", "M");
+                    "middle", "Clarinda Ardrey ", 999, "ESDAssignment/img/sheath/shh005.jpg", "M");
     
     }
     

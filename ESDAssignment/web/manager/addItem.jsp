@@ -41,7 +41,13 @@
                 </p>
                 <p>
                     <label for="Size">Size</label><br>
-                    <input type="text" id="size" name="size" class="input-add"><br>
+                    <select id="size" name="size" class="input-add">
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                    </select><br>
                 </p>
                 <p>
                     <label for="price">Price</label><br>

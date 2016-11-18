@@ -33,21 +33,63 @@ public class ItemsDB {
         return DriverManager.getConnection(url, username, password);
     }
     
-     public void createItemsTable() {
+    public boolean dropItemsTable(){
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+
+        boolean chk = false;
+        try{
+            cnnct = getConnection();
+            String preQueryStatement = "DROP TABLE Items";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            try{
+                chk = pStmnt.execute();
+            }catch(SQLException exx){
+                chk = false;
+            }
+            pStmnt.close();
+            cnnct.close();
+            
+            chk = true;
+        }catch(SQLException ex){
+            while(ex != null){
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+        return chk;
+    }
+    
+     public boolean createItemsTable() {
         Connection cnnct = null;
         Statement stmnt = null;
+        boolean chk = false;
 
         try {
             cnnct = getConnection();  // the connection 
             stmnt = cnnct.createStatement();  // create statement
-            String sql = "CREATE  TABLE  Items  ("
-                    + "itemID  VARCHAR(10)  CONSTRAINT  pk_itemID  PRIMARY  KEY,  "
-                    + "itemName  VARCHAR(50),  desc  VARCHAR(100),  category  VARCHAR(50),"
-                    + "designerName  VARCHAR(50), price double(8), path VARCHAR(100), size VARCHAR(10))";
-            stmnt.execute(sql);
-
+            String sql = "CREATE TABLE Items"
+                    + "(itemID  VARCHAR(10) not null,  "
+                    + "itemName  VARCHAR(50),  "
+                    + "description  VARCHAR(100),  "
+                    + "category  VARCHAR(50),"
+                    + "designerName  VARCHAR(50), "
+                    + "price double, "
+                    + "path VARCHAR(100), "
+                    + "size VARCHAR(10),"
+                    + "primary key (itemID))";
+            try{
+                stmnt.execute(sql);
+            }catch(SQLException exx){
+                chk = false;
+            }
+            
             stmnt.close();
             cnnct.close();
+            
+            chk = true;
         } catch (SQLException ex) {
             while (ex != null) {
                 ex.printStackTrace();
@@ -56,7 +98,7 @@ public class ItemsDB {
         } catch (IOException ex) {
             ex.printStackTrace();
         }finally{
-            System.out.println("::::::::::::::::::::::::::::::table created:::::::::::::::::::::");
+            return chk;
         }
     }
 
@@ -260,7 +302,7 @@ public class ItemsDB {
         boolean isSuccess = false;
         try{
             cnnct = getConnection();
-            String preQueryStatement = "INSERT INTO ItemsDB VALUES(?,?,?,?,?,?,?,?)";
+            String preQueryStatement = "INSERT INTO Items VALUES(?,?,?,?,?,?,?,?)";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             pStmnt.setString(1, itemID);
             pStmnt.setString(2, itemName);
@@ -294,7 +336,7 @@ public class ItemsDB {
         int rs = 0;
         try{
             cnnct = getConnection();
-            String preQueryStatement = "delete from itemDB where itemID = ?";
+            String preQueryStatement = "delete from item where itemID = ?";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             
             pStmnt.setString(1, itemID);
@@ -324,7 +366,7 @@ public class ItemsDB {
         try{
             cnnct = getConnection();
             String preQueryStatement = 
-                    "update itemDB set itemName = ?, desc = ?, "
+                    "update item set itemName = ?, description = ?, "
                     + "category = ?, designerName = ?"
                     + "price = ?, path = ?"
                     + "size = ? where itemID = ?";
