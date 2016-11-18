@@ -26,11 +26,15 @@ and open the template in the editor.
         
         <!--java import-->
         <%@page import="java.util.ArrayList"%>
-        
+        <%@page import="bean.ItemBean"%>
+
         <!--list load-->
-        <jsp:include page="ItemsServlet?action=list" />
+        <jsp:forward page="ItemsServlet">
+            <jsp:param name="action" value="list" />
+        </jsp:forward>
         <%
             ArrayList list = (ArrayList) request.getAttribute("list");
+            if(list == null) out.println("safdasf");
         %>
     </head>
     <body>
@@ -57,11 +61,19 @@ and open the template in the editor.
         </div>
         <hr size="2" width="80%">
         <div id="container">
-            <div id="item1" ><img src="img\clothes\Men\1.png">100$</div>
+            <%
+                for(int i=0;i<list.size();i++){
+                    ItemBean ib = (ItemBean)list.get(i);
+                    out.print("<div id='item1'>"
+                            + "<img src='"+ib.getPath()+"'>"
+                            +ib.getPrice()+"</div>");
+                }
+            %>
+<!--            <div id="item1" ><img src="img\clothes\Men\1.png">100$</div>
 
             <div id="item2" ><img src="img\clothes\Men\2.jpg">200$</div>
 
-            <div id="item3" ><img src="img\clothes\Men\3.jpg">300$</div>
+            <div id="item3" ><img src="img\clothes\Men\3.jpg">300$</div>-->
 
         </div>
     </body>
