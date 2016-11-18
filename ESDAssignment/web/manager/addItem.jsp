@@ -29,26 +29,31 @@
                 <p>
                     <label for="cty">Category</label><br>
                     <select id="cty" name="cty" class="input-add">
-                        <option value="">Australia</option>
-                        <option value="ca">Canada</option>
-                        <option value="usa">USA</option>
+                        <option value="long">Long dress</option>
+                        <option value="middle">Middle dress</option>
+                        <option value="short">Short dress</option>
+                        <option value="sheath">Sheath dress</option>
                     </select><br>
                 </p>
                 <p>
-                    <label for="dname">Desinger Name</label><br>
+                    <label for="dname">Designer Name</label><br>
                     <input type="text" id="dname" name="dname" class="input-add"><br>
                 </p>
                 <p>
                     <label for="Size">Size</label><br>
-                    <input type="text" id="price" name="price" class="input-add"><br>
+                    <input type="text" id="size" name="size" class="input-add"><br>
                 </p>
                 <p>
                     <label for="price">Price</label><br>
                     <input type="text" id="price" name="price" class="input-add"><br>
                 </p>
                 <p>
-                    <label for="lname">Upload</label><br>
-                    <input type="text" id="desc" name="desc" class="input-add"><br>
+                    <label for="path">Upload</label><br>
+                    <input type="text" id="path" name="path" class="input-add"><br>
+                </p>
+                <p>
+                    <input type="submit" value="Submit">
+                    <input type="reset" value="Reset">
                 </p>
             </form>
         </div>
