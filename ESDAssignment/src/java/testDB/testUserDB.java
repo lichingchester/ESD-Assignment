@@ -23,7 +23,6 @@ public class testUserDB {
         db.createCustTable();
         
         //db.addRecord("admin", "admin", null, null, null);
-        db.addRecord("1", "Peter", "12345688", "Peter@999.com","Flat 1");
-        db.addRecord("2", "Nancy","12345678","Nancy@999.com","Flat 2");
+       
     }
 }

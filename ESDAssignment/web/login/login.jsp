@@ -13,11 +13,11 @@
     </head>
     <body>
         <form method="post" action="main">
-            <input type="hidden" name="action" value="authenticate">   
-        <p>Name <input type="text" name="id"></p>
-        <p>Password <input type="text" name="pw"></p>
+        <input type="hidden" name="action" value="authenticate">   
+        <p>Name <input type="text" name="username"></p>
+        <p>Password <input type="text" name="password"></p>
         <input type="submit" value="Login">  <input type="reset">
-        <a href="register.jsp">register</a>
+        <a href="../register.jsp">register</a>
         </form>
     </body>
 </html>

@@ -42,7 +42,7 @@ public class UserDB {
             String sql = "CREATE  TABLE  CUSTOMER  ("
                     + "UserName  VARCHAR(10)  CONSTRAINT  PK_CUSTOMER  PRIMARY  KEY,  "
                     + "Password  VARCHAR(25),  Tel  VARCHAR(15),  Email  VARCHAR(100),"
-                    + "Address  VARCHAR(200) )";
+                    + "Address  VARCHAR(200),"+ "regdate VARCHAR(50))";
             stmnt.execute(sql);
 
             stmnt.close();
@@ -57,19 +57,20 @@ public class UserDB {
         }
     }
      
-     public boolean addRecord(String Id, String Pw, String Tel , String Email, String Address) {
+     public boolean addRecord(String Id, String Pw, String Tel , String Email, String Address,String date) {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
         boolean isSuccess = false;
         try {
             cnnct = getConnection();
-            String preQueryStatement = "INSERT  INTO  User  VALUES  (?,?,?,?,?)";
+            String preQueryStatement = "INSERT  INTO  CUSTOMER  VALUES  (?,?,?,?,?,?)";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             pStmnt.setString(1, Id);
             pStmnt.setString(2, Pw);
             pStmnt.setString(3, Tel);
             pStmnt.setString(4, Email);
             pStmnt.setString(5, Address);
+            pStmnt.setString(6, date);
             int rowCount = pStmnt.executeUpdate();
             if (rowCount >= 1) {
                 isSuccess = true;

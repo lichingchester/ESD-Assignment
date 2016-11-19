@@ -5,10 +5,14 @@
  */
 package Servlet;
 
-import bean.User;
+import bean.UserInfo;
 import db.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,55 +30,22 @@ public class LoginController extends HttpServlet {
     
     private UserDB db;
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet LoginController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet LoginController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
          doPost(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action =request.getParameter("action");
-        if(!isAuthenticated(request)&&
-                !("authenticate").equals(action)){
+        if(!(isAuthenticated(request))
+                &&!("authenticate").equals(action)){
             doLogin(request, response);
+            return;
             } 
-        if("authenticate").equals(action)){
+        if("authenticate".equals(action)){
                 doAuthenticate(request, response);
         }else if ("logout".equals(action)){
                 doLogout(request, response);
@@ -82,41 +53,43 @@ public class LoginController extends HttpServlet {
                 else{
                 response.sendError(HttpServletResponse.SC_NOT_IMPLEMENTED);
                 }
+
     }  
 
     
     private void doAuthenticate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        String username=request.getParameter("id");
-        String password=request.getParameter("pw");
+        String username=request.getParameter("username");
+        String password=request.getParameter("password");
         String targetURL;
-        boolean isValid=db.isValidUser(username, password);
+        //boolean isValid=db.isValidUser(username, password);
         if("abc".equals(username)&&"123".equals(password)){
+            
             HttpSession session=request.getSession(true);
-            User bean =new User();
-            bean.setId(username);
-            bean.setPw(password);
+            UserInfo bean =new UserInfo();
+            bean.setUsername(username);
+            bean.setPassword(password);
             //store the userInfo to the session
-            session.setAttribute("User", bean);
-            targetURL="/welcome.jsp";
+            session.setAttribute("userInfo", bean);
+            targetURL="login/welcome.jsp";
         }else{
-            targetURL="/loginError.jsp";
+            targetURL="login/loginError.jsp";
         }
         RequestDispatcher rd;
         rd=getServletContext().getRequestDispatcher("/"+targetURL);
         rd.forward(request,response);
     }
     
-    private boolean isAuthenticated (HttpServletRequest request, HttpServletResponse response){
+    private boolean isAuthenticated(HttpServletRequest request){
         boolean result=false;
         HttpSession session=request.getSession();
-        if(session.getAttribute("user")!=null){
+        if(session.getAttribute("userInfo")!=null){
             result=true;
         }
         return result;
     }
     
     private void doLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        String targetURL="login.jsp";
+        String targetURL="login/login.jsp";
         
         RequestDispatcher rd;
         rd=getServletContext().getRequestDispatcher("/"+targetURL);
