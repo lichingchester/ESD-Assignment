@@ -58,6 +58,8 @@ and open the template in the editor.
                <button class="cover-btn cover-btn2" style="vertical-align:middle">
                     <span>Sign Up</span>
                 </button>
+               
+               
            </div>
        </div>
     </body>
