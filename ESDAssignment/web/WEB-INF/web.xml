@@ -43,5 +43,14 @@
       <url-pattern>/servlet/CartController.java</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>ItemsServlet</servlet-name>
+    <servlet-class>servlet.ItemsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ItemsServlet</servlet-name>
+      <url-pattern>/ItemsServlet</url-pattern>
+  </servlet-mapping>
+  
  
 </web-app>

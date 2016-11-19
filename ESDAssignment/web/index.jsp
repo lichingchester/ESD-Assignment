@@ -50,9 +50,11 @@ and open the template in the editor.
 
            </div>
            <div class="index-center-right">
-               <button class="cover-btn cover-btn2" style="vertical-align:middle">
-                    <span>Login</span>
-                </button>
+               <a href="login/login.jsp">
+                    <button class="cover-btn cover-btn2" style="vertical-align:middle">
+                         <span>Login</span>
+                     </button>
+               </a>
                <button class="cover-btn cover-btn2" style="vertical-align:middle">
                     <span>Sign Up</span>
                 </button>
