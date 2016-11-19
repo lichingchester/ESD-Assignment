@@ -12,7 +12,7 @@
         <title>login Page</title>
     </head>
     <body>
-        <form method="post" action="main">
+        <form method="post" action="../main">
         <input type="hidden" name="action" value="authenticate">   
         <p>Name <input type="text" name="username"></p>
         <p>Password <input type="text" name="password"></p>
