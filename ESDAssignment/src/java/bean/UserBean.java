@@ -5,27 +5,37 @@
  */
 package bean;
 
+import java.io.Serializable;
+
 /**
  *
  * @author ken42
  */
-public class UserBean {
-    private String id,pw,tel,email,address;
+public class UserBean implements Serializable{
+    private String username,password,name,tel,email,address;
     
-        public String getId() {  
-            return id;  
+        public String getUsername() {  
+            return username;  
         }  
 
-        public void setId(String id) {  
-            this.id = id; 
+        public void setUsername(String username) {  
+            this.username = username; 
         }  
 
-        public String getPw() {  
-            return pw;  
+        public String getPassword() {  
+            return password;  
         }  
 
-        public void setPw(String pw) {  
-            this.pw = pw;  
+        public void setName(String name) {  
+            this.name = name; 
+        }  
+
+        public String getName() {  
+            return name;  
+        }  
+        
+        public void setPassword(String password) {  
+            this.password = password;  
         }  
         
         public String getTel() {  

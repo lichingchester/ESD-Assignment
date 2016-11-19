@@ -5,14 +5,16 @@
  */
 package Servlet;
 
+import bean.UserBean;
 import bean.UserInfo;
 import db.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,7 +31,7 @@ import javax.servlet.http.HttpSession;
 public class LoginController extends HttpServlet {
     
     private UserDB db;
-
+    private ArrayList loginList;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -40,6 +42,7 @@ public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
+
         if (!isAuthenticated(request)
                 && !("authenticate".equals(action))) {
             doLogin(request, response);
@@ -59,20 +62,25 @@ public class LoginController extends HttpServlet {
     private void doAuthenticate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         String username=request.getParameter("username");
         String password=request.getParameter("password");
-        String targetURL;
-        //boolean isValid=db.isValidUser(username, password);
-        if("abc".equals(username)&&"123".equals(password)){
-            
-            HttpSession session=request.getSession(true);
-            UserInfo bean =new UserInfo();
-            bean.setUsername(username);
-            bean.setPassword(password);
+        String targetURL="login/login.jsp";
+        
+        loginList=db.queryItems();
+       
+        for(int i=0;i<loginList.size();i++){
+            if(username.equals(((UserBean) loginList.get(i)).getUsername())
+                   &&password.equals(((UserBean) loginList.get(i)).getPassword())){
+            //HttpSession session=request.getSession(true);
+            //UserInfo bean =new UserInfo();
+            //bean.setUsername(username);
+            //bean.setPassword(password);
             //store the userInfo to the session
-            session.setAttribute("userInfo", bean);
-            targetURL="login/welcome.jsp";
-        }else{
+            //session.setAttribute("userInfo", bean);
+           targetURL="login/welcome.jsp";
+            }else{
             targetURL="login/loginError.jsp";
         }
+        }
+
         RequestDispatcher rd;
         rd=getServletContext().getRequestDispatcher("/"+targetURL);
         rd.forward(request,response);
@@ -111,8 +119,6 @@ public class LoginController extends HttpServlet {
         String dbPassword = this.getServletContext().getInitParameter("dbPassword");
         String dbUrl = this.getServletContext().getInitParameter("dbUrl");
         db = new UserDB (dbUrl, dbUser, dbPassword); 
-        
-        
             }
     
     @Override

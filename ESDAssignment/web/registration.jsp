@@ -19,8 +19,7 @@
         <%@ page import="javax.servlet.*,javax.servlet.http.* "%>
         <%@ page import="java.text.DateFormat,java.util.Date" %>
     <%
-        String user = request.getParameter("uname");    
-        String pwd = request.getParameter("pass");
+        String user = request.getParameter("name");
         String tel = request.getParameter("tel");
         String email = request.getParameter("email");
         String address = request.getParameter("address");
@@ -30,11 +29,7 @@
         Statement st = con.createStatement();
         //ResultSet rs;
         Locale locale = request.getLocale( );
-        String date = DateFormat.getDateTimeInstance(DateFormat.FULL, 
-                                                    DateFormat.SHORT, 
-                                                locale).format(new Date( ));
-
-        int i = st.executeUpdate("insert into CUSTOMER(UserName, Password, Tel, Email, Address, regdate) values ('" + user + "','" + pwd + "','" + tel + "','" + email + "','" + address + "', "+date+")");
+        int i = st.executeUpdate("insert into CUSTOMER(LoginId, Password , Name, Tel, Email, Address, BonusPoint) values ('" + null + "','" + null + "','" +user+"','" + tel + "','" + email + "','" + address + "', "+1000+")");
         if (i > 0) {
             //session.setAttribute("userid", user);
             response.sendRedirect("welcome.jsp");

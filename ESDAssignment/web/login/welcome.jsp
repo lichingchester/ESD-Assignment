@@ -11,8 +11,8 @@
         <title>welcome Page</title>
     </head>
     <body>
-        <jsp:useBean id="User" class="bean.User" scope="session"/>
-        <h1>Welcome</h1>
-        <jsp:getProperty name="User" property="id"/>
+        <jsp:useBean id="User" class="bean.UserBean" scope="session"/>
+        <h1>Welcome</h1><jsp:getProperty name="User" property="id"/>
+         <jsp:forward page="../MemberShip.jsp" />
     </body>
 </html>
