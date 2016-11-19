@@ -9,6 +9,10 @@
         <param-value>jdbc:derby://localhost/ItemsDB</param-value>
     </context-param>
     <context-param>
+        <param-name>dbCartList</param-name>
+        <param-value>jdbc:derby://localhost/CartList</param-value>
+    </context-param>
+    <context-param>
         <param-name>dbUser</param-name>
         <param-value>abc</param-value>
     </context-param>

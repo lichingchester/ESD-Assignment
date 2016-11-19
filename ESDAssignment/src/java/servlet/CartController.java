@@ -7,7 +7,8 @@ package servlet;
  
 import java.io.IOException;
 
-import bean.CartBean;
+import bean.CartListBean;
+//import bean.CartBean;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,23 +39,25 @@ public class CartController extends HttpServlet{
  }
     protected void addToCart(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
+        String ID = request.getParameter("ID");
         String strModelNo = request.getParameter("modelNo");
         String strDescription = request.getParameter("description");
         String strPrice = request.getParameter("price");
         String strQuantity = request.getParameter("quantity");
 
-        CartBean cartBean = null;
+        CartListBean cartBean = null;
+        //CartBean cartBean = null;
 
         Object objCartBean = session.getAttribute("cart");
 
-        if(objCartBean!=null) {
+        /*if(objCartBean!=null) {
          cartBean = (CartBean) objCartBean ;
         } else {
          cartBean = new CartBean();
          session.setAttribute("cart", cartBean);
-        }
+        }*/
 
-        cartBean.addCartItem(strModelNo, strDescription, strPrice, strQuantity);
+        cartBean(ID,strModelNo,strPrice , strQuantity, strDescription);
         response.sendRedirect("testShoppingCart.jsp");
      }
     
