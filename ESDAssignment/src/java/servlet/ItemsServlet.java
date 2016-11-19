@@ -9,6 +9,7 @@ import bean.ItemBean;
 import db.ItemsDB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -105,7 +106,7 @@ public class ItemsServlet extends HttpServlet {
             // set the result into the attribute
             request.getSession().setAttribute("list", list);
             // redirect the result to the listCustomers.jsp	
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("list/main.jsp");
         }
         else if ("edit".equalsIgnoreCase(action)) {
             //get the id from request

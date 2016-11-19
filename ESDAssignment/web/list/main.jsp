@@ -12,7 +12,7 @@
         <title>JSP Page</title>
         
         <!-- css import-->
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="../css/style.css">
         
         <!--java import-->
         <%@page import="java.util.ArrayList"%>
@@ -26,7 +26,7 @@
     </head>
     <body>
         
-       <jsp:include page="include/header.jsp" />
+       <jsp:include page="../include/header.jsp" />
 
        <section class="search-bar">
             <div class="center-search-bar">

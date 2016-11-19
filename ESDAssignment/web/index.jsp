@@ -38,16 +38,16 @@ and open the template in the editor.
                <!--fucking wrong in here!!!-->
                <!--fucking wrong in here!!!-->
                <!--fucking wrong in here!!!-->
-               <form action="ItemsServlet" method="get">
+<!--               <form action="ItemsServlet" method="get">
                    <input type="hidden" name="action" value="list" />
                    <input type="submit" class="cover-btn" style="vertical-align: middle" value="Let's get your amazing clothes!" />
-               </form>
+               </form>-->
                
-<!--                <button class="cover-btn" style="vertical-align:middle">
+                <button class="cover-btn" style="vertical-align:middle">
                      <a href="ItemsServlet?action=list" class="a-white">
                          <span>Let's get your amazing clothes!</span>
                      </a>
-                 </button>-->
+                 </button>
                 
            </div>
            <div class="index-center-right">
