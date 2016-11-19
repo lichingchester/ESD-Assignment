@@ -17,7 +17,7 @@
         
         <div class="div-center additem">
             <h1><b>Add new item</b></h1>
-            <form action="ItemUpload" method="post" class="formadd">
+            <form action="../ItemUpload" method="post" class="formadd">
                 <p>
                     <label for="name">Item Name</label><br>
                     <input type="text" id="name" name="name" class="input-add"><br>
@@ -58,8 +58,8 @@
                     <input type="file" id="path" name="path" multiple="false" class="input-add"><br>
                 </p>
                 <p>
-                    <input type="submit" value="Submit">
-                    <input type="reset" value="Reset">
+                    <input type="submit" value="Submit" class="additem-submit">
+                    <input type="reset" value="Reset" class="additem-submit">
                 </p>
             </form>
         </div>

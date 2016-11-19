@@ -52,5 +52,14 @@
       <url-pattern>/ItemsServlet</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>ItemUpload</servlet-name>
+    <servlet-class>servlet.ItemUpload</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ItemUpload</servlet-name>
+      <url-pattern>/ItemUpload</url-pattern>
+  </servlet-mapping>
+  
  
 </web-app>
