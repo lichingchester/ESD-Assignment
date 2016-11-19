@@ -12,8 +12,9 @@
         <title>login Page</title>
     </head>
     <body>
-        <form method="post" action="main">
-        <input type="hidden" name="action" value="authenticate">   
+        <form method="post" action="../LoginController">
+            
+        <input type="hidden" name="action" value="authenticate"/>
         <p>Name <input type="text" name="username"></p>
         <p>Password <input type="text" name="password"></p>
         <input type="submit" value="Login">  <input type="reset">

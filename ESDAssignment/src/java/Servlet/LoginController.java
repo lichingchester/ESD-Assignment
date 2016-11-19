@@ -25,7 +25,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author ken42
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/main"})
+@WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
 public class LoginController extends HttpServlet {
     
     private UserDB db;
@@ -39,20 +39,19 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action =request.getParameter("action");
-        if(!(isAuthenticated(request))
-                &&!("authenticate").equals(action)){
+        String action = request.getParameter("action");
+        if (!isAuthenticated(request)
+                && !("authenticate".equals(action))) {
             doLogin(request, response);
             return;
-            } 
-        if("authenticate".equals(action)){
-                doAuthenticate(request, response);
-        }else if ("logout".equals(action)){
-                doLogout(request, response);
-                }
-                else{
-                response.sendError(HttpServletResponse.SC_NOT_IMPLEMENTED);
-                }
+        }
+        if ("authenticate".equals(action)) {
+            doAuthenticate(request, response);
+        } else if ("logout".equals(action)) {
+            doLogout(request, response);
+        } else {
+            response.sendError(HttpServletResponse.SC_NOT_IMPLEMENTED);
+        }
 
     }  
 
@@ -112,6 +111,8 @@ public class LoginController extends HttpServlet {
         String dbPassword = this.getServletContext().getInitParameter("dbPassword");
         String dbUrl = this.getServletContext().getInitParameter("dbUrl");
         db = new UserDB (dbUrl, dbUser, dbPassword); 
+        
+        
             }
     
     @Override

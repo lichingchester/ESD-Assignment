@@ -9,7 +9,7 @@ package bean;
  *
  * @author ken42
  */
-public class User {
+public class UserBean {
     private String id,pw,tel,email,address;
     
         public String getId() {  

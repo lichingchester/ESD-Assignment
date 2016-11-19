@@ -12,7 +12,7 @@ public class TestAddRecord {
 
     public static void main(String[] arg) {
 
-         String url = "jdbc:derby://localhost/User";
+        String url = "jdbc:derby://localhost/User";
         String username = "abc";
         String password = "123";
         UserDB userDb = new UserDB(url, username, password);
