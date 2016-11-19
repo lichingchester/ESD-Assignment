@@ -12,7 +12,7 @@
         <title>JSP Page</title>
         
         <!-- css import-->
-        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="css/style.css">
         
         <!--java import-->
         <%@page import="java.util.ArrayList"%>
@@ -55,7 +55,7 @@
                             + "<img src='"+ib.getPath()+"'>"
                             +ib.getPrice()+"</div>");
                 }
-            %>
+%>
 <!--            <div id="item1" ><img src="img\clothes\Men\1.png">100$</div>
 
             <div id="item2" ><img src="img\clothes\Men\2.jpg">200$</div>

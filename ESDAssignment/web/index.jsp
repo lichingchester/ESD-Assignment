@@ -42,13 +42,12 @@ and open the template in the editor.
                    <input type="hidden" name="action" value="list" />
                    <input type="submit" class="cover-btn" style="vertical-align: middle" value="Let's get your amazing clothes!" />
                </form>-->
-               
-                <button class="cover-btn" style="vertical-align:middle">
-                     <a href="ItemsServlet?action=list" class="a-white">
-                         <span>Let's get your amazing clothes!</span>
-                     </a>
-                 </button>
-                
+                <a href="ItemsServlet?action=list" class="a-white">
+                    <button class="cover-btn" style="vertical-align:middle">
+                             <span>Let's get your amazing clothes!</span>
+                    </button>
+                </a>
+
            </div>
            <div class="index-center-right">
                <button class="cover-btn cover-btn2" style="vertical-align:middle">

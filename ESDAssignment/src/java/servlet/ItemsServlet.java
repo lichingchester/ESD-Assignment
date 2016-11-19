@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.out;
 import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -104,9 +105,12 @@ public class ItemsServlet extends HttpServlet {
             // call the query db to get retrieve for all customer
             ArrayList list = db.queryItems();
             // set the result into the attribute
-            request.getSession().setAttribute("list", list);
+            request.setAttribute("list", list);
             // redirect the result to the listCustomers.jsp	
-            response.sendRedirect("list/main.jsp");
+//            response.sendRedirect("list/main.jsp");
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/list/main.jsp"); 
+            rd.forward(request, response);
+ 
         }
         else if ("edit".equalsIgnoreCase(action)) {
             //get the id from request

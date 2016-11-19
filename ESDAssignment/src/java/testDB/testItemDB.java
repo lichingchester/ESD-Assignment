@@ -5,7 +5,9 @@
  */
 package testDB;
 
+import bean.ItemBean;
 import db.ItemsDB;
+import java.util.ArrayList;
 
 /**
  *
@@ -25,6 +27,14 @@ public class testItemDB {
         
         db.addRecord("item001", "Brown dress", "Long dress for party", 
                 "long", "Chester Li", 599, "ESDAssignment/img/long/lng001.jpg", "M");
+        
+        ArrayList list = db.queryItems();
+        for(int i=0;i<list.size();i++){
+            ItemBean ib = (ItemBean)list.get(i);
+            System.out.print( i 
+                    + " :::: "+ib.getPath()+"'>>>>"
+                    +ib.getPrice());
+        }
     }
     
 }
