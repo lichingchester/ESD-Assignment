@@ -10,6 +10,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/style.css">
         <title>Order Page</title>
+        
+        <jsp:useBean id="user" class="bean.User"/>
+        <jsp:setProperty name="user" property="id" value="1" /> 
     </head>
     <body>
        <section class="header">
