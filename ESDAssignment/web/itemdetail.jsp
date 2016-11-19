@@ -17,9 +17,16 @@ and open the template in the editor.
 -->
 <html>
     <head>
+        <%@page import="java.util.ArrayList"%>
+        <%@page import="bean.ItemBean"%>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <%
+            ArrayList list = (ArrayList) request.getAttribute("list");
+            if(list == null) out.println("safdasf");
+        %>
         
         <!-- css import-->
         <link rel="stylesheet" href="css/style.css">
@@ -61,17 +68,25 @@ and open the template in the editor.
             <hr size="2" width="80%">
             
             <div id="container">
-                 <div id="detailitem" ><img src="img\clothes\Men\1.png"><br>100$</div>
+                 <div id="detailitem">
+                <%
+                    ItemBean ib = (ItemBean)list.get(0);
+                    out.print("<img src='"+ib.getPath()+"'>");
+                
+                %>
+                 </div>
+                 <br>
+            
                  <div id="iteminfo">
                      <br>
                      <br>
                      
                      <br>
                      <br>
-                     Fucking New T-shirt<br><br>
-                     Price:500000000$
+                    <%  out.print(ib.getItemName()); %><br><br>
+                     Price:<%  out.print(ib.getPrice()); %>
                      <hr size="2" width="80%">
-                     <form >
+                     <form>
                          <select>
                      <option>S size</option>
                      <option selected="true">M size</option>
@@ -80,12 +95,9 @@ and open the template in the editor.
                          <br>
                          <br>
                      <input type="button" id="btn" value="Shopping Cart">
-                    
                      </form>
-                 
-                 </div>
-                 
-                 
+                 </div> 
             </div>
+            
     </body>
 </html>
