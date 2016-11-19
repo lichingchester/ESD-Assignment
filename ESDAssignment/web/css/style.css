@@ -26,18 +26,18 @@ a{
 }
 
 .logo{
-    height: 150px;
+    height: 180px;
 }
 /**** section ****/
 
 .brand{
-    font-size: 80px;
+    font-size: 150px;
     text-align: center;
     padding: 50px;
 }
 
 #bg{
-    height: 46px;
+    height: 47px;
     width: auto;
     background-color: black;
     z-index: -1;
@@ -122,7 +122,6 @@ a{
     padding: 14px 20px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     float: right;
     height: auto;
 }
