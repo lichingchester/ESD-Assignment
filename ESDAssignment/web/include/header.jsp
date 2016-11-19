@@ -13,21 +13,20 @@
     </head>
     <body>
         
-<section class="header">
-            
-            <div id="bg">
-                <img src="/ESDAssignment/img/LOGO.png">
-                <a href="register.jsp" class="navbar">Join us</a>
-                <a href="login.jsp" class="navbar">Login</a>
-                <a href="order.jsp" class="navbar">Order</a>
-            </div>         
-        </section>
-        
-        <section class="logo">
-            <div class="brand">
-                <a href="#home" class="brand-name"><font id="font-red">C</font>&<font id="font-red">F</font> <font id="font-red">D</font>ress</a>
-            </div>
-        </section>
+    <section class="header">
+        <div id="bg">
+            <img src="/ESDAssignment/img/LOGO.png">
+            <a href="register.jsp" class="navbar">Join us</a>
+            <a href="login.jsp" class="navbar">Login</a>
+            <a href="order.jsp" class="navbar">Order</a>
+        </div>         
+    </section>
+
+    <section class="logo">
+        <div class="brand">
+            <a href="#home" class="brand-name"><font id="font-red">C</font>&<font id="font-red">F</font> <font id="font-red">D</font>ress</a>
+        </div>
+    </section>
         
         
     </body>

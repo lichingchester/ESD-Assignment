@@ -26,14 +26,22 @@ a{
 }
 
 .logo{
-    height: 180px;
+    height: auto;
+    position: static;
 }
 /**** section ****/
 
 .brand{
-    font-size: 150px;
+    height: auto;
+    font-size: 120px;
     text-align: center;
-    padding: 50px;
+    padding: 100px;
+}
+.brand2{
+    height: auto;
+    font-size: 200px;
+    text-align: center;
+    padding: 150px;
 }
 
 #bg{
@@ -134,7 +142,7 @@ a{
 
 /***************text color***********************/
 #font-red{
-    color: blueviolet;
+    color: #0060B2;
 }
 
 .brand-name{
@@ -247,3 +255,102 @@ select{
     background-color: #f1f1f1;
 }
 /****manager : add item****/
+
+/****index : center****/
+.index-center{   
+    height: 500px;
+}
+
+.index-center .index-center-left{
+    width: 50%;
+    height: 500px;
+    position: absolute;
+}
+.index-center .index-center-right{
+    width: 50%;
+    height: 500px;
+    float: right;
+    position: relative;
+}
+
+.cover-page{
+    background: url(../img/cover/Walking-Heads.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+/**********/
+
+.cover-btn {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #0060B2;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  transition: all 0.5s;
+  cursor: pointer;
+  height: auto;
+  width: auto;
+  position: relative;
+  margin: 50px 10px 10px 325px;
+}
+.cover-btn2 {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #0060B2;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  transition: all 0.5s;
+  cursor: pointer;
+  height: auto;
+  width: 300px;
+  position: relative;
+  margin: 50px 10px 10px 25px;
+}
+
+.cover-btn span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.cover-btn span:after {
+  content: "Let's go!";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.cover-btn2 span:after {
+  content: "";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.cover-btn:hover span {
+  padding-right: 130px;
+}
+.cover-btn2:hover span {
+  padding-right: 0px;
+}
+
+.cover-btn:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+/****index : center****/
+
+

@@ -25,9 +25,29 @@ and open the template in the editor.
         <link rel="stylesheet" href="css/style.css">
         
     </head>
-    <body>
+    <body class="cover-page">
+        <section class="logo">
+            <div class="brand2">
+                <a href="#home" class="brand-name"><font id="font-red">C</font>&<font id="font-red">F</font> <font id="font-red">D</font>ress</a>
+            </div>
+        </section>
         
-       <jsp:include page="include/header.jsp" />
-       
+       <div class="index-center">
+           <div class="index-center-left">
+                <a href="ItemsServlet?action=list">
+                    <button class="cover-btn" style="vertical-align:middle">
+                         <span>Let's get your amazing clothes!</span>
+                     </button>
+                </a>
+           </div>
+           <div class="index-center-right">
+               <button class="cover-btn cover-btn2" style="vertical-align:middle">
+                    <span>Login</span>
+                </button>
+               <button class="cover-btn cover-btn2" style="vertical-align:middle">
+                    <span>Sign Up</span>
+                </button>
+           </div>
+       </div>
     </body>
 </html>
