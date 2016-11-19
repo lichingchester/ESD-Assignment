@@ -34,6 +34,10 @@ and open the template in the editor.
         
        <div class="index-center">
            <div class="index-center-left">
+               <!--fucking wrong in here!!!-->
+               <!--fucking wrong in here!!!-->
+               <!--fucking wrong in here!!!-->
+               <!--fucking wrong in here!!!-->
                 <a href="ItemsServlet?action=list">
                     <button class="cover-btn" style="vertical-align:middle">
                          <span>Let's get your amazing clothes!</span>
