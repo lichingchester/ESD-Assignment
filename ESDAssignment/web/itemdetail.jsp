@@ -35,7 +35,7 @@ and open the template in the editor.
         <section class="header">
             
             <div id="bg">
-                <img src="img\LOGO.png">
+                <a href="index.jsp"><img src="img\LOGO.png"></a>
                 <a href="register.jsp" class="navbar">Join us</a>
                 <a href="login.jsp" class="navbar">Login</a>
                 <a href="order.jsp" class="navbar">Order</a>
