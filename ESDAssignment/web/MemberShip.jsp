@@ -24,6 +24,7 @@
                <form>
                <h1>Order History</h1><input type="button" value="Manage Order" >
                <hr size="2" width="100%">
+               
                <table>
                     <tr>
                     <th>Items Name</th>
