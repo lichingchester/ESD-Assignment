@@ -383,5 +383,29 @@ td, th {
 
 tr:nth-child(even) {
     background-color: #dddddd;
+}
 
-
+/*****admin page*****/
+.adminitemmt {
+	background-color:#a3a3a3;
+	-moz-border-radius:17px;
+	-webkit-border-radius:17px;
+	border-radius:17px;
+	border:2px solid #878787;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:20px;
+	padding:18px 40px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #a1a1a1;
+}
+.adminitemmt:hover {
+	background-color:#878787;
+}
+.adminitemmt:active {
+	position:relative;
+	top:1px;
+}
+/*****admin page*****/
