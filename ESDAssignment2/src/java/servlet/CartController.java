@@ -8,6 +8,7 @@ package servlet;
 import java.io.IOException;
 
 import bean.CartListBean;
+import db.ShoppingCartDB;
 //import bean.CartBean;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,8 +20,17 @@ import javax.servlet.http.HttpSession;
  *
  * @author Wang
  */
-@WebServlet(name = "CartController", urlPatterns = {"/cartController"})
+@WebServlet(name = "CartController", urlPatterns = {"/CartController"})
 public class CartController extends HttpServlet{
+    private ShoppingCartDB db;
+    
+        public void init() {
+        String username = "APP";
+        String password = "APP";
+        String url = "jdbc:derby://localhost/UB";    
+        db = new ShoppingCartDB(url, username, password);
+    }
+    
     public void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
  
@@ -35,7 +45,6 @@ public class CartController extends HttpServlet{
     deleteCart(request);
    }
 
-  response.sendRedirect("../testShoppingCart.jsp");
  }
     protected void addToCart(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
@@ -46,18 +55,18 @@ public class CartController extends HttpServlet{
         String strQuantity = request.getParameter("quantity");
 
         CartListBean cartBean = null;
+        cartBean = new CartListBean(ID,strModelNo,strPrice , strQuantity, strDescription);
         //CartBean cartBean = null;
 
-        Object objCartBean = session.getAttribute("cart");
-
+        //Object objCartBean = session.getAttribute("cart");
+        
+        session.setAttribute("cart",cartBean);
         /*if(objCartBean!=null) {
          cartBean = (CartBean) objCartBean ;
         } else {
          cartBean = new CartBean();
          session.setAttribute("cart", cartBean);
         }*/
-
-        cartBean(ID,strModelNo,strPrice , strQuantity, strDescription);
         response.sendRedirect("testShoppingCart.jsp");
      }
     

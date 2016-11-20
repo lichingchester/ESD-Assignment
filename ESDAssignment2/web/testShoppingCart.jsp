@@ -4,6 +4,7 @@
     Author     : Wang
 --%>
 
+<%@page import="bean.CartListBean"%>
 <%@page import="bean.CartBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -15,18 +16,20 @@
     </head>
     <body>
          <%
-            ArrayList<CartBean> customers =
-           (ArrayList<CartBean> )request.getAttribute("customers");
+            ArrayList<CartListBean> list =
+           (ArrayList<CartListBean> )request.getAttribute("CartList");
             out.println("<h1>Customers</h1>");
             out.println("<table border='1' >");
             out.println("<tr>");
             out.println("<th>CustId</th> <th> name</th><th> tel</th><th> age</th >");
             out.println("</tr>");
             // loop through the customer array to display each customer record
-            for (int i = 0; i < customers.size(); i++) {
-            CartBean c = customers.get(i);
+            for (int i = 0; i < list.size(); i++) {
+            CartListBean c = list.get(i);
             out.println("<tr>");
-            out.println("<td>" + c.getCartItem(i) + "</td>");
+            out.println("<td>" + c.getListId() + "</td>");
+            out.println("<td>" + c.getName() + "</td>");
+            out.println("<td>" + c.getPrice() + "</td>");
             out.println("</tr>");
             }
             out.println("</table>");

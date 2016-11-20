@@ -13,13 +13,14 @@
     </head>
     <body>
         <h1>Shopping List</h1>
+        
          <table border="1px">
-        <form action="cartController" method="POST">
+        <form action="CartController" method="post">
     
             <th>Pizza Name</th> <th>Price</th>  <th>Add to Cart</th>
             <tr><td>Muffuleta<input type="hidden" name="ID" value="1"><input type="hidden" name="modelNo" value="Muffuleta"></td><td>$20<input type="hidden" name="price" value="20">
                     <input type="hidden" name="quantity" value="1"><input type="hidden" name="description" value="ABC"></td><td>
-            <input type="hidden" name="price" value="20"><input type="hidden" name="action" value="add"><input type="submit" name="addToCart" value="Add To Cart"></td>
+            <input type="hidden" name="price" value="20"><input type="hidden" name="action" value="add"><input type="submit" value="Add To Cart"></td>
         </tr>
         </form>
         <form action="CartController.java" method="POST">
