@@ -198,7 +198,7 @@ public class ItemsDB {
         PreparedStatement pStmnt = null;
         try {
             cnnct = getConnection();
-            String preQueryStatement = "SELECT * FROM  Items WHERE itemName LIKE ?";
+            String preQueryStatement = "SELECT * FROM  Items WHERE itemName LIKE ? or designerName like ?";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             pStmnt.setString(1, "%" + name + "%");
             //Statement s = cnnct.createStatement();

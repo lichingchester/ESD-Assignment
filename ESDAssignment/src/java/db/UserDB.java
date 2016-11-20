@@ -44,7 +44,8 @@ public class UserDB {
                     + " LoginID VARCHAR(25), Password  VARCHAR(25), "
                     + "Name  VARCHAR(50),"
                     + " Tel  VARCHAR(15)CONSTRAINT  PK_CUSTOMER  PRIMARY  KEY,  Email  VARCHAR(100),"
-                    + "Address  VARCHAR(200),"+"BonusPoint int)";
+                    + "Address  VARCHAR(200),"+"BonusPoint int,"
+                    + "Status int)";
             stmnt.execute(sql);
 
             stmnt.close();
@@ -59,13 +60,13 @@ public class UserDB {
         }
     }
      
-     public boolean addRecord(String LoginID, String Pw,String Name, String Tel , String Email, String Address,int BonusPoint) {
+     public boolean addRecord(String LoginID, String Pw,String Name, String Tel , String Email, String Address,int BonusPoint, int Status) {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
         boolean isSuccess = false;
         try {
             cnnct = getConnection();
-            String preQueryStatement = "INSERT  INTO  CUSTOMER  VALUES  (?,?,?,?,?,?,?)";
+            String preQueryStatement = "INSERT  INTO  CUSTOMER  VALUES  (?,?,?,?,?,?,?,?)";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             pStmnt.setString(1, LoginID);
             pStmnt.setString(2, Pw);
@@ -74,6 +75,7 @@ public class UserDB {
             pStmnt.setString(5, Email);
             pStmnt.setString(6, Address);
             pStmnt.setInt(7, BonusPoint);
+            pStmnt.setInt(8, Status);
             
             int rowCount = pStmnt.executeUpdate();
             if (rowCount >= 1) {
@@ -112,6 +114,106 @@ public class UserDB {
                 ib.setTel(rs.getString(4));
                 ib.setEmail(rs.getString(5));
                 ib.setAddress(rs.getString(6));
+                ib.setBonusPoint(String.valueOf(rs.getInt(7)));
+                ib.setStatus(String.valueOf(rs.getInt(8)));
+                list.add(ib);
+            }
+            return list;
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            if (pStmnt != null) {
+                try {
+                    pStmnt.close();
+                } catch (SQLException e) {
+                }
+            }
+            if (cnnct != null) {
+                try {
+                    cnnct.close();
+                } catch (SQLException sqlEx) {
+                }
+            }
+        }
+        return null;
+    }
+     
+     public ArrayList queryUsersByConfirmed() {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        try {
+            cnnct = getConnection();
+            String preQueryStatement = "SELECT * FROM  CUSTOMER WHERE STATUS = 1";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            //Statement s = cnnct.createStatement();
+            ResultSet rs = pStmnt.executeQuery();
+
+            ArrayList list = new ArrayList();
+
+            while (rs.next()) {
+                UserBean ib = new UserBean();
+                ib.setUsername(rs.getString(1));
+                ib.setPassword(rs.getString(2));
+                ib.setName(rs.getString(3));
+                ib.setTel(rs.getString(4));
+                ib.setEmail(rs.getString(5));
+                ib.setAddress(rs.getString(6));
+                ib.setBonusPoint(String.valueOf(rs.getInt(7)));
+                ib.setStatus(String.valueOf(rs.getInt(8)));
+                list.add(ib);
+            }
+            return list;
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            if (pStmnt != null) {
+                try {
+                    pStmnt.close();
+                } catch (SQLException e) {
+                }
+            }
+            if (cnnct != null) {
+                try {
+                    cnnct.close();
+                } catch (SQLException sqlEx) {
+                }
+            }
+        }
+        return null;
+    }
+     
+     public ArrayList queryUsersByUnconfirmed() {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        try {
+            cnnct = getConnection();
+            String preQueryStatement = "SELECT * FROM  CUSTOMER WHERE STATUS = 0";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            //Statement s = cnnct.createStatement();
+            ResultSet rs = pStmnt.executeQuery();
+
+            ArrayList list = new ArrayList();
+
+            while (rs.next()) {
+                UserBean ib = new UserBean();
+                ib.setUsername(rs.getString(1));
+                ib.setPassword(rs.getString(2));
+                ib.setName(rs.getString(3));
+                ib.setTel(rs.getString(4));
+                ib.setEmail(rs.getString(5));
+                ib.setAddress(rs.getString(6));
+                ib.setBonusPoint(String.valueOf(rs.getInt(7)));
+                ib.setStatus(String.valueOf(rs.getInt(8)));
                 list.add(ib);
             }
             return list;

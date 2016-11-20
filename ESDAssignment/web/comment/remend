@@ -29,3 +29,13 @@
                             +ib.getPrice()+"</div>");
                 }
 %>
+
+
+----------search engine----------
+keyword include: item name, designer name
+
+
+
+----------user table----------
+status : used to identify the client is/isn't confirmed by manager
+// 1 = confirmed, 0 = uncomfirmed
