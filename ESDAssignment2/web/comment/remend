@@ -1,0 +1,41 @@
+----------Error solution----------
+[Servlet] change "forward" to "redirect"  @cheukwang2
+
+
+
+
+
+----------System structure----------
+[manager] add item ::  click "add" button on the "member page" 
+(the add button will appear in manage items function(page))
+// link to manager/addItem.jsp
+
+[manager] edit item :: click "edit" button on the each item block of the manage items page
+// link to manager/editItem.jsp
+// pass parameter - itemID : String
+
+[manager] delete item :: click "delete" button on the each item block of the manage items page
+// link to manager/deleteItem.jsp
+// pass parameter - itemID : String
+
+
+
+-----------list/main.jsp----------
+<%
+                for(int i=0;i<list.size();i++){
+                    ItemBean ib = (ItemBean)list.get(i);
+                    out.print("<div id='item1'>"
+                            + "<img src='"+ib.getPath()+"'>"
+                            +ib.getPrice()+"</div>");
+                }
+%>
+
+
+----------search engine----------
+keyword include: item name, designer name
+
+
+
+----------user table----------
+status : used to identify the client is/isn't confirmed by manager
+// 1 = confirmed, 0 = uncomfirmed
