@@ -11,8 +11,8 @@
         <link rel="stylesheet" href="css/style.css">
         <title>Order Page</title>
         
-        <jsp:useBean id="user" class="bean.User"/>
-        <jsp:setProperty name="user" property="id" value="1" /> 
+        <jsp:useBean id="user" class="bean.UserBean"/>
+        <jsp:setProperty name="user" property="tel" value="1" /> 
     </head>
     <body>
        <section class="header">
