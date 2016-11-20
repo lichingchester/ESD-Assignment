@@ -19,7 +19,7 @@
        <section class="header">
             <div id="bg">
                 <a href="index.jsp"><img src="img\LOGO.png"></a>
-                <img src="img\icon.png"><label style="color:white ;font-size:large " >Name:<jsp:getProperty name="user"property="id"/></label>
+                <img src="img\icon.png"><label style="color:white ;font-size:large " >Name:<jsp:getProperty name="user"property="tel"/></label>
                 <a href="#join" class="navbar">Join us</a>
                 <a href="order.jsp" class="navbar">Logout</a>
                 <a href="order.jsp" class="navbar">Order</a>
