@@ -25,9 +25,10 @@
            <div id="container">
                <h1 style="font-size: 50px">Top Confidential Management Room</h1>
                <br>
-               <a href="AdminShip.jsp" class="adminitemmt">Users Mamagement</a>
-               <a href="ItemsManage.jsp" class="adminitemmt">Items Mamagement</a>
-               <a href="ICOReport.jsp" class="adminitemmt">Incomplete Order Report</a>
+               <a href="/managerHandle?action=users" class="adminitemmt">Users Mamagement</a>
+               <a href="/managerHandle?action=orderps" class="adminitemmt">Orders Mamagement</a>
+               <a href="/managerHandle?action=item" class="adminitemmt">Items Mamagement</a>
+               <a href="/managerHandle?action=report" class="adminitemmt">Incomplete Order Report</a>
                <hr size="2" width="100%">
                
                <table>
