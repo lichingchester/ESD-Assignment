@@ -117,7 +117,7 @@ public class LoginController extends HttpServlet {
     public void init(){
         String dbUser = this.getServletContext().getInitParameter("dbUser");
         String dbPassword = this.getServletContext().getInitParameter("dbPassword");
-        String dbUrl = this.getServletContext().getInitParameter("dbUrl");
+        String dbUrl = this.getServletContext().getInitParameter("dbUrluser");
         db = new UserDB (dbUrl, dbUser, dbPassword); 
             }
     

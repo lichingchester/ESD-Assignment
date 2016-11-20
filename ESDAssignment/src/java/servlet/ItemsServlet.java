@@ -41,58 +41,7 @@ public class ItemsServlet extends HttpServlet {
         String password = this.getServletContext().getInitParameter("dbPassword");
         String url = this.getServletContext().getInitParameter("dbUrlitems");   
         db = new ItemsDB(url, username, password);  
-        db.dropItemsTable();
-        db.createItemsTable();
-        System.out.println("table created");
         
-//        long dress
-        db.addRecord("item001", "Brown dress", "Long dress for party", 
-                "long", "Chester Li", 599, "img/long/lng001.jpg", "M");
-        db.addRecord("item002", "White dress", "Long dress for party", 
-                "long", "Enriqueta Como", 230, "img/long/lng002.jpg", "L");
-        db.addRecord("item003", "Colorful dress", "Long dress for wedding", 
-                "long", "Meda Germaine", 167, "img/long/lng003.jpg", "M");
-        db.addRecord("item004", "Red dress", "Long dress for travel", 
-                "long", "Meda Germaine", 1099, "img/long/lng004.jpg", "XL");
-        db.addRecord("item005", "Red dress", "Long dress for travel", 
-                "long", "Antwan Potter", 689, "img/long/lng005.jpg", "S");
-    
-//        middle dress
-        db.addRecord("item006", "Black dress", "Middle dress for party", 
-                "middle", "Enriqueta Como", 1000, "img/middle/mid001.jpg", "XS");
-        db.addRecord("item007", "White dress", "Middle dress for party", 
-                    "middle", "Enriqueta Como", 520, "img/middle/mid002.jpg", "S");
-        db.addRecord("item008", "Yellow dress", "Middle dress for wedding", 
-                    "middle", "Harriet Scicchitano", 1000, "img/middle/mid003.jpg", "XL");
-        db.addRecord("item009", "Brown dress", "Middle dress for travel", 
-                    "middle", "Katharyn Smalling", 3999, "img/middle/mid004.jpg", "M");
-        db.addRecord("item010", "White dress", "Middle dress for travel", 
-                    "middle", "Clarinda Ardrey ", 350, "img/middle/mid005.jpg", "M");
-    
-//        short dress
-        db.addRecord("item011", "White dress", "Middle dress for party", 
-                "middle", "Enriqueta Como", 560, "img/short/sht001.jpg", "XS");
-        db.addRecord("item012", "White dress", "Middle dress for party", 
-                    "middle", "Enriqueta Como", 689, "img/short/sht002.jpg", "S");
-        db.addRecord("item013", "Yellow dress", "Middle dress for wedding", 
-                    "middle", "Harriet Scicchitano", 689, "img/short/sht003.jpg", "XXL");
-        db.addRecord("item014", "Brown dress", "Middle dress for travel", 
-                    "middle", "Katharyn Smalling", 689, "img/short/sht004.jpg", "M");
-        db.addRecord("item015", "White dress", "Middle dress for travel", 
-                    "middle", "Clarinda Ardrey ", 999, "img/short/sht005.jpg", "M");
-        
-    //        sheath dress
-        db.addRecord("item016", "Deep Blue dress", "Sheath dress for party", 
-                "middle", "Enriqueta Como", 560, "img/sheath/shh001.jpg", "XL");
-        db.addRecord("item017", "Blue dress", "Sheath dress for party", 
-                    "middle", "Enriqueta Como", 786, "img/sheath/shh002.jpg", "S");
-        db.addRecord("item018", "White dress", "Sheath dress for wedding", 
-                    "middle", "Harriet Scicchitano", 344, "img/sheath/shh003.jpg", "XXS");
-        db.addRecord("item019", "White dress", "Sheath dress for travel", 
-                    "middle", "Katharyn Smalling", 8000, "img/sheath/shh004.jpg", "M");
-        db.addRecord("item020", "Red dress", "Sheath dress for travel", 
-                    "middle", "Clarinda Ardrey ", 999, "img/sheath/shh005.jpg", "M");
-    
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
