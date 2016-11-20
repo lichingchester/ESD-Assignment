@@ -5,8 +5,16 @@
  */
 package servlet;
 
+import bean.ItemBean;
+import bean.OrderBean;
+import bean.UserBean;
+import db.ItemsDB;
+import db.OrdersDB;
+import db.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,21 +37,29 @@ public class test extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    ItemsDB idb;
+    ItemBean ib;
+    
+    public void init(){
+        String username = this.getServletContext().getInitParameter("dbUser");
+        String password = this.getServletContext().getInitParameter("dbPassword");
+        String itemUrl = this.getServletContext().getInitParameter("dbUrlitems");   
+        idb = new ItemsDB(itemUrl, username, password);
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet test</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet test at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        
+        // call the query db to get retrieve for all customer
+            ArrayList list = idb.queryItems();
+            // set the result into the attribute
+            request.setAttribute("list", list);
+            // redirect the result to the listCustomers.jsp	
+//            response.sendRedirect("list/main.jsp");
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/AdminShip.jsp"); 
+            rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -6,6 +6,7 @@
 package db;
 
 import bean.ItemBean;
+import bean.OrderBean;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -67,7 +68,7 @@ public class OrdersDB {
     }
     
     
-     public boolean createItemsTable() {
+     public boolean createOrderTable() {
         Connection cnnct = null;
         Statement stmnt = null;
         boolean chk = false;
@@ -86,7 +87,8 @@ public class OrdersDB {
                     + "path VARCHAR(100), "
                     + "size VARCHAR(10),"
                     + "deliveryType VARCHAR(20),"
-                    + "deliveryDT DATETIME,"
+                    + "deliveryDate DATE,"
+                    + "deliveryTime TIME"
                     + "deliveryAddress VARCHAR(100),"
                     + "status VARCHAR(20),"
                     + "primary key (orderID))";
@@ -113,45 +115,45 @@ public class OrdersDB {
     }
      
      
-    public OrderBean queryByID(String ID) {
-        Connection cnnct = null;
-        PreparedStatement pStmnt = null;
-
-        OrderBean ib = null;
-        try {
-            //1.  get Connection
-            cnnct = getConnection();
-            String preQueryStatement = "SELECT * FROM  Orders WHERE orderID=?";
-            //2.  get the prepare Statement
-            pStmnt = cnnct.prepareStatement(preQueryStatement);
-            //3. update the placehoder with id
-            pStmnt.setString(1, ID);
-            ResultSet rs = null;
-            //4. execute the query and assign to the result 
-            rs = pStmnt.executeQuery();
-            if (rs.next()) {
-                ib = new ItemBean();
-                // set the record detail to the customer bean
-                ib.setItemID(rs.getString(1));
-                ib.setItemName(rs.getString(2));
-                ib.setDesc(rs.getString(3));
-                ib.setCategory(rs.getString(4));
-                ib.setDesignerName(rs.getString(5));
-                ib.setPrice(rs.getDouble(6));
-                ib.setPath(rs.getString(7));
-                ib.setSize(rs.getString(8));
-            }
-
-            pStmnt.close();
-            cnnct.close();
-        } catch (SQLException ex) {
-            while (ex != null) {
-                ex.printStackTrace();
-                ex = ex.getNextException();
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        return ib;
-    }
+//    public OrderBean queryByID(String ID) {
+//        Connection cnnct = null;
+//        PreparedStatement pStmnt = null;
+//
+//        OrderBean ib = null;
+//        try {
+//            //1.  get Connection
+//            cnnct = getConnection();
+//            String preQueryStatement = "SELECT * FROM  Orders WHERE orderID=?";
+//            //2.  get the prepare Statement
+//            pStmnt = cnnct.prepareStatement(preQueryStatement);
+//            //3. update the placehoder with id
+//            pStmnt.setString(1, ID);
+//            ResultSet rs = null;
+//            //4. execute the query and assign to the result 
+//            rs = pStmnt.executeQuery();
+//            if (rs.next()) {
+//                ib = new OrderBean();
+//                // set the record detail to the customer bean
+//                ib.setItemID(rs.getString(1));
+//                ib.setItemName(rs.getString(2));
+//                ib.setDesc(rs.getString(3));
+//                ib.setCategory(rs.getString(4));
+//                ib.setDesignerName(rs.getString(5));
+//                ib.setPrice(rs.getDouble(6));
+//                ib.setPath(rs.getString(7));
+//                ib.setSize(rs.getString(8));
+//            }
+//
+//            pStmnt.close();
+//            cnnct.close();
+//        } catch (SQLException ex) {
+//            while (ex != null) {
+//                ex.printStackTrace();
+//                ex = ex.getNextException();
+//            }
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//        }
+//        return ib;
+//    }
 }

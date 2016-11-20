@@ -6,8 +6,10 @@
 package servlet;
 
 import bean.ItemBean;
+import bean.OrderBean;
 import bean.UserBean;
 import db.ItemsDB;
+import db.OrdersDB;
 import db.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -38,8 +40,10 @@ public class managerHandle extends HttpServlet {
     
     UserDB udb;
     ItemsDB idb;
+    OrdersDB odb;
     UserBean ub;
     ItemBean ib;
+    OrderBean ob;
     
     public void init(){
         String username = this.getServletContext().getInitParameter("dbUser");
@@ -48,6 +52,7 @@ public class managerHandle extends HttpServlet {
         String itemUrl = this.getServletContext().getInitParameter("dbUrlitems");   
         udb = new UserDB(userUrl, username, password);
         idb = new ItemsDB(itemUrl, username, password);
+        odb = new OrdersDB(itemUrl, username, password);
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -73,7 +78,7 @@ public class managerHandle extends HttpServlet {
             request.setAttribute("list", list);
             // redirect the result to the listCustomers.jsp	
 //            response.sendRedirect("list/main.jsp");
-            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/AdminShip.jsp"); 
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/UsersManage.jsp"); 
             rd.forward(request, response);
  
         }else if ("item".equalsIgnoreCase(action)) {
@@ -83,7 +88,7 @@ public class managerHandle extends HttpServlet {
             request.setAttribute("list", list);
             // redirect the result to the listCustomers.jsp	
 //            response.sendRedirect("list/main.jsp");
-            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/ItemsManage.jsp"); 
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/AdminShip.jsp"); 
             rd.forward(request, response);
  
         }else if ("itemByName".equalsIgnoreCase(action)) {

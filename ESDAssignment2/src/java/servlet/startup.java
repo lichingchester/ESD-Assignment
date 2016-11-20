@@ -6,6 +6,7 @@
 package servlet;
 
 import db.ItemsDB;
+import db.OrdersDB;
 import db.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -38,9 +39,13 @@ public class startup extends HttpServlet {
         String dbPassword = this.getServletContext().getInitParameter("dbPassword");
         String dbUrluser = this.getServletContext().getInitParameter("dbUrluser");
         String dbUrlitems = this.getServletContext().getInitParameter("dbUrlitems");   
+        
+        OrdersDB odb = new OrdersDB (dbUrlitems, dbUser, dbPassword);
+        odb.createOrderTable();
+        
         UserDB udb = new UserDB (dbUrluser, dbUser, dbPassword);
         udb.createCustTable();
-        udb.createCustTable();
+        
         udb.addRecord("admin", "admin", "Chester", "68916799", "chester@gmail.com", "1679 DUI YOU HSE, FUK KIL EST, TIN TIN DUI, NT", 0, 2);
         udb.addRecord("", "", "Amon", "12345678", "amon@gmail.com", "1679 DUI YOU HSE, FUK KIL EST, TIN TIN DUI, NT", 0, 0);
         udb.addRecord("robot", "robot", "Robot", "87654321", "robot@gmail.com", "1679 DUI YOU HSE, FUK KIL EST, TIN TIN DUI, NT", 0, 0);
