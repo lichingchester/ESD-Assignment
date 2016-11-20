@@ -172,6 +172,8 @@ a{
 
 #item1{
 width:26%;
+padding: 10px;
+margin-bottom: 5px;
 height:280px;
 text-align:center;
 font-size:15px;
@@ -180,9 +182,11 @@ color:#ffffff;
 font-weight:bold;
 background-color:#cecece;
 float:left;
+
 }
 #item2{
 width:26%;
+
 float:left;
 height:280px;
 text-align:center;

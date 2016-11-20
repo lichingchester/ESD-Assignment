@@ -5,8 +5,12 @@
  */
 package servlet;
 
+import bean.UserBean;
+import db.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +23,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "UpdateInfoServlet", urlPatterns = {"/UpdateInfoServlet"})
 public class UpdateInfoServlet extends HttpServlet {
+    UserDB db;
+    UserBean ub;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,15 +40,18 @@ public class UpdateInfoServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet UpdateInfoServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet UpdateInfoServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            String name = request.getParameter("name");
+            String pwd = request.getParameter("pwd");
+            String address = request.getParameter("address");
+            
+            String action = request.getParameter("action");
+            System.out.println("action:"+action);
+            
+            if ("edit".equalsIgnoreCase(action)) {
+             //   ub = db.queryItemByID(itemID);   Ar kit UserDB don't have this method,you should add this method in UserDB
+            //Not Fucking done!!!!!!!!!!!!!!!!!!!
+            }
+            
         }
     }
 

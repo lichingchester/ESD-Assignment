@@ -11,15 +11,16 @@
         <link rel="stylesheet" href="css/style.css">
         <title>Order Page</title>
         
-        <jsp:useBean id="user" class="bean.User"/>
-        <jsp:setProperty name="user" property="id" value="1" />
-        <jsp:setProperty name="user" property="id" value="1" /> 
+        <jsp:useBean id="user" class="bean.UserBean"/>
+        <%
+        user.setName("Fluffy");
+        %> 
     </head>
     <body>
        <section class="header">
             <div id="bg">
                 <a href="index.jsp"><img src="img\LOGO.png"></a>
-                <img src="img\icon.png"><label style="color:white ;font-size:large " >Name:<jsp:getProperty name="user"property="id"/></label>
+                <img src="img\icon.png"><label style="color:white ;font-size:large " >Name:<%= user.getName() %></label>
                 <a href="#join" class="navbar">Join us</a>
                 <a href="order.jsp" class="navbar">Logout</a>
                 <a href="order.jsp" class="navbar">Order</a>
@@ -41,6 +42,7 @@
                <br/>
                <br/>
                <input type="submit" value="Submit">
+               <input name="action" type="hidden" value="edit">
                </form>
                
            </div>

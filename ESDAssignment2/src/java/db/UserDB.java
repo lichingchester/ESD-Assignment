@@ -10,6 +10,7 @@ package db;
  * @author ken42
  */
 
+import bean.ItemBean;
 import bean.UserBean;
 import java.io.IOException;
 import java.sql.*;
@@ -93,6 +94,45 @@ public class UserDB {
         }
         return isSuccess;
     }
+     public int editRecord(UserBean ub){                //ManHo edited, I don't know correct or wrong 
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        
+        int rs = 0;
+        try{
+            cnnct = getConnection();
+            String preQueryStatement = 
+                    "update item set LoginID = ?, Password = ?, "
+                    + "name = ?, Tel = ?"
+                    + "Email = ?, Address = ?"
+                    + "BonusPoint = ? , Status = ?";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            
+            pStmnt.setString(1, ub.getUsername());
+            pStmnt.setString(2, ub.getPassword());
+            pStmnt.setString(3, ub.getName());
+            pStmnt.setString(4, ub.getTel());
+            pStmnt.setString(5, ub.getEmail());
+            pStmnt.setString(6, ub.getAddress());
+            pStmnt.setString(7, ub.getBonusPoint());
+            pStmnt.setString(8, ub.getStatus());
+            
+            rs = pStmnt.executeUpdate();
+            
+            pStmnt.close();
+            cnnct.close();
+            
+        }catch(SQLException ex){
+            while(ex != null){
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+        return rs;
+    }
+     
      
      public ArrayList queryItems() {
         Connection cnnct = null;

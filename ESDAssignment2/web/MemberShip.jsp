@@ -12,18 +12,19 @@
         <title>Order Page</title>
         
         <jsp:useBean id="user" class="bean.UserBean"/>
-         <jsp:setProperty name="user" property="id" value="1" /> 
-        <jsp:setProperty name="user" property="tel" value="1" /> 
+        <%
+        user.setName("Fluffy");
+        %> 
     </head>
     <body>
        <section class="header">
             <div id="bg">
                 <a href="index.jsp"><img src="img\LOGO.png"></a>
-                <img src="img\icon.png"><label style="color:white ;font-size:large " >Name:<jsp:getProperty name="user"property="id"/></label>
+                <img src="img\icon.png"><label style="color:white ;font-size:large " >Name:<%= user.getName() %></label>
                 <a href="#join" class="navbar">Join us</a>
                 <a href="order.jsp" class="navbar">Logout</a>
                 <a href="order.jsp" class="navbar">Order</a>
-                <a href="order.jsp" class="navbar">Setting</a>
+                <a href="UpdateInfo.jsp" class="navbar">Setting</a>
             </div>
            <br>
            <div id="container">

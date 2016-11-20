@@ -52,7 +52,7 @@
                 for(int i=0;i<list.size();i++){
                     ItemBean ib = (ItemBean)list.get(i);
                     out.print("<div id='item1'>"
-                            + "<img src='"+ib.getPath()+"'>"
+                            + "<img src='"+ib.getPath()+"'>"+"<br/>"
                             +ib.getPrice()+"</div>");
                 }
 %>
