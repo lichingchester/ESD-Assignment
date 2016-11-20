@@ -29,7 +29,8 @@
         Statement st = con.createStatement();
         //ResultSet rs;
         Locale locale = request.getLocale( );
-        int i = st.executeUpdate("insert into CUSTOMER(LoginId, Password , Name, Tel, Email, Address, BonusPoint) values ('" + null + "','" + null + "','" +user+"','" + tel + "','" + email + "','" + address + "', "+1000+")");
+        int i = st.executeUpdate("insert into CUSTOMER(LoginId, Password , Name, Tel, Email, Address, BonusPoint,Status) values ('" 
+                + null + "','" + null + "','" +user+"','" + tel + "','" + email + "','" + address + "',"+1000+", "+0+")");
         if (i > 0) {
             //session.setAttribute("userid", user);
             response.sendRedirect("welcome.jsp");

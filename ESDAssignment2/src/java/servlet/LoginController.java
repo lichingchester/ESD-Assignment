@@ -43,17 +43,18 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getParameter("action");
 
-        if (!isAuthenticated(request)
-                && !("authenticate".equals(action))) {
-            doLogin(request, response);
-            return;
-        }
+       
         if ("authenticate".equals(action)) {
             doAuthenticate(request, response);
         } else if ("logout".equals(action)) {
             doLogout(request, response);
         } else {
             response.sendError(HttpServletResponse.SC_NOT_IMPLEMENTED);
+        } 
+        if (!isAuthenticated(request)
+                && !("authenticate".equals(action))) {
+            doLogin(request, response);
+            return;
         }
 
     }  

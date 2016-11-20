@@ -21,7 +21,7 @@ public class TestAddRecord {
         Date today = Calendar.getInstance().getTime();
         String reportDate = df.format(today);
         String testDate="2016-1935";
-        boolean isAdded = userDb.addRecord("123", "123","peterName", "12345689", "Peter@999.com","Flat 1",1000);
+        boolean isAdded = userDb.addRecord("123", "123","peterName", "12345689", "Peter@999.com","Flat 1",1000,0);
         if (isAdded) {
             System.out.println("peter2 is added");
         } else {

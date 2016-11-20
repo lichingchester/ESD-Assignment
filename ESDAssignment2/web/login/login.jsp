@@ -17,7 +17,6 @@
             
         <input type="hidden" name="action" value="authenticate"/>
 
->>>>>>> origin/master
         <p>Name <input type="text" name="username"></p>
         <p>Password <input type="text" name="password"></p>
         <input type="submit" value="Login">  <input type="reset">

@@ -14,21 +14,7 @@ import java.io.Serializable;
 public class UserBean implements Serializable{
     private String username,password,name,tel,email,address,bonusPoint,status;
 
-    public String getBonusPoint() {
-        return bonusPoint;
-    }
 
-    public void setBonusPoint(String bonusPoint) {
-        this.bonusPoint = bonusPoint;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
     
         public String getUsername() {  
             return username;  
@@ -76,5 +62,19 @@ public class UserBean implements Serializable{
 
         public void setAddress(String address) {  
             this.address = address;  
-        } 
+        }     public String getBonusPoint() {
+        return bonusPoint;
+        }
+
+        public void setBonusPoint(String bonusPoint) {
+            this.bonusPoint = bonusPoint;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
+        }
 }
