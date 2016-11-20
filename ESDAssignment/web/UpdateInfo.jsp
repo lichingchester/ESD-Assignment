@@ -11,9 +11,9 @@
         <link rel="stylesheet" href="css/style.css">
         <title>Order Page</title>
         
-        <jsp:useBean id="user" class="bean.UserBean"/>
-         <jsp:setProperty name="user" property="id" value="1" /> 
-        <jsp:setProperty name="user" property="tel" value="1" /> 
+        <jsp:useBean id="user" class="bean.User"/>
+        <jsp:setProperty name="user" property="id" value="1" />
+        <jsp:setProperty name="user" property="id" value="1" /> 
     </head>
     <body>
        <section class="header">
@@ -27,28 +27,24 @@
             </div>
            <br>
            <div id="container">
-               <form>
-               <h1>Order History</h1><input type="button" value="Manage Order" >
+               <form action="UpdateInfoServlet">
+               <h1>Modify Personal Information</h1>
                <hr size="2" width="100%">
                
-               <table>
-                    <tr>
-                    <th>Items Name</th>
-                    <th>Size</th>
-                    <th>Price</th>
-                    </tr>
-                    
-                    <tr>
-                    <td>Fucking Dress</td>
-                    <td>Delivering</td>
-                    <td>100$</td>
-                    </tr>
-               </table>
+               Name:<input type="text" name="name">
+               <br/>
+               <br/>
+               Password:<input type="text" name="pwd">
+               <br/>
+               <br/>
+               Delivery address:<input type="text" name="address">
+               <br/>
+               <br/>
+               <input type="submit" value="Submit">
                </form>
                
+           </div>
                
-                 
-            </div>
         </section>
     </body>
 </html>
