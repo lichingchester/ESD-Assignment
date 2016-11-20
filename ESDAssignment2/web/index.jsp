@@ -55,6 +55,7 @@ and open the template in the editor.
                          <span>Login</span>
                      </button>
                </a>
+               <a href="register.jsp">
                <button class="cover-btn cover-btn2" style="vertical-align:middle">
                     <span>Sign Up</span>
                 </button>
