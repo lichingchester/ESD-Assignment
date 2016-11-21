@@ -57,7 +57,7 @@ public class LoginController extends HttpServlet {
     private void doAuthenticate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         String username=request.getParameter("username");
         String password=request.getParameter("password");
-        String targetURL="login/login.jsp";
+        String targetURL=null;
         
         loginList=db.queryItems();
        
