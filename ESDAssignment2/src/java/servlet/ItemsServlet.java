@@ -113,13 +113,16 @@ public class ItemsServlet extends HttpServlet {
         } else if ("searchByCategory".equalsIgnoreCase(action)) {
             // call the query db to get retrieve for all customer
             String category = request.getParameter("category");
+            
             if (category != null) {
                 // set the result into the attribute
                 ArrayList list = db.queryItemsByName(category);
-                request.setAttribute("list", list);
                 // redirect the result to the listCustomers.jsp
                 request.getSession().setAttribute("list", list);	
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("/list/main.jsp");
+                
+               // RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/list/main.jsp"); 
+               //  rd.forward(request, response);
             }
         } 
         else {
