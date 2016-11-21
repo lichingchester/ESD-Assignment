@@ -8,7 +8,9 @@ package servlet;
 import java.io.IOException;
 
 import bean.CartListBean;
+import db.ItemsDB;
 import db.ShoppingCartDB;
+import javax.servlet.RequestDispatcher;
 //import bean.CartBean;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,11 +25,13 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "CartController", urlPatterns = {"/CartController"})
 public class CartController extends HttpServlet{
     private ShoppingCartDB db;
+    //private ItemsDB db;
     
         public void init() {
-        String username = "APP";
-        String password = "APP";
-        String url = "jdbc:derby://localhost/UB";    
+        String username = this.getServletContext().getInitParameter("dbUser");
+        String password = this.getServletContext().getInitParameter("dbPassword");
+        String url = this.getServletContext().getInitParameter("dbCartList");   
+        //db = new ItemsDB(url, username, password);
         db = new ShoppingCartDB(url, username, password);
     }
     
@@ -39,14 +43,15 @@ public class CartController extends HttpServlet{
    
    if(strAction.equals("add")) {
     addToCart(request,response);
-   } else if (strAction.equals("Update")) {
+   } /*else if (strAction.equals("Update")) {
     updateCart(request);
    } else if (strAction.equals("Delete")) {
     deleteCart(request);
-   }
+   }*/
 
  }
-    protected void addToCart(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void addToCart(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        
         HttpSession session = request.getSession();
         String ID = request.getParameter("ID");
         String strModelNo = request.getParameter("modelNo");
@@ -56,21 +61,21 @@ public class CartController extends HttpServlet{
 
         CartListBean cartBean = null;
         cartBean = new CartListBean(ID,strModelNo,strPrice , strQuantity, strDescription);
-        //CartBean cartBean = null;
-
+        session.setAttribute("cart", cartBean);
+        request.setAttribute("cart", cartBean);
+        db.addRecord(ID, strModelNo,strPrice, strQuantity, strDescription);
+         response.sendRedirect("testPage.jsp");
         //Object objCartBean = session.getAttribute("cart");
         
-        session.setAttribute("cart",cartBean);
         /*if(objCartBean!=null) {
          cartBean = (CartBean) objCartBean ;
         } else {
          cartBean = new CartBean();
          session.setAttribute("cart", cartBean);
         }*/
-        response.sendRedirect("testShoppingCart.jsp");
      }
     
-    protected void updateCart(HttpServletRequest request) {
+   /* protected void updateCart(HttpServletRequest request) {
         HttpSession session = request.getSession();
         String strQuantity = request.getParameter("quantity");
         String strItemIndex = request.getParameter("itemIndex");
@@ -98,7 +103,7 @@ public class CartController extends HttpServlet{
          cartBean = new CartBean();
         }
         cartBean.deleteCartItem(strItemIndex);
-     }
+     }*/
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
