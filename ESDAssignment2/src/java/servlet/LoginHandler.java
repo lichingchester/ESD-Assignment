@@ -5,8 +5,10 @@
  */
 package servlet;
 
+import bean.ItemBean;
 import bean.OrderBean;
 import bean.UserBean;
+import db.ItemsDB;
 import db.OrdersDB;
 import db.UserDB;
 import java.io.IOException;
@@ -29,6 +31,7 @@ public class LoginHandler extends HttpServlet {
     UserDB db;
     UserBean ub;
     OrdersDB od;
+    ItemsDB id;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,6 +49,7 @@ public class LoginHandler extends HttpServlet {
         String dbUrl = this.getServletContext().getInitParameter("dbUrluser");
         db = new UserDB (dbUrl, dbUser, dbPassword);
         od = new OrdersDB(dbUrl, dbUser, dbPassword);
+        id = new ItemsDB(dbUrl, dbUser, dbPassword);
      }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -56,24 +60,33 @@ public class LoginHandler extends HttpServlet {
         String loginpwd = request.getParameter("password");
         String username = "";
         String userpwd = "";
+        String url = "";
 
         ArrayList<UserBean> list = db.queryItems();
         ArrayList<OrderBean> olist = od.queryOrders();
+        ArrayList<ItemBean> ilist = id.queryItems();
 
         for(UserBean ub : list){
             username = ub.getUsername();
             userpwd = ub.getPassword();
             if(loginname.equals(username)){
                 if(loginpwd.equals(userpwd)){
-                    request.setAttribute("userBean", ub);
-                    request.setAttribute("orderList", olist);
-//                    request.getSession().setAttribute("userBean", ub);	
-                    break;
+                    if(ub.getUsername().equals("admin")){
+                        request.setAttribute("userBean", ub);
+                        request.setAttribute("itemsList", ilist);
+                        url = "/manager/AdminShip.jsp";
+                    }else{
+                        request.setAttribute("userBean", ub);
+                        request.setAttribute("orderList", olist);
+                        url = "/MemberShip.jsp";
+    //                    request.getSession().setAttribute("userBean", ub);	
+                        break;
+                    }
                 }
             }
         }
 
-        RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/MemberShip.jsp"); 
+        RequestDispatcher rd = request.getServletContext().getRequestDispatcher(url); 
         rd.forward(request, response);
         
 //        response.sendRedirect("MemberShip.jsp");

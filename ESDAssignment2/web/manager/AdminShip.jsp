@@ -4,21 +4,23 @@
     Author     : lichi
 --%>
 
-<%@page import="bean.ItemBean"%>
-<%@page import="java.util.ArrayList"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@page import="bean.UserBean"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link rel="stylesheet" href="../css/style.css">
-        <link rel="stylesheet" href="../css/admin.css">
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/admin.css">
         
-        <script type="text/javascript" src="sortable.js"></script>
+        <%@page import="bean.ItemBean"%>
+        <%@page import="java.util.ArrayList"%>
+        <%@page contentType="text/html" pageEncoding="UTF-8"%>
         
         <%
-            ArrayList<ItemBean> list = (ArrayList<ItemBean>) request.getAttribute("list");
+            ArrayList<ItemBean> list = (ArrayList) request.getAttribute("itemList");
+            UserBean ub = (UserBean) request.getAttribute("userBean");
         %>
     </head>
     <body>

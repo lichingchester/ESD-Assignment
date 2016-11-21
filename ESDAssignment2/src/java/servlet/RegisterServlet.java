@@ -42,11 +42,7 @@ public class RegisterServlet extends HttpServlet {
             
             db.addRecord("", "", user, tel, email, address, 0, 0);
             
-            out.println("<script type=\"text/javascript\">");  
-            out.println("alert('deadbeef');");  
-            out.println("</script>");
-            
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("index.jsp?message=signup");
         }
     }
 

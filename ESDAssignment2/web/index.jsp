@@ -24,6 +24,17 @@ and open the template in the editor.
         <!-- css import-->
         <link rel="stylesheet" href="css/style.css">
         
+        <%
+            if(request.getParameter("message") != null){
+                if(request.getParameter("message").equals("signup")){
+                    out.println("<script type=\"text/javascript\">");
+                    out.println("alert('Sign up seccuss');");
+                    /*out.println("location='index.jsp';");*/
+                    out.println("</script>");
+                }
+            }
+        %>
+        
     </head>
     <body class="cover-page">
         <section class="logo">
