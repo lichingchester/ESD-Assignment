@@ -57,3 +57,9 @@ li.dropdown {
 .dropdown:hover .dropdown-content {
     display: block;
 }
+
+.tda{
+    font-size: 12px;
+    height: 12px;
+    width: 30px;
+}

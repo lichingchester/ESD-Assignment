@@ -81,9 +81,6 @@
                             Designer Name
                         </td>
                         <td>
-                            Size
-                        </td>
-                        <td>
                             Price
                         </td>
                         <td></td>
@@ -92,16 +89,14 @@
                     <%
                         for(ItemBean ib : list){
                             out.print("<tr>");
-                            out.print("<td><img src='" + ib.getPath() + "'></td>");
+                            out.print("<td><img height='100' width='80' src='" + ib.getPath() + "'></td>");
                             out.print("<td>" + ib.getItemName() + "</td>");
                             out.print("<td>" + ib.getDesc()+ "</td>");
                             out.print("<td>" + ib.getCategory()+ "</td>");
                             out.print("<td>" + ib.getDesignerName()+ "</td>");
-                            out.print("<td>" + ib.getSize()+ "</td>");
                             out.print("<td>" + ib.getPrice()+ "</td>");
-                            out.print("<td>" + ib.getItemName() + "</td>");
-                            out.print("<td><a href='editItem.jsp?item=${list}'>Edit</a></td>");
-                            out.print("<td><a href='deleteItem.jsp?item=${list}'>Delete</a></td>");
+                            out.print("<td><a class='tda' href='editItem.jsp?item=${list}'>Edit</a></td>");
+                            out.print("<td><a class='tda' href='deleteItem.jsp?item=${list}'>Delete</a></td>");
                             out.print("</tr>");
                         }
                     %>

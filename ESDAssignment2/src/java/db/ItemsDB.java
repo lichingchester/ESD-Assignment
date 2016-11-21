@@ -78,7 +78,6 @@ public class ItemsDB {
                     + "designerName  VARCHAR(50), "
                     + "price double, "
                     + "path VARCHAR(100), "
-                    + "size VARCHAR(10),"
                     + "primary key (itemID))";
             try{
                 stmnt.execute(sql);
@@ -123,7 +122,6 @@ public class ItemsDB {
                 ib.setDesignerName(rs.getString(5));
                 ib.setPrice(rs.getDouble(6));
                 ib.setPath(rs.getString(7));
-                ib.setSize(rs.getString(8));
                 list.add(ib);
             }
             return list;
@@ -177,7 +175,6 @@ public class ItemsDB {
                 ib.setDesignerName(rs.getString(5));
                 ib.setPrice(rs.getDouble(6));
                 ib.setPath(rs.getString(7));
-                ib.setSize(rs.getString(8));
             }
 
             pStmnt.close();
@@ -215,7 +212,6 @@ public class ItemsDB {
                 ib.setDesignerName(rs.getString(5));
                 ib.setPrice(rs.getDouble(6));
                 ib.setPath(rs.getString(7));
-                ib.setSize(rs.getString(8));
                 list.add(ib);
             }
             return list;
@@ -265,7 +261,6 @@ public class ItemsDB {
                 ib.setDesignerName(rs.getString(5));
                 ib.setPrice(rs.getDouble(6));
                 ib.setPath(rs.getString(7));
-                ib.setSize(rs.getString(8));
                 list.add(ib);
             }
             return list;
@@ -295,14 +290,14 @@ public class ItemsDB {
     
     public boolean addRecord(String itemID, String itemName, 
             String desc, String category, String designerName, 
-            double price, String path, String size){
+            double price, String path){
         
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
         boolean isSuccess = false;
         try{
             cnnct = getConnection();
-            String preQueryStatement = "INSERT INTO Items VALUES(?,?,?,?,?,?,?,?)";
+            String preQueryStatement = "INSERT INTO Items VALUES(?,?,?,?,?,?,?)";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             pStmnt.setString(1, itemID);
             pStmnt.setString(2, itemName);
@@ -311,7 +306,6 @@ public class ItemsDB {
             pStmnt.setString(5, designerName);
             pStmnt.setDouble(6, price);
             pStmnt.setString(7, path);
-            pStmnt.setString(8, size);
             int rowCount = pStmnt.executeUpdate();
             if(rowCount >= 1){
                 isSuccess = true;
@@ -369,17 +363,16 @@ public class ItemsDB {
                     "update item set itemName = ?, description = ?, "
                     + "category = ?, designerName = ?"
                     + "price = ?, path = ?"
-                    + "size = ? where itemID = ?";
+                    + "where itemID = ?";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             
             pStmnt.setString(1, cb.getItemName());
             pStmnt.setString(2, cb.getDesc());
             pStmnt.setString(3, cb.getCategory());
             pStmnt.setString(4, cb.getDesignerName());
-            pStmnt.setDouble(4, cb.getPrice());
-            pStmnt.setString(4, cb.getPath());
-            pStmnt.setString(4, cb.getSize());
-            pStmnt.setString(4, cb.getItemID());
+            pStmnt.setDouble(5, cb.getPrice());
+            pStmnt.setString(6, cb.getPath());
+            pStmnt.setString(7, cb.getItemID());
             
             rs = pStmnt.executeUpdate();
             

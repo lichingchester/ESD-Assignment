@@ -17,7 +17,6 @@ public class ItemBean {
     String designerName;
     double price;
     String path;
-    String size;
     
     public void setItemID(String value){
         this.itemID = value;
@@ -66,12 +65,5 @@ public class ItemBean {
     }
     public String getPath(){
         return path;
-    }
-    
-    public void setSize(String value){
-        this.size = value;
-    }
-    public String getSize(){
-        return size;
     }
 }
