@@ -29,6 +29,7 @@ and open the template in the editor.
             ArrayList detail = (ArrayList) request.getAttribute("detail");
             String ItemName="";
             double price=1;
+            String path="";
             String ID = (String) request.getAttribute("name");
             if(detail == null) out.println("safdasf");
             
@@ -37,6 +38,8 @@ and open the template in the editor.
                     if(ID.equals(ib.getItemID())){
                     ItemName=ib.getItemName();
                     price=ib.getPrice();
+                    path=ib.getPath();
+                    
                     }
                 }
         %>
@@ -82,7 +85,7 @@ and open the template in the editor.
             
             <div id="container">
                  <div id="item3">
-                     <img src="img/long/lng001.jpg">
+                   <img src='<%out.print(path);%>'>
                  </div>
                  <div id="iteminfo">
                      <br>
