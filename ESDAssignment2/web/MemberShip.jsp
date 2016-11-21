@@ -34,9 +34,11 @@
                
                <table>
                     <tr>
+                    <th>UserID</th>
                     <th>Items Name</th>
                     <th>Size</th>
                     <th>Price</th>
+                    <th>DeliveryAddress</th>
                     </tr>
                     
                     <tr>

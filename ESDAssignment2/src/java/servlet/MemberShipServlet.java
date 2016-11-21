@@ -47,9 +47,10 @@ public class MemberShipServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String action = request.getParameter("userID");
+        String tel = (String) request.getAttribute("tel");
         System.out.println("action:"+action);
 
-        if ("userID".equalsIgnoreCase(action)) {
+        if ("tel".equalsIgnoreCase(action)) {
             // call the query db to get retrieve for all customer
           //  ArrayList list = db.queryOrderItem();
             // set the result into the attribute
