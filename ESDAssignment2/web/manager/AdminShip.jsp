@@ -15,6 +15,8 @@
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/admin.css">
         
+        <script type="text/javascript" src="sortable.js"></script>
+        
         <%
             ArrayList<ItemBean> list = (ArrayList<ItemBean>) request.getAttribute("list");
         %>
@@ -22,8 +24,7 @@
     <body>
         <section class="header">
         <div id="bg">
-            <img src="/ESDAssignment/img/LOGO.png">
-            <a href="order.jsp" class="navbar">Order</a>
+            <img src="/ESDAssignment2/img/LOGO.png">
             <a href="#logout" class="navbar">Log out</a>
         </div>         
     </section>
@@ -62,8 +63,11 @@
                
                 <br>
                 
-                <table>
-                    <th>
+                <table sortable="sortable">
+                    <tr>
+                        <td>
+                            Image
+                        </td>
                         <td>
                             Name
                         </td>
@@ -82,28 +86,26 @@
                         <td>
                             Price
                         </td>
-                    </th>
+                        <td></td>
+                        <td></td>
+                    </tr>
                     <%
                         for(ItemBean ib : list){
-                            out.print("<tr><td>");
-                            out.print("");
+                            out.print("<tr>");
+                            out.print("<td><img src='" + ib.getPath() + "'></td>");
+                            out.print("<td>" + ib.getItemName() + "</td>");
+                            out.print("<td>" + ib.getDesc()+ "</td>");
+                            out.print("<td>" + ib.getCategory()+ "</td>");
+                            out.print("<td>" + ib.getDesignerName()+ "</td>");
+                            out.print("<td>" + ib.getSize()+ "</td>");
+                            out.print("<td>" + ib.getPrice()+ "</td>");
+                            out.print("<td>" + ib.getItemName() + "</td>");
+                            out.print("<td><a href='editItem.jsp?item=${list}'>Edit</a></td>");
+                            out.print("<td><a href='deleteItem.jsp?item=${list}'>Delete</a></td>");
+                            out.print("</tr>");
                         }
                     %>
                 </table>
-                
-<!--                <table>
-                    <tr>
-                    <th>Items Name</th>
-                    <th>Size</th>
-                    <th>Price</th>
-                    </tr>
-                    
-                    <tr>
-                    <td>Fucking Dress</td>
-                    <td>Delivering</td>
-                    <td>100$</td>
-                    </tr>
-               </table>-->
                
                
                  

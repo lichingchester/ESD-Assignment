@@ -12,6 +12,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <a href="test">click me</a>
+        <form action="../managerHandle">
+            <input type="hidden" name="action" value="item" />
+            <input type="submit" value="Click me" />
+        </form>
     </body>
 </html>
