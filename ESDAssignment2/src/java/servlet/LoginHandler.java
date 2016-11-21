@@ -5,7 +5,9 @@
  */
 package servlet;
 
+import bean.OrderBean;
 import bean.UserBean;
+import db.OrdersDB;
 import db.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -26,6 +28,7 @@ public class LoginHandler extends HttpServlet {
     
     UserDB db;
     UserBean ub;
+    OrdersDB od;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,6 +45,7 @@ public class LoginHandler extends HttpServlet {
         String dbPassword = this.getServletContext().getInitParameter("dbPassword");
         String dbUrl = this.getServletContext().getInitParameter("dbUrluser");
         db = new UserDB (dbUrl, dbUser, dbPassword);
+        od = new OrdersDB(dbUrl, dbUser, dbPassword);
      }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -54,6 +58,7 @@ public class LoginHandler extends HttpServlet {
         String userpwd = "";
 
         ArrayList<UserBean> list = db.queryItems();
+        ArrayList<OrderBean> olist = od.queryOrders();
 
         for(UserBean ub : list){
             username = ub.getUsername();
@@ -61,6 +66,7 @@ public class LoginHandler extends HttpServlet {
             if(loginname.equals(username)){
                 if(loginpwd.equals(userpwd)){
                     request.setAttribute("userBean", ub);
+                    request.setAttribute("orderList", olist);
 //                    request.getSession().setAttribute("userBean", ub);	
                     break;
                 }
