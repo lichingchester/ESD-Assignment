@@ -43,6 +43,8 @@ public class startup extends HttpServlet {
         OrdersDB odb = new OrdersDB (dbUrlitems, dbUser, dbPassword);
         odb.createOrderTable();
         
+        //odb.addRecord("orderID","itemID","userTel","size","deliveryType","18-06-12","7:00:00 AM","fuck","available");
+        
         UserDB udb = new UserDB (dbUrluser, dbUser, dbPassword);
         udb.createCustTable();
         

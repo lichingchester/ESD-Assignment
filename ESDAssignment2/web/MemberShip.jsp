@@ -17,7 +17,7 @@
         
         <% 
         UserBean ub = (UserBean) request.getAttribute("userBean");
-        
+        OrderBean ob = (OrderBean) request.getAttribute("orderList");
         %> 
     </head>
     <body>

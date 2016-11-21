@@ -9,11 +9,13 @@ import bean.ItemBean;
 import bean.OrderBean;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
 import java.util.ArrayList;
 
 /**
@@ -109,7 +111,40 @@ public class OrdersDB {
             return chk;
         }
     }
-     
+     public boolean addRecord(String orderID, String itemID,String userTel, String size , String deliveryType, String deliveryDate,String deliveryTime, String deliveryAddress,String status) {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        boolean isSuccess = false;
+        try {
+            cnnct = getConnection();
+            String preQueryStatement = "INSERT  INTO  CUSTOMER  VALUES  (?,?,?,?,?,?,?,?,?)";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setString(1, orderID);
+            pStmnt.setString(2, itemID);
+            pStmnt.setString(3, userTel);
+            pStmnt.setString(4, size);
+            pStmnt.setString(5, deliveryType);
+            pStmnt.setString(6, deliveryDate);
+            pStmnt.setString(7, deliveryTime);
+            pStmnt.setString(8, deliveryAddress);
+            pStmnt.setString(9, status);
+            
+            int rowCount = pStmnt.executeUpdate();
+            if (rowCount >= 1) {
+                isSuccess = true;
+            }
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return isSuccess;
+    }
      
     public OrderBean queryByID(String ID) {
         Connection cnnct = null;
