@@ -47,30 +47,31 @@ public class LoginHandler extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            
-            String loginname = request.getParameter("username");
-            String loginpwd = request.getParameter("password");
-            String username = "";
-            String userpwd = "";
-            
-            ArrayList<UserBean> list = db.queryItems();
-            
-            for(UserBean ub : list){
-                username = ub.getUsername();
-                userpwd = ub.getPassword();
-                if(loginname.equals(username)){
-                    if(loginpwd.equals(userpwd)){
-                        request.setAttribute("userBean", ub);
-                        break;
-                    }
+        
+        String loginname = request.getParameter("username");
+        String loginpwd = request.getParameter("password");
+        String username = "";
+        String userpwd = "";
+
+        ArrayList<UserBean> list = db.queryItems();
+
+        for(UserBean ub : list){
+            username = ub.getUsername();
+            userpwd = ub.getPassword();
+            if(loginname.equals(username)){
+                if(loginpwd.equals(userpwd)){
+//                    request.setAttribute("userBean", ub);
+                    request.getSession().setAttribute("userBean", ub);	
+                    break;
                 }
             }
-            
-            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/MemberShip.jsp"); 
-            rd.forward(request, response);
         }
+
+//        RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/MemberShip.jsp"); 
+//        rd.forward(request, response);
+        
+        response.sendRedirect("MemberShip.jsp");
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
