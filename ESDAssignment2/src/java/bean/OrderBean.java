@@ -16,22 +16,22 @@ import java.sql.Time;
 public class OrderBean {
     String orderID;
     String itemID;
-    String userID;
+    String userTel;
     String size;
     String deliveryType;
     Date deliveryDate;
     Time deliveryTime;
     String deliveryAddress;
     String status;
+
+    public String getUserTel() {
+        return userTel;
+    }
+
+    public void setUserTel(String userTel) {
+        this.userTel = userTel;
+    }
     
-    public String getUserID() {
-        return userID;
-    }
-
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
-
     public String getOrderID() {
         return orderID;
     }

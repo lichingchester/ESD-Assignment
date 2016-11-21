@@ -42,10 +42,13 @@ public class UserDB {
             cnnct = getConnection();  // the connection 
             stmnt = cnnct.createStatement();  // create statement
             String sql = "CREATE  TABLE  CUSTOMER  ("
-                    + " LoginID VARCHAR(25), Password  VARCHAR(25), "
+                    + " LoginID VARCHAR(25), "
+                    + "Password  VARCHAR(25), "
                     + "Name  VARCHAR(50),"
-                    + " Tel  VARCHAR(15)CONSTRAINT  PK_CUSTOMER  PRIMARY  KEY,  Email  VARCHAR(100),"
-                    + "Address  VARCHAR(200),"+"BonusPoint int,"
+                    + " Tel  VARCHAR(15)CONSTRAINT  PK_CUSTOMER  PRIMARY  KEY,  "
+                    + "Email  VARCHAR(100),"
+                    + "Address  VARCHAR(200),"
+                    + "BonusPoint int,"
                     + "Status int)";
             stmnt.execute(sql);
 
@@ -94,6 +97,7 @@ public class UserDB {
         }
         return isSuccess;
     }
+     
      public int editRecord(UserBean ub){                //ManHo edited, I don't know correct or wrong 
         Connection cnnct = null;
         PreparedStatement pStmnt = null;

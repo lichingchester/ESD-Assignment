@@ -80,7 +80,7 @@ public class OrdersDB {
             String sql = "CREATE TABLE Orders"
                     + "(orderID  VARCHAR(10) not null,  "
                     + "itemID VARCHAR(10),  "
-                    + "userID VARCHAR(10),  "
+                    + "userTel VARCHAR(15),  "
                     + "size VARCHAR(10),"
                     + "deliveryType VARCHAR(20),"
                     + "deliveryDate DATE,"
@@ -132,7 +132,7 @@ public class OrdersDB {
                 // set the record detail to the customer bean
                 ob.setOrderID(rs.getString(1));
                 ob.setItemID(rs.getString(2));
-                ob.setUserID(rs.getString(3));
+                ob.setUserTel(rs.getString(3));
                 ob.setSize(rs.getString(4));
                 ob.setDeliveryType(rs.getString(5));
                 ob.setDeliveryDate(rs.getDate(6));
@@ -172,7 +172,7 @@ public class OrdersDB {
                 ob = new OrderBean();
                 ob.setOrderID(rs.getString(1));
                 ob.setItemID(rs.getString(2));
-                ob.setUserID(rs.getString(3));
+                ob.setUserTel(rs.getString(3));
                 ob.setSize(rs.getString(4));
                 ob.setDeliveryType(rs.getString(5));
                 ob.setDeliveryDate(rs.getDate(6));
