@@ -48,14 +48,18 @@
         </div>
         <hr size="2" width="80%">
         <div id="container">
+            
             <%
                 for(int i=0;i<list.size();i++){
                     ItemBean ib = (ItemBean)list.get(i);
+                    
                     out.print("<div id='item1'>"
+                            +"<a href='index.jsp'>"
                             + "<img src='"+ib.getPath()+"'>"+"<br/>"
                             +ib.getPrice()+"</div>");
                 }
-%>
+            %>
+            
 <!--            <div id="item1" ><img src="img\clothes\Men\1.png">100$</div>
 
             <div id="item2" ><img src="img\clothes\Men\2.jpg">200$</div>
