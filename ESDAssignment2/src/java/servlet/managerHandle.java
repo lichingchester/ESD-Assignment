@@ -143,6 +143,28 @@ public class managerHandle extends HttpServlet {
             RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/list/main.jsp"); 
             rd.forward(request, response);
  
+        }else if ("editItem".equalsIgnoreCase(action)) {
+            // call the query db to get retrieve for all customer
+            String id = request.getParameter("id");
+            ItemBean ib = idb.queryItemByID(id);
+            // set the result into the attribute
+            request.setAttribute("ib", ib);
+            // redirect the result to the listCustomers.jsp	
+//            response.sendRedirect("list/main.jsp");
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/editItem.jsp"); 
+            rd.forward(request, response);
+ 
+        }else if ("deleteItem".equalsIgnoreCase(action)) {
+            // call the query db to get retrieve for all customer
+            String id = request.getParameter("id");
+            ItemBean ib = idb.queryItemByID(id);
+            // set the result into the attribute
+            request.setAttribute("ib", ib);
+            // redirect the result to the listCustomers.jsp	
+//            response.sendRedirect("list/main.jsp");
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/deleteItem.jsp"); 
+            rd.forward(request, response);
+ 
         }
     }
 

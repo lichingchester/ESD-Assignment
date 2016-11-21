@@ -26,6 +26,14 @@ public class LoginController extends HttpServlet {
     
     private UserDB db;
     private ArrayList loginList;
+    
+    public void init(){
+        String dbUser = this.getServletContext().getInitParameter("dbUser");
+        String dbPassword = this.getServletContext().getInitParameter("dbPassword");
+        String dbUrl = this.getServletContext().getInitParameter("dbUrluser");
+        db = new UserDB (dbUrl, dbUser, dbPassword); 
+            }
+     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -69,8 +77,9 @@ public class LoginController extends HttpServlet {
             bean.setUsername(username);
             bean.setPassword(password);
             //store the userInfo to the session
-            session.setAttribute("UserBean", bean);
+            session.setAttribute("tel", bean.getTel());
            targetURL="login/welcome.jsp";
+           break;
             }else{
             targetURL="login/loginError.jsp";
         }
@@ -109,12 +118,7 @@ public class LoginController extends HttpServlet {
         doLogout(request,response);
     }
         
-    public void init(){
-        String dbUser = this.getServletContext().getInitParameter("dbUser");
-        String dbPassword = this.getServletContext().getInitParameter("dbPassword");
-        String dbUrl = this.getServletContext().getInitParameter("dbUrluser");
-        db = new UserDB (dbUrl, dbUser, dbPassword); 
-            }
+   
     
     @Override
     public String getServletInfo() {
