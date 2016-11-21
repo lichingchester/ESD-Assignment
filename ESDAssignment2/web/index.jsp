@@ -60,13 +60,13 @@ and open the template in the editor.
                     <span>Sign Up</span>
                 </button>
                
-              <!---
-               <a href="testList.jsp">
+             
+              <!-- <a href="testList.jsp">
                <button class="cover-btn cover-btn2" style="vertical-align:middle">
                     <span>CartList</span>
                 </button>
-               </a>
-               --->
+               </a>-->
+               
                
            </div>
        </div>

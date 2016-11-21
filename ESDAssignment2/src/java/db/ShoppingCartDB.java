@@ -45,7 +45,7 @@ public class ShoppingCartDB {
                     + "Name  VARCHAR(25),  Tel  VARCHAR(15),  Email  VARCHAR(20),"
                     + "Price VARCHAR(10),"
                     + "Quantity VARCHAR(20),"
-                    + "Description VARCHAR(50)";
+                    + "Description VARCHAR(50))";
             stmnt.execute(sql);
 
             stmnt.close();

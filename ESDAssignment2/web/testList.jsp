@@ -23,7 +23,7 @@
             <input type="hidden" name="price" value="20"><input type="hidden" name="action" value="add"><input type="submit" value="Add To Cart"></td>
         </tr>
         </form>
-        <form action="CartController.java" method="POST">
+        <!--<form action="CartController.java" method="POST">
             <tr><td>Veggie Delight<input type="hidden" name="ID" value="2"><input type="hidden" name="modelNo" value="Veggie Delight"></td><td>$40<input type="hidden" name="price" value="40">
                 <input type="hidden" name="quantity" value="1"><input type="hidden" name="description" value="ABC"></td><td>
             <input type="hidden" name="action" value="add"><input type="submit" name="addToCart" value="Add To Cart"></td>
@@ -35,7 +35,7 @@
                <input type="hidden" name="action" value="add"><input type="submit" name="addToCart" value="Add To Cart"></td>
             </tr>
             
-        </form>
+        </form>-->
 </table>
     </body>
 </html>
