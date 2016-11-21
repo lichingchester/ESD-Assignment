@@ -32,7 +32,6 @@ public class CartController extends HttpServlet{
         String username = "abc";
         String password = "123";
         String url = "jdbc:derby://localhost/ShoppingCartDB"; 
-        //db = new ItemsDB(url, username, password);
         db = new ShoppingCartDB(url, username, password);
         db.dropTable();
         db.createTable();
@@ -46,11 +45,11 @@ public class CartController extends HttpServlet{
    
    if(strAction.equals("add")) {
     addToCart(request,response);
-   } /*else if (strAction.equals("Update")) {
-    updateCart(request);
+   } else if (strAction.equals("edit")) {
+    editCart(request,response);
    } else if (strAction.equals("Delete")) {
-    deleteCart(request);
-   }*/
+    deleteCart(request,response);
+   }
 
  }
     protected void addToCart(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -65,45 +64,28 @@ public class CartController extends HttpServlet{
         request.setAttribute("list", list);
         RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/testShoppingCart.jsp"); 
         rd.forward(request, response);
-        //Object objCartBean = session.getAttribute("cart");
+     }
+    
+    protected void editCart(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
         
-        /*if(objCartBean!=null) {
-         cartBean = (CartBean) objCartBean ;
-        } else {
-         cartBean = new CartBean();
-         session.setAttribute("cart", cartBean);
-        }*/
+        String quantity = request.getParameter("quantity");
+        db.UpdateQuantity(quantity);
+        ArrayList list = db.queryItems();
+        request.setAttribute("list", list);
+        RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/testShoppingCart.jsp"); 
+        rd.forward(request, response);
+        
      }
     
-   /* protected void updateCart(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        String strQuantity = request.getParameter("quantity");
-        String strItemIndex = request.getParameter("itemIndex");
-
-        CartBean cartBean = null;
-
-        Object objCartBean = session.getAttribute("cart");
-        if(objCartBean!=null) {
-         cartBean = (CartBean) objCartBean ;
-        } else {
-         cartBean = new CartBean();
-        }
-        cartBean.updateCartItem(strItemIndex, strQuantity);
+    protected void deleteCart(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+        
+       String ID = request.getParameter("ID");
+       db.delRecord(ID);
+       ArrayList list = db.queryItems();
+        request.setAttribute("list", list);
+        RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/testShoppingCart.jsp"); 
+        rd.forward(request, response);
      }
-    
-    protected void deleteCart(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        String strItemIndex = request.getParameter("itemIndex");
-        CartBean cartBean = null;
-
-        Object objCartBean = session.getAttribute("cart");
-        if(objCartBean!=null) {
-         cartBean = (CartBean) objCartBean ;
-        } else {
-         cartBean = new CartBean();
-        }
-        cartBean.deleteCartItem(strItemIndex);
-     }*/
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

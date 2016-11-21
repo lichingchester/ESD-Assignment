@@ -94,7 +94,7 @@ and open the template in the editor.
                      <br>
                      Name:<%out.print(ItemName);%><input type="hidden" name="name" value=<%=ItemName%>>
                      <br/>
-                     Price:<%out.print(price);%><input type="hidden" name="price" value="599">
+                     Price:<%out.print(price);%><input type="hidden" name="price" value=<%=price%>>
                      <hr size="2" width="80%">
                      <form>
                          <select name="size">

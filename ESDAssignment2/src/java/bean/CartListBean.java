@@ -10,18 +10,18 @@ package bean;
  * @author Wang
  */
 public class CartListBean {
-   // String listId;
+   // String custId;
     String name;
     String price;
     //String quantity;
     //String desc;
     String size;
     
-   // public void setListId(String listId){
+   // public void setCustId(String listId){
     //    this.listId = listId;
    // }
     
-   // public String getListId(){
+   // public String getCustId(){
    //     return listId;
   //  }
     

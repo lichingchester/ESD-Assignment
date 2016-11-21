@@ -16,21 +16,23 @@
     </head>
     <body>
         <%
-        ArrayList list = (ArrayList) request.getAttribute("list");
-            String ItemName="";
-            double price=1;
-            String path="";
+            ArrayList list = (ArrayList) request.getAttribute("list");
             if(list == null) out.println("safdasf");
             
+            out.println("<h1>Shopping Cart</h1>");
+            out.println("<table border='1' >");
+            out.println("<tr>");
+            out.println("<th>CustId</th> <th>Product Name</th><th>Size</th><th>Quantity</th ><th>Each Of The Price</th >");
+            out.println("</tr>");
                 for(int i=0;i<list.size();i++){
                     CartListBean cb = (CartListBean)list.get(i);
-                    ItemName=cb.getName();
-                    price= Double.parseDouble(cb.getPrice());        
+                    out.println("<tr><td>"+/*cb.getCustId()+*/"</td><td>"+cb.getName()+"</td><td>"+cb.getSize()+"</td><td>"+/*cb.getQuantity()+"</td><td>"+*/"</td><td>"+cb.getPrice()+"</td><tr>");     
                 }
-                
-                out.println(ItemName);
-                out.println(price);
+           out.println("<tr><td colspan='4'>"+"Total Price:"+"</td><td>"+"Test"+"</td></tr>");
+           out.println("</table>");
          %>
+         
+         <a href ="index.jsp"/>Back to HomePage.
          <%/*
             //ArrayList<CartListBean> list =
           // (ArrayList<CartListBean> )request.getAttribute("CartList");
