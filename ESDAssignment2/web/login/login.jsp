@@ -13,8 +13,8 @@
     </head>
     <body>
 
-        <form method="post" action="../LoginController">
-            <input type="hidden" name="action" value="authenticate"/>
+        <form method="post" action="../LoginHandler">
+            <!--<input type="hidden" name="action" value="authenticate"/>-->
             
             <p>
                 Name <input type="text" name="username">

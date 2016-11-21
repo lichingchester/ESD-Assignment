@@ -66,23 +66,26 @@ public class LoginController extends HttpServlet {
         String username=request.getParameter("username");
         String password=request.getParameter("password");
         String targetURL=null;
-        
+
         loginList=db.queryItems();
        
         for(int i=0;i<loginList.size();i++){
-            if(username.equals(((UserBean) loginList.get(i)).getUsername())
-                   &&password.equals(((UserBean) loginList.get(i)).getPassword())){
-            HttpSession session=request.getSession(true);
-            UserBean bean =new UserBean();
-            bean.setUsername(username);
-            bean.setPassword(password);
-            //store the userInfo to the session
-            session.setAttribute("tel", bean.getTel());
-           targetURL="login/welcome.jsp";
-           break;
+            String id = ((UserBean) loginList.get(i)).getUsername();
+            String pd = ((UserBean) loginList.get(i)).getPassword();
+            
+            if(id.equals(username) && pd.equals(password)){
+    //            HttpSession session=request.getSession(true);
+    //            UserBean bean = (UserBean) loginList.get(i);
+    //            bean.setUsername(username);
+    //            bean.setPassword(password);
+                //store the userInfo to the session
+    //            session.setAttribute("tel", bean.getTel());
+                request.setAttribute("tel", loginList.get(i));
+                targetURL="login/welcome.jsp";
+            break;
             }else{
-            targetURL="login/loginError.jsp";
-        }
+                targetURL="login/loginError.jsp";
+            }
         }
 
         RequestDispatcher rd;
