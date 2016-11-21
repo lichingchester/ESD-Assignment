@@ -19,7 +19,7 @@
             </div>
            <br>
            <div id="container">
-               <form action="registration.jsp">  
+               <form action="RegisterServlet">  
                <h1>Register Information</h1>
                <hr size="2" width="100%">
                
