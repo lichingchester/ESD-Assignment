@@ -4,7 +4,10 @@
     Author     : huen
 --%>
 <%@page import="bean.OrderBean"%>
+<%@page import="bean.UserBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+UserDB db;
+    UserBean ub;
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,15 +15,16 @@
         <link rel="stylesheet" href="css/style.css">
         <title>Order Page</title>
         
-        <%
-        user.setName("Fluffy");
+        <% 
+        UserBean ub = (UserBean) request.getSession().getAttribute("userBean");
+        
         %> 
     </head>
     <body>
        <section class="header">
             <div id="bg">
                 <a href="index.jsp"><img src="img\LOGO.png"></a>
-                <img src="img\icon.png"><label style="color:white ;font-size:large " >Name:<%= user.getName() %></label>
+                <img src="img\icon.png"><label style="color:white ;font-size:large " >Name:Fuck</label>
                 <a href="#join" class="navbar">Join us</a>
                 <a href="order.jsp" class="navbar">Logout</a>
                 <a href="order.jsp" class="navbar">Order</a>
