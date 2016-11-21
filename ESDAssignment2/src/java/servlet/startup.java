@@ -80,27 +80,27 @@ public class startup extends HttpServlet {
     
 //        short dress
         idb.addRecord("item011", "White dress", "Middle dress for party", 
-                "middle", "Enriqueta Como", 560, "img/short/sht001.jpg");
+                "short", "Enriqueta Como", 560, "img/short/sht001.jpg");
         idb.addRecord("item012", "White dress", "Middle dress for party", 
-                    "middle", "Enriqueta Como", 689, "img/short/sht002.jpg");
+                    "short", "Enriqueta Como", 689, "img/short/sht002.jpg");
         idb.addRecord("item013", "Yellow dress", "Middle dress for wedding", 
-                    "middle", "Harriet Scicchitano", 689, "img/short/sht003.jpg");
+                    "short", "Harriet Scicchitano", 689, "img/short/sht003.jpg");
         idb.addRecord("item014", "Brown dress", "Middle dress for travel", 
-                    "middle", "Katharyn Smalling", 689, "img/short/sht004.jpg");
+                    "short", "Katharyn Smalling", 689, "img/short/sht004.jpg");
         idb.addRecord("item015", "White dress", "Middle dress for travel", 
-                    "middle", "Clarinda Ardrey ", 999, "img/short/sht005.jpg");
+                    "short", "Clarinda Ardrey ", 999, "img/short/sht005.jpg");
         
     //        sheath dress
         idb.addRecord("item016", "Deep Blue dress", "Sheath dress for party", 
-                "middle", "Enriqueta Como", 560, "img/sheath/shh001.jpg");
+                "sheath", "Enriqueta Como", 560, "img/sheath/shh001.jpg");
         idb.addRecord("item017", "Blue dress", "Sheath dress for party", 
-                    "middle", "Enriqueta Como", 786, "img/sheath/shh002.jpg");
+                    "sheath", "Enriqueta Como", 786, "img/sheath/shh002.jpg");
         idb.addRecord("item018", "White dress", "Sheath dress for wedding", 
-                    "middle", "Harriet Scicchitano", 344, "img/sheath/shh003.jpg");
+                    "sheath", "Harriet Scicchitano", 344, "img/sheath/shh003.jpg");
         idb.addRecord("item019", "White dress", "Sheath dress for travel", 
-                    "middle", "Katharyn Smalling", 8000, "img/sheath/shh004.jpg");
+                    "sheath", "Katharyn Smalling", 8000, "img/sheath/shh004.jpg");
         idb.addRecord("item020", "Red dress", "Sheath dress for travel", 
-                    "middle", "Clarinda Ardrey ", 999, "img/sheath/shh005.jpg");
+                    "sheath", "Clarinda Ardrey ", 999, "img/sheath/shh005.jpg");
     
     }
     
