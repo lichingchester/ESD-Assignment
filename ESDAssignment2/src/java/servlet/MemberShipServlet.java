@@ -1,12 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *
+ * @author a0321
  */
 package servlet;
 
+import bean.OrderBean;
+import db.OrdersDB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
+import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,11 +19,13 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author a0321
+ * @author lichingchester
  */
 @WebServlet(name = "MemberShipServlet", urlPatterns = {"/MemberShipServlet"})
 public class MemberShipServlet extends HttpServlet {
-
+    OrdersDB db;
+    OrderBean ob;
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -29,20 +35,34 @@ public class MemberShipServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    public void init() {
+        String username = this.getServletContext().getInitParameter("dbUser");
+        String password = this.getServletContext().getInitParameter("dbPassword");
+        String url = this.getServletContext().getInitParameter("dbUrlitems");   
+        db = new OrdersDB(url, username, password);  
+        
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet MemberShipServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet MemberShipServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String action = request.getParameter("userID");
+        System.out.println("action:"+action);
+
+        if ("userID".equalsIgnoreCase(action)) {
+            // call the query db to get retrieve for all customer
+          //  ArrayList list = db.queryOrderItem();
+            // set the result into the attribute
+            request.setAttribute("list", list);
+            // redirect the result to the listCustomers.jsp	
+//            response.sendRedirect("list/main.jsp");
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/MemberShip.jsp"); 
+            rd.forward(request, response);
+ 
+        }
+        else {
+            PrintWriter out = response.getWriter();
+            out.println("No such action!!!");
         }
     }
 
