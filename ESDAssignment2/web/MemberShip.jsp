@@ -3,11 +3,7 @@
     Created on : 2016年11月16日, 下午07:04:49
     Author     : huen
 --%>
-<%@page import="bean.OrderBean"%>
-<%@page import="bean.UserBean"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-UserDB db;
-    UserBean ub;
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,8 +11,12 @@ UserDB db;
         <link rel="stylesheet" href="css/style.css">
         <title>Order Page</title>
         
+        <%@page import="bean.OrderBean"%>
+        <%@page import="bean.UserBean"%>
+        <%@page contentType="text/html" pageEncoding="UTF-8"%>
+        
         <% 
-        UserBean ub = (UserBean) request.getSession().getAttribute("userBean");
+        UserBean ub = (UserBean) request.getAttribute("userBean");
         
         %> 
     </head>
@@ -24,7 +24,7 @@ UserDB db;
        <section class="header">
             <div id="bg">
                 <a href="index.jsp"><img src="img\LOGO.png"></a>
-                <img src="img\icon.png"><label style="color:white ;font-size:large " >Name:Fuck</label>
+                <img src="img\icon.png"><label style="color:white ;font-size:large " >Name:<% out.print(ub.getName()); %></label>
                 <a href="#join" class="navbar">Join us</a>
                 <a href="order.jsp" class="navbar">Logout</a>
                 <a href="order.jsp" class="navbar">Order</a>

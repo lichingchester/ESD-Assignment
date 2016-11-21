@@ -60,17 +60,17 @@ public class LoginHandler extends HttpServlet {
             userpwd = ub.getPassword();
             if(loginname.equals(username)){
                 if(loginpwd.equals(userpwd)){
-//                    request.setAttribute("userBean", ub);
-                    request.getSession().setAttribute("userBean", ub);	
+                    request.setAttribute("userBean", ub);
+//                    request.getSession().setAttribute("userBean", ub);	
                     break;
                 }
             }
         }
 
-//        RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/MemberShip.jsp"); 
-//        rd.forward(request, response);
+        RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/MemberShip.jsp"); 
+        rd.forward(request, response);
         
-        response.sendRedirect("MemberShip.jsp");
+//        response.sendRedirect("MemberShip.jsp");
 
     }
 
