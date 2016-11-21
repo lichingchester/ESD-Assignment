@@ -169,7 +169,6 @@ a{
     margin: 4px 2px;
     cursor: pointer;
 }
-
 #item1{
 width:26%;
 padding: 10px;
@@ -182,11 +181,9 @@ color:#ffffff;
 font-weight:bold;
 background-color:#cecece;
 float:left;
-
 }
 #item2{
 width:26%;
-
 float:left;
 height:280px;
 text-align:center;
@@ -198,13 +195,24 @@ background-color:#CCC;
 }
 #item3{
 width:26%;
-float:right;
+padding: 10px;
+margin-left: 80px;
 height:280px;
-text-align:center;
-font-size:15px;
-font-weight:bold;
-background-color:#CCC;
+
+margin-right:5px;
+color:#ffffff;
+background-color:#cecece;
+float:left;
+
 }
+#iteminfo{
+    width:26%;
+    margin: 0px auto;
+    height:280px;
+    text-align: center;
+    
+}
+
 #container{
     width:80%;
     margin:0px auto;

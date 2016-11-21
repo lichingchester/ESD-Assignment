@@ -68,23 +68,15 @@ and open the template in the editor.
             <hr size="2" width="80%">
             
             <div id="container">
-                 <div id="detailitem">
-                <%
-                    ItemBean ib = (ItemBean)list.get(0);
-                    out.print("<img src='"+ib.getPath()+"'>");
-                
-                %>
+                 <div id="item3">
+                     <img src="img/long/lng001.jpg">
                  </div>
-                 <br>
-            
                  <div id="iteminfo">
                      <br>
                      <br>
-                     
-                     <br>
-                     <br>
-                    <%  out.print(ib.getItemName()); %><br><br>
-                     Price:<%  out.print(ib.getPrice()); %>
+                     Name:Fuck size
+                     <br/>
+                     Price:10000$s
                      <hr size="2" width="80%">
                      <form>
                          <select>
