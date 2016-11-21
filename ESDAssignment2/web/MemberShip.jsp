@@ -3,6 +3,7 @@
     Created on : 2016年11月16日, 下午07:04:49
     Author     : huen
 --%>
+<%@page import="bean.OrderBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -10,8 +11,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/style.css">
         <title>Order Page</title>
-        
-        <jsp:useBean id="user" class="bean.UserBean"/>
         <%
         user.setName("Fluffy");
         %> 
@@ -34,9 +33,11 @@
                
                <table>
                     <tr>
+                    <th>UserID</th>
                     <th>Items Name</th>
                     <th>Size</th>
                     <th>Price</th>
+                    <th>DeliveryAddress</th>
                     </tr>
                     
                     <tr>
