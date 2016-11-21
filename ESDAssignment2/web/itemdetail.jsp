@@ -17,6 +17,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
+                <!--java import-->
         <%@page import="java.util.ArrayList"%>
         <%@page import="bean.ItemBean"%>
         <title>TODO supply a title</title>
@@ -24,8 +25,20 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <%
-            ArrayList list = (ArrayList) request.getAttribute("list");
-            if(list == null) out.println("safdasf");
+            
+            ArrayList detail = (ArrayList) request.getAttribute("detail");
+            String ItemName="";
+            double price=1;
+            String ID = (String) request.getAttribute("name");
+            if(detail == null) out.println("safdasf");
+            
+                for(int i=0;i<detail.size();i++){
+                    ItemBean ib = (ItemBean)detail.get(i);
+                    if(ID.equals(ib.getItemID())){
+                    ItemName=ib.getItemName();
+                    price=ib.getPrice();
+                    }
+                }
         %>
         
         <!-- css import-->
@@ -74,9 +87,9 @@ and open the template in the editor.
                  <div id="iteminfo">
                      <br>
                      <br>
-                     Name:Fuck size
+                     Name:<%out.print(ItemName);%>
                      <br/>
-                     Price:10000$s
+                     Price:<%out.print(price);%>
                      <hr size="2" width="80%">
                      <form>
                          <select>

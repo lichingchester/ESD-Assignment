@@ -52,10 +52,11 @@
             <%
                 for(int i=0;i<list.size();i++){
                     ItemBean ib = (ItemBean)list.get(i);
-                    
+                    String name=ib.getItemID();
                     out.print("<div id='item1'>"
-                            +"<a href='index.jsp'>"
-                            + "<img src='"+ib.getPath()+"'>"+"<br/>"
+                            +"<a href='ItemsServlet?action=itemdetail&name="
+                            +name+"'>"
+                            + "<img src='"+ib.getPath()+"'></a>"+"<br/>"
                             +ib.getPrice()+"</div>");
                 }
             %>

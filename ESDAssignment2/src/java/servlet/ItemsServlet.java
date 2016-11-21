@@ -61,6 +61,18 @@ public class ItemsServlet extends HttpServlet {
             rd.forward(request, response);
  
         }
+        else if("itemdetail".equalsIgnoreCase(action)){
+            // call the query db to get retrieve for all customer
+            ArrayList detail = db.queryItems();
+            // set the result into the attribute
+            request.setAttribute("detail", detail);
+            String name=request.getParameter("name");
+            request.setAttribute("name", name);
+            // redirect the result to the listCustomers.jsp	
+            //            response.sendRedirect("list/main.jsp");
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/itemdetail.jsp"); 
+            rd.forward(request, response);
+        }
         else if ("edit".equalsIgnoreCase(action)) {
             //get the id from request
             String itemID = request.getParameter("itemID");
