@@ -5,12 +5,15 @@
  */
 package db;
 
+import bean.CartListBean;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -33,7 +36,7 @@ public class ShoppingCartDB {
         return DriverManager.getConnection(url, username, password);
     }
      
-     public void createCustTable() {
+     public void createTable() {
         Connection cnnct = null;
         Statement stmnt = null;
 
@@ -41,11 +44,11 @@ public class ShoppingCartDB {
             cnnct = getConnection();  // the connection 
             stmnt = cnnct.createStatement();  // create statement
             String sql = "CREATE  TABLE  CartList  ("
-                    + "ListId  VARCHAR(10)  CONSTRAINT  PK_CUSTOMER  PRIMARY  KEY,  "
-                    + "Name  VARCHAR(25),  Tel  VARCHAR(15),  Email  VARCHAR(20),"
+                    //+ "ListId  VARCHAR(10)  CONSTRAINT  PK_CUSTOMER  PRIMARY  KEY,  "
+                    + "Name  VARCHAR(25),"
                     + "Price VARCHAR(10),"
-                    + "Quantity VARCHAR(20),"
-                    + "Description VARCHAR(50))";
+                   // + "Quantity VARCHAR(20),"
+                    + "Size VARCHAR(50))";
             stmnt.execute(sql);
 
             stmnt.close();
@@ -60,19 +63,17 @@ public class ShoppingCartDB {
         }
     }
      
-      public boolean addRecord(String Id, String name, String price , String quantity, String description) {
+      public boolean addRecord(String name, String price , String size) {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
         boolean isSuccess = false;
         try {
             cnnct = getConnection();
-            String preQueryStatement = "INSERT  INTO  CartList  VALUES  (?,?,?,?,?)";
+            String preQueryStatement = "INSERT  INTO  CartList  VALUES  (?,?,?)";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
-            pStmnt.setString(1, Id);
-            pStmnt.setString(2, name);
-            pStmnt.setString(3, price);
-            pStmnt.setString(4, quantity);
-            pStmnt.setString(5, description);
+            pStmnt.setString(1, name);
+            pStmnt.setString(2, price);
+            pStmnt.setString(3, size);
             int rowCount = pStmnt.executeUpdate();
             if (rowCount >= 1) {
                 isSuccess = true;
@@ -88,6 +89,79 @@ public class ShoppingCartDB {
             ex.printStackTrace();
         }
         return isSuccess;
+    }
+      
+       public boolean dropTable(){
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+
+        boolean chk = false;
+        try{
+            cnnct = getConnection();
+            String preQueryStatement = "DROP TABLE CartList";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            try{
+                chk = pStmnt.execute();
+            }catch(SQLException exx){
+                chk = false;
+            }
+            pStmnt.close();
+            cnnct.close();
+            
+            chk = true;
+        }catch(SQLException ex){
+            while(ex != null){
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+        return chk;
+    }
+       
+       public ArrayList queryItems() {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        try {
+            cnnct = getConnection();
+            String preQueryStatement = "SELECT * FROM  CartList";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            //Statement s = cnnct.createStatement();
+            ResultSet rs = pStmnt.executeQuery();
+
+            ArrayList list = new ArrayList();
+
+            while (rs.next()) {
+                CartListBean cb = new CartListBean();
+                cb.setName(rs.getString(1));
+                cb.setPrice(rs.getString(2));
+                cb.setSize(rs.getString(3));
+                list.add(cb);
+            }
+            return list;
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            if (pStmnt != null) {
+                try {
+                    pStmnt.close();
+                } catch (SQLException e) {
+                }
+            }
+            if (cnnct != null) {
+                try {
+                    cnnct.close();
+                } catch (SQLException sqlEx) {
+                }
+            }
+        }
+        return null;
     }
      
 }

@@ -10,27 +10,20 @@ package bean;
  * @author Wang
  */
 public class CartListBean {
-    String listId;
+   // String listId;
     String name;
     String price;
-    String quantity;
-    String desc;
+    //String quantity;
+    //String desc;
+    String size;
     
-    public CartListBean(String listId,String name,String price,String quantity,String desc){
-        this.listId = listId;
-        this.name = name;
-        this.price = price;
-        this.quantity = quantity;
-        this.desc = desc;
-    }
+   // public void setListId(String listId){
+    //    this.listId = listId;
+   // }
     
-    public void setListId(String listId){
-        this.listId = listId;
-    }
-    
-    public String getListId(){
-        return listId;
-    }
+   // public String getListId(){
+   //     return listId;
+  //  }
     
     public void setName(String name){
         this.name = name;
@@ -48,19 +41,27 @@ public class CartListBean {
         return price;
     }
     
-    public void setQuantity(String quantity){
-        this.quantity = quantity;
+   // public void setQuantity(String quantity){
+    //    this.quantity = quantity;
+   // }
+    
+   // public String getQuantity(){
+  //      return quantity;
+ //   }
+    
+  //  public void setDesc(String desc){
+ //       this.desc = desc;
+ //   }
+    
+ //   public String getDesc(){
+ //       return desc;
+//    }
+    
+    public void setSize(String size){
+        this.size = size;
     }
     
-    public String getQuantity(){
-        return quantity;
-    }
-    
-    public void setDesc(String desc){
-        this.desc = desc;
-    }
-    
-    public String getDesc(){
-        return desc;
+    public String getSize(){
+        return size;
     }
 }

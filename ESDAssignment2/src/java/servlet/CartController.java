@@ -10,6 +10,7 @@ import java.io.IOException;
 import bean.CartListBean;
 import db.ItemsDB;
 import db.ShoppingCartDB;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 //import bean.CartBean;
 import javax.servlet.ServletException;
@@ -28,11 +29,13 @@ public class CartController extends HttpServlet{
     //private ItemsDB db;
     
         public void init() {
-        String username = this.getServletContext().getInitParameter("dbUser");
-        String password = this.getServletContext().getInitParameter("dbPassword");
-        String url = this.getServletContext().getInitParameter("dbCartList");   
+        String username = "abc";
+        String password = "123";
+        String url = "jdbc:derby://localhost/ShoppingCartDB"; 
         //db = new ItemsDB(url, username, password);
         db = new ShoppingCartDB(url, username, password);
+        db.dropTable();
+        db.createTable();
     }
     
     public void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -51,20 +54,17 @@ public class CartController extends HttpServlet{
 
  }
     protected void addToCart(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        
-        HttpSession session = request.getSession();
-        String ID = request.getParameter("ID");
-        String strModelNo = request.getParameter("modelNo");
-        String strDescription = request.getParameter("description");
-        String strPrice = request.getParameter("price");
-        String strQuantity = request.getParameter("quantity");
+       
+        //String ID = request.getParameter("ID");
+        String name = request.getParameter("name");
+        String price = request.getParameter("price");
+        String size = request.getParameter("size");
 
-        CartListBean cartBean = null;
-        cartBean = new CartListBean(ID,strModelNo,strPrice , strQuantity, strDescription);
-        session.setAttribute("cart", cartBean);
-        request.setAttribute("cart", cartBean);
-        db.addRecord(ID, strModelNo,strPrice, strQuantity, strDescription);
-         response.sendRedirect("testPage.jsp");
+        db.addRecord(name,price,size);
+        ArrayList list = db.queryItems();
+        request.setAttribute("list", list);
+        RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/testShoppingCart.jsp"); 
+        rd.forward(request, response);
         //Object objCartBean = session.getAttribute("cart");
         
         /*if(objCartBean!=null) {

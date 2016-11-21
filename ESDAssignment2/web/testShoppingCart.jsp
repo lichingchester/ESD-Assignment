@@ -13,17 +13,25 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         
-        <%
-            ArrayList list = (ArrayList) request.getAttribute("list");
-            if(list == null) out.println("safdasf");
-        %>
     </head>
     <body>
         <%
-                    CartListBean cb = (CartListBean)list.get(0);         
+        ArrayList list = (ArrayList) request.getAttribute("list");
+            String ItemName="";
+            double price=1;
+            String path="";
+            if(list == null) out.println("safdasf");
+            
+                for(int i=0;i<list.size();i++){
+                    CartListBean cb = (CartListBean)list.get(i);
+                    ItemName=cb.getName();
+                    price= Double.parseDouble(cb.getPrice());        
+                }
+                
+                out.println(ItemName);
+                out.println(price);
          %>
-         
-         <%
+         <%/*
             //ArrayList<CartListBean> list =
           // (ArrayList<CartListBean> )request.getAttribute("CartList");
             out.println("<h1>Customers</h1>");
@@ -44,7 +52,7 @@
             out.println("</tr>");
             }
             out.println("</table>");
-            }
+            }*/
            %>
            
            

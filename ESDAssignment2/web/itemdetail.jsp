@@ -89,21 +89,23 @@ and open the template in the editor.
                    <img src='<%out.print(path);%>'>
                  </div>
                  <div id="iteminfo">
+                     <form action='CartController'>
                      <br>
                      <br>
-                     Name:<%out.print(ItemName);%>
+                     Name:<%out.print(ItemName);%><input type="hidden" name="name" value=<%=ItemName%>>
                      <br/>
-                     Price:<%out.print(price);%>
+                     Price:<%out.print(price);%><input type="hidden" name="price" value="599">
                      <hr size="2" width="80%">
                      <form>
-                         <select>
+                         <select name="size">
                      <option>S size</option>
                      <option selected="true">M size</option>
                      <option >L size</option>
                      </select>   
                          <br>
                          <br>
-                     <input type="button" id="btn" value="Shopping Cart">
+                     <input type="hidden" name="action" value="add">
+                     <input type="submit" value="Shopping Cart">
                      </form>
                  </div> 
             </div>
