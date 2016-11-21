@@ -16,16 +16,21 @@ import java.sql.Time;
 public class OrderBean {
     String orderID;
     String itemID;
-    String itemName;
-    String description;
-    String category;
-    String designerName;
-    double price;
-    String path;
+    String userID;
     String size;
     String deliveryType;
     Date deliveryDate;
     Time deliveryTime;
+    String deliveryAddress;
+    String status;
+    
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
 
     public String getOrderID() {
         return orderID;
@@ -41,54 +46,6 @@ public class OrderBean {
 
     public void setItemID(String itemID) {
         this.itemID = itemID;
-    }
-
-    public String getItemName() {
-        return itemName;
-    }
-
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getDesignerName() {
-        return designerName;
-    }
-
-    public void setDesignerName(String designerName) {
-        this.designerName = designerName;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
     }
 
     public String getSize() {
@@ -138,7 +95,6 @@ public class OrderBean {
     public void setStatus(String status) {
         this.status = status;
     }
-    String deliveryAddress;
-    String status;
+    
             
 }
