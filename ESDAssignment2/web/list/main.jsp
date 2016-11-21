@@ -32,13 +32,15 @@
 
        <section class="search-bar">
             <div class="center-search-bar">
-                <input type="text" name="search" class="search-box" placeholder="Search...">
+                <form action="ItemsServlet">
+                <input name="action" type="hidden" value="searchByName">
+                <input type="text"  name="itemName" class="search-box" placeholder="Search...">
                 <button class="search-btn" style="vertical-align:middle">
                     <span>Search</span>
                 </button>
+                </form>
             </div>
         </section>
-       <%out.print(type);  %>
         <hr size="2" width="80%">
         <div id="order">
             <a href="ItemsServlet?action=list" id="btn"  >News</a>

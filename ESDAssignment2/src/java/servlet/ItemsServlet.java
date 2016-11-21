@@ -107,8 +107,8 @@ public class ItemsServlet extends HttpServlet {
                 ArrayList list = db.queryItemsByName(itemName);
                 request.setAttribute("list", list);
                 // redirect the result to the listCustomers.jsp
-                request.getSession().setAttribute("list", list);	
-                response.sendRedirect("index.jsp");
+                RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/list/main.jsp"); 
+                rd.forward(request, response);
             }
         } else if ("searchByCategory".equalsIgnoreCase(action)) {
             // call the query db to get retrieve for all customer

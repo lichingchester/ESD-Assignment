@@ -74,11 +74,12 @@ and open the template in the editor.
         </section>
             <hr size="2" width="80%">
             <div id="order">
-                <a href="itemdetail.jsp"  id="btn"  >News</a>
-                <a href="itemdetail.jsp"  id="btn"  >Shoes</a>
-                <a href="itemdetail.jsp"  id="btn"  >Women</a>
-                <a href="itemdetail.jsp"  id="btn"   >Men</a>
-                <a href="itemdetail.jsp"  id="btn" >Shopping Cart</a>
+                <a href="ItemsServlet?action=list" id="btn"  >News</a>
+                <a href="ItemsServlet?action=searchByCategory&category=short" id="btn"  >Short</a>
+                <a href="ItemsServlet?action=searchByCategory&category=middle"  id="btn"   >Middle</a>
+                <a href="ItemsServlet?action=searchByCategory&category=long"  id="btn" >Long</a>
+                <a href="ItemsServlet?action=searchByCategory&category=sheath"  id="btn"  >Sheath</a>
+
             
             </div>
             <hr size="2" width="80%">
