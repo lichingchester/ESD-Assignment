@@ -17,7 +17,6 @@
        <%@ page import ="java.sql.*" %>
        <%@ page import="java.io.*,java.util.Locale" %>
         <%@ page import="javax.servlet.*,javax.servlet.http.* "%>
-        <%@ page import="java.text.DateFormat,java.util.Date" %>
     <%
         String user = request.getParameter("name");
         String tel = request.getParameter("tel");
@@ -33,7 +32,7 @@
                 + null + "','" + null + "','" +user+"','" + tel + "','" + email + "','" + address + "',"+1000+", "+0+")");
         if (i > 0) {
             //session.setAttribute("userid", user);
-            response.sendRedirect("welcome.jsp");
+            response.sendRedirect("login/welcome.jsp");
            // out.print("Registration Successfull!"+"<a href='index.jsp'>Go to Login</a>");
         } else {
             response.sendRedirect("index.jsp");

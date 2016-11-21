@@ -6,14 +6,8 @@
 package servlet;
 
 import bean.UserBean;
-import bean.UserInfo;
 import db.UserDB;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -70,12 +64,12 @@ public class LoginController extends HttpServlet {
         for(int i=0;i<loginList.size();i++){
             if(username.equals(((UserBean) loginList.get(i)).getUsername())
                    &&password.equals(((UserBean) loginList.get(i)).getPassword())){
-            //HttpSession session=request.getSession(true);
-            //UserInfo bean =new UserInfo();
-            //bean.setUsername(username);
-            //bean.setPassword(password);
+            HttpSession session=request.getSession(true);
+            UserBean bean =new UserBean();
+            bean.setUsername(username);
+            bean.setPassword(password);
             //store the userInfo to the session
-            //session.setAttribute("userInfo", bean);
+            session.setAttribute("UserBean", bean);
            targetURL="login/welcome.jsp";
             }else{
             targetURL="login/loginError.jsp";
