@@ -116,7 +116,7 @@ public class OrdersDB {
      
      public boolean addRecord(String orderID, String groupID, String itemID,String userTel, 
              String size , String deliveryType, String deliveryDate,int deliveryTime, 
-             String deliveryAddress,String status, int quantity) {
+             String deliveryAddress, String status, int quantity) {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
         boolean isSuccess = false;
@@ -236,6 +236,8 @@ public class OrdersDB {
             }
             pStmnt.close();
             cnnct.close();
+            
+            return list;
         } catch (SQLException ex) {
             while (ex != null) {
                 ex.printStackTrace();
@@ -244,7 +246,7 @@ public class OrdersDB {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        return list;
+        return null;
     }
      
       public ArrayList queryByProcessing() {

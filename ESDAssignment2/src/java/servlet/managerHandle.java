@@ -135,8 +135,8 @@ public class managerHandle extends HttpServlet {
  
         }else if ("report".equalsIgnoreCase(action)) {
 //           // call the query db to get retrieve for all customer
-            ob.setStatus("Cancel");
-            ArrayList list = odb.queryByStaus(ob.getStatus());
+//            ob.setStatus("Cancel");
+            ArrayList list = odb.queryByStaus("canceled");
             
 //            // set the result into the attribute
             request.setAttribute("OrderList", list);
