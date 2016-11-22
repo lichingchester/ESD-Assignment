@@ -7,6 +7,7 @@ package servlet;
 
 import db.ItemsDB;
 import db.OrdersDB;
+import db.ShoppingCartDB;
 import db.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -106,6 +107,10 @@ public class startup extends HttpServlet {
                     "sheath", "Katharyn Smalling", 8000, "img/sheath/shh004.jpg");
         idb.addRecord("item020", "Red dress", "Sheath dress for travel", 
                     "sheath", "Clarinda Ardrey ", 999, "img/sheath/shh005.jpg");
+        
+        ShoppingCartDB scdb = new ShoppingCartDB(dbUrl, dbUser, dbPassword);
+        scdb.dropTable();
+        scdb.createTable();
     
     }
     
