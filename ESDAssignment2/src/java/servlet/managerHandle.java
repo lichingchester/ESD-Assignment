@@ -165,6 +165,28 @@ public class managerHandle extends HttpServlet {
             RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/deleteItem.jsp"); 
             rd.forward(request, response);
  
+        }else if ("editOrder".equalsIgnoreCase(action)) {
+            // call the query db to get retrieve for all customer
+            String id = request.getParameter("id");
+            OrderBean ob = odb.queryByID(id);
+            // set the result into the attribute
+//            request.setAttribute("ib", ib);
+            request.setAttribute("OrderBean", ob);
+            // redirect the result to the listCustomers.jsp	
+//            response.sendRedirect("list/main.jsp");
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/editOrder.jsp"); 
+            rd.forward(request, response);
+        }else if ("deleteOrder".equalsIgnoreCase(action)) {
+            // call the query db to get retrieve for all customer
+            String id = request.getParameter("id");
+            OrderBean ob = odb.queryByID(id);
+            // set the result into the attribute
+            request.setAttribute("ob", ob);
+            // redirect the result to the listCustomers.jsp	
+//            response.sendRedirect("list/main.jsp");
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/deleteOrder.jsp"); 
+            rd.forward(request, response);
+ 
         }
     }
     private static final Logger LOG = Logger.getLogger(managerHandle.class.getName());

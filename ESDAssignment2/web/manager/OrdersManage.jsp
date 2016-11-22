@@ -35,11 +35,11 @@
                             out.print("<td>" + ob.getDeliveryAddress()+"</td>");
                             out.print("<td>" + ob.getStatus()+"</td>");
                             out.print("<td class='td-button'>"
-                                    + "<a href='managerHandle?action=editItem&id="+ib.getItemID()+"'>"
+                                    + "<a href='managerHandle?action=editOrder&id="+ob.getOrderID()+"'>"
                                             + "<button class='admin-button'>Edit</button>"
                                     + "</a></td>");
                             out.print("<td class='td-button'>"
-                                    + "<a href='managerHandle?action=deleteItem&id="+ib.getItemID()+"'>"
+                                    + "<a href='managerHandle?action=deleteOrder&id="+ob.getOrderID()+"'>"
                                             + "<button class='admin-button'>Delete</button>"
                                     + "</a></td>");
                             out.print("</tr>");
