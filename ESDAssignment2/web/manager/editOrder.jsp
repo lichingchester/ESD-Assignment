@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>editOrder</title>
         
         <%
             OrderBean ob=(OrderBean)request.getAttribute("OrderBean");
@@ -57,31 +57,31 @@
                  <div id="container">
                     <form action="OrderEdit" class="formadd">
                         <p><label for="OrderID">Order ID:</label><br>
-                            <input class="input-add" type="text" name="OrderID" value="<%= ob.getOrderID() %>" readonly></p><br>
+                            <input class="input-add" type="text" name="orderID" value="<%= ob.getOrderID() %>" readonly></p><br>
                         
                         <p><label for="GroupID">Group IDe</lable><br>
-                            <input class="input-add" type="text" name="GroupID" value="<%= ob.getGroupID() %>"></p><br>
+                            <input class="input-add" type="text" name="groupID" value="<%= ob.getGroupID() %>"></p><br>
                         
                         <p><label for="ItemID">Item ID</label><br>
-                            <input class="input-add" type="text" name="ItemID" value="<%= ob.getItemID() %>"></p><br>
+                            <input class="input-add" type="text" name="itemID" value="<%= ob.getItemID() %>"></p><br>
                         
                         <p> <label for="Size">size</label><br>
-                          <input class="input-add" type="text" name="Size" value="<%= ob.getSize() %>"></p> <br>
+                          <input class="input-add" type="text" name="size" value="<%= ob.getSize() %>"></p> <br>
                         
                         <p><label for="DeliveryType">delivery Type</label><br>
-                            <input class="input-add" type="text" name="DeliveryType" value="<%= ob.getDeliveryType() %>"> </p><br>
+                            <input class="input-add" type="text" name="deliveryType" value="<%= ob.getDeliveryType() %>"> </p><br>
                         
                         <p><label for="DeliveryDate">Delivery Date</label><br>
-                            <input class="input-add" type="text" name="DeliveryDate" value="<%= ob.getDeliveryDate() %>"></p><br>
+                            <input class="input-add" type="text" name="deliveryDate" value="<%= ob.getDeliveryDate() %>"></p><br>
                         
                         <p><label for="DeliveryTime">Delivery Time</label><br>
-                            <input class="input-add" type="text" name="DeliveryTime" value="<%= ob.getDeliveryTime() %>"></p><br>
+                            <input class="input-add" type="text" name="deliveryTime" value="<%= ob.getDeliveryTime() %>"></p><br>
                         
                         <p><label for="DeliveryAddress">Delivery Address</label><br>
-                            <input class="input-add" type="text" name="DeliveryAddress" value="<%= ob.getDeliveryAddress() %>"></p><br>
+                            <input class="input-add" type="text" name="deliveryAddress" value="<%= ob.getDeliveryAddress() %>"></p><br>
                         
                          <p><label for="Status">Status</label><br>
-                            <input class="input-add" type="text" name="Status" value="<%= ob.getStatus() %>"> </p><br>
+                            <input class="input-add" type="text" name="status" value="<%= ob.getStatus() %>"> </p><br>
                          
                         <p>
                             <input class="additem-submit edititem" type="submit" value="Edit">
