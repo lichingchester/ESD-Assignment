@@ -48,21 +48,17 @@ public class OrderEdit extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         ob=new OrderBean();
-        ob.setOrderID(request.getParameter("orderID"));
-        ob.setGroupID(request.getParameter("groupID"));
-        ob.setItemID(request.getParameter("itemID"));
-        ob.setSize(request.getParameter("size"));
-        ob.setUserTel(request.getParameter("userTel"));
-        ob.setDeliveryType(request.getParameter("deliveryType"));
-        
-        String dDate=request.getParameter("deliveryDate");
-        java.sql.Date Date = java.sql.Date.valueOf(dDate);
-        ob.setDeliveryDate(Date);
-        ob.setDeliveryTime(Integer.parseInt(request.getParameter("deliveryTime")));
-        ob.setDeliveryAddress(request.getParameter("deliveryAddress"));
+          ob.setOrderID(request.getParameter("orderID"));
+//        ob.setGroupID(request.getParameter("groupID"));
+//        ob.setItemID(request.getParameter("itemID"));
+//        ob.setSize(request.getParameter("size"));
+//        ob.setUserTel(request.getParameter("userTel"));
+//        ob.setDeliveryType(request.getParameter("deliveryType"));
+//        ob.setDeliveryTime(Integer.parseInt(request.getParameter("deliveryTime")));
+//        ob.setDeliveryAddress(request.getParameter("deliveryAddress"));
         ob.setStatus(request.getParameter("status"));
         
-        odb.editRecord(ob);
+        odb.editRecordStatus(ob);
         
         RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/message/AdminShipMessage.jsp?message=editOrder"); 
             rd.forward(request, response);
