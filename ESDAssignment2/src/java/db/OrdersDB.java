@@ -243,7 +243,6 @@ public class OrdersDB {
         return null;
     }
     
-<<<<<<< HEAD
     public String queryLastOrderID(){
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
@@ -265,8 +264,8 @@ public class OrdersDB {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        return null;
-=======
+            return null;
+    }
     
     public int editRecord(OrderBean ob){
         Connection cnnct = null;
@@ -301,6 +300,5 @@ public class OrdersDB {
             ex.printStackTrace();
         }
         return rs;
->>>>>>> origin/master
     }
 }
