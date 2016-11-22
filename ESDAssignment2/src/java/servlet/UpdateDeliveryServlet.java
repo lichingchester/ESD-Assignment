@@ -6,7 +6,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.Integer.parseInt;
 import java.sql.Time;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -38,23 +41,25 @@ public class UpdateDeliveryServlet extends HttpServlet {
             
             String OrderID=request.getParameter("orderID");
             String dTime= request.getParameter("dTime");
-            Time time =java.sql.Time.valueOf(dTime);
+            int time =parseInt(dTime);
             
             String dDate=request.getParameter("dDate");
-            java.sql.Date Date = java.sql.Date.valueOf(dDate);
+            DateFormat dateformat = new SimpleDateFormat("mm/dd/yyyy");
+            Date d = (dateformat.parse(dDate));
+            java.sql.Date d1 =(java.sql.Date) d;
 
             String size=request.getParameter("size");
             int qty=parseInt(request.getParameter("qty"));
             
             OrderBean ob = new OrderBean();
             ob.setDeliveryTime(time);
-            ob.setDeliveryDate(Date);
+            ob.setDeliveryDate(d1);
             ob.setSize(size);
             ob.setQuantity(qty);
             ob.setOrderID(OrderID);
 
             db.editRecord(ob);
-            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/HIHI.jsp"); 
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/UpdateDelivery.jsp"); 
             rd.forward(request, response);
 
         }
