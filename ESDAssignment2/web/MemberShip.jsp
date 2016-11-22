@@ -44,6 +44,8 @@
                     <th>Size</th>
                     <th>Delivery Type</th>
                     <th>Delivery Address</th>
+                    <th>Delivery Time</th>
+                    <th>Delivery Date</th>
                     <th>Status</th>
                     <th>Edit</th>
                     </tr>
@@ -52,14 +54,17 @@
                         for(int i=0;i<list.size();i++){
                             OrderBean ob = (OrderBean)list.get(i);
                             if(ob.getUserTel().equals(ub.getTel())){
+                            String orderID=ob.getOrderID();
                             out.print("<tr>");
                             out.print("<td> "+ ob.getOrderID() +" </td>");
                             out.print("<td> "+ ob.getItemID() +" </td>");
                             out.print("<td> "+ ob.getSize()+" </td>");
                             out.print("<td> "+ ob.getDeliveryType()+" </td>");
                             out.print("<td> "+ ob.getDeliveryAddress()+" </td>");
+                            out.print("<td> "+ ob.getDeliveryDate()+" </td>");
+                            out.print("<td> "+ ob.getDeliveryTime()+" </td>");
                             out.print("<td> "+ ob.getStatus()+" </td>");
-                            out.print("<td> "+ ob.getStatus()+" </td>");
+                            out.print("<td><a href='UpdateDelivery.jsp?order="+orderID+"'>Edit</a>");
                             out.print("</tr>");
                             }
                         }
