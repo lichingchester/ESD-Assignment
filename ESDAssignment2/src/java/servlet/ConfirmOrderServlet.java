@@ -5,6 +5,7 @@
  */
 package servlet;
 
+import bean.OrderBean;
 import db.OrdersDB;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ConfirmOrderServlet extends HttpServlet {
     
     OrdersDB od;
+    OrderBean ob;
     
     public void init(){
         String dbUser = this.getServletContext().getInitParameter("dbUser");
@@ -35,7 +37,36 @@ public class ConfirmOrderServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         List myList = (List)request.getAttribute("arrayList");
-        String orderId;
+        String GroupID;
+        int lastGroupID, orderTotal=0;
+        double doubleBonusPoints;
+        if(od.queryLastGroupID()==null){
+            GroupID="1";
+        }else{
+            lastGroupID=Integer.parseInt(od.queryLastGroupID());
+            lastGroupID++;
+            GroupID=String.valueOf(lastGroupID);
+        }
+        
+        for(int i=0;i<myList.size();i++){
+            String orderId;
+            int lastID;
+            if(od.queryLastOrderID()==null){
+                orderId="1";
+            }else{
+                lastID=Integer.parseInt(od.queryLastOrderID());
+                lastID++;
+                orderId=String.valueOf(lastID);
+            }//set orderId
+            
+        }
+        if(orderTotal>=2000){
+            doubleBonusPoints=(orderTotal*0.05);
+        }
+        if(orderTotal>=10000){
+            //cookie 24hour >>>pay $500
+        }
+        
         
         
     }

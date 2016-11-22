@@ -28,15 +28,19 @@
            <form action="">
                <div>  //show shopping cart
                  <table border="1">
+                     delivery<input type="radio" name="choose" value="delivery">
+                     self-pick <input type="radio" name="choose" value="selfPick">
                      <tr><th>Product Name</th> <th>Size</th> <th>Quantity</th> <th>Price</th></tr>
+                    
                      <%for(int i=0;i<ShoppingCartList.size();i++){
                          System.out.print("<tr> <td>"+ShoppingCartList.get(i)+"</td> <td>"+ShoppingCartList.get(i)+"</td> "
                                  + "<td>"+ShoppingCartList.get(i)+"</td> <td><"+ShoppingCartList.get(i)+"/td> </tr>");
-                         }%>
+                         }%> 
                      <input type="hidden" name="SClist" >
                  </table>
                </div>
              <a href="">Edit</a>//go back shopping cart
+             
             <input type="submit" value="confirm">//->go sevlet
             <% request.setAttribute("arrayList", ShoppingCartList);
             RequestDispatcher rd = request.getRequestDispatcher("ConfirmOrderServlet");

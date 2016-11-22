@@ -268,6 +268,30 @@ public class OrdersDB {
         return null;
     }
     
+        public String queryLastGroupID(){
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+         try {
+            cnnct = getConnection();
+            String preQueryStatement = "SELECT groupID FROM Orders;";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            //Statement s = cnnct.createStatement();
+            ResultSet rs = pStmnt.executeQuery();
+            pStmnt.close();
+            cnnct.close();
+            
+            return rs.toString();
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+            return null;
+    }
+    
     public int editRecord(OrderBean ob){
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
