@@ -16,6 +16,8 @@
                 list2 = (ArrayList) request.getAttribute("list");
                 ub = (UserBean)list2.get(0);
             }
+           
+
 %>
 
 <!DOCTYPE html>
@@ -42,12 +44,21 @@
                    <a href="BonusPServlet?ID=<%out.print(ub.getTel());%>" >Check Bonus Point</a>
                <hr size="2" width="100%">
                
-               <table>
+               <table border='2'>
                     <%
                                 out.print("The Bonus Point:");
                                 out.print(ub.getBonusPoint());
                                 
                     %>
+                    <br>
+                    <tr><td><img src='img/accessories/earring.JPG'height="320" weight='240'><h4> Earring </h4><br>
+                            price:500</td>
+                        <td><img src='img/accessories/hand.jpg'   height="320" weight='240'> <h4>Bracelet</h4> <br>
+                            price:700<td></tr>
+                    <tr><td><img src='img/accessories/ring.jpg' height="320" width='450'> <h4>Ring </h4><br>
+                              price:1000  </td>
+                        <td><img src='img/accessories/rolex.jpg' height="320" width='450' ><h4>Rolex</h4> <br>
+                              price:15000 </td></tr>
                </table>
                </form>
                
