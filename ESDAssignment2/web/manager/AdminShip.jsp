@@ -19,7 +19,7 @@
         <%@page contentType="text/html" pageEncoding="UTF-8"%>
         
         <%
-            ArrayList<ItemBean> list = (ArrayList) request.getAttribute("itemList");
+            ArrayList<ItemBean> list = (ArrayList) request.getAttribute("itemsList");
             UserBean ub = (UserBean) request.getAttribute("userBean");
         %>
     </head>
