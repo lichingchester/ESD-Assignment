@@ -244,7 +244,7 @@ public class OrdersDB {
         return null;
     }
      
-      public OrderBean queryByProcessing() {
+      public ArrayList queryByProcessing() {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
 
@@ -254,10 +254,12 @@ public class OrdersDB {
             cnnct = getConnection();
             String preQueryStatement = "SELECT * FROM  Orders WHERE status!='canceled' AND status!='delivered'";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
-            ResultSet rs = null;
+            ResultSet rs = pStmnt.executeQuery();
+            
+            ArrayList list = new ArrayList();
             //4. execute the query and assign to the result 
-            rs = pStmnt.executeQuery();
-            if (rs.next()) {
+             
+            while (rs.next()) {
                 ob = new OrderBean();
                 // set the record detail to the customer bean
                 ob.setOrderID(rs.getString(1));
@@ -271,10 +273,10 @@ public class OrdersDB {
                 ob.setDeliveryAddress(rs.getString(9));
                 ob.setStatus(rs.getString(10));
                 ob.setQuantity(rs.getInt(11));
+                list.add(ob);
             }
-
-            pStmnt.close();
-            cnnct.close();
+            
+            return list;
         } catch (SQLException ex) {
             while (ex != null) {
                 ex.printStackTrace();
@@ -282,6 +284,19 @@ public class OrdersDB {
             }
         } catch (IOException ex) {
             ex.printStackTrace();
+        }finally {
+            if (pStmnt != null) {
+                try {
+                    pStmnt.close();
+                } catch (SQLException e) {
+                }
+            }
+            if (cnnct != null) {
+                try {
+                    cnnct.close();
+                    } catch (SQLException sqlEx) {
+                             }
+            }
         }
         return null;
     }

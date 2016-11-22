@@ -152,6 +152,7 @@ public class UserDB {
 
             while (rs.next()) {
                 UserBean ib = new UserBean();
+                
                 ib.setUsername(rs.getString(1));
                 ib.setPassword(rs.getString(2));
                 ib.setName(rs.getString(3));

@@ -115,7 +115,7 @@ public class managerHandle extends HttpServlet {
  
         }else if ("orderps".equalsIgnoreCase(action)) {
 //            // call the query db to get retrieve for all customer
-            ArrayList list = ()(odb.queryByStaus("Processing"));
+            ArrayList list = odb.queryByProcessing();
 //            // set the result into the attribute
 //            request.setAttribute("list", list);
 //            // redirect the result to the listCustomers.jsp	
