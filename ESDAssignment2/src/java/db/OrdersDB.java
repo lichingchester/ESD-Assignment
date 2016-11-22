@@ -111,6 +111,7 @@ public class OrdersDB {
             return chk;
         }
     }
+     
      public boolean addRecord(String orderID, String itemID,String userTel, String size , String deliveryType, String deliveryDate,String deliveryTime, String deliveryAddress,String status) {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;

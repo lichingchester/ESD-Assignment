@@ -11,15 +11,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link rel="stylesheet" href="/css/style.css">
-        <link rel="stylesheet" href="/css/admin.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/admin.css">
         
         <%@page import="bean.ItemBean"%>
         <%@page import="java.util.ArrayList"%>
         <%@page contentType="text/html" pageEncoding="UTF-8"%>
         
         <%
-            ArrayList<ItemBean> list = (ArrayList) request.getAttribute("itemList");
+            ArrayList<ItemBean> list = (ArrayList) request.getAttribute("itemsList");
             UserBean ub = (UserBean) request.getAttribute("userBean");
         %>
     </head>
@@ -65,7 +65,7 @@
                
                 <br>
                 
-                <table sortable="sortable">
+                <table>
                     <tr>
                         <td>
                             Image
@@ -85,8 +85,12 @@
                         <td>
                             Price
                         </td>
-                        <td></td>
-                        <td></td>
+                        <td>
+                            Edit
+                        </td>
+                        <td>
+                            Delete
+                        </td>
                     </tr>
                     <%
                         for(ItemBean ib : list){
@@ -97,8 +101,10 @@
                             out.print("<td>" + ib.getCategory()+ "</td>");
                             out.print("<td>" + ib.getDesignerName()+ "</td>");
                             out.print("<td>" + ib.getPrice()+ "</td>");
-                            out.print("<td><a class='tda' href='editItem.jsp?id="+ib.getItemID()+">Edit</a></td>");
-                            out.print("<td><a class='tda' href='deleteItem.jsp?id="+ib.getItemID()+">Delete</a></td>");
+                            out.print("");
+                            out.print("");
+                            out.print("<td><a href='deleteItem.jsp?id="+ib.getItemID()+">Delete</a></td>");
+                            out.print("<td><a href='editItem.jsp?id="+ib.getItemID()+">Edit</a></td>");
                             out.print("</tr>");
                         }
                     %>
