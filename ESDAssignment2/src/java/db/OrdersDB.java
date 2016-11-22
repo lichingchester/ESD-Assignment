@@ -122,7 +122,7 @@ public class OrdersDB {
         boolean isSuccess = false;
         try {
             cnnct = getConnection();
-            String preQueryStatement = "INSERT  INTO  CUSTOMER  VALUES  (?,?,?,?,?,?,?,?,?,?,?)";
+            String preQueryStatement = "INSERT  INTO  Orders  VALUES  (?,?,?,?,?,?,?,?,?,?,?)";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             pStmnt.setString(1, orderID);
             pStmnt.setString(2, groupID);
@@ -256,6 +256,63 @@ public class OrdersDB {
             //1.  get Connection
             cnnct = getConnection();
             String preQueryStatement = "SELECT * FROM  Orders WHERE status!='canceled' AND status!='delivered'";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            ResultSet rs = pStmnt.executeQuery();
+            
+            ArrayList list = new ArrayList();
+            //4. execute the query and assign to the result 
+             
+            while (rs.next()) {
+                ob = new OrderBean();
+                // set the record detail to the customer bean
+                ob.setOrderID(rs.getString(1));
+                ob.setGroupID(rs.getString(2));
+                ob.setItemID(rs.getString(3));
+                ob.setUserTel(rs.getString(4));
+                ob.setSize(rs.getString(5));
+                ob.setDeliveryType(rs.getString(6));
+                ob.setDeliveryDate(rs.getString(7));
+                ob.setDeliveryTime(rs.getInt(8));
+                ob.setDeliveryAddress(rs.getString(9));
+                ob.setStatus(rs.getString(10));
+                ob.setQuantity(rs.getInt(11));
+                list.add(ob);
+            }
+            
+            return list;
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }finally {
+            if (pStmnt != null) {
+                try {
+                    pStmnt.close();
+                } catch (SQLException e) {
+                }
+            }
+            if (cnnct != null) {
+                try {
+                    cnnct.close();
+                    } catch (SQLException sqlEx) {
+                             }
+            }
+        }
+        return null;
+    }
+      
+      public ArrayList queryByHistory() {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+
+        OrderBean ob = null;
+        try {
+            //1.  get Connection
+            cnnct = getConnection();
+            String preQueryStatement = "SELECT * FROM  Orders WHERE status='pickedUp' OR status='delivered'";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             ResultSet rs = pStmnt.executeQuery();
             

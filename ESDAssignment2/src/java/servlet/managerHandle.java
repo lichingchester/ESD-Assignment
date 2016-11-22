@@ -120,18 +120,18 @@ public class managerHandle extends HttpServlet {
             request.setAttribute("list", list);
 //            // redirect the result to the listCustomers.jsp	
 //          response.sendRedirect("list/main.jsp");
-           RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/OrderManage.jsp"); 
+           RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/OrdersManage.jsp"); 
            rd.forward(request, response);
  
         }else if ("orderhis".equalsIgnoreCase(action)) {
 //            // call the query db to get retrieve for all customer
-//                 ArrayList list = odb.queryByStaus(action);
+                ArrayList list = odb.queryByHistory();   
 //            // set the result into the attribute
-//            request.setAttribute("list", list);
+            request.setAttribute("list", list);
 //            // redirect the result to the listCustomers.jsp	
 ////            response.sendRedirect("list/main.jsp");
-//            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/list/main.jsp"); 
-//            rd.forward(request, response);
+           RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/OrderHis.jsp"); 
+            rd.forward(request, response);
  
         }else if ("report".equalsIgnoreCase(action)) {
 //           // call the query db to get retrieve for all customer
