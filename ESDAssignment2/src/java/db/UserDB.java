@@ -183,32 +183,39 @@ public class UserDB {
     }
      
      
-     public UserBean queryItemByTel(String tel) {
+    public UserBean queryUserByTel(String tel) {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
+
+        UserBean ib = null;
         try {
+            //1.  get Connection
             cnnct = getConnection();
-            String preQueryStatement = "SELECT * FROM  CUSTOMER";
+            String preQueryStatement = "SELECT * FROM CUSTOMER WHERE tel=?";
+            //2.  get the prepare Statement
             pStmnt = cnnct.prepareStatement(preQueryStatement);
-            //Statement s = cnnct.createStatement();
-            ResultSet rs = pStmnt.executeQuery();
-
-            ArrayList list = new ArrayList();
-
-            while (rs.next()) {
-                UserBean ib = new UserBean();
-                
+            //3. update the placehoder with id
+            pStmnt.setString(1, tel);
+            ResultSet rs = null;
+            //4. execute the query and assign to the result 
+            rs = pStmnt.executeQuery();
+            if (rs.next()) {
+                ib = new UserBean();
+                // set the record detail to the customer bean
                 ib.setUsername(rs.getString(1));
                 ib.setPassword(rs.getString(2));
                 ib.setName(rs.getString(3));
                 ib.setTel(rs.getString(4));
                 ib.setEmail(rs.getString(5));
                 ib.setAddress(rs.getString(6));
-                ib.setBonusPoint(String.valueOf(rs.getInt(7)));
-                ib.setStatus(String.valueOf(rs.getInt(8)));
-                list.add(ib);
+                ib.setBonusPoint(rs.getString(7));
+                ib.setStatus(rs.getString(8));
             }
-            return list;
+
+            pStmnt.close();
+            cnnct.close();
+            
+            return ib;
         } catch (SQLException ex) {
             while (ex != null) {
                 ex.printStackTrace();
@@ -216,21 +223,8 @@ public class UserDB {
             }
         } catch (IOException ex) {
             ex.printStackTrace();
-        } finally {
-            if (pStmnt != null) {
-                try {
-                    pStmnt.close();
-                } catch (SQLException e) {
-                }
-            }
-            if (cnnct != null) {
-                try {
-                    cnnct.close();
-                } catch (SQLException sqlEx) {
-                }
-            }
         }
-        return null;
+        return ib;
     }
      
      public ArrayList queryUsersByConfirmed() {
@@ -238,7 +232,7 @@ public class UserDB {
         PreparedStatement pStmnt = null;
         try {
             cnnct = getConnection();
-            String preQueryStatement = "SELECT * FROM  CUSTOMER WHERE STATUS = 1";
+            String preQueryStatement = "SELECT * FROM  CUSTOMER WHERE STATUS = 1 order by loginID";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             //Statement s = cnnct.createStatement();
             ResultSet rs = pStmnt.executeQuery();
@@ -329,6 +323,39 @@ public class UserDB {
             }
         }
         return null;
+    }
+     
+     public int updateAC(UserBean ub){                //ManHo edited, I don't know correct or wrong 
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        
+        int rs = 0;
+        try{
+            cnnct = getConnection();
+            String preQueryStatement = 
+                    "update CUSTOMER set LoginID = ?, Password = ?, status = ?"
+                    + "where Tel = ?";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            
+            pStmnt.setString(1, ub.getUsername());
+            pStmnt.setString(2, ub.getPassword());
+            pStmnt.setString(3, "1");
+            pStmnt.setString(4, ub.getTel());       
+            rs = pStmnt.executeUpdate();
+            
+            pStmnt.close();
+            cnnct.close();
+            
+        }catch(SQLException ex){
+            while(ex != null){
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+        
+        return rs;
     }
  
 }

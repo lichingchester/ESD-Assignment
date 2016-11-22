@@ -62,13 +62,17 @@ public class managerHandle extends HttpServlet {
         String action = request.getParameter("action");
         
         if ("users".equalsIgnoreCase(action)) {
+            String message = "";
+            if(request.getParameter("message") != null){
+                message = request.getParameter("message");
+            }
             // call the query db to get retrieve for all customer
             ArrayList list = udb.queryUsersByConfirmed();
             // set the result into the attribute
             request.setAttribute("list", list);
             // redirect the result to the listCustomers.jsp	
 //            response.sendRedirect("list/main.jsp");
-            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/UsersManage.jsp?type=confirmed"); 
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/UsersManage.jsp?type=confirmed&message="+message); 
             rd.forward(request, response);
  
         }else if ("ncusers".equalsIgnoreCase(action)) {
