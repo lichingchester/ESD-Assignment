@@ -4,6 +4,7 @@
     Author     : huen
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,14 +18,14 @@
         
         <% 
         UserBean ub = (UserBean) request.getAttribute("userBean");
-        OrderBean ob = (OrderBean) request.getAttribute("orderList");
+        ArrayList<OrderBean> list = (ArrayList) request.getAttribute("orderList");
         %> 
     </head>
     <body>
        <section class="header">
             <div id="bg">
                 <a href="index.jsp"><img src="img\LOGO.png"></a>
-                <img src="img\icon.png"><label style="color:white ;font-size:large " >Name:<% out.print(ub.getName()); %></label>
+                <img src="img\icon.png"><label style="color:white ;font-size:large " >Name:<%out.print(ub.getName());%></label>
                 <a href="#join" class="navbar">Join us</a>
                 <a href="order.jsp" class="navbar">Logout</a>
                 <a href="order.jsp" class="navbar">Order</a>
@@ -39,17 +40,30 @@
                <table>
                     <tr>
                     <th>UserID</th>
-                    <th>Items Name</th>
+                    <th>Items ID</th>
                     <th>Size</th>
-                    <th>Price</th>
-                    <th>DeliveryAddress</th>
+                    <th>Delivery Type</th>
+                    <th>Delivery Address</th>
+                    <th>Status</th>
+                    <th>Edit</th>
                     </tr>
                     
-                    <tr>
-                    <td>Fucking Dress</td>
-                    <td>Delivering</td>
-                    <td>100$</td>
-                    </tr>
+                    <%
+                        for(int i=0;i<list.size();i++){
+                            OrderBean ob = (OrderBean)list.get(i);
+                            if(ob.getUserTel().equals(ub.getTel())){
+                            out.print("<tr>");
+                            out.print("<td> "+ ob.getOrderID() +" </td>");
+                            out.print("<td> "+ ob.getItemID() +" </td>");
+                            out.print("<td> "+ ob.getSize()+" </td>");
+                            out.print("<td> "+ ob.getDeliveryType()+" </td>");
+                            out.print("<td> "+ ob.getDeliveryAddress()+" </td>");
+                            out.print("<td> "+ ob.getStatus()+" </td>");
+                            out.print("<td> "+ ob.getStatus()+" </td>");
+                            out.print("</tr>");
+                            }
+                        }
+                    %>
                </table>
                </form>
                

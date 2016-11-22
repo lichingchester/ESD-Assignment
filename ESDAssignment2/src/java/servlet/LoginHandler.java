@@ -84,6 +84,7 @@ public class LoginHandler extends HttpServlet {
                     }
                 }
             }
+            url="/login/loginError.jsp";
         }
 
         RequestDispatcher rd = request.getServletContext().getRequestDispatcher(url); 

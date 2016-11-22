@@ -15,7 +15,7 @@
         <p>Incorrect Password</p>
         <p>
             
-                <% out.println("<a href=\"" + request.getContextPath() + "/main\">Login again</a>");%>
+                <a href="login/login.jsp">Login again</a>
            
         </p>
     </body>
