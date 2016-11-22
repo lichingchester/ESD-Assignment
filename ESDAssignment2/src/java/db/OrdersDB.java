@@ -178,7 +178,7 @@ public class OrdersDB {
                 ob.setUserTel(rs.getString(4));
                 ob.setSize(rs.getString(5));
                 ob.setDeliveryType(rs.getString(6));
-                ob.setDeliveryDate(rs.getDate(7));
+                ob.setDeliveryDate(rs.getString(7));
                 ob.setDeliveryTime(rs.getInt(8));
                 ob.setDeliveryAddress(rs.getString(9));
                 ob.setStatus(rs.getString(10));
@@ -224,7 +224,7 @@ public class OrdersDB {
                 ob.setUserTel(rs.getString(4));
                 ob.setSize(rs.getString(5));
                 ob.setDeliveryType(rs.getString(6));
-                ob.setDeliveryDate(rs.getDate(7));
+                ob.setDeliveryDate(rs.getString(7));
                 ob.setDeliveryTime(rs.getInt(8));
                 ob.setDeliveryAddress(rs.getString(9));
                 ob.setStatus(rs.getString(10));
@@ -268,7 +268,7 @@ public class OrdersDB {
                 ob.setUserTel(rs.getString(4));
                 ob.setSize(rs.getString(5));
                 ob.setDeliveryType(rs.getString(6));
-                ob.setDeliveryDate(rs.getDate(7));
+                ob.setDeliveryDate(rs.getString(7));
                 ob.setDeliveryTime(rs.getInt(8));
                 ob.setDeliveryAddress(rs.getString(9));
                 ob.setStatus(rs.getString(10));
@@ -322,7 +322,7 @@ public class OrdersDB {
                 ob.setUserTel(rs.getString(4));
                 ob.setSize(rs.getString(5));
                 ob.setDeliveryType(rs.getString(6));
-                ob.setDeliveryDate(rs.getDate(7));
+                ob.setDeliveryDate(rs.getString(7));
                 ob.setDeliveryTime(rs.getInt(8));
                 ob.setDeliveryAddress(rs.getString(9));
                 ob.setStatus(rs.getString(10));
@@ -407,7 +407,7 @@ public class OrdersDB {
                     + "where orderID = ?";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             
-            pStmnt.setDate(1, ob.getDeliveryDate());
+            pStmnt.setDate(1, java.sql.Date.valueOf(ob.getDeliveryDate()));
             pStmnt.setInt(2, ob.getDeliveryTime());
             pStmnt.setString(3, ob.getSize());
             pStmnt.setInt(4, ob.getQuantity());
