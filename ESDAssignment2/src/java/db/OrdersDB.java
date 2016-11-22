@@ -122,7 +122,7 @@ public class OrdersDB {
         boolean isSuccess = false;
         try {
             cnnct = getConnection();
-            String preQueryStatement = "INSERT  INTO  CUSTOMER  VALUES  (?,?,?,?,?,?,?,?,?,?,?)";
+            String preQueryStatement = "INSERT  INTO  Orders  VALUES  (?,?,?,?,?,?,?,?,?,?,?)";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             pStmnt.setString(1, orderID);
             pStmnt.setString(2, groupID);
