@@ -86,7 +86,7 @@ public class OrdersDB {
                     + "size VARCHAR(10),"
                     + "deliveryType VARCHAR(20),"
                     + "deliveryDate DATE,"
-                    + "deliveryTime TIME"
+                    + "deliveryTime TIME,"
                     + "deliveryAddress VARCHAR(100),"
                     + "status VARCHAR(20),"
                     + "primary key (orderID))";
