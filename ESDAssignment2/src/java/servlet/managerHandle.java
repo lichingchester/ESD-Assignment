@@ -68,7 +68,7 @@ public class managerHandle extends HttpServlet {
             request.setAttribute("list", list);
             // redirect the result to the listCustomers.jsp	
 //            response.sendRedirect("list/main.jsp");
-            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/AdminShip.jsp"); 
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/UsersManage.jsp?type=confirmed"); 
             rd.forward(request, response);
  
         }else if ("ncusers".equalsIgnoreCase(action)) {
@@ -78,7 +78,7 @@ public class managerHandle extends HttpServlet {
             request.setAttribute("list", list);
             // redirect the result to the listCustomers.jsp	
 //            response.sendRedirect("list/main.jsp");
-            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/UsersManage.jsp"); 
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/UsersManage.jsp?type=unconfirmed"); 
             rd.forward(request, response);
  
         }else if ("item".equalsIgnoreCase(action)) {

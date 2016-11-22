@@ -25,7 +25,6 @@
             if((ArrayList) request.getAttribute("itemsList") != null){
                 list = (ArrayList) request.getAttribute("itemsList");
             }
-            
         %>
         
         <%
@@ -80,8 +79,8 @@
                     <li class="dropdown">
                         <a href="#" class="dropbtn">Users Management</a>
                         <div class="dropdown-content">
-                            <a href="/managerHandle?action=users">Confirmed Users</a>
-                            <a href="/managerHandle?action=ncusers">Unconfirmed Users</a>
+                            <a href="managerHandle?action=users">Confirmed Users</a>
+                            <a href="managerHandle?action=ncusers">Unconfirmed Users</a>
                         </div>
                     </li>
                     <li class="dropdown">
