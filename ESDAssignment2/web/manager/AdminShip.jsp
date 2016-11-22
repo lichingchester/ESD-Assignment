@@ -71,8 +71,8 @@
                     <li class="dropdown">
                         <a href="#" class="dropbtn">Orders Management</a>
                         <div class="dropdown-content">
-                            <a href="/managerHandle?action=orderps">Processing Orders</a>
-                            <a href="/managerHandle?action=orderhis">Orders History</a>
+                            <a href="managerHandle?action=orderps">Processing Orders</a>
+                            <a href="managerHandle?action=orderhis">Orders History</a>
                         </div>
                     </li>
                 </ul>
