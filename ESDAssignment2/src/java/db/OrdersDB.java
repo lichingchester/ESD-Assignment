@@ -407,7 +407,7 @@ public class OrdersDB {
                     + "where orderID = ?";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             
-            pStmnt.setDate(1, java.sql.Date.valueOf(ob.getDeliveryDate()));
+            pStmnt.setString(1, ob.getDeliveryDate());
             pStmnt.setInt(2, ob.getDeliveryTime());
             pStmnt.setString(3, ob.getSize());
             pStmnt.setInt(4, ob.getQuantity());

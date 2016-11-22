@@ -40,20 +40,19 @@ public class UpdateDeliveryServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             
             String OrderID=request.getParameter("orderID");
+            
             String dTime= request.getParameter("dTime");
             int time =parseInt(dTime);
             
             String dDate=request.getParameter("dDate");
-            DateFormat dateformat = new SimpleDateFormat("dd-mm-yyyy");
-            Date d = (dateformat.parse(dDate));
-            java.sql.Date d1 =(java.sql.Date) d;
+            
 
             String size=request.getParameter("size");
             int qty=parseInt(request.getParameter("qty"));
             
             OrderBean ob = new OrderBean();
             ob.setDeliveryTime(time);
-            ob.setDeliveryDate(d1);
+            ob.setDeliveryDate(dDate);
             ob.setSize(size);
             ob.setQuantity(qty);
             ob.setOrderID(OrderID);
