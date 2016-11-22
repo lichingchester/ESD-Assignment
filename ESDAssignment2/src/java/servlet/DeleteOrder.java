@@ -36,7 +36,8 @@ public class DeleteOrder extends HttpServlet {
             String orderID=request.getParameter("order");
             
             db.delRecord(orderID);
-            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/HIHI.jsp"); 
+            
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/UpdateInfoMsg.jsp"); 
             rd.forward(request, response);
         }
     }

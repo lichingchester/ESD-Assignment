@@ -404,7 +404,7 @@ public class OrdersDB {
             String preQueryStatement = 
                     "update Orders set DeliveryDate = ?, DeliveryTime = ?, "
                     + "Size = ?, Quantity = ?"
-                    + "where itemID = ?";
+                    + "where orderID = ?";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             
             pStmnt.setDate(1, ob.getDeliveryDate());

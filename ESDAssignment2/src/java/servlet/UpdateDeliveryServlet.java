@@ -44,7 +44,7 @@ public class UpdateDeliveryServlet extends HttpServlet {
             int time =parseInt(dTime);
             
             String dDate=request.getParameter("dDate");
-            DateFormat dateformat = new SimpleDateFormat("mm/dd/yyyy");
+            DateFormat dateformat = new SimpleDateFormat("dd-mm-yyyy");
             Date d = (dateformat.parse(dDate));
             java.sql.Date d1 =(java.sql.Date) d;
 

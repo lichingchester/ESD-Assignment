@@ -74,7 +74,7 @@
                                 out.print("<td> "+ ob.getDeliveryDate()+" </td>");
                                 out.print("<td> "+ ob.getDeliveryTime()+" </td>");
                                 out.print("<td> "+ ob.getStatus()+" </td>");
-                                out.print("<td><a href='UpdateDelivery.jsp?order="+orderID+"'>Edit</a>");
+                                out.print("<td><a href='UpdateDelivery.jsp?order="+orderID+"'>Edit</a></td>");
                                 out.print("<td><a href='DeleteOrder?order="+orderID+"'>Cancel Order</a></td>");
                                 out.print("</tr>");
                                 }

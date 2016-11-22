@@ -30,7 +30,7 @@
                OrderID:<input type="text" name="orderID" value="<%out.print(orderID);%>" readonly="readonly">
                <br/>
                <br/>
-               Delivery Time:<input type="time" name="dTime">
+               Delivery Time:<input type="number" name="dTime">
                <br/>
                <br/>
                Delivery Date:<input type="date" name="dDate">

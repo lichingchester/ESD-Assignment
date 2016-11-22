@@ -9,11 +9,10 @@ import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
+import java.util.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Calendar;
-import java.util.Date;
 
 public class TestAddRecord {
 
@@ -26,9 +25,22 @@ public class TestAddRecord {
         odb = new OrdersDB (url, username, password);
         
 
-        
-        odb.createOrderTable();
-        odb.addRecord("002", "1", "1", "87654321", "M", "2", "2016-11-22", 5, "Flat2402", "deliverying", 1);
+            String dDate="2016-11-26";
+            DateFormat dateformat = new SimpleDateFormat("yyyy-mm-dd");
+            Date d = (dateformat.parse(dDate));
+            Date d1=d;
             
+            String size="XL";
+            int qty=4;
+            String OrderID="001";
+            
+            int f=12;
+         ob.setDeliveryTime(f);
+         ob.setDeliveryDate((java.sql.Date) d1);
+         ob.setSize(size);
+         ob.setQuantity(qty);
+         ob.setOrderID(OrderID);   
+         odb.editRecord(ob);
+             
     }
 }
