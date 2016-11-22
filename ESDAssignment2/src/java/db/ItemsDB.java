@@ -361,7 +361,7 @@ public class ItemsDB {
             cnnct = getConnection();
             String preQueryStatement = 
                     "update items set itemName = ?, description = ?, "
-                    + "category = ?, designerName = ?"
+                    + "category = ?, designerName = ?,"
                     + "price = ?"
                     + "where itemID = ?";
             pStmnt = cnnct.prepareStatement(preQueryStatement);

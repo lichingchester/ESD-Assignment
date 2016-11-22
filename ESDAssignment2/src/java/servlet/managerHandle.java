@@ -85,7 +85,7 @@ public class managerHandle extends HttpServlet {
             // call the query db to get retrieve for all customer
             ArrayList list = idb.queryItems();
             // set the result into the attribute
-            request.setAttribute("list", list);
+            request.setAttribute("itemsList", list);
             // redirect the result to the listCustomers.jsp	
 //            response.sendRedirect("list/main.jsp");
             RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/AdminShip.jsp"); 

@@ -48,4 +48,12 @@
         <servlet-name>ItemUpload</servlet-name>
         <url-pattern>/ItemUpload</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>managerHandle</servlet-name>
+        <servlet-class>servlet.managerHandle</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>managerHandle</servlet-name>
+        <url-pattern>/managerHandle</url-pattern>
+    </servlet-mapping>
 </web-app>

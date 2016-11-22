@@ -20,7 +20,11 @@
         <%@page import="bean.UserBean"%>
 
         <%
-            ArrayList<ItemBean> list = (ArrayList) request.getAttribute("itemsList");
+            ArrayList<ItemBean> list = null;
+            if((ArrayList) request.getAttribute("itemsList") != null){
+                list = (ArrayList) request.getAttribute("itemsList");
+            }
+            
             UserBean ub = (UserBean) request.getAttribute("userBean");
         %>
         
@@ -54,7 +58,7 @@
                -->
                 <ul>
                     <li>
-                        <a href="/managerHandle?action=item">Items Management</a>
+                        <a href="managerHandle?action=item">Items Management</a>
                     </li>
                     <li>
                         <a href="/managerHandle?action=report">Incompleted Report</a>
@@ -105,23 +109,25 @@
                         </td>
                     </tr>
                     <%
-                        for(ItemBean ib : list){
-                            out.print("<tr>");
-                            out.print("<td><img height='100' width='80' src='" + ib.getPath() + "' /></td>");
-                            out.print("<td>" + ib.getItemName() + "</td>");
-                            out.print("<td>" + ib.getDesc()+ "</td>");
-                            out.print("<td>" + ib.getCategory()+ "</td>");
-                            out.print("<td>" + ib.getDesignerName()+ "</td>");
-                            out.print("<td>" + ib.getPrice()+ "</td>");
-                            out.print("<td class='td-button'>"
-                                    + "<a href='managerHandle?action=editItem&id="+ib.getItemID()+"'>"
-                                            + "<button class='admin-button'>Edit</button>"
-                                    + "</a></td>");
-                            out.print("<td class='td-button'>"
-                                    + "<a href='managerHandle?action=deleteItem&id="+ib.getItemID()+"'>"
-                                            + "<button class='admin-button'>Delete</button>"
-                                    + "</a></td>");
-                            out.print("</tr>");
+                        if(list != null){
+                            for(ItemBean ib : list){
+                                out.print("<tr>");
+                                out.print("<td><img height='100' width='80' src='" + ib.getPath() + "' /></td>");
+                                out.print("<td>" + ib.getItemName() + "</td>");
+                                out.print("<td>" + ib.getDesc()+ "</td>");
+                                out.print("<td>" + ib.getCategory()+ "</td>");
+                                out.print("<td>" + ib.getDesignerName()+ "</td>");
+                                out.print("<td>" + ib.getPrice()+ "</td>");
+                                out.print("<td class='td-button'>"
+                                        + "<a href='managerHandle?action=editItem&id="+ib.getItemID()+"'>"
+                                                + "<button class='admin-button'>Edit</button>"
+                                        + "</a></td>");
+                                out.print("<td class='td-button'>"
+                                        + "<a href='managerHandle?action=deleteItem&id="+ib.getItemID()+"'>"
+                                                + "<button class='admin-button'>Delete</button>"
+                                        + "</a></td>");
+                                out.print("</tr>");
+                            }
                         }
                     %>
                 </table>

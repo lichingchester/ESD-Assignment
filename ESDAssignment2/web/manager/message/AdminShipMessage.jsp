@@ -10,6 +10,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/admin.css">
+        
     </head>
     <body>
         <section class="header">
@@ -30,7 +34,7 @@
             -->
              <ul>
                  <li>
-                     <a href="/managerHandle?action=item">Items Management</a>
+                     <a href="managerHandle?action=item">Items Management</a>
                  </li>
                  <li>
                      <a href="/managerHandle?action=report">Incompleted Report</a>
@@ -56,7 +60,7 @@
              <%
                  if(request.getParameter("message") != null){
                      if(request.getParameter("message").equals("editItem")){
-                         out.print("<div class='container'><label>Edit item seccess!</label></div>");
+                         out.print("<div class='container'><br><br><br><br><label class='message'>Edit item seccess!</label></div>");
                      }
                  }
              %>

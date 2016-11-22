@@ -66,8 +66,9 @@ public class ItemEdit extends HttpServlet {
             
             idb.editRecord(ib);
             
-            response.sendRedirect("manager/AdminShipMessage.jsp?message=editItem");
-
+//            response.sendRedirect("manager/message/AdminShipMessage.jsp?message=editItem");
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/message/AdminShipMessage.jsp?message=editItem"); 
+            rd.forward(request, response);
         }
     }
 
