@@ -96,7 +96,7 @@ public class LoginController extends HttpServlet {
     private boolean isAuthenticated(HttpServletRequest request){
         boolean result=false;
         HttpSession session=request.getSession();
-        if(session.getAttribute("userInfo")!=null){
+        if(session.getAttribute("User")!=null){
             result=true;
         }
         return result;
