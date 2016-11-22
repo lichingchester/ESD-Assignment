@@ -183,7 +183,7 @@ public class UserDB {
     }
      
      
-     public UserBean queryItemByTel(String tel) {
+     public ArrayList queryItemByTel(String tel) {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
         try {
