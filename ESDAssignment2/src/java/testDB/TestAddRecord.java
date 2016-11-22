@@ -4,6 +4,7 @@ import bean.OrderBean;
 import bean.UserBean;
 import static com.sun.xml.bind.util.CalendarConv.formatter;
 import db.OrdersDB;
+import db.ShoppingCartDB;
 import db.UserDB;
 import java.sql.Time;
 import java.text.DateFormat;
@@ -23,24 +24,11 @@ public class TestAddRecord {
         String username = "app";
         String password = "app";
         odb = new OrdersDB (url, username, password);
+        ShoppingCartDB cdb = new ShoppingCartDB("jdbc:derby://localhost/database", "app", "app");       
         
-
-            String dDate="2016-11-26";
-            DateFormat dateformat = new SimpleDateFormat("yyyy-mm-dd");
-            Date d = (dateformat.parse(dDate));
-            Date d1=d;
-            
-            String size="XL";
-            int qty=4;
-            String OrderID="001";
-            
-            int f=12;
-         ob.setDeliveryTime(f);
-         ob.setDeliveryDate((java.sql.Date) d1);
-         ob.setSize(size);
-         ob.setQuantity(qty);
-         ob.setOrderID(OrderID);   
-         odb.editRecord(ob);
-             
+        if(cdb.checkByIdSize("item002", "M")){
+            System.out.println("asdf");
+            cdb.UpdateQuantity("item002", "2");
+        }
     }
 }

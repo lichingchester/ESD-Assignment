@@ -101,9 +101,12 @@ and open the template in the editor.
                      <hr size="2" width="80%">
                      <form>
                          <select name="size">
-                     <option>S size</option>
-                     <option selected="true">M size</option>
-                     <option >L size</option>
+                             
+                     <option>XS</option>
+                     <option>S</option>
+                     <option selected="true">M</option>
+                     <option >L</option>
+                     <option >XL</option>
                      </select>
                          <br>
                          <br>

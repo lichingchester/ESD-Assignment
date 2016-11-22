@@ -172,8 +172,8 @@ public class ShoppingCartDB {
            PreparedStatement pStmnt = null;
            boolean isSuccess = false;
            String preQueryStatement;
-           int tempQuantity;
-           String newQuantity;
+           int tempQuantity = 0;
+           String newQuantity = "";
            
            try {
             cnnct = getConnection();
@@ -182,9 +182,10 @@ public class ShoppingCartDB {
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             pStmnt.setString(1, ID);
             ResultSet rs = pStmnt.executeQuery();
-            tempQuantity = Integer.parseInt(rs.getString(1))+Integer.parseInt(quantity);
-            newQuantity = Integer.toString(tempQuantity);
-            
+            if(rs.next()){
+                tempQuantity = Integer.parseInt(rs.getString(1))+Integer.parseInt(quantity);
+                newQuantity = Integer.toString(tempQuantity);
+            }
             //preQueryStatement = "UPDATE INTO CartList(Quantity) VALUES(?)";
             preQueryStatement ="UPDATE CartList SET Quantity='"+ newQuantity + "' WHERE ItemID='" + ID + "'";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
