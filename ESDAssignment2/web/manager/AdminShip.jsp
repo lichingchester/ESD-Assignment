@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="bean.OrderBean"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,6 +25,7 @@
             if((ArrayList) request.getAttribute("itemsList") != null){
                 list = (ArrayList) request.getAttribute("itemsList");
             }
+            
         %>
         
         <%
@@ -35,6 +37,14 @@
                     out.println("</script>");
                 }
             }
+        %>
+        
+        <%
+            ArrayList<OrderBean> list2 = null;
+            if((ArrayList) request.getAttribute("OrderList") != null){
+                list2 = (ArrayList) request.getAttribute("OrderList");
+            }
+            
         %>
     </head>
     <body>
@@ -59,7 +69,7 @@
                         <a href="managerHandle?action=item">Items Management</a>
                     </li>
                     <li>
-                        <a href="/managerHandle?action=report">Incompleted Report</a>
+                        <a href="managerHandle?action=report">Incompleted Report</a>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropbtn">Users Management</a>
@@ -107,6 +117,7 @@
                         </td>
                     </tr>
                     <%
+                        
                         if(list != null){
                             for(ItemBean ib : list){
                                 out.print("<tr>");
@@ -127,6 +138,25 @@
                                 out.print("</tr>");
                             }
                         }
+                        else if(list2!=null){
+                            for(OrderBean ub : list2){
+                                out.print("<tr>");
+                                out.print("<td><img height='100' width='80' src='" + ub.getOrderID() + "' /></td>");
+                                out.print("<td>" + ub.getItemID()+ "</td>");
+                                out.print("<td>" + ub.getQuantity()+ "</td>");
+                                out.print("<td>" + ub.getSize()+ "</td>");
+                                out.print("<td>" + ub.getDeliveryAddress()+ "</td>");
+                                out.print("<td>" + ub.getDeliveryDate()+ "</td>");
+                                out.print("<td>" + ub.getStatus()+ "</td>");
+                                out.print("<td>" + ub.getUserTel()+ "</td>");
+                                out.print("</tr>");
+                            }
+                        
+                        
+                        
+                        
+                        }
+                        
                     %>
                 </table>
                

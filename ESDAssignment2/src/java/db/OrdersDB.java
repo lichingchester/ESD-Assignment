@@ -199,12 +199,13 @@ public class OrdersDB {
     }
     
     
-     public OrderBean queryByStaus(String status) {
+     public ArrayList queryByStaus(String status) {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
-
+       ArrayList list = new ArrayList();
         OrderBean ob = null;
         try {
+            
             //1.  get Connection
             cnnct = getConnection();
             String preQueryStatement = "SELECT * FROM  Orders WHERE status=?";
@@ -215,6 +216,7 @@ public class OrdersDB {
             ResultSet rs = null;
             //4. execute the query and assign to the result 
             rs = pStmnt.executeQuery();
+            
             if (rs.next()) {
                 ob = new OrderBean();
                 // set the record detail to the customer bean
@@ -229,8 +231,8 @@ public class OrdersDB {
                 ob.setDeliveryAddress(rs.getString(9));
                 ob.setStatus(rs.getString(10));
                 ob.setQuantity(rs.getInt(11));
+                list.add(ob);
             }
-
             pStmnt.close();
             cnnct.close();
         } catch (SQLException ex) {
@@ -241,7 +243,7 @@ public class OrdersDB {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        return null;
+        return list;
     }
      
       public ArrayList queryByProcessing() {
