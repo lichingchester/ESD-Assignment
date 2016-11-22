@@ -88,6 +88,9 @@
                             Delivery Address
                         </td>
                         <td>
+                            Delivery Date
+                        </td>
+                        <td>
                             User Tel
                         </td>
                         <td>
@@ -111,10 +114,7 @@
                         }
  
                     %>
-                </table>
-               
-               
-                 
+                </table> 
             </div>
     </body>
 </html>
