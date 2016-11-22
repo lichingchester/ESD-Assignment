@@ -22,7 +22,10 @@ public class TestOrderRecord {
         String username = "app";
         String password = "app";
         odb = new OrdersDB (url, username, password);
-        ob.setStatus("di");
-        ob.setOrderID("001");
+        
+        odb.createOrderTable();
+        odb.addRecord("1", "1", "item001", "87654321", "M", "2", "2016-11-22", 5, "Flat2402", "deliverying", 2);
+        odb.addRecord("2", "2", "item002", "12345678", "M", "2", "2016-11-22", 5, "Flat2402", "canceled", 2);
+        
     }
 }
