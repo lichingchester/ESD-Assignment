@@ -3,6 +3,7 @@
     Created on : 2016年11月16日, 下午07:04:49
     Author     : huen
 --%>
+<%@page import="db.UserDB"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -10,17 +11,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/style.css">
         <title>Order Page</title>
-        
-        <jsp:useBean id="user" class="bean.UserBean"/>
         <%
-        user.setName("Fluffy");
+        String action=request.getParameter("action");
+        String Uname=request.getParameter("Uname");
         %> 
     </head>
     <body>
        <section class="header">
             <div id="bg">
                 <a href="index.jsp"><img src="img\LOGO.png"></a>
-                <img src="img\icon.png"><label style="color:white ;font-size:large " >Name:<%= user.getName() %></label>
+                <img src="img\icon.png"><label style="color:white ;font-size:large " >Name:<%out.print(Uname); %></label>
                 <a href="#join" class="navbar">Join us</a>
                 <a href="order.jsp" class="navbar">Logout</a>
                 <a href="order.jsp" class="navbar">Order</a>
@@ -42,7 +42,7 @@
                <br/>
                <br/>
                <input type="submit" value="Submit">
-               <input name="action" type="hidden" value="edit">
+               <input name="tel" type="hidden" value='<%out.print(action);%>'>
                </form>
                
            </div>

@@ -26,33 +26,52 @@ public class UpdateInfoServlet extends HttpServlet {
     UserDB db;
     UserBean ub;
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    public void init(){
+        String dbUser = this.getServletContext().getInitParameter("dbUser");
+        String dbPassword = this.getServletContext().getInitParameter("dbPassword");
+        String dbUrl = this.getServletContext().getInitParameter("dbUrl");
+        db = new UserDB (dbUrl, dbUser, dbPassword);
+        ub = new UserBean();
+     }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            String tel = request.getParameter("tel");
+            
             String name = request.getParameter("name");
-            String pwd = request.getParameter("pwd");
             String address = request.getParameter("address");
+            String pwd = request.getParameter("pwd");
+            String url="";
+            out.print(address);
             
-            String action = request.getParameter("action");
-            System.out.println("action:"+action);
+            ub.setAddress(address);
+            ub.setName(name);
+            ub.setPassword(pwd);
+            ub.setTel(tel);
             
-            if ("edit".equalsIgnoreCase(action)) {
-             //   ub = db.queryItemByID(itemID);   Ar kit UserDB don't have this method,you should add this method in UserDB
-            //Not Fucking done!!!!!!!!!!!!!!!!!!!
+           
+            
+            String listTel="";
+            
+            ArrayList<UserBean> list = db.queryItems();
+            
+            for(UserBean abc : list){
+            listTel = abc.getTel();
+                if(tel.equals(listTel)){
+                    out.print(listTel);
+                db.editRecord(ub);
+                url = "/UpdateInfoMsg.jsp";
+                break;
+                }
             }
-            
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher(url); 
+            rd.forward(request, response);
+                
+           
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

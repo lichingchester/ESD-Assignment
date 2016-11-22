@@ -29,7 +29,7 @@
                 <a href="#join" class="navbar">Join us</a>
                 <a href="order.jsp" class="navbar">Logout</a>
                 <a href="order.jsp" class="navbar">Order</a>
-                <a href="UpdateInfo.jsp" class="navbar">Setting</a>
+                <a href="UpdateInfo.jsp?action=<%out.print(ub.getTel());%>&Uname=<%out.print(ub.getName());%>" class="navbar">Setting</a>
             </div>
            <br>
            <div id="container">

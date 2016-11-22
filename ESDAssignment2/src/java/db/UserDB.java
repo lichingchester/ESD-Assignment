@@ -106,21 +106,15 @@ public class UserDB {
         try{
             cnnct = getConnection();
             String preQueryStatement = 
-                    "update item set LoginID = ?, Password = ?, "
-                    + "name = ?, Tel = ?"
-                    + "Email = ?, Address = ?"
-                    + "BonusPoint = ? , Status = ?";
+                    "update CUSTOMER set Name = ?, Password = ?, "
+                    + "Address = ?"
+                    + "where Tel = ?";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             
-            pStmnt.setString(1, ub.getUsername());
+            pStmnt.setString(1, ub.getName());
             pStmnt.setString(2, ub.getPassword());
-            pStmnt.setString(3, ub.getName());
-            pStmnt.setString(4, ub.getTel());
-            pStmnt.setString(5, ub.getEmail());
-            pStmnt.setString(6, ub.getAddress());
-            pStmnt.setString(7, ub.getBonusPoint());
-            pStmnt.setString(8, ub.getStatus());
-            
+            pStmnt.setString(3, ub.getAddress());
+            pStmnt.setString(4, ub.getTel());       
             rs = pStmnt.executeUpdate();
             
             pStmnt.close();
