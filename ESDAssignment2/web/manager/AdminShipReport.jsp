@@ -20,36 +20,12 @@
         <%@page contentType="text/html" pageEncoding="UTF-8"%>
         <%@page import="bean.UserBean"%>
 
-        <%
-            ArrayList<ItemBean> list = null;
-            if((ArrayList) request.getAttribute("itemsList") != null){
-                list = (ArrayList) request.getAttribute("itemsList");
-            }
-        %>
-        
-        <%
-            if(request.getParameter("message") != null){
-                if(request.getParameter("message").equals("editItem")){
-                    out.println("<script type=\"text/javascript\">");
-                    out.println("alert('Edit item seccuss');");
-                    /*out.println("location='index.jsp';");*/
-                    out.println("</script>");
-                }
-                if(request.getParameter("message").equals("deleteItem")){
-                    out.println("<script type=\"text/javascript\">");
-                    out.println("alert('Delete item seccuss');");
-                    /*out.println("location='index.jsp';");*/
-                    out.println("</script>");
-                }
-            }
-        %>
         
         <%
             ArrayList<OrderBean> list2 = null;
             if((ArrayList) request.getAttribute("OrderList") != null){
                 list2 = (ArrayList) request.getAttribute("OrderList");
             }
-            
         %>
     </head>
     <body>
@@ -79,8 +55,8 @@
                     <li class="dropdown">
                         <a href="#" class="dropbtn">Users Management</a>
                         <div class="dropdown-content">
-                            <a href="managerHandle?action=users">Confirmed Users</a>
-                            <a href="managerHandle?action=ncusers">Unconfirmed Users</a>
+                            <a href="/managerHandle?action=users">Confirmed Users</a>
+                            <a href="/managerHandle?action=ncusers">Unconfirmed Users</a>
                         </div>
                     </li>
                     <li class="dropdown">
@@ -97,76 +73,48 @@
                 <table>
                     <tr>
                         <td>
-                            Image
+                            OrderID
                         </td>
                         <td>
-                            Name
+                            ItemID
                         </td>
                         <td>
-                            Description
+                            Quantity
                         </td>
                         <td>
-                            Category
+                            Size
                         </td>
                         <td>
-                            Designer Name
+                            Delivery Address
                         </td>
                         <td>
-                            Price
+                            Delivery Date
                         </td>
                         <td>
-                            Edit
+                            User Tel
                         </td>
                         <td>
-                            Delete
+                            Status
                         </td>
                     </tr>
                     <%
-                        
-                        if(list != null){
-                            for(ItemBean ib : list){
-                                out.print("<tr>");
-                                out.print("<td><img height='100' width='80' src='" + ib.getPath() + "' /></td>");
-                                out.print("<td>" + ib.getItemName() + "</td>");
-                                out.print("<td>" + ib.getDesc()+ "</td>");
-                                out.print("<td>" + ib.getCategory()+ "</td>");
-                                out.print("<td>" + ib.getDesignerName()+ "</td>");
-                                out.print("<td>" + ib.getPrice()+ "</td>");
-                                out.print("<td class='td-button'>"
-                                        + "<a href='managerHandle?action=editItem&id="+ib.getItemID()+"'>"
-                                                + "<button class='admin-button'>Edit</button>"
-                                        + "</a></td>");
-                                out.print("<td class='td-button'>"
-                                        + "<a href='managerHandle?action=deleteItem&id="+ib.getItemID()+"'>"
-                                                + "<button class='admin-button'>Delete</button>"
-                                        + "</a></td>");
-                                out.print("</tr>");
-                            }
-                        }
-                        else if(list2!=null){
+                        if(list2!=null){
                             for(OrderBean ub : list2){
                                 out.print("<tr>");
-                                out.print("<td><img height='100' width='80' src='" + ub.getOrderID() + "' /></td>");
+                                out.print("<td>" + ub.getOrderID()+ "</td>");
                                 out.print("<td>" + ub.getItemID()+ "</td>");
                                 out.print("<td>" + ub.getQuantity()+ "</td>");
                                 out.print("<td>" + ub.getSize()+ "</td>");
                                 out.print("<td>" + ub.getDeliveryAddress()+ "</td>");
                                 out.print("<td>" + ub.getDeliveryDate()+ "</td>");
-                                out.print("<td>" + ub.getStatus()+ "</td>");
                                 out.print("<td>" + ub.getUserTel()+ "</td>");
+                                out.print("<td>" + ub.getStatus()+ "</td>");
                                 out.print("</tr>");
                             }
-                        
-                        
-                        
-                        
                         }
-                        
+ 
                     %>
-                </table>
-               
-               
-                 
+                </table> 
             </div>
     </body>
 </html>

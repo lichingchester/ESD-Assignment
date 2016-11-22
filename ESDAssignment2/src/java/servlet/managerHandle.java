@@ -68,7 +68,7 @@ public class managerHandle extends HttpServlet {
             request.setAttribute("list", list);
             // redirect the result to the listCustomers.jsp	
 //            response.sendRedirect("list/main.jsp");
-            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/AdminShip.jsp"); 
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/UsersManage.jsp?type=confirmed"); 
             rd.forward(request, response);
  
         }else if ("ncusers".equalsIgnoreCase(action)) {
@@ -78,7 +78,7 @@ public class managerHandle extends HttpServlet {
             request.setAttribute("list", list);
             // redirect the result to the listCustomers.jsp	
 //            response.sendRedirect("list/main.jsp");
-            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/UsersManage.jsp"); 
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/UsersManage.jsp?type=unconfirmed"); 
             rd.forward(request, response);
  
         }else if ("item".equalsIgnoreCase(action)) {
@@ -120,28 +120,28 @@ public class managerHandle extends HttpServlet {
             request.setAttribute("list", list);
 //            // redirect the result to the listCustomers.jsp	
 //          response.sendRedirect("list/main.jsp");
-           RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/OrderManage.jsp"); 
+           RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/OrdersManage.jsp"); 
            rd.forward(request, response);
  
         }else if ("orderhis".equalsIgnoreCase(action)) {
 //            // call the query db to get retrieve for all customer
-//                 ArrayList list = odb.queryByStaus(action);
+                ArrayList list = odb.queryByHistory();   
 //            // set the result into the attribute
-//            request.setAttribute("list", list);
+            request.setAttribute("list", list);
 //            // redirect the result to the listCustomers.jsp	
 ////            response.sendRedirect("list/main.jsp");
-//            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/list/main.jsp"); 
-//            rd.forward(request, response);
+           RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/OrderHis.jsp"); 
+            rd.forward(request, response);
  
         }else if ("report".equalsIgnoreCase(action)) {
 //           // call the query db to get retrieve for all customer
 //            ob.setStatus("Cancel");
-            ArrayList list = odb.queryByStaus("canceled");
+            ArrayList list = odb.queryByStaus("Cancel");
             
 //            // set the result into the attribute
             request.setAttribute("OrderList", list);
 //            // redirect the result to the listCustomers.jsp	
-            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/AdminShip.jsp"); 
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/AdminShipReport.jsp"); 
             rd.forward(request, response);
 
         }else if ("editItem".equalsIgnoreCase(action)) {

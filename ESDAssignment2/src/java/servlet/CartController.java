@@ -49,6 +49,8 @@ public class CartController extends HttpServlet{
     deleteCart(request,response);
    } else if (strAction.equals("login")){
     login(request,response);
+   } else if (strAction.equals("list")){
+    ListCart(request,response);
    }
 
  }
@@ -102,6 +104,13 @@ public class CartController extends HttpServlet{
          RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/login/login.jsp"); 
          rd.forward(request, response);
     }
+    
+     protected void ListCart(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+        ArrayList list = db.queryItems();
+        request.setAttribute("list", list);
+        RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/testShoppingCart.jsp"); 
+        rd.forward(request, response);
+     }
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

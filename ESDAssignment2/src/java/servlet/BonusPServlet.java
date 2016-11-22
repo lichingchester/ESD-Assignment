@@ -5,10 +5,11 @@
  */
 package servlet;
 
-import bean.OrderBean;
-import db.OrdersDB;
+import bean.UserBean;
+import db.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,30 +21,33 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author a0321
  */
-@WebServlet(name = "DeleteOrder", urlPatterns = {"/DeleteOrder"})
-public class DeleteOrder extends HttpServlet {
-    OrdersDB db;
+@WebServlet(name = "BonusPServlet", urlPatterns = {"/BonusPServlet"})
+public class BonusPServlet extends HttpServlet {
+        UserDB db;
+        String ID=null;
     public void init() {
         String username = this.getServletContext().getInitParameter("dbUser");
         String password = this.getServletContext().getInitParameter("dbPassword");
         String url = this.getServletContext().getInitParameter("dbUrl");   
-        db = new OrdersDB(url, username, password);  
+        db = new UserDB(url, username, password);  
     }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            OrderBean ob = new OrderBean();
+            ID=request.getParameter("ID");
             
-            String orderID=request.getParameter("order");
-            ob.setOrderID(orderID);
-            ob.setStatus("Cancel");
-            db.editRecordStatus(ob);
-          //  db.delRecord(orderID);
+            ArrayList<UserBean> list =db.queryUsersByTel(ID);
+            if(ID!=null){
+                request.setAttribute("list", list);
+                RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/BonusPhis.jsp"); 
+                rd.forward(request, response);
+            }else{
+                out.print("FUCK");
+            }
             
-            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/UpdateInfoMsg.jsp"); 
-            rd.forward(request, response);
+
         }
     }
 

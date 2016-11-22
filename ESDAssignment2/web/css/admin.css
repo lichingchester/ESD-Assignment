@@ -115,3 +115,16 @@ input[type=submit], input[type=reset], input[type=button]{
 .deleteItem{
     font-size: 50px;
 }
+
+.conuser{
+    background-color: #0060B2; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    cursor: pointer;  
+    height: 60px;
+    width: 250px;
+    margin-left: 15%;
+    margin-right: 20%;
+}

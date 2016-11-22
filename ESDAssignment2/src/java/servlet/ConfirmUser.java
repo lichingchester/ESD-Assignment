@@ -5,11 +5,14 @@
  */
 package servlet;
 
+import bean.ItemBean;
 import bean.OrderBean;
+import bean.UserBean;
+import db.ItemsDB;
 import db.OrdersDB;
+import db.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,32 +21,39 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author a0321
+ * @author lichi
  */
-@WebServlet(name = "DeleteOrder", urlPatterns = {"/DeleteOrder"})
-public class DeleteOrder extends HttpServlet {
-    OrdersDB db;
-    public void init() {
+@WebServlet(name = "ConfirmUser", urlPatterns = {"/ConfirmUser"})
+public class ConfirmUser extends HttpServlet {
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    
+    UserDB udb;
+    UserBean ub;
+    
+    public void init(){
         String username = this.getServletContext().getInitParameter("dbUser");
         String password = this.getServletContext().getInitParameter("dbPassword");
-        String url = this.getServletContext().getInitParameter("dbUrl");   
-        db = new OrdersDB(url, username, password);  
+        String Url = this.getServletContext().getInitParameter("dbUrl");   
+        udb = new UserDB(Url, username, password);
     }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            OrderBean ob = new OrderBean();
+            String tel = request.getParameter("tel");
             
-            String orderID=request.getParameter("order");
-            ob.setOrderID(orderID);
-            ob.setStatus("Cancel");
-            db.editRecordStatus(ob);
-          //  db.delRecord(orderID);
-            
-            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/UpdateInfoMsg.jsp"); 
-            rd.forward(request, response);
+            UserBean ub = 
         }
     }
 

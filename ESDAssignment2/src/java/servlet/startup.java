@@ -44,6 +44,10 @@ public class startup extends HttpServlet {
         odb.createOrderTable();
         odb.addRecord("001", "1", "1", "87654321", "M", "2", "2016-11-22", 5, "Flat2402", "deliverying", 2);
         odb.addRecord("002", "1", "2", "12345678", "M", "2", "2016-11-22", 5, "Flat2402", "canceled", 2);
+        odb.addRecord("003", "3", "3", "43218765", "M", "5", "2016-11-23", 7, "Flat2405", "delivered", 2);
+
+        
+
         
        // INSERT INTO APP.ORDERS (ORDERID, ITEMID, USERTEL, "SIZE", DELIVERYTYPE, DELIVERYDATE, DELIVERYTIME, DELIVERYADDRESS, STATUS) 
 	//VALUES ('001', '1', '1', '1', '1', '2016-11-22', CURRENT_TIME, '12', '12')
@@ -54,7 +58,9 @@ public class startup extends HttpServlet {
         
         udb.addRecord("admin", "admin", "Chester", "68916799", "chester@gmail.com", "1679 DUI YOU HSE, FUK KIL EST, TIN TIN DUI, NT", 0, 2);
         udb.addRecord("", "", "Amon", "12345678", "amon@gmail.com", "1679 DUI YOU HSE, FUK KIL EST, TIN TIN DUI, NT", 0, 0);
-        udb.addRecord("robot", "robot", "Robot", "87654321", "robot@gmail.com", "1679 DUI YOU HSE, FUK KIL EST, TIN TIN DUI, NT", 0, 0);
+        udb.addRecord("robot", "robot", "Robot", "87654321", "robot@gmail.com", "1679 DUI YOU HSE, FUK KIL EST, TIN TIN DUI, NT", 0, 1);
+        udb.addRecord("robot2", "robot2", "Robot2", "22222222", "robot@gmail.com", "1679 DUI YOU HSE, FUK KIL EST, TIN TIN DUI, NT", 1000, 1);
+        udb.addRecord("", "", "Robot3", "33333333", "robot@gmail.com", "1679 DUI YOU HSE, FUK KIL EST, TIN TIN DUI, NT", 0, 0);
         
         ItemsDB idb = new ItemsDB(dbUrl, dbUser, dbPassword);  
         idb.dropItemsTable();

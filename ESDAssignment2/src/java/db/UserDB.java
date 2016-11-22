@@ -182,6 +182,57 @@ public class UserDB {
         return null;
     }
      
+     
+     public ArrayList queryItemByTel(String tel) {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        try {
+            cnnct = getConnection();
+            String preQueryStatement = "SELECT * FROM  CUSTOMER";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            //Statement s = cnnct.createStatement();
+            ResultSet rs = pStmnt.executeQuery();
+
+            ArrayList list = new ArrayList();
+
+            while (rs.next()) {
+                UserBean ib = new UserBean();
+                
+                ib.setUsername(rs.getString(1));
+                ib.setPassword(rs.getString(2));
+                ib.setName(rs.getString(3));
+                ib.setTel(rs.getString(4));
+                ib.setEmail(rs.getString(5));
+                ib.setAddress(rs.getString(6));
+                ib.setBonusPoint(String.valueOf(rs.getInt(7)));
+                ib.setStatus(String.valueOf(rs.getInt(8)));
+                list.add(ib);
+            }
+            return list;
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            if (pStmnt != null) {
+                try {
+                    pStmnt.close();
+                } catch (SQLException e) {
+                }
+            }
+            if (cnnct != null) {
+                try {
+                    cnnct.close();
+                } catch (SQLException sqlEx) {
+                }
+            }
+        }
+        return null;
+    }
+     
      public ArrayList queryUsersByConfirmed() {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
@@ -245,6 +296,56 @@ public class UserDB {
 
             while (rs.next()) {
                 UserBean ib = new UserBean();
+                ib.setUsername(rs.getString(1));
+                ib.setPassword(rs.getString(2));
+                ib.setName(rs.getString(3));
+                ib.setTel(rs.getString(4));
+                ib.setEmail(rs.getString(5));
+                ib.setAddress(rs.getString(6));
+                ib.setBonusPoint(String.valueOf(rs.getInt(7)));
+                ib.setStatus(String.valueOf(rs.getInt(8)));
+                list.add(ib);
+            }
+            return list;
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            if (pStmnt != null) {
+                try {
+                    pStmnt.close();
+                } catch (SQLException e) {
+                }
+            }
+            if (cnnct != null) {
+                try {
+                    cnnct.close();
+                } catch (SQLException sqlEx) {
+                }
+            }
+        }
+        return null;
+    }
+     
+     
+    public ArrayList queryUsersByTel(String Tel) {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        try {
+            cnnct = getConnection();
+            String preQueryStatement = "SELECT * FROM  CUSTOMER WHERE Tel = ?";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            //Statement s = cnnct.createStatement();
+            pStmnt.setString(1, Tel);
+            ResultSet rs = pStmnt.executeQuery();
+            ArrayList list = new ArrayList();
+            if(rs.next()) {
+                UserBean ib = new UserBean();
+            
                 ib.setUsername(rs.getString(1));
                 ib.setPassword(rs.getString(2));
                 ib.setName(rs.getString(3));

@@ -40,7 +40,7 @@ public class ConfirmOrderServlet extends HttpServlet {
         ArrayList list = (ArrayList) request.getSession().getAttribute("list");
         List myList = (List)request.getAttribute("arrayList");
         String GroupID;
-        int lastGroupID, orderTotal=0;
+        int lastGroupID, orderTotal=0,BonusPoints;
         double doubleBonusPoints;
         if(od.queryLastGroupID()==null){
             GroupID="1";
@@ -64,6 +64,7 @@ public class ConfirmOrderServlet extends HttpServlet {
         }
         if(orderTotal>=2000){
             doubleBonusPoints=(orderTotal*0.05);
+            BonusPoints=(int)doubleBonusPoints;
         }
         if(orderTotal>=10000){
             //cookie 24hour >>>pay $500
