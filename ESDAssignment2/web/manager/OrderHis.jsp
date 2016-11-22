@@ -39,23 +39,23 @@
             <br>
             <ul>
                  <li>
-                     <a href="/managerHandle?action=item">Items Management</a>
+                     <a href="managerHandle?action=item">Items Management</a>
                  </li>
                  <li>
-                     <a href="/managerHandle?action=report">Incompleted Report</a>
+                     <a href="managerHandle?action=report">Incompleted Report</a>
                  </li>
                  <li class="dropdown">
                      <a href="#" class="dropbtn">Users Management</a>
                      <div class="dropdown-content">
-                         <a href="/managerHandle?action=users">Confirmed Users</a>
-                         <a href="/managerHandle?action=ncusers">Unconfirmed Users</a>
+                         <a href="managerHandle?action=users">Confirmed Users</a>
+                         <a href="managerHandle?action=ncusers">Unconfirmed Users</a>
                      </div>
                  </li>
                  <li class="dropdown">
                      <a href="#" class="dropbtn">Orders Management</a>
                      <div class="dropdown-content">
-                         <a href="/managerHandle?action=orderps">Processing Orders</a>
-                         <a href="/managerHandle?action=orderhis">Orders History</a>
+                         <a href="managerHandle?action=orderps">Processing Orders</a>
+                         <a href="managerHandle?action=orderhis">Orders History</a>
                      </div>
                  </li>
              </ul>
@@ -64,7 +64,6 @@
         <table>
                     <tr><td>orderID</td>  <td>  groupID </td>   <td> itemID</td>  <td> userTel</td>  <td>size</td>  <td>delivery Type</td> <td>delivery Date</td> 
                         <td>delivery Time</td> <td>delivery Address</td>  <td> status </td> <td> quantity </td> 
-<!--                        //<td>Edit</td> <td>Delete</td> -->
                     </tr>
                     <%
                         if(list != null){
@@ -81,14 +80,6 @@
                                 out.print("<td>" + ob.getDeliveryAddress()+"</td>");
                                 out.print("<td>" + ob.getStatus()+"</td>");
                                 out.print("<td>" + ob.getQuantity()+"</td>");
-//                                out.print("<td class='td-button'>"
-//                                        + "<a href='managerHandle?action=editOrder&id="+ob.getOrderID()+"'>"
-//                                                + "<button class='admin-button'>Edit</button>"
-//                                        + "</a></td>");
-//                                out.print("<td class='td-button'>"
-//                                        + "<a href='managerHandle?action=deleteOrder&id="+ob.getOrderID()+"'>"
-//                                                + "<button class='admin-button'>Delete</button>"
-//                                        + "</a></td>");
                                 out.print("</tr>");
                             }
                         }else{
