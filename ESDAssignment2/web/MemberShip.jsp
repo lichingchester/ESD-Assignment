@@ -25,7 +25,7 @@
        <section class="header">
             <div id="bg">
                 <a href="index.jsp"><img src="img\LOGO.png"></a>
-                <img src="img\icon.png"><label style="color:white ;font-size:large " >Name:fuck</label>
+                <img src="img\icon.png"><label style="color:white ;font-size:large " >Name:<%out.print(ub.getName());%></label>
                 <a href="#join" class="navbar">Join us</a>
                 <a href="order.jsp" class="navbar">Logout</a>
                 <a href="order.jsp" class="navbar">Order</a>
@@ -45,6 +45,7 @@
                     <th>Delivery Type</th>
                     <th>Delivery Address</th>
                     <th>Status</th>
+                    <th>Edit</th>
                     </tr>
                     
                     <%
@@ -57,6 +58,7 @@
                             out.print("<td> "+ ob.getSize()+" </td>");
                             out.print("<td> "+ ob.getDeliveryType()+" </td>");
                             out.print("<td> "+ ob.getDeliveryAddress()+" </td>");
+                            out.print("<td> "+ ob.getStatus()+" </td>");
                             out.print("<td> "+ ob.getStatus()+" </td>");
                             out.print("</tr>");
                             }
