@@ -15,6 +15,7 @@ import java.sql.Time;
  */
 public class OrderBean {
     String orderID;
+    String groupID;
     String itemID;
     String userTel;
     String size;
@@ -23,6 +24,14 @@ public class OrderBean {
     Time deliveryTime;
     String deliveryAddress;
     String status;
+
+    public String getGroupID() {
+        return groupID;
+    }
+
+    public void setGroupID(String groupID) {
+        this.groupID = groupID;
+    }
 
     public String getUserTel() {
         return userTel;

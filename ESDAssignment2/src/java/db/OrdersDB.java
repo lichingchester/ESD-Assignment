@@ -81,6 +81,7 @@ public class OrdersDB {
             stmnt = cnnct.createStatement();  // create statement
             String sql = "CREATE TABLE Orders"
                     + "(orderID  VARCHAR(10) not null,  "
+                    + "groupID VARCHAR(5),  "
                     + "itemID VARCHAR(10),  "
                     + "userTel VARCHAR(15),  "
                     + "size VARCHAR(10),"
@@ -112,23 +113,24 @@ public class OrdersDB {
         }
     }
      
-     public boolean addRecord(String orderID, String itemID,String userTel, String size , String deliveryType, String deliveryDate,String deliveryTime, String deliveryAddress,String status) {
+     public boolean addRecord(String orderID, String groupID, String itemID,String userTel, String size , String deliveryType, String deliveryDate,String deliveryTime, String deliveryAddress,String status) {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
         boolean isSuccess = false;
         try {
             cnnct = getConnection();
-            String preQueryStatement = "INSERT  INTO  CUSTOMER  VALUES  (?,?,?,?,?,?,?,?,?)";
+            String preQueryStatement = "INSERT  INTO  CUSTOMER  VALUES  (?,?,?,?,?,?,?,?,?,?)";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             pStmnt.setString(1, orderID);
-            pStmnt.setString(2, itemID);
-            pStmnt.setString(3, userTel);
-            pStmnt.setString(4, size);
-            pStmnt.setString(5, deliveryType);
-            pStmnt.setString(6, deliveryDate);
-            pStmnt.setString(7, deliveryTime);
-            pStmnt.setString(8, deliveryAddress);
-            pStmnt.setString(9, status);
+            pStmnt.setString(2, groupID);
+            pStmnt.setString(3, itemID);
+            pStmnt.setString(4, userTel);
+            pStmnt.setString(5, size);
+            pStmnt.setString(6, deliveryType);
+            pStmnt.setString(7, deliveryDate);
+            pStmnt.setString(8, deliveryTime);
+            pStmnt.setString(9, deliveryAddress);
+            pStmnt.setString(10, status);
             
             int rowCount = pStmnt.executeUpdate();
             if (rowCount >= 1) {
@@ -167,14 +169,15 @@ public class OrdersDB {
                 ob = new OrderBean();
                 // set the record detail to the customer bean
                 ob.setOrderID(rs.getString(1));
-                ob.setItemID(rs.getString(2));
-                ob.setUserTel(rs.getString(3));
-                ob.setSize(rs.getString(4));
-                ob.setDeliveryType(rs.getString(5));
-                ob.setDeliveryDate(rs.getDate(6));
-                ob.setDeliveryTime(rs.getTime(7));
-                ob.setDeliveryAddress(rs.getString(8));
-                ob.setStatus(rs.getString(9));
+                ob.setGroupID(rs.getString(2));
+                ob.setItemID(rs.getString(3));
+                ob.setUserTel(rs.getString(4));
+                ob.setSize(rs.getString(5));
+                ob.setDeliveryType(rs.getString(6));
+                ob.setDeliveryDate(rs.getDate(7));
+                ob.setDeliveryTime(rs.getTime(8));
+                ob.setDeliveryAddress(rs.getString(9));
+                ob.setStatus(rs.getString(10));
             }
 
             pStmnt.close();
@@ -207,14 +210,15 @@ public class OrdersDB {
             while (rs.next()) {
                 ob = new OrderBean();
                 ob.setOrderID(rs.getString(1));
-                ob.setItemID(rs.getString(2));
-                ob.setUserTel(rs.getString(3));
-                ob.setSize(rs.getString(4));
-                ob.setDeliveryType(rs.getString(5));
-                ob.setDeliveryDate(rs.getDate(6));
-                ob.setDeliveryTime(rs.getTime(7));
-                ob.setDeliveryAddress(rs.getString(8));
-                ob.setStatus(rs.getString(9));
+                ob.setGroupID(rs.getString(2));
+                ob.setItemID(rs.getString(3));
+                ob.setUserTel(rs.getString(4));
+                ob.setSize(rs.getString(5));
+                ob.setDeliveryType(rs.getString(6));
+                ob.setDeliveryDate(rs.getDate(7));
+                ob.setDeliveryTime(rs.getTime(8));
+                ob.setDeliveryAddress(rs.getString(9));
+                ob.setStatus(rs.getString(10));
                 list.add(ob);
             }
             
