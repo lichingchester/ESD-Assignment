@@ -16,60 +16,54 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 /**
  *
  * @author a0321
  */
 @WebServlet(name = "UpdateDeliveryServlet", urlPatterns = {"/UpdateDeliveryServlet"})
 public class UpdateDeliveryServlet extends HttpServlet {
-   // DateFormat df = new SimpleDateFormat("mm/dd/yyyy");
-    OrdersDB db;
-
-    public void init() {
+        OrdersDB db;
+     public void init() {
         String username = this.getServletContext().getInitParameter("dbUser");
         String password = this.getServletContext().getInitParameter("dbPassword");
         String url = this.getServletContext().getInitParameter("dbUrl");   
         db = new OrdersDB(url, username, password);  
     }
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-            PrintWriter out = response.getWriter();
+        try (PrintWriter out = response.getWriter()) {
             
             String OrderID=request.getParameter("orderID");
-            
-           // DateFormat tf = new SimpleDateFormat("hh:mm");
-            String dTime=request.getParameter("dTime");
+            String dTime= request.getParameter("dTime");
             Time Time =java.sql.Time.valueOf(dTime);
             
-            
-            //DateFormat df = new SimpleDateFormat("dd/mm/yyyy");
             String dDate=request.getParameter("dDate");
             java.sql.Date Date = java.sql.Date.valueOf(dDate);
-            
+
             String size=request.getParameter("size");
             int qty=parseInt(request.getParameter("qty"));
-            
-            String action=request.getParameter("action");
             
             OrderBean ob = new OrderBean();
             ob.setDeliveryTime(Time);
             ob.setDeliveryDate(Date);
             ob.setSize(size);
             ob.setQuantity(qty);
-            
-           
-           if ("edit".equalsIgnoreCase(action)) {
+            ob.setOrderID(OrderID);
+
             db.editRecord(ob);
             RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/HIHI.jsp"); 
             rd.forward(request, response);
-           }else {
-            out.println("No such action!!!");
-           }
+
+        }
+        catch(Exception e){
+        e.getMessage();
         }
         
-       
-    
+  
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -83,7 +77,7 @@ public class UpdateDeliveryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            processRequest(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -97,7 +91,7 @@ public class UpdateDeliveryServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            processRequest(request, response);
+        processRequest(request, response);
     }
 
     /**

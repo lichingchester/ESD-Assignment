@@ -40,8 +40,7 @@
                <br/>
                <br/>
                Quantity<input type="text" name="qty">
-               <input type="submit" value="Submit">  <input type="reset" value="reset"></p>
-               <input name="action" type="hidden" value="edit">
+               <input type="submit" value="Submit">  <input type="reset" value="reset">
                </form>
                
            </div>
