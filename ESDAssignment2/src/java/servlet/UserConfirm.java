@@ -65,6 +65,8 @@ public class UserConfirm extends HttpServlet {
             ub.setUsername(number);
             ub.setPassword(number);
             ub.setTel(tel);
+            
+            udb.updateAC(ub);
                
             
 //            response.sendRedirect("manager/UsersManage.jsp?message=confirmed");

@@ -373,5 +373,40 @@ public class UserDB {
         }
         return null;
     }
+    
+    public int updateAC(UserBean ub){                //ManHo edited, I don't know correct or wrong 
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        
+        int rs = 0;
+        try{
+            cnnct = getConnection();
+            String preQueryStatement = 
+                    "update CUSTOMER set LoginID = ?, Password = ?, status = ?"
+                    + "where Tel = ?";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            
+            pStmnt.setString(1, ub.getUsername());
+            pStmnt.setString(2, ub.getPassword());
+            pStmnt.setString(3, "1");
+            pStmnt.setString(4, ub.getTel());       
+            rs = pStmnt.executeUpdate();
+            
+            pStmnt.close();
+            cnnct.close();
+            
+        }catch(SQLException ex){
+            while(ex != null){
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+        
+        return rs;
+    }
+ 
+
  
 }
