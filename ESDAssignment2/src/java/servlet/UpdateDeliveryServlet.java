@@ -32,7 +32,7 @@ public class UpdateDeliveryServlet extends HttpServlet {
         db = new OrdersDB(url, username, password);  
     }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ParseException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
             
@@ -83,11 +83,7 @@ public class UpdateDeliveryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
             processRequest(request, response);
-        } catch (ParseException ex) {
-            Logger.getLogger(UpdateDeliveryServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     /**
@@ -101,11 +97,7 @@ public class UpdateDeliveryServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
             processRequest(request, response);
-        } catch (ParseException ex) {
-            Logger.getLogger(UpdateDeliveryServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     /**
