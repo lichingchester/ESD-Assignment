@@ -26,8 +26,7 @@
             <div id="bg">
                 <a href="index.jsp"><img src="img\LOGO.png"></a>
                 <img src="img\icon.png"><label style="color:white ;font-size:large " >Name:<%out.print(ub.getName());%></label>
-                <a href="#join" class="navbar">Join us</a>
-                <a href="order.jsp" class="navbar">Logout</a>
+                <a href="startup" class="navbar">Logout</a>
                 <a href="order.jsp" class="navbar">Order</a>
                 <a href="UpdateInfo.jsp?action=<%out.print(ub.getTel());%>&Uname=<%out.print(ub.getName());%>" class="navbar">Setting</a>
             </div>
@@ -49,6 +48,7 @@
                     <th>Delivery Date</th>
                     <th>Status</th>
                     <th>Edit</th>
+                    <th>Cancel Order</th>
                     </tr>
                     
                     <%
@@ -67,6 +67,7 @@
                             out.print("<td> "+ ob.getDeliveryTime()+" </td>");
                             out.print("<td> "+ ob.getStatus()+" </td>");
                             out.print("<td><a href='UpdateDelivery.jsp?order="+orderID+"'>Edit</a>");
+                            out.print("<td><a href='DeleteOrder?order="+orderID+"'>Cancel Order</a></td>");
                             out.print("</tr>");
                             }
                         }

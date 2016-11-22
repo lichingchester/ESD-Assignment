@@ -16,8 +16,7 @@
            <section class="header">
            <div id="bg">
                <a href="..\index.jsp"><img src="/ESDAssignment2/img/LOGO.png"></a>
-            <a href="register.jsp" class="navbar">Join us</a>
-            <a href="order.jsp" class="navbar">Order</a>
+           
           </div>         
     </section>       
          
