@@ -17,7 +17,7 @@
         <div id="bg">
             <img src="/ESDAssignment2/img/LOGO.png">
             <a href="register.jsp" class="navbar">Join us</a>
-            <a href="login.jsp" class="navbar">Login</a>
+            <a href="login\login.jsp" class="navbar">Login</a>
             <a href="order.jsp" class="navbar">Order</a>
         </div>         
     </section>
