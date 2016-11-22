@@ -23,6 +23,17 @@
             ArrayList<ItemBean> list = (ArrayList) request.getAttribute("itemsList");
             UserBean ub = (UserBean) request.getAttribute("userBean");
         %>
+        
+        <%
+            if(request.getParameter("message") != null){
+                if(request.getParameter("message").equals("editItem")){
+                    out.println("<script type=\"text/javascript\">");
+                    out.println("alert('Edit item seccuss');");
+                    /*out.println("location='index.jsp';");*/
+                    out.println("</script>");
+                }
+            }
+        %>
     </head>
     <body>
         <section class="header">

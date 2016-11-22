@@ -11,8 +11,7 @@
     <context-param>
         <param-name>dbPassword</param-name>
         <param-value>app</param-value>
-    </context-param> 
-    
+    </context-param>
     <session-config>
         <session-timeout>
             30
@@ -21,37 +20,32 @@
     <welcome-file-list>
         <welcome-file>startup</welcome-file>
     </welcome-file-list>
-     <display-name>Shopping Cart</display-name>
-  <description>
+    <display-name>Shopping Cart</display-name>
+    <description>
     Simple Shopping Cart
   </description>
- 
-  <servlet>
-    <servlet-name>CartController</servlet-name>
-    <servlet-class>servlet.CartController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>CartController</servlet-name>
-      <url-pattern>/CartController</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>ItemsServlet</servlet-name>
-    <servlet-class>servlet.ItemsServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ItemsServlet</servlet-name>
-      <url-pattern>/ItemsServlet</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>ItemUpload</servlet-name>
-    <servlet-class>servlet.ItemUpload</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ItemUpload</servlet-name>
-      <url-pattern>/ItemUpload</url-pattern>
-  </servlet-mapping>
-  
- 
+    <servlet>
+        <servlet-name>CartController</servlet-name>
+        <servlet-class>servlet.CartController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CartController</servlet-name>
+        <url-pattern>/CartController</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ItemsServlet</servlet-name>
+        <servlet-class>servlet.ItemsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ItemsServlet</servlet-name>
+        <url-pattern>/ItemsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ItemUpload</servlet-name>
+        <servlet-class>servlet.ItemUpload</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ItemUpload</servlet-name>
+        <url-pattern>/ItemUpload</url-pattern>
+    </servlet-mapping>
 </web-app>

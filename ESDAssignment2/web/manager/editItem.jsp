@@ -58,9 +58,73 @@
                 </ul>
                 <br>
                 
-                <%
-                    out.print(ib.getItemName());
-                %>
+                <div id="container">
+                    <form action="ItemEdit" class="formadd">
+                        <p>
+                            <label for="itemID">Item ID:</label><br>
+                            <input class="input-add" type="text" name="itemID" value="<%= ib.getItemID() %>" readonly>
+                        </p>
+                        <br>
+                        <p>
+                            <label for="name">Item Name</lable><br>
+                            <input class="input-add" type="text" name="name" value="<%= ib.getItemName() %>">
+                        </p>
+                        <br>
+                        <p>
+                            <label for="desc">Description</label><br>
+                            <textarea class="input-add" name="desc" cols="50" rows="5"><%= ib.getDesc() %></textarea>
+                        </p>    
+                        <br>
+                        <p>
+                            <label for="cty">Category</label><br>
+                            <select class="input-add" name="cty">
+                                <option value='long'
+                                        <%
+                                            if(ib.getCategory().equals("long")){
+                                                out.print("selected='selected'");
+                                            }
+                                        %>
+                                    >Long</option>
+                                <option value="middle" 
+                                        <%
+                                            if(ib.getCategory().equals("middle")){
+                                                out.print("selected='selected'");
+                                            }
+                                        %>
+                                    >Middle</option>
+                                <option value="short"
+                                        <%
+                                            if(ib.getCategory().equals("short")){
+                                                out.print("selected='selected'");
+                                            }
+                                        %>
+                                    >Short</option>
+                                <option value="sheath"
+                                        <%
+                                            if(ib.getCategory().equals("sheath")){
+                                                out.print("selected='selected'");
+                                            }
+                                        %>
+                                    >Sheath</option>
+                            </select>
+                        </p>
+                        <br>
+                        <p>
+                            <label for="dname">Designer Name</label><br>
+                            <input class="input-add" type="text" name="dname" value="<%= ib.getDesignerName() %>">
+                        </p>
+                        <br>
+                        <p>
+                            <label for="price">Price</label><br>
+                            <input class="input-add" type="text" name="price" value="<%= ib.getPrice() %>">
+                        </p>
+                        <br>
+                        <p>
+                            <input class="additem-submit edititem" type="submit" value="Edit">
+                            <input class="additem-submit edititem" type="reset" value="Cancel">
+                        </p>
+                    </form>
+                </div>
            </div>
     </body>
 </html>

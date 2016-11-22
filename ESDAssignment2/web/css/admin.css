@@ -101,3 +101,7 @@ tr:nth-child(even) {
 .admin-button:hover {
     background-color: #004c8f;
 }
+
+input[type=submit], input[type=reset]{
+    font-size: 28px;
+}

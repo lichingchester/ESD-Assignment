@@ -362,7 +362,7 @@ public class ItemsDB {
             String preQueryStatement = 
                     "update items set itemName = ?, description = ?, "
                     + "category = ?, designerName = ?"
-                    + "price = ?, path = ?"
+                    + "price = ?"
                     + "where itemID = ?";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             
@@ -371,8 +371,7 @@ public class ItemsDB {
             pStmnt.setString(3, cb.getCategory());
             pStmnt.setString(4, cb.getDesignerName());
             pStmnt.setDouble(5, cb.getPrice());
-            pStmnt.setString(6, cb.getPath());
-            pStmnt.setString(7, cb.getItemID());
+            pStmnt.setString(6, cb.getItemID());
             
             rs = pStmnt.executeUpdate();
             
