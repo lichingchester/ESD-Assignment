@@ -111,3 +111,7 @@ input[type=submit], input[type=reset]{
     margin-top: 100px;
     font-size: 100px;
 }
+
+.deleteItem{
+    font-size: 50px;
+}
