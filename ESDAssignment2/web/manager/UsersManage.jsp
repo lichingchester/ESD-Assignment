@@ -116,8 +116,7 @@
                             }else{
                                 for(UserBean ub : list){
                                     out.print("<tr>");
-                                    out.print("<td>" + ub.getUsername()+ "</td>");
-                                    out.print("<td>" + ub.getPassword()+ "</td>");
+                                    out.print("<td colspan='2'><a href='ConfirmUser?tel="+ub.getTel()+"'><button class='conuser'>Confirm User</button></a></td>");
                                     out.print("<td>" + ub.getName()+ "</td>");
                                     out.print("<td>" + ub.getTel()+ "</td>");
                                     out.print("<td>" + ub.getEmail()+ "</td>");

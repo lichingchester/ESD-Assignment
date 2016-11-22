@@ -40,23 +40,23 @@
             <br>
             <ul>
                  <li>
-                     <a href="/managerHandle?action=item">Items Management</a>
+                     <a href="managerHandle?action=item">Items Management</a>
                  </li>
                  <li>
-                     <a href="/managerHandle?action=report">Incompleted Report</a>
+                     <a href="managerHandle?action=report">Incompleted Report</a>
                  </li>
                  <li class="dropdown">
                      <a href="#" class="dropbtn">Users Management</a>
                      <div class="dropdown-content">
-                         <a href="/managerHandle?action=users">Confirmed Users</a>
-                         <a href="/managerHandle?action=ncusers">Unconfirmed Users</a>
+                         <a href="managerHandle?action=users">Confirmed Users</a>
+                         <a href="managerHandle?action=ncusers">Unconfirmed Users</a>
                      </div>
                  </li>
                  <li class="dropdown">
                      <a href="#" class="dropbtn">Orders Management</a>
                      <div class="dropdown-content">
-                         <a href="/managerHandle?action=orderps">Processing Orders</a>
-                         <a href="/managerHandle?action=orderhis">Orders History</a>
+                         <a href="managerHandle?action=orderps">Processing Orders</a>
+                         <a href="managerHandle?action=orderhis">Orders History</a>
                      </div>
                  </li>
              </ul>
