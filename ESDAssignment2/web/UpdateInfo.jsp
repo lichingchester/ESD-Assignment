@@ -14,6 +14,7 @@
         <%
         String action=request.getParameter("action");
         String Uname=request.getParameter("Uname");
+        String Address=request.getParameter("address");
         %> 
     </head>
     <body>
@@ -22,7 +23,7 @@
                 <a href="index.jsp"><img src="img\LOGO.png"></a>
                 <img src="img\icon.png"><label style="color:white ;font-size:large " >Name:<%out.print(Uname); %></label>
                 <a href="#join" class="navbar">Join us</a>
-                <a href="order.jsp" class="navbar">Logout</a>
+                <a href="startup" class="navbar">Logout</a>
                 <a href="order.jsp" class="navbar">Order</a>
                 <a href="order.jsp" class="navbar">Setting</a>
             </div>
@@ -32,13 +33,13 @@
                <h1>Modify Personal Information</h1>
                <hr size="2" width="100%">
                
-               Name:<input type="text" name="name">
+               Name:<input type="text" name="name" value="<%out.print(Uname); %>">
                <br/>
                <br/>
                Password:<input type="text" name="pwd">
                <br/>
                <br/>
-               Delivery address:<input type="text" name="address">
+               Delivery address:<input type="text" name="address" value='<%out.print(Address); %>'>
                <br/>
                <br/>
                <input type="submit" value="Submit">
