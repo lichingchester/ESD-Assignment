@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -25,10 +26,30 @@ public class TestAddRecord {
         String password = "app";
         odb = new OrdersDB (url, username, password);
         
-
+        String date = "2016-11-26";
         
+//        odb.dropItemsTable();
         odb.createOrderTable();
-        odb.addRecord("002", "1", "1", "87654321", "M", "2", "2016-11-22", 5, "Flat2402", "deliverying", 1);
-            
+
+        odb.addRecord("1", "1", "1", "87654321", "M", "2", "2016-11-22", 5, "Flat2402", "deliverying", 2);
+        
+        ob.setOrderID("1");
+        ob.setGroupID("1");
+        ob.setItemID("1");
+        ob.setUserTel("qesdasdasdasd");
+        ob.setSize("M");
+        ob.setDeliveryType("2");
+        ob.setDeliveryDate(date);
+        ob.setDeliveryTime(5);
+        ob.setDeliveryAddress("asdf");
+        ob.setStatus("asdf");
+        ob.setQuantity(1);
+        
+        odb.editRecord(ob);
+        
+        ArrayList<OrderBean> list = odb.queryOrders();
+        if(list != null){
+            System.out.println(list.get(0).getUserTel());
+        }
     }
 }

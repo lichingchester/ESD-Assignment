@@ -18,7 +18,7 @@ public class OrderBean {
     String userTel;
     String size;
     String deliveryType;
-    Date deliveryDate;
+    String deliveryDate;
     int deliveryTime;
     String deliveryAddress;
     String status;
@@ -80,11 +80,11 @@ public class OrderBean {
         this.deliveryType = deliveryType;
     }
 
-    public Date getDeliveryDate() {
+    public String getDeliveryDate() {
         return deliveryDate;
     }
 
-    public void setDeliveryDate(Date deliveryDate) {
+    public void setDeliveryDate(String deliveryDate) {
         this.deliveryDate = deliveryDate;
     }
 
