@@ -218,7 +218,7 @@ public class OrdersDB {
             //4. execute the query and assign to the result 
             rs = pStmnt.executeQuery();
             
-            if (rs.next()) {
+            while (rs.next()) {
                 ob = new OrderBean();
                 // set the record detail to the customer bean
                 ob.setOrderID(rs.getString(1));

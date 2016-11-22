@@ -5,6 +5,7 @@
  */
 package servlet;
 
+import bean.OrderBean;
 import db.OrdersDB;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -33,9 +34,13 @@ public class DeleteOrder extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String orderID=request.getParameter("order");
+            OrderBean ob = new OrderBean();
             
-            db.delRecord(orderID);
+            String orderID=request.getParameter("order");
+            ob.setOrderID(orderID);
+            ob.setStatus("Cancel");
+            db.editRecordStatus(ob);
+          //  db.delRecord(orderID);
             
             RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/UpdateInfoMsg.jsp"); 
             rd.forward(request, response);
