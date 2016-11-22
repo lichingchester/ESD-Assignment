@@ -1,11 +1,12 @@
-
 package servlet;
 
+import bean.OrderBean;
 import db.OrdersDB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.Integer.parseInt;
 import java.sql.Time;
-import java.util.ArrayList;
+import java.text.ParseException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "UpdateDeliveryServlet", urlPatterns = {"/UpdateDeliveryServlet"})
 public class UpdateDeliveryServlet extends HttpServlet {
+   // DateFormat df = new SimpleDateFormat("mm/dd/yyyy");
     OrdersDB db;
 
     public void init() {
@@ -28,28 +30,44 @@ public class UpdateDeliveryServlet extends HttpServlet {
         db = new OrdersDB(url, username, password);  
     }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ParseException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            String OrderID=request.getParameter("OrderID");
+            PrintWriter out = response.getWriter();
+            
+            String OrderID=request.getParameter("orderID");
+            
+           // DateFormat tf = new SimpleDateFormat("hh:mm");
             String dTime=request.getParameter("dTime");
+            Time Time =java.sql.Time.valueOf(dTime);
+            
+            
+            //DateFormat df = new SimpleDateFormat("dd/mm/yyyy");
             String dDate=request.getParameter("dDate");
+            java.sql.Date Date = java.sql.Date.valueOf(dDate);
+            
+            String size=request.getParameter("size");
+            int qty=parseInt(request.getParameter("qty"));
+            
             String action=request.getParameter("action");
+            
+            OrderBean ob = new OrderBean();
+            ob.setDeliveryTime(Time);
+            ob.setDeliveryDate(Date);
+            ob.setSize(size);
+            ob.setQuantity(qty);
+            
            
            if ("edit".equalsIgnoreCase(action)) {
-            // call the query db to get retrieve for all customer
-            //db.editRecord
-            // set the result into the attribute
-            // redirect the result to the listCustomers.jsp	
-            //            response.sendRedirect("list/main.jsp");
-            //       RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/list/main.jsp"); 
-     //      rd.forward(request, response);
+            db.editRecord(ob);
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/HIHI.jsp"); 
+            rd.forward(request, response);
            }else {
-            //PrintWriter out = response.getWriter();
             out.println("No such action!!!");
            }
         }
-    }
+        
+       
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
