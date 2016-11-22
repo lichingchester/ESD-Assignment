@@ -18,6 +18,7 @@
         <%
             
             ArrayList list = (ArrayList) request.getAttribute("list");
+            request.getSession().setAttribute("list",list);
             if(list == null) out.println("safdasf");
             
             double totalPrice = 0;
@@ -40,7 +41,10 @@
            out.println("<tr><td colspan='5'>"+"Total Price:"+"</td><td>"+totalPrice+"</td></tr>");
            out.println("</table>");
            out.println("<br><br>");
+           out.println("<form action='ConfirmOrderServlet'>");
+           out.println("<input type='hidden' name='list'>");
            out.println("<input type='submit' value='Buy Now'>");
+           out.println("</form>");
          %>
          
          <a href="ItemsServlet?action=list" class="a-white">Back to OrderPage.

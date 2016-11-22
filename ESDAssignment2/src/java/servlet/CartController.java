@@ -47,6 +47,8 @@ public class CartController extends HttpServlet{
     editCart(request,response);
    } else if (strAction.equals("delete")) {
     deleteCart(request,response);
+   } else if (strAction.equals("login")){
+    login(request,response);
    }
 
  }
@@ -95,6 +97,11 @@ public class CartController extends HttpServlet{
         RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/testShoppingCart.jsp"); 
         rd.forward(request, response);
      }
+    
+    protected void login(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+         RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/login/login.jsp"); 
+         rd.forward(request, response);
+    }
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

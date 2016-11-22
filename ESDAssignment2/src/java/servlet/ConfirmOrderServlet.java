@@ -9,6 +9,7 @@ import bean.OrderBean;
 import db.OrdersDB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,6 +37,7 @@ public class ConfirmOrderServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+        ArrayList list = (ArrayList) request.getSession().getAttribute("list");
         List myList = (List)request.getAttribute("arrayList");
         String GroupID;
         int lastGroupID, orderTotal=0;

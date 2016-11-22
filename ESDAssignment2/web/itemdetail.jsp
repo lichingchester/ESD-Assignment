@@ -1,3 +1,4 @@
+<%@page import="bean.UserBean"%>
 <!DOCTYPE html>
 <!-- 
 emmet key
@@ -24,10 +25,11 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <%
-            
+        <%     
             ArrayList detail = (ArrayList) request.getAttribute("detail");
             String ItemName="";
+            String Tel=request.getParameter("Tel");
+            String action="login";
             double price=1;
             String ItemID="";
             String path="";
@@ -85,7 +87,6 @@ and open the template in the editor.
             
             </div>
             <hr size="2" width="80%">
-            
             <div id="container">
                  <div id="item3">
                    <img src='<%out.print(path);%>'>
@@ -94,6 +95,7 @@ and open the template in the editor.
                      <form action='CartController'>
                      <br>
                      <br>
+                     <input type="hidden" name="CustTel" value=<%=Tel %>>
                      <input type="hidden" name="ID" value=<%=ItemID %>>
                      Name:<%out.print(ItemName);%><input type="hidden" name="name" value=<%=ItemName%>>
                      <br/>
@@ -113,7 +115,10 @@ and open the template in the editor.
                          Quantity:<input type="number" name="quantity" value="1" min="1">
                          <br>
                          <br>
-                     <input type="hidden" name="action" value="add">
+                         <%
+                           if(Tel != null){action = "add";}  
+                         %>
+                     <input type="hidden" name="action" value=<%=action%>>
                      <input type="submit" value="Shopping Cart">
                      </form>
                  </div> 

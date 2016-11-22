@@ -36,7 +36,7 @@
                 <a href="startup" class="navbar">Logout</a>
                 <a href="order.jsp" class="navbar">Order</a>
                 <a href="UpdateInfo.jsp?action=<%out.print(ub.getTel());%>&Uname=<%out.print(ub.getName());%>" class="navbar">Setting</a>
-                <a href="#asdf" class="navbar">asdf</a>
+                <a href="ItemsServlet?action=list&Tel=<%out.print(ub.getTel());%>" class="navbar">BuyThings</a>
             </div>
            <br>
            <div id="container">

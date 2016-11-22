@@ -23,7 +23,8 @@
             ArrayList list = (ArrayList) request.getAttribute("list");
             if(list == null) out.println("safdasf");
             String type = request.getParameter("type");
-            
+            String Tel=request.getParameter("Tel");
+
         %>
     </head>
     <body>
@@ -56,13 +57,12 @@
             
             
             <%
-                 
                 for(int i=0;i<list.size();i++){
                     ItemBean ib = (ItemBean)list.get(i);
                     String name=ib.getItemID();
                     out.print("<div id='item1'>"
                             +"<a href='ItemsServlet?action=itemdetail&name="
-                            +name+"'>"
+                            +name+"&Tel="+Tel+"'>"
                             + "<img src='"+ib.getPath()+"'></a>"+"<br/>"
                             +ib.getPrice()+"</div>");
                 }
