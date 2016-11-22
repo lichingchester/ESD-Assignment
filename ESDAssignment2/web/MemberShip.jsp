@@ -41,7 +41,7 @@
            <br>
            <div id="container">
                <form>
-               <h1>Order History</h1><input type="button" value="Manage Order" >
+               <h1>Order History</h1><a href="BonusPServlet?ID=<%out.print(ub.getTel());%>">Check Bonus Point</a>
                <hr size="2" width="100%">
                
                <table>
