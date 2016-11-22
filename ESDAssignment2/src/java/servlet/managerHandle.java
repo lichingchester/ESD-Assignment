@@ -120,7 +120,7 @@ public class managerHandle extends HttpServlet {
             request.setAttribute("list", list);
 //            // redirect the result to the listCustomers.jsp	
 //          response.sendRedirect("list/main.jsp");
-           RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/OrdersManage.jsp"); 
+           RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/OrderManage.jsp"); 
            rd.forward(request, response);
  
         }else if ("orderhis".equalsIgnoreCase(action)) {
