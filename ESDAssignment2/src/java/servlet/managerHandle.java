@@ -136,12 +136,12 @@ public class managerHandle extends HttpServlet {
         }else if ("report".equalsIgnoreCase(action)) {
 //           // call the query db to get retrieve for all customer
 //            ob.setStatus("Cancel");
-            ArrayList list = odb.queryByStaus("canceled");
+            ArrayList list = odb.queryByStaus("Cancel");
             
 //            // set the result into the attribute
             request.setAttribute("OrderList", list);
 //            // redirect the result to the listCustomers.jsp	
-            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/AdminShip.jsp"); 
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/AdminShipReport.jsp"); 
             rd.forward(request, response);
 
         }else if ("editItem".equalsIgnoreCase(action)) {
