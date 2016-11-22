@@ -5,11 +5,14 @@
  */
 package servlet;
 
+import bean.ItemBean;
 import bean.OrderBean;
+import bean.UserBean;
+import db.ItemsDB;
 import db.OrdersDB;
+import db.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,10 +21,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author ken42
+ * @author lichi
  */
-@WebServlet(name = "OrderEdit", urlPatterns = {"/OrderEdit"})
-public class OrderEdit extends HttpServlet {
+@WebServlet(name = "deleteItemServlet", urlPatterns = {"/deleteItemServlet"})
+public class deleteItemServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,35 +36,29 @@ public class OrderEdit extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     
-    OrdersDB odb;
-    OrderBean ob;
+    ItemsDB idb;
+    ItemBean ib;
     
     public void init(){
         String username = this.getServletContext().getInitParameter("dbUser");
         String password = this.getServletContext().getInitParameter("dbPassword");
-        String Url = this.getServletContext().getInitParameter("dbUrl"); 
-        odb = new OrdersDB(Url, username, password);
+        String Url = this.getServletContext().getInitParameter("dbUrl");   
+        idb = new ItemsDB(Url, username, password);
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        ob=new OrderBean();
-          ob.setOrderID(request.getParameter("orderID"));
-//        ob.setGroupID(request.getParameter("groupID"));
-//        ob.setItemID(request.getParameter("itemID"));
-//        ob.setSize(request.getParameter("size"));
-//        ob.setUserTel(request.getParameter("userTel"));
-//        ob.setDeliveryType(request.getParameter("deliveryType"));
-//        ob.setDeliveryTime(Integer.parseInt(request.getParameter("deliveryTime")));
-//        ob.setDeliveryAddress(request.getParameter("deliveryAddress"));
-        ob.setStatus(request.getParameter("status"));
-        
-        odb.editRecordStatus(ob);
-        
-        RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/message/AdminShipMessage.jsp?message=editOrder"); 
-            rd.forward(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            
+            String id = request.getParameter("id");
+            
+            idb.delRecord(id);
+            
+            response.sendRedirect("managerHandle?action=item&message=deleteItem");
+
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -102,6 +99,5 @@ public class OrderEdit extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 
 }

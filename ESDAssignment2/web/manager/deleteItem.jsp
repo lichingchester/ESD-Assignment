@@ -33,7 +33,7 @@
             <br>
             <ul>
                  <li>
-                     <a href="/managerHandle?action=item">Items Management</a>
+                     <a href="managerHandle?action=item">Items Management</a>
                  </li>
                  <li>
                      <a href="/managerHandle?action=report">Incompleted Report</a>
@@ -56,10 +56,11 @@
              <br>
             
             <p class="deleteItem">Are you sure to delete the dress?</p>
-            <form action="/deleteItem" method="post">
+            <form action="deleteItemServlet">
                 <input type="hidden" name="id" value="<%= ib.getItemID() %>">
                 <input type="submit" value="Delete">
-                <a href="managerHandle.java?action=item"><input type="button" value="Cancel"></a>
+                <a href="managerHandle?action=item"><input type="button" value="Cancel"></a>
+
             </form>
         </div>
     </body>

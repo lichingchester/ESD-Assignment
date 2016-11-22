@@ -29,6 +29,7 @@ and open the template in the editor.
             ArrayList detail = (ArrayList) request.getAttribute("detail");
             String ItemName="";
             double price=1;
+            String ItemID="";
             String path="";
             String ID = (String) request.getAttribute("name");
             if(detail == null) out.println("safdasf");
@@ -37,6 +38,7 @@ and open the template in the editor.
                     ItemBean ib = (ItemBean)detail.get(i);
                     if(ID.equals(ib.getItemID())){
                     ItemName=ib.getItemName();
+                    ItemID=ib.getItemID();
                     price=ib.getPrice();
                     path=ib.getPath();
                     
@@ -92,16 +94,23 @@ and open the template in the editor.
                      <form action='CartController'>
                      <br>
                      <br>
+                     <input type="hidden" name="ID" value=<%=ItemID %>>
                      Name:<%out.print(ItemName);%><input type="hidden" name="name" value=<%=ItemName%>>
                      <br/>
                      Price:<%out.print(price);%><input type="hidden" name="price" value=<%=price%>>
                      <hr size="2" width="80%">
                      <form>
                          <select name="size">
-                     <option>S size</option>
-                     <option selected="true">M size</option>
-                     <option >L size</option>
-                     </select>   
+                             
+                     <option>XS</option>
+                     <option>S</option>
+                     <option selected="true">M</option>
+                     <option >L</option>
+                     <option >XL</option>
+                     </select>
+                         <br>
+                         <br>
+                         Quantity:<input type="number" name="quantity" value="1" min="1">
                          <br>
                          <br>
                      <input type="hidden" name="action" value="add">

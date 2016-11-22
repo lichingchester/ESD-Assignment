@@ -10,20 +10,19 @@ package bean;
  * @author Wang
  */
 public class CartListBean {
-   // String custId;
+    String ItemID;
     String name;
     String price;
-    //String quantity;
-    //String desc;
+    String quantity;
     String size;
     
-   // public void setCustId(String listId){
-    //    this.listId = listId;
-   // }
+    public void setItemID(String ItemID){
+        this.ItemID = ItemID;
+    }
     
-   // public String getCustId(){
-   //     return listId;
-  //  }
+    public String getItemID(){
+        return ItemID;
+    }
     
     public void setName(String name){
         this.name = name;
@@ -41,21 +40,13 @@ public class CartListBean {
         return price;
     }
     
-   // public void setQuantity(String quantity){
-    //    this.quantity = quantity;
-   // }
+    public void setQuantity(String quantity){
+        this.quantity = quantity;
+    }
     
-   // public String getQuantity(){
-  //      return quantity;
- //   }
-    
-  //  public void setDesc(String desc){
- //       this.desc = desc;
- //   }
-    
- //   public String getDesc(){
- //       return desc;
-//    }
+    public String getQuantity(){
+        return quantity;
+    }
     
     public void setSize(String size){
         this.size = size;

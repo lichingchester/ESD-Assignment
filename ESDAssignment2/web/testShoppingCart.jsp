@@ -16,48 +16,33 @@
     </head>
     <body>
         <%
+            
             ArrayList list = (ArrayList) request.getAttribute("list");
             if(list == null) out.println("safdasf");
+            
+            double totalPrice = 0;
             
             out.println("<h1>Shopping Cart</h1>");
             out.println("<table border='1' >");
             out.println("<tr>");
-            out.println("<th>CustId</th> <th>Product Name</th><th>Size</th><th>Quantity</th ><th>Each Of The Price</th >");
+            out.println("<th>ItemID</th> <th>Product Name</th><th>Quantity</th><th>Size</th ><th>Each Of The Price</th ><th>Delete Record</th >");
             out.println("</tr>");
                 for(int i=0;i<list.size();i++){
                     CartListBean cb = (CartListBean)list.get(i);
-                    out.println("<tr><td>"+/*cb.getCustId()+*/"</td><td>"+cb.getName()+"</td><td>"+cb.getSize()+"</td><td>"+/*cb.getQuantity()+"</td><td>"+*/"</td><td>"+cb.getPrice()+"</td><tr>");     
+                    totalPrice += Double.parseDouble(cb.getQuantity()) * Double.parseDouble(cb.getPrice());
+                    String ID = cb.getItemID();
+                    String size = cb.getSize();
+                    out.println("<form action='CartController'>");
+                    out.println("<input type='hidden' name='action' value='delete'>"+"<input type='hidden' name='ID' value='"+ID+"'>"+"<input type='hidden' name='size' value='"+size+"'>");
+                    out.println("<tr><td>"+cb.getItemID()+"</td><td>"+cb.getName()+"</td><td>"+cb.getQuantity()+"</td><td>"+cb.getSize()+"</td><td>"+cb.getPrice()+"</td><td><input type='submit' value='DELETE'></td></tr>");
+                    out.println("</form>");
                 }
-           out.println("<tr><td colspan='4'>"+"Total Price:"+"</td><td>"+"Test"+"</td></tr>");
+           out.println("<tr><td colspan='5'>"+"Total Price:"+"</td><td>"+totalPrice+"</td></tr>");
            out.println("</table>");
+           out.println("<br><br>");
+           out.println("<input type='submit' value='Buy Now'>");
          %>
          
-         <a href ="index.jsp"/>Back to HomePage.
-         <%/*
-            //ArrayList<CartListBean> list =
-          // (ArrayList<CartListBean> )request.getAttribute("CartList");
-            out.println("<h1>Customers</h1>");
-            out.println("<table border='1' >");
-            out.println("<tr>");
-            out.println("<th>CustId</th> <th> name</th><th> tel</th><th> age</th >");
-            out.println("</tr>");
-            // loop through the customer array to display each customer record
-            if(cb == null){
-                System.out.println("No record");
-            }else{
-            for (int i = 0; i < list.size(); i++) {
-          //  CartListBean c = list.get(i);
-            out.println("<tr>");
-            out.println("<td>" + cb.getListId() + "</td>");
-            out.println("<td>" + cb.getName() + "</td>");
-            out.println("<td>" + cb.getPrice() + "</td>");
-            out.println("</tr>");
-            }
-            out.println("</table>");
-            }*/
-           %>
-           
-           
-           
+         <a href="ItemsServlet?action=list" class="a-white">Back to OrderPage.
     </body>
 </html>
