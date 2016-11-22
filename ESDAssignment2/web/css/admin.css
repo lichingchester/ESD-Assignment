@@ -63,3 +63,19 @@ li.dropdown {
     height: 12px;
     width: 30px;
 }
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+   /*width: 100%;*/
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 2px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
