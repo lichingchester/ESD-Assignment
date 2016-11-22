@@ -46,7 +46,7 @@ public class LoginHandler extends HttpServlet {
      public void init(){
         String dbUser = this.getServletContext().getInitParameter("dbUser");
         String dbPassword = this.getServletContext().getInitParameter("dbPassword");
-        String dbUrl = this.getServletContext().getInitParameter("dbUrluser");
+        String dbUrl = this.getServletContext().getInitParameter("dbUrl");
         db = new UserDB (dbUrl, dbUser, dbPassword);
         od = new OrdersDB(dbUrl, dbUser, dbPassword);
         id = new ItemsDB(dbUrl, dbUser, dbPassword);

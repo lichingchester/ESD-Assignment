@@ -37,22 +37,21 @@ public class startup extends HttpServlet {
     public void init(){
         String dbUser = this.getServletContext().getInitParameter("dbUser");
         String dbPassword = this.getServletContext().getInitParameter("dbPassword");
-        String dbUrluser = this.getServletContext().getInitParameter("dbUrluser");
-        String dbUrlitems = this.getServletContext().getInitParameter("dbUrlitems");   
+        String dbUrl = this.getServletContext().getInitParameter("dbUrl");
         
-        OrdersDB odb = new OrdersDB (dbUrlitems, dbUser, dbPassword);
+        OrdersDB odb = new OrdersDB (dbUrl, dbUser, dbPassword);
         odb.createOrderTable();
         
         //odb.addRecord("orderID","itemID","userTel","size","deliveryType","18-06-12","7:00:00 AM","fuck","available");
         
-        UserDB udb = new UserDB (dbUrluser, dbUser, dbPassword);
+        UserDB udb = new UserDB (dbUrl, dbUser, dbPassword);
         udb.createCustTable();
         
         udb.addRecord("admin", "admin", "Chester", "68916799", "chester@gmail.com", "1679 DUI YOU HSE, FUK KIL EST, TIN TIN DUI, NT", 0, 2);
         udb.addRecord("", "", "Amon", "12345678", "amon@gmail.com", "1679 DUI YOU HSE, FUK KIL EST, TIN TIN DUI, NT", 0, 0);
         udb.addRecord("robot", "robot", "Robot", "87654321", "robot@gmail.com", "1679 DUI YOU HSE, FUK KIL EST, TIN TIN DUI, NT", 0, 0);
         
-        ItemsDB idb = new ItemsDB(dbUrlitems, dbUser, dbPassword);  
+        ItemsDB idb = new ItemsDB(dbUrl, dbUser, dbPassword);  
         idb.dropItemsTable();
         idb.createItemsTable();
         

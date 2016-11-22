@@ -39,7 +39,7 @@ public class ItemsServlet extends HttpServlet {
     public void init() {
         String username = this.getServletContext().getInitParameter("dbUser");
         String password = this.getServletContext().getInitParameter("dbPassword");
-        String url = this.getServletContext().getInitParameter("dbUrlitems");   
+        String url = this.getServletContext().getInitParameter("dbUrl");   
         db = new ItemsDB(url, username, password);  
         
     }

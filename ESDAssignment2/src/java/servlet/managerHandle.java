@@ -48,11 +48,10 @@ public class managerHandle extends HttpServlet {
     public void init(){
         String username = this.getServletContext().getInitParameter("dbUser");
         String password = this.getServletContext().getInitParameter("dbPassword");
-        String userUrl = this.getServletContext().getInitParameter("dbUrluser");   
-        String itemUrl = this.getServletContext().getInitParameter("dbUrlitems");   
-        udb = new UserDB(userUrl, username, password);
-        idb = new ItemsDB(itemUrl, username, password);
-        odb = new OrdersDB(itemUrl, username, password);
+        String Url = this.getServletContext().getInitParameter("dbUrl");   
+        udb = new UserDB(Url, username, password);
+        idb = new ItemsDB(Url, username, password);
+        odb = new OrdersDB(Url, username, password);
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -114,34 +113,34 @@ public class managerHandle extends HttpServlet {
             rd.forward(request, response);
  
         }else if ("orderps".equalsIgnoreCase(action)) {
-            // call the query db to get retrieve for all customer
-            ArrayList list = db.queryItems();
-            // set the result into the attribute
-            request.setAttribute("list", list);
-            // redirect the result to the listCustomers.jsp	
-//            response.sendRedirect("list/main.jsp");
-            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/list/main.jsp"); 
-            rd.forward(request, response);
+//            // call the query db to get retrieve for all customer
+//            ArrayList list = db.queryItems();
+//            // set the result into the attribute
+//            request.setAttribute("list", list);
+//            // redirect the result to the listCustomers.jsp	
+////            response.sendRedirect("list/main.jsp");
+//            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/list/main.jsp"); 
+//            rd.forward(request, response);
  
         }else if ("orderhis".equalsIgnoreCase(action)) {
-            // call the query db to get retrieve for all customer
-            ArrayList list = db.queryItems();
-            // set the result into the attribute
-            request.setAttribute("list", list);
-            // redirect the result to the listCustomers.jsp	
-//            response.sendRedirect("list/main.jsp");
-            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/list/main.jsp"); 
-            rd.forward(request, response);
+//            // call the query db to get retrieve for all customer
+//            ArrayList list = db.queryItems();
+//            // set the result into the attribute
+//            request.setAttribute("list", list);
+//            // redirect the result to the listCustomers.jsp	
+////            response.sendRedirect("list/main.jsp");
+//            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/list/main.jsp"); 
+//            rd.forward(request, response);
  
         }else if ("report".equalsIgnoreCase(action)) {
-            // call the query db to get retrieve for all customer
-            ArrayList list = db.queryItems();
-            // set the result into the attribute
-            request.setAttribute("list", list);
-            // redirect the result to the listCustomers.jsp	
-//            response.sendRedirect("list/main.jsp");
-            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/list/main.jsp"); 
-            rd.forward(request, response);
+//            // call the query db to get retrieve for all customer
+//            ArrayList list = db.queryItems();
+//            // set the result into the attribute
+//            request.setAttribute("list", list);
+//            // redirect the result to the listCustomers.jsp	
+////            response.sendRedirect("list/main.jsp");
+//            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/list/main.jsp"); 
+//            rd.forward(request, response);
  
         }else if ("editItem".equalsIgnoreCase(action)) {
             // call the query db to get retrieve for all customer

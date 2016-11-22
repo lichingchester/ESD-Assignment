@@ -29,9 +29,9 @@ public class CartController extends HttpServlet{
     //private ItemsDB db;
     
         public void init() {
-        String username = "abc";
-        String password = "123";
-        String url = "jdbc:derby://localhost/ShoppingCartDB"; 
+        String username = "app";
+        String password = "app";
+        String url = "jdbc:derby://localhost/database"; 
         db = new ShoppingCartDB(url, username, password);
         db.dropTable();
         db.createTable();

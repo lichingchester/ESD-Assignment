@@ -25,8 +25,8 @@ public class testItemDB {
             System.out.println("success");
         }
         
-        db.addRecord("item001", "Brown dress", "Long dress for party", 
-                "long", "Chester Li", 599, "ESDAssignment/img/long/lng001.jpg", "M");
+//        db.addRecord("item001", "Brown dress", "Long dress for party", 
+//                "long", "Chester Li", 599, "ESDAssignment/img/long/lng001.jpg", "M");
         
         ArrayList list = db.queryItems();
         for(int i=0;i<list.size();i++){

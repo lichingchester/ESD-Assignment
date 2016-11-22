@@ -1,24 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <context-param>
-        <param-name>dbUrluser</param-name>
-        <param-value>jdbc:derby://localhost/User</param-value>
-    </context-param>
-    <context-param>
-        <param-name>dbUrlitems</param-name>
-        <param-value>jdbc:derby://localhost/ItemsDB</param-value>
-    </context-param>
-    <context-param>
-        <param-name>dbCartList</param-name>
-        <param-value>jdbc:derby://localhost/ShoppingCartDB</param-value>
+        <param-name>dbUrl</param-name>
+        <param-value>jdbc:derby://localhost/database</param-value>
     </context-param>
     <context-param>
         <param-name>dbUser</param-name>
-        <param-value>abc</param-value>
+        <param-value>app</param-value>
     </context-param>
     <context-param>
         <param-name>dbPassword</param-name>
-        <param-value>123</param-value>
+        <param-value>app</param-value>
     </context-param> 
     
     <session-config>

@@ -44,8 +44,8 @@ public class test extends HttpServlet {
     public void init(){
         String username = this.getServletContext().getInitParameter("dbUser");
         String password = this.getServletContext().getInitParameter("dbPassword");
-        String itemUrl = this.getServletContext().getInitParameter("dbUrlitems");   
-        idb = new ItemsDB(itemUrl, username, password);
+        String Url = this.getServletContext().getInitParameter("dbUrl");   
+        idb = new ItemsDB(Url, username, password);
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
