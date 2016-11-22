@@ -18,23 +18,20 @@ import java.util.Calendar;
 public class TestAddRecord {
 
     public static void main(String[] arg) throws ParseException {
-        OrderBean ob = new OrderBean();
-        OrdersDB odb;
+        UserBean ob = new UserBean();
+        UserDB db;
         String url = "jdbc:derby://localhost/database";
         String username = "app";
         String password = "app";
-        odb = new OrdersDB (url, username, password);
+        db = new UserDB (url, username, password);
         
-        ob.setStatus("Cancel");
-        ArrayList list = odb.queryByStaus(ob.getStatus());
+        String ID="22222222";
+        ArrayList list = db.queryUsersByTel(ID);
         
-        ArrayList<OrderBean> list2 = null;
+        ArrayList<UserBean> list2 = null;
         list2 = (ArrayList)list;
-        for(OrderBean ub : list2){   
-            System.out.print("<td>" + ub.getItemID()+ "</td>");
-            System.out.print("<td>" + ub.getQuantity()+ "</td>");
-            System.out.print("<td>" + ub.getSize()+ "</td>");
-
+        for(UserBean ub : list2){   
+            System.out.print("<td>" + ub.getTel()+ "</td>");
         }
              
     }

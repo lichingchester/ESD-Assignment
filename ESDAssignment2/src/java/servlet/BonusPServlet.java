@@ -5,71 +5,50 @@
  */
 package servlet;
 
-import bean.OrderBean;
-import db.OrdersDB;
+import bean.UserBean;
+import db.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
+import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-@WebServlet(name = "ConfirmOrderServlet", urlPatterns = {"/ConfirmOrderServlet"})
-public class ConfirmOrderServlet extends HttpServlet {
-    
-    OrdersDB od;
-    OrderBean ob;
-    
-    public void init(){
-        String dbUser = this.getServletContext().getInitParameter("dbUser");
-        String dbPassword = this.getServletContext().getInitParameter("dbPassword");
-        String dbUrl = this.getServletContext().getInitParameter("dbUrl");
-        od = new OrdersDB(dbUrl, dbUser, dbPassword);
+/**
+ *
+ * @author a0321
+ */
+@WebServlet(name = "BonusPServlet", urlPatterns = {"/BonusPServlet"})
+public class BonusPServlet extends HttpServlet {
+        UserDB db;
+        String ID=null;
+    public void init() {
+        String username = this.getServletContext().getInitParameter("dbUser");
+        String password = this.getServletContext().getInitParameter("dbPassword");
+        String url = this.getServletContext().getInitParameter("dbUrl");   
+        db = new UserDB(url, username, password);  
     }
-    
-    
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        List myList = (List)request.getAttribute("arrayList");
-        String GroupID;
-        int lastGroupID, orderTotal=0,BonusPoints;
-        double doubleBonusPoints;
-        if(od.queryLastGroupID()==null){
-            GroupID="1";
-        }else{
-            lastGroupID=Integer.parseInt(od.queryLastGroupID());
-            lastGroupID++;
-            GroupID=String.valueOf(lastGroupID);
-        }
-        
-        for(int i=0;i<myList.size();i++){
-            String orderId;
-            int lastID;
-            if(od.queryLastOrderID()==null){
-                orderId="1";
-            }else{
-                lastID=Integer.parseInt(od.queryLastOrderID());
-                lastID++;
-                orderId=String.valueOf(lastID);
-            }//set orderId
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            ID=request.getParameter("ID");
             
+            ArrayList<UserBean> list =db.queryUsersByTel(ID);
+            if(ID!=null){
+                request.setAttribute("list", list);
+                RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/BonusPhis.jsp"); 
+                rd.forward(request, response);
+            }else{
+                out.print("FUCK");
+            }
+            
+
         }
-        if(orderTotal>=2000){
-            doubleBonusPoints=(orderTotal*0.05);
-            BonusPoints=(int)doubleBonusPoints;
-        }
-        if(orderTotal>=10000){
-            //cookie 24hour >>>pay $500
-        }
-        
-        
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -87,6 +66,14 @@ public class ConfirmOrderServlet extends HttpServlet {
         processRequest(request, response);
     }
 
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
