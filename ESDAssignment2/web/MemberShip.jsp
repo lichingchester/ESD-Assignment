@@ -41,6 +41,7 @@
                     <tr>
                     <th>UserID</th>
                     <th>Items ID</th>
+                    <th>Quantity</th>
                     <th>Size</th>
                     <th>Delivery Type</th>
                     <th>Delivery Address</th>
@@ -58,6 +59,7 @@
                             out.print("<tr>");
                             out.print("<td> "+ ob.getOrderID() +" </td>");
                             out.print("<td> "+ ob.getItemID() +" </td>");
+                            out.print("<td> "+ ob.getQuantity() +" </td>");
                             out.print("<td> "+ ob.getSize()+" </td>");
                             out.print("<td> "+ ob.getDeliveryType()+" </td>");
                             out.print("<td> "+ ob.getDeliveryAddress()+" </td>");

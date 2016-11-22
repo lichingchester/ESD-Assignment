@@ -27,7 +27,7 @@
                
                %>
                
-               OrderID:<input type="text" name="name" value="<%out.print(orderID);%>" readonly="readonly">
+               OrderID:<input type="text" name="orderID" value="<%out.print(orderID);%>" readonly="readonly">
                <br/>
                <br/>
                Delivery Time:<input type="time" name="dTime">
@@ -36,8 +36,10 @@
                Delivery Date:<input type="date" name="dDate">
                <br/>
                <br/>
+               Size:<input type="text" name="size">
                <br/>
                <br/>
+               Quantity<input type="text" name="qty">
                <input type="submit" value="Submit">  <input type="reset" value="reset"></p>
                <input name="action" type="hidden" value="edit">
                </form>
