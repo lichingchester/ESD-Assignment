@@ -52,7 +52,7 @@ public class UserConfirm extends HttpServlet {
             
             String tel = request.getParameter("tel");
             
-            UserBean ub = udb.queryUserByTel(tel);
+            UserBean ub = udb.queryItemByTel(tel);
             
             String number = "0";
             ArrayList<UserBean> list = udb.queryUsersByConfirmed();
