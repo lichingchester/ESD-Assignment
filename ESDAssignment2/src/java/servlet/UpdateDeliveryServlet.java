@@ -58,7 +58,7 @@ public class UpdateDeliveryServlet extends HttpServlet {
             ob.setOrderID(OrderID);
 
             db.editRecord(ob);
-            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/UpdateDelivery.jsp"); 
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/MemberShip.jsp"); 
             rd.forward(request, response);
 
         }
