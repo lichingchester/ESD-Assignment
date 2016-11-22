@@ -61,6 +61,8 @@
                  if(request.getParameter("message") != null){
                      if(request.getParameter("message").equals("editItem")){
                          out.print("<div class='container'><br><br><br><br><label class='message'>Edit item seccess!</label></div>");
+                     }else if (request.getParameter("message").equals("editOrder")){
+                         out.print("<div class='container'><br><br><br><br><label class='message'>Edit item seccess!</label></div>");
                      }
                  }
              %>

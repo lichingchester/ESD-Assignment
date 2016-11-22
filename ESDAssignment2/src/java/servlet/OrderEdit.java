@@ -9,6 +9,7 @@ import bean.OrderBean;
 import db.OrdersDB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,11 +54,18 @@ public class OrderEdit extends HttpServlet {
         ob.setSize(request.getParameter("size"));
         ob.setUserTel(request.getParameter("userTel"));
         ob.setDeliveryType(request.getParameter("deliveryType"));
-        ob.setDeliveryDate(request.getParameter("deliveryDate"));
-        ob.setDeliveryTime(request.getParameter("deliveryTime"));
+        
+        String dDate=request.getParameter("deliveryDate");
+        java.sql.Date Date = java.sql.Date.valueOf(dDate);
+        ob.setDeliveryDate(Date);
+        ob.setDeliveryTime(Integer.parseInt(request.getParameter("deliveryTime")));
         ob.setDeliveryAddress(request.getParameter("deliveryAddress"));
         ob.setStatus(request.getParameter("status"));
         
+        odb.editRecord(ob);
+        
+        RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/message/AdminShipMessage.jsp?message=editOrder"); 
+            rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
