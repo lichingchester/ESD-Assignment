@@ -5,6 +5,12 @@
  */
 package servlet;
 
+import bean.ItemBean;
+import bean.OrderBean;
+import bean.UserBean;
+import db.ItemsDB;
+import db.OrdersDB;
+import db.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,8 +23,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author lichi
  */
-@WebServlet(name = "deleteItem", urlPatterns = {"/deleteItem"})
-public class deleteItem extends HttpServlet {
+@WebServlet(name = "deleteItemServlet", urlPatterns = {"/deleteItemServlet"})
+public class deleteItemServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,20 +35,29 @@ public class deleteItem extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    ItemsDB idb;
+    ItemBean ib;
+    
+    public void init(){
+        String username = this.getServletContext().getInitParameter("dbUser");
+        String password = this.getServletContext().getInitParameter("dbPassword");
+        String Url = this.getServletContext().getInitParameter("dbUrl");   
+        idb = new ItemsDB(Url, username, password);
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet deleteItem</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet deleteItem at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            
+            String id = request.getParameter("id");
+            
+            idb.delRecord(id);
+            
+            response.sendRedirect("managerHandle?action=item&message=deleteItem");
+
         }
     }
 

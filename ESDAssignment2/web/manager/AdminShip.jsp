@@ -34,6 +34,12 @@
                     /*out.println("location='index.jsp';");*/
                     out.println("</script>");
                 }
+                if(request.getParameter("message").equals("deleteItem")){
+                    out.println("<script type=\"text/javascript\">");
+                    out.println("alert('Delete item seccuss');");
+                    /*out.println("location='index.jsp';");*/
+                    out.println("</script>");
+                }
             }
         %>
     </head>

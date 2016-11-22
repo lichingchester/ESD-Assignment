@@ -56,4 +56,12 @@
         <servlet-name>managerHandle</servlet-name>
         <url-pattern>/managerHandle</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>deleteItem</servlet-name>
+        <servlet-class>servlet.deleteItemServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteItem</servlet-name>
+        <url-pattern>/deleteItem</url-pattern>
+    </servlet-mapping>
 </web-app>
