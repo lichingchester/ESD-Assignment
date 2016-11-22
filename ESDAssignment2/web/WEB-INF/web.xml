@@ -25,14 +25,6 @@
     Simple Shopping Cart
   </description>
     <servlet>
-        <servlet-name>CartController</servlet-name>
-        <servlet-class>servlet.CartController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>CartController</servlet-name>
-        <url-pattern>/CartController</url-pattern>
-    </servlet-mapping>
-    <servlet>
         <servlet-name>ItemsServlet</servlet-name>
         <servlet-class>servlet.ItemsServlet</servlet-class>
     </servlet>

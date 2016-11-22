@@ -44,10 +44,10 @@ public class ShoppingCartDB {
             cnnct = getConnection();  // the connection 
             stmnt = cnnct.createStatement();  // create statement
             String sql = "CREATE  TABLE  CartList  ("
-                    //+ "ListId  VARCHAR(10)  CONSTRAINT  PK_CUSTOMER  PRIMARY  KEY,  "
+                    + "ItemID  VARCHAR(10) ,  "
                     + "Name  VARCHAR(25),"
                     + "Price VARCHAR(10),"
-                   // + "Quantity VARCHAR(20),"
+                    + "Quantity VARCHAR(20),"
                     + "Size VARCHAR(50))";
             stmnt.execute(sql);
 
@@ -63,17 +63,19 @@ public class ShoppingCartDB {
         }
     }
      
-      public boolean addRecord(String name, String price , String size) {
+      public boolean addRecord(String ID, String name, String price , String quantity, String size) {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
         boolean isSuccess = false;
         try {
             cnnct = getConnection();
-            String preQueryStatement = "INSERT  INTO  CartList  VALUES  (?,?,?)";
+            String preQueryStatement = "INSERT  INTO  CartList  VALUES  (?,?,?,?,?)";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
-            pStmnt.setString(1, name);
-            pStmnt.setString(2, price);
-            pStmnt.setString(3, size);
+            pStmnt.setString(1, ID);
+            pStmnt.setString(2, name);
+            pStmnt.setString(3, price);
+            pStmnt.setString(4, quantity);
+            pStmnt.setString(5, size);
             int rowCount = pStmnt.executeUpdate();
             if (rowCount >= 1) {
                 isSuccess = true;
@@ -127,16 +129,17 @@ public class ShoppingCartDB {
             cnnct = getConnection();
             String preQueryStatement = "SELECT * FROM  CartList";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
-            //Statement s = cnnct.createStatement();
             ResultSet rs = pStmnt.executeQuery();
 
             ArrayList list = new ArrayList();
 
             while (rs.next()) {
                 CartListBean cb = new CartListBean();
-                cb.setName(rs.getString(1));
-                cb.setPrice(rs.getString(2));
-                cb.setSize(rs.getString(3));
+                cb.setItemID(rs.getString(1));
+                cb.setName(rs.getString(2));
+                cb.setPrice(rs.getString(3));
+                cb.setQuantity(rs.getString(4));
+                cb.setSize(rs.getString(5));
                 list.add(cb);
             }
             return list;
@@ -164,16 +167,28 @@ public class ShoppingCartDB {
         return null;
     }
      
-       public boolean UpdateQuantity(String quantity){
+       public boolean UpdateQuantity(String ID, String quantity){
            Connection cnnct = null;
            PreparedStatement pStmnt = null;
            boolean isSuccess = false;
+           String preQueryStatement;
+           int tempQuantity;
+           String newQuantity;
            
            try {
             cnnct = getConnection();
-            String preQueryStatement = "UPDATE INTO CartList(Quantity) VALUES(?)";
+            //preQueryStatement = "select * from CartList where ItemID='" + ID + "' ";
+            preQueryStatement = "select Quantity from CartList where ItemID=?";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
-            pStmnt.setString(1, quantity);
+            pStmnt.setString(1, ID);
+            ResultSet rs = pStmnt.executeQuery();
+            tempQuantity = Integer.parseInt(rs.getString(1))+Integer.parseInt(quantity);
+            newQuantity = Integer.toString(tempQuantity);
+            
+            //preQueryStatement = "UPDATE INTO CartList(Quantity) VALUES(?)";
+            preQueryStatement ="UPDATE CartList SET Quantity='"+ newQuantity + "' WHERE ItemID='" + ID + "'";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            //pStmnt.setString(1, newQuantity);
             int rowCount = pStmnt.executeUpdate();
             if (rowCount >= 1) {
                 isSuccess = true;
@@ -191,17 +206,17 @@ public class ShoppingCartDB {
         return isSuccess;
        }
        
-        public int delRecord(String ID){
+        public int delRecord(String ID, String Size){
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
         
         int rs = 0;
         try{
             cnnct = getConnection();
-            String preQueryStatement = "delete from item where itemID = ?";
+            String preQueryStatement = "delete from CartList where ItemID='"+ ID + "' and Size='" + Size + "'";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             
-            pStmnt.setString(1, ID);
+           // pStmnt.setString(1, ID);
             
             rs = pStmnt.executeUpdate();
             
@@ -218,5 +233,68 @@ public class ShoppingCartDB {
         }
         return rs;
     }
+        
+        public boolean checkByIdSize(String ID, String Size){
+            Connection cnnct = null;
+            PreparedStatement pStmnt = null;
+            boolean exist = false;
+            
+            try {
+                cnnct = getConnection();
+                //String preQueryStatement = "SELECT * FROM  CartList WHERE (ItemID=?,Size = ?)";
+                String preQueryStatement = "select * from CartList where ItemID='"+ ID + "' and Size='" + Size + "'";
+                pStmnt = cnnct.prepareStatement(preQueryStatement);
+                
+               // pStmnt.setString(1, ID);
+               // pStmnt.setString(2, Size);
+                ResultSet rs = pStmnt.executeQuery();
+                int rsCount = 0;
+                
+                while(rs.next()){
+                    rsCount += 1;
+                }
+                
+                if (rsCount >= 1) {
+                    exist = true;
+                }
+            pStmnt.close();
+            cnnct.close();
+                
+            } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+            } catch (IOException ex) {
+            ex.printStackTrace();
+            }
+            
+            return exist;
+        }
+        
+        public String getResult(String ID){
+           Connection cnnct = null;
+           PreparedStatement pStmnt = null;
+           String test="";
+           String preQueryStatement;
+           
+           try {
+            cnnct = getConnection();
+            //preQueryStatement = "select * from CartList where ItemID='" + ID + "' ";
+            preQueryStatement = "select Quantity from CartList where ItemID=?";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setString(1, ID);
+            ResultSet rs = pStmnt.executeQuery();
+            test = rs.getString(1);
+           }catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+           return test;
+        }
         
 }
