@@ -29,27 +29,30 @@ public class TestAddRecord {
         
         String dDate="22/12/2016";
         DateFormat dateformat = new SimpleDateFormat("mm/dd/yyyy");
-        Date d = ((Date)dateformat.parse(dDate));
+        Date d = (dateformat.parse(dDate));
+        try{
+        java.sql.Date d1 =(java.sql.Date) d;
         
         String size="XL";
         
         int qty=4;
         
         String OrderID="001";
-        String time="08:00";
         
-        DateFormat df = new SimpleDateFormat("HH:mm");
         
 //        Time t=java.sql.Time.valueOf("08:00");
 //        java.sql.Time timeValue = new java.sql.Time(formatter.parse(df.parse(time).toString()).getTime());
-        java.sql.Time myTime = java.sql.Time.valueOf(time);
+        int myTime=12;
         ob.setDeliveryTime(myTime);
-        ob.setDeliveryDate((java.sql.Date) d);
+        ob.setDeliveryDate(d1);
         ob.setSize(size);
         ob.setQuantity(qty);
         ob.setOrderID(OrderID);
                 
         db.editRecord(ob);
-            
+        }  
+        catch(Exception e){
+        e.getMessage();
+        }
     }
 }
