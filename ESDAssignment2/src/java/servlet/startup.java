@@ -41,7 +41,7 @@ public class startup extends HttpServlet {
         
         OrdersDB odb = new OrdersDB (dbUrl, dbUser, dbPassword);
         odb.createOrderTable();
-        odb.addRecord("001", "1", "1", "87654321", "M", "2", "2016-11-22", "CURRENT_TIME", "Flat2402", "deliverying", 2);
+        odb.addRecord("001", "1", "1", "87654321", "M", "2", "2016-11-22", 5, "Flat2402", "deliverying", 2);
         
        // INSERT INTO APP.ORDERS (ORDERID, ITEMID, USERTEL, "SIZE", DELIVERYTYPE, DELIVERYDATE, DELIVERYTIME, DELIVERYADDRESS, STATUS) 
 	//VALUES ('001', '1', '1', '1', '1', '2016-11-22', CURRENT_TIME, '12', '12')

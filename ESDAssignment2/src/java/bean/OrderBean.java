@@ -6,8 +6,6 @@
 package bean;
 
 import java.sql.Date;
-import java.sql.Time;
-
 
 /**
  *
@@ -21,7 +19,7 @@ public class OrderBean {
     String size;
     String deliveryType;
     Date deliveryDate;
-    Time deliveryTime;
+    int deliveryTime;
     String deliveryAddress;
     String status;
     int quantity;
@@ -90,11 +88,11 @@ public class OrderBean {
         this.deliveryDate = deliveryDate;
     }
 
-    public Time getDeliveryTime() {
+    public int getDeliveryTime() {
         return deliveryTime;
     }
 
-    public void setDeliveryTime(Time deliveryTime) {
+    public void setDeliveryTime(int deliveryTime) {
         this.deliveryTime = deliveryTime;
     }
 

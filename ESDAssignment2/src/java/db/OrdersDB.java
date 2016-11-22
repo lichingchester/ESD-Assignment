@@ -87,7 +87,7 @@ public class OrdersDB {
                     + "size VARCHAR(10),"
                     + "deliveryType VARCHAR(20),"
                     + "deliveryDate DATE,"
-                    + "deliveryTime TIME,"
+                    + "deliveryTime int,"
                     + "deliveryAddress VARCHAR(100),"
                     + "status VARCHAR(20),"
                     + "quantity int,"
@@ -115,7 +115,7 @@ public class OrdersDB {
     }
      
      public boolean addRecord(String orderID, String groupID, String itemID,String userTel, 
-             String size , String deliveryType, String deliveryDate,String deliveryTime, 
+             String size , String deliveryType, String deliveryDate,int deliveryTime, 
              String deliveryAddress,String status, int quantity) {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
@@ -131,7 +131,7 @@ public class OrdersDB {
             pStmnt.setString(5, size);
             pStmnt.setString(6, deliveryType);
             pStmnt.setString(7, deliveryDate);
-            pStmnt.setString(8, deliveryTime);
+            pStmnt.setInt(8, deliveryTime);
             pStmnt.setString(9, deliveryAddress);
             pStmnt.setString(10, status);
             pStmnt.setInt(11, quantity);
@@ -179,7 +179,7 @@ public class OrdersDB {
                 ob.setSize(rs.getString(5));
                 ob.setDeliveryType(rs.getString(6));
                 ob.setDeliveryDate(rs.getDate(7));
-                ob.setDeliveryTime(rs.getTime(8));
+                ob.setDeliveryTime(rs.getInt(8));
                 ob.setDeliveryAddress(rs.getString(9));
                 ob.setStatus(rs.getString(10));
                 ob.setQuantity(rs.getInt(11));
@@ -225,7 +225,7 @@ public class OrdersDB {
                 ob.setSize(rs.getString(5));
                 ob.setDeliveryType(rs.getString(6));
                 ob.setDeliveryDate(rs.getDate(7));
-                ob.setDeliveryTime(rs.getTime(8));
+                ob.setDeliveryTime(rs.getInt(8));
                 ob.setDeliveryAddress(rs.getString(9));
                 ob.setStatus(rs.getString(10));
                 ob.setQuantity(rs.getInt(11));
@@ -269,7 +269,7 @@ public class OrdersDB {
                 ob.setSize(rs.getString(5));
                 ob.setDeliveryType(rs.getString(6));
                 ob.setDeliveryDate(rs.getDate(7));
-                ob.setDeliveryTime(rs.getTime(8));
+                ob.setDeliveryTime(rs.getInt(8));
                 ob.setDeliveryAddress(rs.getString(9));
                 ob.setStatus(rs.getString(10));
                 ob.setQuantity(rs.getInt(11));
@@ -323,7 +323,7 @@ public class OrdersDB {
                 ob.setSize(rs.getString(5));
                 ob.setDeliveryType(rs.getString(6));
                 ob.setDeliveryDate(rs.getDate(7));
-                ob.setDeliveryTime(rs.getTime(8));
+                ob.setDeliveryTime(rs.getInt(8));
                 ob.setDeliveryAddress(rs.getString(9));
                 ob.setStatus(rs.getString(10));
                 ob.setQuantity(rs.getInt(11));
@@ -408,7 +408,7 @@ public class OrdersDB {
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             
             pStmnt.setDate(1, ob.getDeliveryDate());
-            pStmnt.setTime(2, ob.getDeliveryTime());
+            pStmnt.setInt(2, ob.getDeliveryTime());
             pStmnt.setString(3, ob.getSize());
             pStmnt.setInt(4, ob.getQuantity());
             pStmnt.setString(5, ob.getOrderID());
