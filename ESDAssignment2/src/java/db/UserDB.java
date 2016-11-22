@@ -340,7 +340,6 @@ public class UserDB {
             String preQueryStatement = "SELECT * FROM  CUSTOMER WHERE Tel = ?";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             //Statement s = cnnct.createStatement();
-            pStmnt = cnnct.prepareStatement(preQueryStatement);
             pStmnt.setString(1, Tel);
             ResultSet rs = pStmnt.executeQuery();
             ArrayList list = new ArrayList();

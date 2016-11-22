@@ -25,13 +25,13 @@ public class TestAddRecord {
         String password = "app";
         db = new UserDB (url, username, password);
         
-        String ID="87654321";
+        String ID="22222222";
         ArrayList list = db.queryUsersByTel(ID);
         
         ArrayList<UserBean> list2 = null;
         list2 = (ArrayList)list;
         for(UserBean ub : list2){   
-            System.out.print("<td>" + ub.getBonusPoint()+ "</td>");
+            System.out.print("<td>" + ub.getTel()+ "</td>");
         }
              
     }
