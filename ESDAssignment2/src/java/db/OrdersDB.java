@@ -87,7 +87,7 @@ public class OrdersDB {
                     + "size VARCHAR(10),"
                     + "deliveryType VARCHAR(20),"
                     + "deliveryDate DATE,"
-                    + "deliveryTime int,"
+                    + "deliveryTime Integer,"
                     + "deliveryAddress VARCHAR(100),"
                     + "status VARCHAR(20),"
                     + "quantity int,"
@@ -122,7 +122,7 @@ public class OrdersDB {
         boolean isSuccess = false;
         try {
             cnnct = getConnection();
-            String preQueryStatement = "INSERT  INTO  CUSTOMER  VALUES  (?,?,?,?,?,?,?,?,?,?,?)";
+            String preQueryStatement = "INSERT  INTO  Orders  VALUES (?,?,?,?,?,?,?,?,?,?,?)";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             pStmnt.setString(1, orderID);
             pStmnt.setString(2, groupID);
