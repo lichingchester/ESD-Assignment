@@ -19,11 +19,8 @@
         <%
             ArrayList<OrderBean> list = null;
             OrderBean ub = null;
-            if(request.getAttribute("itemsList") != null){
-                list = (ArrayList) request.getAttribute("itemsList");
-            }
-            if(request.getAttribute("userBean") != null){
-                ub = (OrderBean) request.getAttribute("userBean");
+            if(request.getAttribute("list") != null){
+                list = (ArrayList) request.getAttribute("list");
             }
         %>
     </head>
@@ -82,6 +79,7 @@
                                 out.print("<td>" + ob.getDeliveryTime()+"</td>");
                                 out.print("<td>" + ob.getDeliveryAddress()+"</td>");
                                 out.print("<td>" + ob.getStatus()+"</td>");
+                                out.print("<td>" + ob.getQuantity()+"</td>");
                                 out.print("<td class='td-button'>"
                                         + "<a href='managerHandle?action=editOrder&id="+ob.getOrderID()+"'>"
                                                 + "<button class='admin-button'>Edit</button>"
@@ -92,6 +90,8 @@
                                         + "</a></td>");
                                 out.print("</tr>");
                             }
+                        }else{
+                            out.print("<tr>");out.print("<td> Null</td>");
                         }
                     %>
                 </table>
