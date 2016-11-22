@@ -157,7 +157,7 @@ public class ItemsDB {
         try {
             //1.  get Connection
             cnnct = getConnection();
-            String preQueryStatement = "SELECT * FROM  ItemsDB WHERE itemID=?";
+            String preQueryStatement = "SELECT * FROM  Items WHERE itemID=?";
             //2.  get the prepare Statement
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             //3. update the placehoder with id
@@ -330,7 +330,7 @@ public class ItemsDB {
         int rs = 0;
         try{
             cnnct = getConnection();
-            String preQueryStatement = "delete from item where itemID = ?";
+            String preQueryStatement = "delete from items where itemID = ?";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             
             pStmnt.setString(1, itemID);
@@ -360,7 +360,7 @@ public class ItemsDB {
         try{
             cnnct = getConnection();
             String preQueryStatement = 
-                    "update item set itemName = ?, description = ?, "
+                    "update items set itemName = ?, description = ?, "
                     + "category = ?, designerName = ?"
                     + "price = ?, path = ?"
                     + "where itemID = ?";

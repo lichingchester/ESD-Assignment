@@ -4,14 +4,63 @@
     Author     : lichi
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/admin.css">
+
+        <%@page import="bean.ItemBean"%>
+        <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+        <%
+            ItemBean ib = (ItemBean) request.getAttribute("itemBean");
+        %>
+        
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <section class="header">
+            <div id="bg">
+                <img src="/ESDAssignment2/img/LOGO.png">
+                <a href="#logout" class="navbar">Log out</a>
+            </div>         
+        </section>
+        
+        <br>
+        
+           <div id="container">
+               <h1 style="font-size: 50px">Top Confidential Management Room</h1>
+               <br>
+               <ul>
+                    <li>
+                        <a href="/managerHandle?action=item">Items Management</a>
+                    </li>
+                    <li>
+                        <a href="/managerHandle?action=report">Incompleted Report</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn">Users Management</a>
+                        <div class="dropdown-content">
+                            <a href="/managerHandle?action=users">Confirmed Users</a>
+                            <a href="/managerHandle?action=ncusers">Unconfirmed Users</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn">Orders Management</a>
+                        <div class="dropdown-content">
+                            <a href="/managerHandle?action=orderps">Processing Orders</a>
+                            <a href="/managerHandle?action=orderhis">Orders History</a>
+                        </div>
+                    </li>
+                </ul>
+                <br>
+                
+                <%
+                    out.print(ib.getItemName());
+                %>
+           </div>
     </body>
 </html>

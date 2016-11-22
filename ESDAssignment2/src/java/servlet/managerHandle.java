@@ -14,6 +14,7 @@ import db.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -147,12 +148,12 @@ public class managerHandle extends HttpServlet {
             String id = request.getParameter("id");
             ItemBean ib = idb.queryItemByID(id);
             // set the result into the attribute
-            request.setAttribute("ib", ib);
+//            request.setAttribute("ib", ib);
+            request.setAttribute("itemBean", ib);
             // redirect the result to the listCustomers.jsp	
 //            response.sendRedirect("list/main.jsp");
             RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/editItem.jsp"); 
             rd.forward(request, response);
- 
         }else if ("deleteItem".equalsIgnoreCase(action)) {
             // call the query db to get retrieve for all customer
             String id = request.getParameter("id");
@@ -166,6 +167,7 @@ public class managerHandle extends HttpServlet {
  
         }
     }
+    private static final Logger LOG = Logger.getLogger(managerHandle.class.getName());
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

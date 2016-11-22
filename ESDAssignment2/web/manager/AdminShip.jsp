@@ -5,7 +5,6 @@
 --%>
 
 
-<%@page import="bean.UserBean"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,11 +12,13 @@
         <title>JSP Page</title>
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/admin.css">
-        
+        <%@page import="bean.UserBean"%>
+
         <%@page import="bean.ItemBean"%>
         <%@page import="java.util.ArrayList"%>
         <%@page contentType="text/html" pageEncoding="UTF-8"%>
-        
+        <%@page import="bean.UserBean"%>
+
         <%
             ArrayList<ItemBean> list = (ArrayList) request.getAttribute("itemsList");
             UserBean ub = (UserBean) request.getAttribute("userBean");
@@ -25,11 +26,11 @@
     </head>
     <body>
         <section class="header">
-        <div id="bg">
-            <img src="/ESDAssignment2/img/LOGO.png">
-            <a href="#logout" class="navbar">Log out</a>
-        </div>         
-    </section>
+            <div id="bg">
+                <img src="/ESDAssignment2/img/LOGO.png">
+                <a href="#logout" class="navbar">Log out</a>
+            </div>         
+        </section>
         
         <br>
            <div id="container">
@@ -101,10 +102,14 @@
                             out.print("<td>" + ib.getCategory()+ "</td>");
                             out.print("<td>" + ib.getDesignerName()+ "</td>");
                             out.print("<td>" + ib.getPrice()+ "</td>");
-                            out.print("");
-                            out.print("");
-                            out.print("<td><a href='deleteItem.jsp?id="+ib.getItemID()+">Delete</a></td>");
-                            out.print("<td><a href='editItem.jsp?id="+ib.getItemID()+">Edit</a></td>");
+                            out.print("<td class='td-button'>"
+                                    + "<a href='managerHandle?action=editItem&id="+ib.getItemID()+"'>"
+                                            + "<button class='admin-button'>Edit</button>"
+                                    + "</a></td>");
+                            out.print("<td class='td-button'>"
+                                    + "<a href='managerHandle?action=deleteItem&id="+ib.getItemID()+"'>"
+                                            + "<button class='admin-button'>Delete</button>"
+                                    + "</a></td>");
                             out.print("</tr>");
                         }
                     %>
