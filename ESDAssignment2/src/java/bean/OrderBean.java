@@ -24,6 +24,15 @@ public class OrderBean {
     Time deliveryTime;
     String deliveryAddress;
     String status;
+    int quantity;
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     public String getGroupID() {
         return groupID;

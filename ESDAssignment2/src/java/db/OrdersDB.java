@@ -90,6 +90,7 @@ public class OrdersDB {
                     + "deliveryTime TIME,"
                     + "deliveryAddress VARCHAR(100),"
                     + "status VARCHAR(20),"
+                    + "quantity int,"
                     + "primary key (orderID))";
             try{
                 stmnt.execute(sql);
@@ -113,13 +114,15 @@ public class OrdersDB {
         }
     }
      
-     public boolean addRecord(String orderID, String groupID, String itemID,String userTel, String size , String deliveryType, String deliveryDate,String deliveryTime, String deliveryAddress,String status) {
+     public boolean addRecord(String orderID, String groupID, String itemID,String userTel, 
+             String size , String deliveryType, String deliveryDate,String deliveryTime, 
+             String deliveryAddress,String status, int quantity) {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
         boolean isSuccess = false;
         try {
             cnnct = getConnection();
-            String preQueryStatement = "INSERT  INTO  CUSTOMER  VALUES  (?,?,?,?,?,?,?,?,?,?)";
+            String preQueryStatement = "INSERT  INTO  CUSTOMER  VALUES  (?,?,?,?,?,?,?,?,?,?,?)";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             pStmnt.setString(1, orderID);
             pStmnt.setString(2, groupID);
@@ -131,6 +134,7 @@ public class OrdersDB {
             pStmnt.setString(8, deliveryTime);
             pStmnt.setString(9, deliveryAddress);
             pStmnt.setString(10, status);
+            pStmnt.setInt(11, quantity);
             
             int rowCount = pStmnt.executeUpdate();
             if (rowCount >= 1) {
@@ -178,6 +182,7 @@ public class OrdersDB {
                 ob.setDeliveryTime(rs.getTime(8));
                 ob.setDeliveryAddress(rs.getString(9));
                 ob.setStatus(rs.getString(10));
+                ob.setQuantity(rs.getInt(11));
             }
 
             pStmnt.close();
@@ -219,6 +224,7 @@ public class OrdersDB {
                 ob.setDeliveryTime(rs.getTime(8));
                 ob.setDeliveryAddress(rs.getString(9));
                 ob.setStatus(rs.getString(10));
+                ob.setQuantity(rs.getInt(11));
                 list.add(ob);
             }
             
@@ -237,6 +243,7 @@ public class OrdersDB {
         return null;
     }
     
+<<<<<<< HEAD
     public String queryLastOrderID(){
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
@@ -259,5 +266,41 @@ public class OrdersDB {
             ex.printStackTrace();
         }
         return null;
+=======
+    
+    public int editRecord(OrderBean ob){
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        
+        int rs = 0;
+        try{
+            cnnct = getConnection();
+            String preQueryStatement = 
+                    "update Orders set DeliveryDate = ?, DeliveryTime = ?, "
+                    + "Size = ?, Quantity = ?"
+                    + "where itemID = ?";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            
+            pStmnt.setDate(1, ob.getDeliveryDate());
+            pStmnt.setTime(2, ob.getDeliveryTime());
+            pStmnt.setString(3, ob.getSize());
+            pStmnt.setInt(4, ob.getQuantity());
+            pStmnt.setString(5, ob.getOrderID());
+            
+            rs = pStmnt.executeUpdate();
+            
+            pStmnt.close();
+            cnnct.close();
+            
+        }catch(SQLException ex){
+            while(ex != null){
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+        return rs;
+>>>>>>> origin/master
     }
 }
