@@ -38,7 +38,7 @@ public class UpdateDeliveryServlet extends HttpServlet {
             
             String OrderID=request.getParameter("orderID");
             String dTime= request.getParameter("dTime");
-            Time Time =java.sql.Time.valueOf(dTime);
+            Time time =java.sql.Time.valueOf(dTime);
             
             String dDate=request.getParameter("dDate");
             java.sql.Date Date = java.sql.Date.valueOf(dDate);
@@ -47,7 +47,7 @@ public class UpdateDeliveryServlet extends HttpServlet {
             int qty=parseInt(request.getParameter("qty"));
             
             OrderBean ob = new OrderBean();
-            ob.setDeliveryTime(Time);
+            ob.setDeliveryTime(time);
             ob.setDeliveryDate(Date);
             ob.setSize(size);
             ob.setQuantity(qty);
