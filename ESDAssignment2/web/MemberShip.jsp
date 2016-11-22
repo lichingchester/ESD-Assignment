@@ -17,8 +17,15 @@
         <%@page contentType="text/html" pageEncoding="UTF-8"%>
         
         <% 
-        UserBean ub = (UserBean) request.getAttribute("userBean");
-        ArrayList<OrderBean> list = (ArrayList) request.getAttribute("orderList");
+            UserBean ub = null;
+            ArrayList<OrderBean> list = null;
+            if(request.getAttribute("ub") != null){
+                ub = (UserBean) request.getAttribute("ub");
+            }
+            if(request.getAttribute("ol") != null){
+                list = (ArrayList) request.getAttribute("ol");
+            }
+        
         %> 
     </head>
     <body>
@@ -52,23 +59,25 @@
                     </tr>
                     
                     <%
-                        for(int i=0;i<list.size();i++){
-                            OrderBean ob = (OrderBean)list.get(i);
-                            if(ob.getUserTel().equals(ub.getTel())){
-                            String orderID=ob.getOrderID();
-                            out.print("<tr>");
-                            out.print("<td> "+ ob.getOrderID() +" </td>");
-                            out.print("<td> "+ ob.getItemID() +" </td>");
-                            out.print("<td> "+ ob.getQuantity() +" </td>");
-                            out.print("<td> "+ ob.getSize()+" </td>");
-                            out.print("<td> "+ ob.getDeliveryType()+" </td>");
-                            out.print("<td> "+ ob.getDeliveryAddress()+" </td>");
-                            out.print("<td> "+ ob.getDeliveryDate()+" </td>");
-                            out.print("<td> "+ ob.getDeliveryTime()+" </td>");
-                            out.print("<td> "+ ob.getStatus()+" </td>");
-                            out.print("<td><a href='UpdateDelivery.jsp?order="+orderID+"'>Edit</a>");
-                            out.print("<td><a href='DeleteOrder?order="+orderID+"'>Cancel Order</a></td>");
-                            out.print("</tr>");
+                        if(list != null && ub != null){
+                            for(int i=0;i<list.size();i++){
+                                OrderBean ob = (OrderBean)list.get(i);
+                                if(ob.getUserTel().equals(ub.getTel())){
+                                String orderID=ob.getOrderID();
+                                out.print("<tr>");
+                                out.print("<td> "+ ob.getOrderID() +" </td>");
+                                out.print("<td> "+ ob.getItemID() +" </td>");
+                                out.print("<td> "+ ob.getQuantity() +" </td>");
+                                out.print("<td> "+ ob.getSize()+" </td>");
+                                out.print("<td> "+ ob.getDeliveryType()+" </td>");
+                                out.print("<td> "+ ob.getDeliveryAddress()+" </td>");
+                                out.print("<td> "+ ob.getDeliveryDate()+" </td>");
+                                out.print("<td> "+ ob.getDeliveryTime()+" </td>");
+                                out.print("<td> "+ ob.getStatus()+" </td>");
+                                out.print("<td><a href='UpdateDelivery.jsp?order="+orderID+"'>Edit</a>");
+                                out.print("<td><a href='DeleteOrder?order="+orderID+"'>Cancel Order</a></td>");
+                                out.print("</tr>");
+                                }
                             }
                         }
                     %>

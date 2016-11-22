@@ -43,7 +43,7 @@ public class TestAddRecord {
 //        Time t=java.sql.Time.valueOf("08:00");
 //        java.sql.Time timeValue = new java.sql.Time(formatter.parse(df.parse(time).toString()).getTime());
         java.sql.Time myTime = java.sql.Time.valueOf(time);
-        ob.setDeliveryTime(myTime);
+//        ob.setDeliveryTime(myTime);
         ob.setDeliveryDate((java.sql.Date) d);
         ob.setSize(size);
         ob.setQuantity(qty);

@@ -77,8 +77,8 @@ public class LoginHandler extends HttpServlet {
                         url = "/manager/AdminShip.jsp";
                         break;
                     }else{
-                        request.setAttribute("userBean", ub);
-                        request.setAttribute("orderList", olist);
+                        request.setAttribute("ub", ub);
+                        request.setAttribute("ol", olist);
                         url = "/MemberShip.jsp";
     //                    request.getSession().setAttribute("userBean", ub);	
                         break;

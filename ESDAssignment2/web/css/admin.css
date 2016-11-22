@@ -102,7 +102,7 @@ tr:nth-child(even) {
     background-color: #004c8f;
 }
 
-input[type=submit], input[type=reset]{
+input[type=submit], input[type=reset], input[type=button]{
     font-size: 28px;
 }
 

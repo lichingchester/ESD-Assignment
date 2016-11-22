@@ -24,8 +24,6 @@
             if((ArrayList) request.getAttribute("itemsList") != null){
                 list = (ArrayList) request.getAttribute("itemsList");
             }
-            
-            UserBean ub = (UserBean) request.getAttribute("userBean");
         %>
         
         <%
