@@ -24,13 +24,13 @@
             if(list == null) out.println("safdasf");
             String type = request.getParameter("type");
             String Tel=request.getParameter("Tel");
-
         %>
     </head>
     <body>
         
        <jsp:include page="../include/header.jsp" />
 
+       
        <section class="search-bar">
             <div class="center-search-bar">
                 <form action="ItemsServlet">
@@ -42,15 +42,22 @@
                 </form>
             </div>
         </section>
-        <hr size="2" width="80%">
-        <div id="order">
-            <a href="ItemsServlet?action=list" id="btn"  >News</a>
-            <a href="ItemsServlet?action=searchByCategory&category=short" id="btn"  >Short</a>
-            <a href="ItemsServlet?action=searchByCategory&category=middle"  id="btn"   >Middle</a>
-            <a href="ItemsServlet?action=searchByCategory&category=long"  id="btn" >Long</a>
-            <a href="ItemsServlet?action=searchByCategory&category=sheath"  id="btn"  >Sheath</a>
-
-        </div>
+       
+       <%    
+          if(Tel != null){
+            out.print("<hr size='2' width='80%'>");
+            out.print("<div id='order'>");
+                out.print("<a href='ItemsServlet?action=list' id='btn'  >"+"News</a>");
+                out.print("<a href='ItemsServlet?action=searchByCategory&category=short' id='btn'  >"+"Short</a>");
+                out.print("<a href='ItemsServlet?action=searchByCategory&category=middle'  id='btn'   >"+"Middle</a>");
+                out.print("<a href='ItemsServlet?action=searchByCategory&category=long'  id='btn' >"+"Long</a>");
+                out.print("<a href='ItemsServlet?action=searchByCategory&category=sheath'  id='btn'  >"+"Sheath</a>");
+            out.print("</div>");
+          }else{
+              
+          }
+        
+       %>
         
         <hr size="2" width="80%">
         <div id="container">

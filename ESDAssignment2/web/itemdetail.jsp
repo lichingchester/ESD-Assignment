@@ -116,7 +116,7 @@ and open the template in the editor.
                          <br>
                          <br>
                          <%
-                           if(Tel != null){action = "add";}  
+                           if(!Tel.equals("null")){action = "add";}  
                          %>
                      <input type="hidden" name="action" value=<%=action%>>
                      <input type="submit" value="Shopping Cart">
