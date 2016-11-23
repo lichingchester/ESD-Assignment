@@ -26,8 +26,6 @@
             }
         %>
         
-<<<<<<< HEAD
-=======
         <%
             if(request.getParameter("message") != null){
                 if(request.getParameter("message").equals("confirmed")){
@@ -39,7 +37,6 @@
             }
         %>
         
->>>>>>> origin/master
     </head>
     <body>
         <section class="header">
@@ -130,11 +127,7 @@
                             }else{
                                 for(UserBean ub : list){
                                     out.print("<tr>");
-<<<<<<< HEAD
-                                    out.print("<td colspan='2'><a href='ConfirmUser?tel="+ub.getTel()+"'><button class='conuser'>Confirm User</button></a></td>");
-=======
                                     out.print("<td colspan='2'><a href='UserConfirm?tel="+ub.getTel()+"'><button class='conuser'>Confirm User</button></a></td>");
->>>>>>> origin/master
                                     out.print("<td>" + ub.getName()+ "</td>");
                                     out.print("<td>" + ub.getTel()+ "</td>");
                                     out.print("<td>" + ub.getEmail()+ "</td>");

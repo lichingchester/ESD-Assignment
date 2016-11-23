@@ -72,11 +72,7 @@ public class managerHandle extends HttpServlet {
             request.setAttribute("list", list);
             // redirect the result to the listCustomers.jsp	
 //            response.sendRedirect("list/main.jsp");
-<<<<<<< HEAD
-            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/UsersManage.jsp?type=confirmed"); 
-=======
             RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/UsersManage.jsp?type=confirmed&message="+message); 
->>>>>>> origin/master
             rd.forward(request, response);
  
         }else if ("ncusers".equalsIgnoreCase(action)) {
