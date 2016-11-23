@@ -5,18 +5,12 @@
  */
 package servlet;
 
-import bean.ItemBean;
-import bean.OrderBean;
 import bean.UserBean;
-import db.ItemsDB;
-import db.OrdersDB;
 import db.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
-<<<<<<< HEAD
-=======
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
->>>>>>> origin/master
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,8 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author lichi
  */
-@WebServlet(name = "ConfirmUser", urlPatterns = {"/ConfirmUser"})
-public class ConfirmUser extends HttpServlet {
+@WebServlet(name = "UserConfirm", urlPatterns = {"/UserConfirm"})
+public class UserConfirm extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -55,26 +49,27 @@ public class ConfirmUser extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            
             String tel = request.getParameter("tel");
             
-<<<<<<< HEAD
-            UserBean ub = 
-=======
-            UserBean ub = udb.queryItemByTel(tel);
+            UserBean ub = udb.queryUserByTel(tel);
             
-            int lastUsername = Integer.parseInt(udb.queryLastUsername());
-            lastUsername++;
+            String number = "0";
+            ArrayList<UserBean> list = udb.queryUsersByConfirmed();
+            for(UserBean ublist : list){
+                if(ub.getUsername().equals(number)){
+                    number = String.valueOf(Integer.parseInt(number) + 1);
+                }
+            }
             
-            ub.setUsername(String.valueOf(lastUsername));
-            ub.setPassword(String.valueOf(lastUsername));
+            ub.setUsername(number);
+            ub.setPassword(number);
             ub.setTel(tel);
+               
             
-            udb.updateAC(ub);
-            
-            out.print("asdf");
-            
-            //response.sendRedirect("manager/UsersManage.jsp?message=confirmed"); 
->>>>>>> origin/master
+//            response.sendRedirect("manager/UsersManage.jsp?message=confirmed");
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/managerHandle?action=users&message=confirmed"); 
+            rd.forward(request, response);
         }
     }
 

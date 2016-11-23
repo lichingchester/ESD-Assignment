@@ -34,14 +34,13 @@
                 <a href="index.jsp"><img src="img\LOGO.png"></a>
                 <img src="img\icon.png"><label style="color:white ;font-size:large " >Name:<%out.print(ub.getName());%></label>
                 <a href="startup" class="navbar">Logout</a>
+                
                 <a href="CartController?action=list" class="navbar">Order</a>
-<<<<<<< HEAD
                 <a href="UpdateInfo.jsp?action=<%out.print(ub.getTel());%>&Uname=<%out.print(ub.getName());%>&address=<%out.print(ub.getAddress()); %>" class="navbar">Setting</a>
-                <a href="#asdf" class="navbar">asdf</a>
-=======
+                
                 <a href="UpdateInfo.jsp?action=<%out.print(ub.getTel());%>&Uname=<%out.print(ub.getName());%>" class="navbar">Setting</a>
                 <a href="ItemsServlet?action=list&Tel=<%out.print(ub.getTel());%>" class="navbar">BuyThings</a>
->>>>>>> Update
+                
             </div>
            <br>
            <div id="container">

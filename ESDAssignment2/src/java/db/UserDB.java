@@ -183,32 +183,44 @@ public class UserDB {
     }
      
      
-     public ArrayList queryItemByTel(String tel) {
+    
+                
+     public UserBean queryItemByTel(String tel) {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
+
+        UserBean ib = null;
         try {
+            //1.  get Connection
             cnnct = getConnection();
-            String preQueryStatement = "SELECT * FROM  CUSTOMER";
+            String preQueryStatement = "SELECT * FROM CUSTOMER WHERE tel=?";
+            //2.  get the prepare Statement
             pStmnt = cnnct.prepareStatement(preQueryStatement);
-            //Statement s = cnnct.createStatement();
-            ResultSet rs = pStmnt.executeQuery();
+            //3. update the placehoder with id
+            pStmnt.setString(1, tel);
+            ResultSet rs = null;
+            //4. execute the query and assign to the result 
+            rs = pStmnt.executeQuery();
+            if (rs.next()) {
+                ib = new UserBean();
+                // set the record detail to the customer bean
 
-            ArrayList list = new ArrayList();
-
-            while (rs.next()) {
-                UserBean ib = new UserBean();
-                
                 ib.setUsername(rs.getString(1));
                 ib.setPassword(rs.getString(2));
                 ib.setName(rs.getString(3));
                 ib.setTel(rs.getString(4));
                 ib.setEmail(rs.getString(5));
                 ib.setAddress(rs.getString(6));
+
                 ib.setBonusPoint(String.valueOf(rs.getInt(7)));
                 ib.setStatus(String.valueOf(rs.getInt(8)));
-                list.add(ib);
+               
             }
-            return list;
+
+            pStmnt.close();
+            cnnct.close();
+            
+            return ib;
         } catch (SQLException ex) {
             while (ex != null) {
                 ex.printStackTrace();
@@ -230,7 +242,7 @@ public class UserDB {
                 }
             }
         }
-        return null;
+        return ib;
     }
      
      public ArrayList queryUsersByConfirmed() {
@@ -238,7 +250,7 @@ public class UserDB {
         PreparedStatement pStmnt = null;
         try {
             cnnct = getConnection();
-            String preQueryStatement = "SELECT * FROM  CUSTOMER WHERE STATUS = 1";
+            String preQueryStatement = "SELECT * FROM  CUSTOMER WHERE STATUS = 1 order by loginID";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             //Statement s = cnnct.createStatement();
             ResultSet rs = pStmnt.executeQuery();
@@ -330,7 +342,6 @@ public class UserDB {
         }
         return null;
     }
-     
      
     public ArrayList queryUsersByTel(String Tel) {
         Connection cnnct = null;
