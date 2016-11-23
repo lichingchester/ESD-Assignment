@@ -39,6 +39,7 @@ public class CartController extends HttpServlet{
     throws ServletException, IOException {
  
   String strAction = request.getParameter("action");
+  System.out.println("Enter");
    
    
    if(strAction.equals("add")) {

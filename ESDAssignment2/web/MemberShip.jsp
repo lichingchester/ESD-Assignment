@@ -35,10 +35,8 @@
                 <img src="img\icon.png"><label style="color:white ;font-size:large " >Name:<%out.print(ub.getName());%></label>
                 <a href="startup" class="navbar">Logout</a>
                 
-                <a href="CartController?action=list" class="navbar">Order</a>
-                <a href="UpdateInfo.jsp?action=<%out.print(ub.getTel());%>&Uname=<%out.print(ub.getName());%>&address=<%out.print(ub.getAddress()); %>" class="navbar">Setting</a>
-                
-                <a href="UpdateInfo.jsp?action=<%out.print(ub.getTel());%>&Uname=<%out.print(ub.getName());%>" class="navbar">Setting</a>
+                <a href="CartController?action=list" class="navbar">MyShoppingCart</a>
+                <a href="UpdateInfo.jsp?action=<%out.print(ub.getTel());%>&Uname=<%out.print(ub.getName());%>&address=<%out.print(ub.getAddress()); %>&Tel=<%out.print(ub.getTel());%>" class="navbar">Setting</a>
                 <a href="ItemsServlet?action=list&Tel=<%out.print(ub.getTel());%>" class="navbar">BuyThings</a>
                 
             </div>

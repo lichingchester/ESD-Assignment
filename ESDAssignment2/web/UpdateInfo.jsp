@@ -15,6 +15,7 @@
         String action=request.getParameter("action");
         String Uname=request.getParameter("Uname");
         String Address=request.getParameter("address");
+        String Tel = request.getParameter("Tel");
         %> 
     </head>
     <body>
@@ -26,6 +27,7 @@
                 <a href="startup" class="navbar">Logout</a>
                 <a href="order.jsp" class="navbar">Order</a>
                 <a href="order.jsp" class="navbar">Setting</a>
+                <a href="ItemsServlet?action=list&Tel=<%=Tel%>" class="navbar">BuyThings</a>
             </div>
            <br>
            <div id="container">
