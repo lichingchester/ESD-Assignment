@@ -413,7 +413,7 @@ public class OrdersDB {
         PreparedStatement pStmnt = null;
          try {
             cnnct = getConnection();
-            String preQueryStatement = "SELECT orderID FROM Orders;";
+            String preQueryStatement = "SELECT TOP 1 (orderID) FROM Orders order by orderID limit 1;";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             //Statement s = cnnct.createStatement();
             ResultSet rs = pStmnt.executeQuery();
@@ -437,7 +437,7 @@ public class OrdersDB {
         PreparedStatement pStmnt = null;
          try {
             cnnct = getConnection();
-            String preQueryStatement = "SELECT groupID FROM Orders;";
+            String preQueryStatement = "SELECT groupID FROM Orders ;";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             //Statement s = cnnct.createStatement();
             ResultSet rs = pStmnt.executeQuery();

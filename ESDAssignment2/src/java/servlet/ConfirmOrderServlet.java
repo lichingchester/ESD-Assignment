@@ -7,6 +7,7 @@ package servlet;
 
 import bean.OrderBean;
 import db.OrdersDB;
+import db.ShoppingCartDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -23,12 +24,15 @@ public class ConfirmOrderServlet extends HttpServlet {
     
     OrdersDB od;
     OrderBean ob;
+    ShoppingCartDB scd;
     
     public void init(){
         String dbUser = this.getServletContext().getInitParameter("dbUser");
         String dbPassword = this.getServletContext().getInitParameter("dbPassword");
         String dbUrl = this.getServletContext().getInitParameter("dbUrl");
         od = new OrdersDB(dbUrl, dbUser, dbPassword);
+        scd=new ShoppingCartDB(dbUrl, dbUser, dbPassword);
+        
     }
     
     
@@ -38,7 +42,7 @@ public class ConfirmOrderServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         ArrayList list = (ArrayList) request.getSession().getAttribute("list");
-        List myList = (List)request.getAttribute("arrayList");
+       // List myList = (List)request.getAttribute("list");
         String GroupID;
         int lastGroupID, orderTotal=0,BonusPoints;
         double doubleBonusPoints;
@@ -50,7 +54,7 @@ public class ConfirmOrderServlet extends HttpServlet {
             GroupID=String.valueOf(lastGroupID);
         }
         
-        for(int i=0;i<myList.size();i++){
+        for(int i=0;i<list.size();i++){
             String orderId;
             int lastID;
             if(od.queryLastOrderID()==null){

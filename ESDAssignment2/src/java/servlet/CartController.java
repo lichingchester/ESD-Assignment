@@ -102,8 +102,8 @@ public class CartController extends HttpServlet{
      }
     
     protected void login(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-         RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/login/login.jsp"); 
-         rd.forward(request, response);
+        // RequestDispatcher rd = request.getServletContext().getRequestDispatcher();
+         response.sendRedirect("http://localhost:8080/ESDAssignment2/login/login.jsp");
     }
     
      protected void ListCart(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
