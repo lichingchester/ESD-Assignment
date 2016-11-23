@@ -23,16 +23,16 @@
                <h1>Register Information</h1>
                <hr size="2" width="100%">
                
-               Name:<input type="text" name="name">
+               Name:<input type="text" name="name" required="required">
                <br/>
                <br/>
-               Tel:<input type="text" name="tel">
+               Tel:<input type="text" name="tel" required="required">
                <br/>
                <br/>
-               Email:<input type="text" name="email">
+               Email:<input type="text" name="email" required="required">
                <br/>
                <br/>
-               Address<input type="text" name="address">
+               Address<input type="text" name="address" required="required">
                <br/>
                <br/>
                <input type="submit" value="Submit">  <input type="reset" value="reset"></p>

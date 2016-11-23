@@ -24,22 +24,21 @@
                <hr size="2" width="100%">
                
                <%String orderID=request.getParameter("order");
-               
                %>
                
                OrderID:<input type="text" name="orderID" value="<%out.print(orderID);%>" readonly="readonly">
                <br/>
                <br/>
-               Delivery Time:<input type="number" name="dTime">
+               Delivery Time:<input type="number" name="dTime" required="required" min="1" max="24">
                <br/>
                <br/>
-               Delivery Date:<input type="date" name="dDate">
+               Delivery Date:<input type="date" name="dDate" required="required" min="2016-11-23">
                <br/>
                <br/>
-               Size:<input type="text" name="size">
+               Size:<input type="text" name="size" required="required">
                <br/>
                <br/>
-               Quantity<input type="text" name="qty">
+               Quantity<input type="text" name="qty" required="required">
                <input type="submit" value="Submit">  <input type="reset" value="reset">
                </form>
                

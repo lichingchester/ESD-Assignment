@@ -44,7 +44,7 @@ public class BonusPServlet extends HttpServlet {
                 RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/BonusPhis.jsp"); 
                 rd.forward(request, response);
             }else{
-                out.print("FUCK");
+                out.print("ID=null");
             }
             
 

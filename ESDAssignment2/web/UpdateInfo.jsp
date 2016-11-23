@@ -33,13 +33,13 @@
                <h1>Modify Personal Information</h1>
                <hr size="2" width="100%">
                
-               Name:<input type="text" name="name" value="<%out.print(Uname); %>">
+               Name:<input type="text" name="name" value="<%out.print(Uname); %>" required="required">
                <br/>
                <br/>
-               Password:<input type="text" name="pwd">
+               Password:<input type="text" name="pwd" required="required">
                <br/>
                <br/>
-               Delivery address:<input type="text" name="address" value='<%out.print(Address); %>'>
+               Delivery address:<input type="text" name="address" required="required" value='<%out.print(Address); %>'>
                <br/>
                <br/>
                <input type="submit" value="Submit">

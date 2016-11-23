@@ -32,10 +32,10 @@ public class testUserDB {
         
         //UserBean ub = db.queryUserByTel("33333333");
             
-        int lastUsername = Integer.parseInt(db.queryLastUsername());
-        lastUsername++;
-        
-        System.out.println(lastUsername);
+//        int lastUsername = Integer.parseInt(db.queryLastUsername());
+//        lastUsername++;
+//        
+//        System.out.println(lastUsername);
 
 //        ub.setUsername(String.valueOf(lastUsername));
 //        ub.setPassword(String.valueOf(lastUsername));
