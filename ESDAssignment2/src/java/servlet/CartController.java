@@ -66,13 +66,13 @@ public class CartController extends HttpServlet{
         
         if(db.checkByIdSize(ID,size) == true){
             db.UpdateQuantity(ID,quantity);
-            ArrayList list = db.queryItemsByTel(Tel);
+            ArrayList list = db.queryItems();
             request.setAttribute("list", list);
             RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/testShoppingCart.jsp"); 
             rd.forward(request, response);
         }else{
             db.addRecord(Tel,ID,name,price,quantity,size);
-            ArrayList list = db.queryItemsByTel(Tel);
+            ArrayList list = db.queryItems();
             request.setAttribute("list", list);
             RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/testShoppingCart.jsp"); 
             rd.forward(request, response);

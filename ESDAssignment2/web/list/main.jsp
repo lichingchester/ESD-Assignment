@@ -46,8 +46,8 @@
                 <label style="color:white ;font-size:large " >Name:<%=Uname%></label>
                 <a href="startup" class="navbar">Logout</a>
                 <a href="CartController?action=list" class="navbar">MyShoppingCart</a>
-                <a href="UpdateInfo.jsp?action=<%=Tel%>);%>&Uname=<%=Uname%>&address=<%=Address%>); %>&Tel=<%=Tel%>" class="navbar">Setting</a>
-                <a href="ItemsServlet?action=list&Tel=<%=Tel%>);%>&Uname=<%=Uname%>&address=<%=Address%>); %>&Tel=<%=Tel%>" class="navbar">BuyThings</a>
+                <a href="UpdateInfo.jsp?action=<%=Tel%>&Uname=<%=Uname%>&address=<%=Address%>&Tel=<%=Tel%>" class="navbar">Setting</a>
+                <a href="ItemsServlet?action=list&Tel=<%=Tel%>&Uname=<%=Uname%>&address=<%=Address%>&Tel=<%=Tel%>" class="navbar">BuyThings</a>
             </div>
         </section>
             
@@ -74,11 +74,11 @@
        
         <hr size="2" width="80%">
         <div id="order">
-            <a href="ItemsServlet?action=list&Tel=<%=Tel%>&Uname=<%=Uname%>);%>" id="btn" >News</a>
-            <a href="ItemsServlet?action=searchByCategory&category=short&Tel=<%=Tel%>&Uname=<%=Uname%>);%>" id="btn"  >Short</a>
-            <a href="ItemsServlet?action=searchByCategory&category=middle&Tel=<%=Tel%>&Uname=<%=Uname%>);%>"  id="btn"   >Middle</a>
-            <a href="ItemsServlet?action=searchByCategory&category=long&Tel=<%=Tel%>&Uname=<%=Uname%>);%>"  id="btn" >Long</a>
-            <a href="ItemsServlet?action=searchByCategory&category=sheath&Tel=<%=Tel%>&Uname=<%=Uname%>);%>"  id="btn"  >Sheath</a>
+            <a href="ItemsServlet?action=list&Tel=<%=Tel%>&Uname=<%=Uname%>" id="btn" >News</a>
+            <a href="ItemsServlet?action=searchByCategory&category=short&Tel=<%=Tel%>&Uname=<%=Uname%>" id="btn"  >Short</a>
+            <a href="ItemsServlet?action=searchByCategory&category=middle&Tel=<%=Tel%>&Uname=<%=Uname%>"  id="btn"   >Middle</a>
+            <a href="ItemsServlet?action=searchByCategory&category=long&Tel=<%=Tel%>&Uname=<%=Uname%>"  id="btn" >Long</a>
+            <a href="ItemsServlet?action=searchByCategory&category=sheath&Tel=<%=Tel%>&Uname=<%=Uname%>"  id="btn"  >Sheath</a>
         </div>
         
         <hr size="2" width="80%">
