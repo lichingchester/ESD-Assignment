@@ -63,7 +63,7 @@
                 
         <div class="div-center additem">
             <h1><b>Add new item</b></h1>
-            <form action="../ItemUpload" method="post" class="formadd">
+            <form action="ItemUpload" method="post" class="formadd">
                 <p>
                     <label for="name">Item Name</label><br>
                     <input type="text" id="name" name="name" class="input-add"><br>
@@ -84,16 +84,6 @@
                 <p>
                     <label for="dname">Designer Name</label><br>
                     <input type="text" id="dname" name="dname" class="input-add"><br>
-                </p>
-                <p>
-                    <label for="Size">Size</label><br>
-                    <select id="size" name="size" class="input-add">
-                        <option value="XS">XS</option>
-                        <option value="S">S</option>
-                        <option value="M">M</option>
-                        <option value="L">L</option>
-                        <option value="XL">XL</option>
-                    </select><br>
                 </p>
                 <p>
                     <label for="price">Price</label><br>

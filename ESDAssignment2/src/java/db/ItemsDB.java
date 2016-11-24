@@ -388,4 +388,39 @@ public class ItemsDB {
         }
         return rs;
     }
+    
+    public String queryLastItemID(){
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+         try {
+            cnnct = getConnection();
+            String preQueryStatement = "SELECT itemID FROM Items order by itemID desc";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            //Statement s = cnnct.createStatement();
+            ResultSet rs = pStmnt.executeQuery();
+            
+            ArrayList list = new ArrayList();
+            
+            String name="";
+            while(rs.next()){
+              //name = rs.getString(1);
+              String temp = rs.getString(1);
+              list.add(temp);
+            //System.out.println(name);
+            }
+            name = (String) list.get(0);
+            
+            pStmnt.close();
+            cnnct.close();
+            return name;
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
 }

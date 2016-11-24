@@ -66,6 +66,8 @@
                          out.print("<div class='container'><br><br><br><br><label class='message'>Edit item seccess!</label></div>");
                      }else if (request.getParameter("message").equals("editOrder")){
                          out.print("<div class='container'><br><br><br><br><label class='message'>Edit item seccess!</label></div>");
+                     }else if(request.getParameter("message").equals("addItem")){
+                         out.print("<div class='container'><br><br><br><br><label class='message'>Add item seccess!</label></div>");
                      }
                  }
              %>

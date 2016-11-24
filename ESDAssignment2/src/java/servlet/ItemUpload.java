@@ -5,6 +5,11 @@
  */
 package servlet;
 
+import bean.ItemBean;
+import bean.UserBean;
+import db.ItemsDB;
+import db.OrdersDB;
+import db.UserDB;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,6 +17,8 @@ import java.io.PrintWriter;
 import static java.lang.System.out;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,6 +42,17 @@ public class ItemUpload extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    ItemsDB idb;
+    ItemBean ib;
+    
+    public void init() {
+        String username = this.getServletContext().getInitParameter("dbUser");
+        String password = this.getServletContext().getInitParameter("dbPassword");
+        String url = this.getServletContext().getInitParameter("dbUrl");   
+        idb = new ItemsDB(url, username, password);
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -45,50 +63,33 @@ public class ItemUpload extends HttpServlet {
             String desc = request.getParameter("desc");
             String cty = request.getParameter("cty");
             String dname = request.getParameter("dname");
-            String size = request.getParameter("size");
             Double price = Double.parseDouble(request.getParameter("price"));
-            Part filePart = request.getPart("file"); 
-            
-            String fileName = extractFileName(filePart);
-            if(cty.equals("long")){
-                uploads = new File("/img/long");
-            }else if(cty.equals("middle")){
-                uploads = new File("/img/middle");
-            }else if(cty.equals("short")){
-                uploads = new File("/img/short");
-            }else if(cty.equals("sheath")){
-                uploads = new File("/img/sheath");
-            }
-            try (InputStream input = filePart.getInputStream()) {
-                File file = new File(uploads, fileName+".jpg");
-                Files.copy(input, file.toPath());
-            }
             
             //String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
 //            InputStream fileContent = filePart.getInputStream();
+
+            int id = 0;
+            ArrayList<ItemBean> list = idb.queryItems();
+            for(ItemBean ib : list){
+                if(Integer.parseInt(ib.getItemID()) > id){
+                    id = Integer.parseInt(ib.getItemID());
+                }
+            }
+            id++;
+            String loid = String.valueOf(id);
+
+            if(idb.addRecord(loid, name, desc, cty, dname, price, "")){
+                RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/message/AdminShipMessage.jsp?message=addItem"); 
+                rd.forward(request, response);
+            }else{
+                out.print("error");
+            }
+            
+            
         }
-//        out.println("<!DOCTYPE html>");
-//        out.println("<html>");
-//        out.println("<head>");
-//        out.println("<title>Servlet test</title>");            
-//        out.println("</head>");
-//        out.println("<body>");
-//        out.println("<h1>Add Item success</h1>");
-//        out.println("</body>");
-//        out.println("</html>");
+        
     }
     
-    private String extractFileName(Part part) {
-        String contentDisp = part.getHeader("content-disposition");
-        String[] items = contentDisp.split(";");
-        for (String s : items) {
-            if (s.trim().startsWith("filename")) {
-                return s.substring(s.indexOf("=") + 2, s.length()-1);
-            }
-        }
-        return "";
-    }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

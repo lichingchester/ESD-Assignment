@@ -102,11 +102,11 @@ public class ConfirmOrderServlet extends HttpServlet {
                 deliveryType="delivery";
                 ub=ud.queryItemByTel(tel);
                 deliveryAddress=ub.getAddress();
-                od.addRecord(lastOrderID, lastGroupID, tempItemID, tel, tempSize, deliveryType, inputDate, inputTime, deliveryAddress, "deliverying",0);
+                od.addRecord(lastOrderID, lastGroupID, tempItemID, tel, tempSize, deliveryType, inputDate, inputTime, deliveryAddress, "deliverying",Integer.parseInt(tempQua));
             }else{
                 ub=ud.queryItemByTel(tel);
                 deliveryType="selfPick";
-                od.addRecord(lastOrderID, lastGroupID, tempItemID, tel, tempSize, deliveryType, null, 0, "shop", "deliverying",0);
+                od.addRecord(lastOrderID, lastGroupID, tempItemID, tel, tempSize, deliveryType, null, 0, "shop", "deliverying",Integer.parseInt(tempQua));
             }
 
             scd.delRecord(tel);
