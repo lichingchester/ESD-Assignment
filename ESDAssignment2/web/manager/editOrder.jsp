@@ -4,6 +4,8 @@
     Author     : ken42
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="bean.UserBean"%>
 <%@page import="bean.OrderBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,16 +18,24 @@
         <%
             OrderBean ob=(OrderBean)request.getAttribute("OrderBean");
         %>
+        
+        
     </head>
     <body>
         
   <section class="header">
             <div id="bg">
-                <img src="/ESDAssignment2/img/LOGO.png">
-                <a href="index.jsp" class="navbar">Log out</a>
-            </div>         
-        </section>
-        
+                <% out.println("<input type='hidden' name='list'>"); %>
+                <a href="index.jsp"><img src="img\LOGO.png"></a>
+                <img src="img\icon.png"><label style="color:white" class="navbar" >Name:<%out.print(ub.getName());%></label>
+                <a href="startup" class="navbar">Logout</a>
+                
+                <a href="CartController?action=list" class="navbar">MyShoppingCart</a>
+                <a href="UpdateInfo.jsp?action=<%out.print(ub.getTel());%>&Uname=<%out.print(ub.getName());%>&address=<%out.print(ub.getAddress()); %>&Tel=<%out.print(ub.getTel());%>" class="navbar">Setting</a>
+                <a href="ItemsServlet?action=list&Tel=<%out.print(ub.getTel());%>&Uname=<%out.print(ub.getName());%>" class="navbar">BuyThings</a>
+                <a href="LoginHandler?mode=fuck&Tel=<%= ub.getTel() %>" class="navbar">Member Center</a>
+            </div>
+           <br>
         <br>
            <div id="container">
             <h1 style="font-size: 50px">Top Confidential Management Room</h1>

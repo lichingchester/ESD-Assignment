@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import bean.CartListBean;
 import db.ShoppingCartDB;
+import db.UserDB;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 //import bean.CartBean;
@@ -25,6 +26,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "CartController", urlPatterns = {"/CartController"})
 public class CartController extends HttpServlet{
     private ShoppingCartDB db;
+    private UserDB udb;
     
         public void init() {
         String username = "app";
@@ -33,6 +35,7 @@ public class CartController extends HttpServlet{
         db = new ShoppingCartDB(url, username, password);
         db.dropTable();
         db.createTable();
+        udb = new UserDB(url, username, password);
     }
     
     public void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -64,17 +67,20 @@ public class CartController extends HttpServlet{
         String quantity = request.getParameter("quantity");
         String Tel = request.getParameter("Tel");
         request.getSession().setAttribute("tel", Tel);
+        String uname = udb.queryItemByTel(Tel).getName();
         
         if(db.checkByIdSize(ID,size) == true){
             db.UpdateQuantity(ID,quantity);
             ArrayList list = db.queryItems();
             request.setAttribute("list", list);
+            request.setAttribute("uname", uname);
             RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/testShoppingCart.jsp"); 
             rd.forward(request, response);
         }else{
             db.addRecord(Tel,ID,name,price,quantity,size);
             ArrayList list = db.queryItems();
             request.setAttribute("list", list);
+            request.setAttribute("uname", uname);
             RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/testShoppingCart.jsp"); 
             rd.forward(request, response);
         }

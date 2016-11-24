@@ -66,10 +66,13 @@
                date <input type="date" name="inputDate">
                time <input type="number" name="inputTime">
            </div>
-           <%out.println("<input type='submit' value='Buy Now'>");
-           out.println("</form>");
+           <%
+               out.println("<input type='hidden' name='orderTotal' value='"+totalPrice+"'>");
+               out.println("<input type='submit' value='Buy Now'>");
+               out.println("</form>");
          %>
-         
+         <br>
+         <a href="ItemsServlet?action=list&Tel=<%out.print(Tel);%>&Uname=<%= request.getAttribute("uname") %>" class="navbar">BuyThings</a>
          
     </body>
 </html>

@@ -54,16 +54,21 @@ public class UserConfirm extends HttpServlet {
             
             UserBean ub = udb.queryItemByTel(tel);
             
-            String number = "0";
+            int number = 0;
             ArrayList<UserBean> list = udb.queryUsersByConfirmed();
             for(UserBean ublist : list){
-                if(ub.getUsername().equals(number)){
-                    number = String.valueOf(Integer.parseInt(number) + 1);
+                if(Integer.parseInt(ublist.getUsername()) > number){
+                    number = Integer.parseInt(ublist.getUsername());
                 }
+//                if(ub.getUsername().equals(number)){
+//                    number = String.valueOf(Integer.parseInt(number) + 1);
+//                }
             }
+            number++;
+            String id = String.valueOf(number);
             
-            ub.setUsername(number);
-            ub.setPassword(number);
+            ub.setUsername(id);
+            ub.setPassword(id);
             ub.setTel(tel);
             
             udb.updateAC(ub);

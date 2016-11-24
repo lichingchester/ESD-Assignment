@@ -69,7 +69,9 @@ public class ConfirmOrderServlet extends HttpServlet {
         String tempItemID,tempName,tempPrice,tempQua,tempSize;
         String  deliveryType, deliveryDate, deliveryTime, deliveryAddress, status;
         int lastGroupID=0;int lastOrderID=0;
-        int orderTotal=0,BonusPoints;
+        Double orderTotal = 0.0;
+        int BonusPoints = 0;
+        orderTotal = Double.parseDouble(request.getParameter("orderTotal"));
         double doubleBonusPoints;
         if(od.queryLastGroupID()==null){
             lastGroupID=1;
@@ -113,9 +115,17 @@ public class ConfirmOrderServlet extends HttpServlet {
    
         }
         
+        int bp = Integer.valueOf(ud.queryItemByTel(tel).getBonusPoint());
+        
         if(orderTotal>=2000){
             doubleBonusPoints=(orderTotal*0.05);
             BonusPoints=(int)doubleBonusPoints;
+            
+            int res = BonusPoints + bp;
+            
+            ub.setBonusPoint(String.valueOf(res));
+            
+            ud.editBonusPoint(ub);
         }
         if(orderTotal>=10000){
             //cookie 24hour >>>pay $500

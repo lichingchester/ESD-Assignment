@@ -38,7 +38,7 @@
                 <a href="CartController?action=list" class="navbar">MyShoppingCart</a>
                 <a href="UpdateInfo.jsp?action=<%out.print(ub.getTel());%>&Uname=<%out.print(ub.getName());%>&address=<%out.print(ub.getAddress()); %>&Tel=<%out.print(ub.getTel());%>" class="navbar">Setting</a>
                 <a href="ItemsServlet?action=list&Tel=<%out.print(ub.getTel());%>&Uname=<%out.print(ub.getName());%>" class="navbar">BuyThings</a>
-                
+                <a href="LoginHandler?mode=fuck&Tel=<%= ub.getTel() %>" class="navbar">Member Center</a>
             </div>
            <br>
            <div id="container">
@@ -54,10 +54,12 @@
                                 out.print(ub.getBonusPoint());
                                 
                     %>
+                    <input style="font-size: 30px; float: right;" type="submit" value="redeem">
+                    <br>
                     <br>
                     <tr><td><img src='img/accessories/earring.JPG'height="320" weight='240'><h4> Earring </h4><br>
                             price:500 
-                            <input type="radio" name="accessories" value="500"> </td>
+                            <input type="radio" name="accessories" value="500" checked> </td>
                         
                         <td><img src='img/accessories/hand.jpg'   height="320" weight='240'> <h4>Bracelet</h4> <br>
                             price:700 
@@ -73,7 +75,7 @@
                </table>
                     <input type="hidden" name="user" value="<%= ub.getTel()%>">
                     
-                    <input type="submit" value="redeem"><br>
+                    <br>
                </form>
                
                

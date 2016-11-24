@@ -34,13 +34,13 @@
             if(request.getAttribute("ub") != null){
                 ub = (UserBean) request.getAttribute("ub");
             }else{
-                out.println("userbean");
+//                out.println("userbean");
             }
             ArrayList olist = null;
             if(request.getAttribute("ol") != null){
                 olist = (ArrayList) request.getAttribute("ol");
             }else{
-                out.println("list");
+//                out.println("list");
             }
             
 //            request.setAttribute("ub", ub);
@@ -79,13 +79,17 @@
        <section class="search-bar">
             <div class="center-search-bar">
                 <form action="ItemsServlet">
-                <input name="action" type="hidden" value="searchByName">
-                <input type="text"  name="itemName" class="search-box" placeholder="Search...">
-                <button class="search-btn" style="vertical-align:middle">
-                    <a href="ItemsServlet?action=list&Tel=<%=Tel%>&Uname=<%=Uname%>&address=<%=Address%>&Tel=<%=Tel%>">
-                        <span>Search</span>
-                    </a>
-                </button>
+                    <input name="action" type="hidden" value="searchByName">
+                    <input type="text"  name="itemName" class="search-box" placeholder="Search...">
+                    <input type="hidden" name="Tel" value="<%= Tel %>">
+                    <input type="hidden" name="Uname" value="<%= Uname %>">
+                    <input type="hidden" name="Address" value="<%= Address %>">
+    <!--                <button class="search-btn" style="vertical-align:middle">
+                        <a href="ItemsServlet?action=searchByName&Tel=<%=Tel%>&Uname=<%=Uname%>&address=<%=Address%>&Tel=<%=Tel%>">
+                            <span>Search</span>
+                        </a>
+                    </button>-->
+                    <input type="submit" value="Search" class="search-btn">
                 </form>
             </div>
         </section>

@@ -198,6 +198,7 @@ public class ItemsDB {
             String preQueryStatement = "SELECT * FROM  Items WHERE itemName LIKE ? or designerName like ?";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             pStmnt.setString(1, "%" + name + "%");
+            pStmnt.setString(2, "%" + name + "%");
             //Statement s = cnnct.createStatement();
             ResultSet rs = pStmnt.executeQuery();
 
