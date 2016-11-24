@@ -94,7 +94,8 @@ public class LoginHandler extends HttpServlet {
             ub = db.queryItemByTel(request.getParameter("Tel"));
             request.setAttribute("ub", ub);
             request.setAttribute("ol", olist);
-            url = "/MemberShip.jsp";
+            String message = request.getParameter("message");
+            url = "/MemberShip.jsp?message="+message+"";
         }
 
 

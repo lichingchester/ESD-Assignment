@@ -34,13 +34,13 @@
             if(request.getAttribute("ub") != null){
                 ub = (UserBean) request.getAttribute("ub");
             }else{
-//                out.println("userbean");
+                out.println("userbean");
             }
             ArrayList olist = null;
             if(request.getAttribute("ol") != null){
                 olist = (ArrayList) request.getAttribute("ol");
             }else{
-//                out.println("list");
+                out.println("list");
             }
             
 //            request.setAttribute("ub", ub);
@@ -82,7 +82,9 @@
                 <input name="action" type="hidden" value="searchByName">
                 <input type="text"  name="itemName" class="search-box" placeholder="Search...">
                 <button class="search-btn" style="vertical-align:middle">
-                    <span>Search</span>
+                    <a href="ItemsServlet?action=list&Tel=<%=Tel%>&Uname=<%=Uname%>&address=<%=Address%>&Tel=<%=Tel%>">
+                        <span>Search</span>
+                    </a>
                 </button>
                 </form>
             </div>

@@ -14,6 +14,7 @@ import db.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -59,13 +60,16 @@ public class redeemServlet extends HttpServlet {
             
             ub.setBonusPoint(String.valueOf(cal));
             db.editBonusPoint(ub);
-            //request.setAttribute("ub", ub);
-           // request.setAttribute("ol", olist);
-            response.sendRedirect("index.jsp?message=redeemOK");//redeem OK
+            request.setAttribute("ub", ub);
+            request.setAttribute("ol", olist);
+//            response.sendRedirect("index.jsp?message=redeemOK");//redeem OK
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/LoginHandler?mode=asd&Tel="+tel+"&message=redeemOK"); 
+            rd.forward(request, response);
         }else{
-//            request.setAttribute("ub", ub);
-//            request.setAttribute("ol", olist);
-              response.sendRedirect("index.jsp?message=redeemFail"); //fail
+            request.setAttribute("ub", ub);
+            request.setAttribute("ol", olist);
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/LoginHandler?mode=asd&Tel="+tel+"&message=redeemFail"); 
+            rd.forward(request, response);
            
         }
         
