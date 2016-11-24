@@ -314,10 +314,10 @@ public class ShoppingCartDB {
 
             while (rs.next()) {
                 CartListBean cb = new CartListBean();
-                cb.setItemID(rs.getString(1));
-                cb.setName(rs.getString(2));
-                cb.setPrice(rs.getString(3));
-                cb.setQuantity(rs.getString(4));
+                cb.setItemID(rs.getString(2));
+                cb.setName(rs.getString(3));
+                cb.setPrice(rs.getString(4));
+                cb.setQuantity(rs.getString(5));
                 cb.setSize(rs.getString(5));
                 list.add(cb);
             }

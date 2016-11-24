@@ -89,6 +89,8 @@ and open the template in the editor.
         <%
         }else{
         %>
+        <section class="header">
+            <div id="bg">
                 <a href="index.jsp"><img src="img\LOGO.png"></a>
                 <img src="img\icon.png"><label style="color:white ;font-size:large " >Name:<%=Uname%></label>
                 <a href="startup" class="navbar">Logout</a>
@@ -96,7 +98,8 @@ and open the template in the editor.
                 <a href="CartController?action=list" class="navbar">MyShoppingCart</a>
                 <a href="UpdateInfo.jsp?action=<%=Tel%>);%>&Uname=<%=Uname%>&address=<%=Address%>); %>&Tel=<%=Tel%>" class="navbar">Setting</a>
                 <a href="ItemsServlet?action=list&Tel=<%=Tel%>);%>&Uname=<%=Uname%>&address=<%=Address%>); %>&Tel=<%=Tel%>" class="navbar">BuyThings</a>
-                
+            </div>
+        </section>
                <section class="logo">
             <div class="brand">
                 <a href="index.jsp" class="brand-name"><font id="font-red">C</font>&<font id="font-red">F</font> <font id="font-red">D</font>ress</a>

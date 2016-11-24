@@ -217,6 +217,10 @@ float:left;
     width:80%;
     margin:0px auto;
 }
+#container-middle{
+    width:50%;
+    margin:0px auto;
+}
 img{
 max-width:100%;
 max-height:100%;
