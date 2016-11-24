@@ -13,9 +13,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <script>
+            window.onload = function() {
+            document.getElementById("yesDelivery").style.display= 'none';
+            }
+          
         function handleClick(choose) {
-            alert('Old value: delivery!!!');
-           
+            
+            document.getElementById("yesDelivery").style.display= 'block';
+                    
     } 
 </script>
     </head>
@@ -26,7 +31,7 @@
             request.getSession().setAttribute("list",list);
             request.getSession().setAttribute("TestShoppingCartTel", Tel);
             if(list == null) out.println("safdasf");
-            if(list!=null)out.println("pass list== "+list.size());
+            //if(list!=null)out.println("pass list== "+list.size());
             
             double totalPrice = 0;
             
@@ -54,13 +59,16 @@
            
            <input type='hidden' name='tel'>
            delivery<input type="radio" name="choose" value="delivery" onclick="handleClick(this);" >
-   
+                    
            self-pick<input type="radio" name="choose" value="selfPick"  checked="">
-           
+           <div id="yesDelivery">
+               date <input type="date" name="inputDate">
+               time <input type="number" name="inputTime">
+           </div>
            <%out.println("<input type='submit' value='Buy Now'>");
            out.println("</form>");
          %>
          
-         <a href="ItemsServlet?action=list" class="a-white">Back to OrderPage.
+         
     </body>
 </html>
