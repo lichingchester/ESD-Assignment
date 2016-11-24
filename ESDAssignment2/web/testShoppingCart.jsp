@@ -15,8 +15,7 @@
         
     </head>
     <body>
-        <%
-            
+        <%       
             ArrayList list = (ArrayList) request.getAttribute("list");
             request.getSession().setAttribute("list",list);
             if(list == null) out.println("safdasf");

@@ -25,26 +25,29 @@
             if(list == null) out.println("safdasf");
             String type = request.getParameter("type");
             String Tel=request.getParameter("Tel");
-            boolean login = false;
-            UserBean ub = (UserBean) request.getAttribute("ub");
+            String action=request.getParameter("action");
+            String Uname=request.getParameter("Uname");
+            String Address=request.getParameter("address");
         %>
     </head>
     <body>
-        <% 
-            if(Tel.equals(null)){
-                login = false;
-            }else{
-                login = true;
-            }
-        %>
-        <c:if test="${'login' == false}">
-            <jsp:include page='../include/header.jsp' />
-            <continue>
-        </c:if>
-        <c:if test="${'login' == true}">
-            <jsp:include page='../include/header.jsp' />
-        </c:if>
-
+    <% 
+        if(Tel.equals("null")){
+    %>
+        <jsp:include page='../include/header.jsp' />
+    <%
+        }else{
+    %>
+              <a href="index.jsp"><img src="img\LOGO.png"></a>
+                <img src="img\icon.png"><label style="color:white ;font-size:large " >Name:<%=Uname%></label>
+                <a href="startup" class="navbar">Logout</a>
+                
+                <a href="CartController?action=list" class="navbar">MyShoppingCart</a>
+                <a href="UpdateInfo.jsp?action=<%=Tel%>);%>&Uname=<%=Uname%>&address=<%=Address%>); %>&Tel=<%=Tel%>" class="navbar">Setting</a>
+                <a href="ItemsServlet?action=list&Tel=<%=Tel%>);%>&Uname=<%=Uname%>&address=<%=Address%>); %>&Tel=<%=Tel%>" class="navbar">BuyThings</a>
+       <%
+           }
+       %>
        <section class="search-bar">
             <div class="center-search-bar">
                 <form action="ItemsServlet">
