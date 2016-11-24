@@ -49,7 +49,7 @@
                     out.println("<input type='hidden' name='action' value='delete'>"+"<input type='hidden' name='ID' value='"+ID+"'>"+"<input type='hidden' name='size' value='"+size+"'>");
                     out.println("<tr><td>"+cb.getItemID()+"</td><td>"+cb.getName()+"</td><td>"+cb.getQuantity()+"</td><td>"+cb.getSize()+"</td><td>"+cb.getPrice()+"</td><td><input type='submit' value='DELETE'></td></tr>");
                     out.println("</form>");
-                    out.println("list.size()"+list.size());
+                    //out.println("list.size()"+list.size());
                 }
            out.println("<tr><td colspan='5'>"+"Total Price:"+"</td><td>"+totalPrice+"</td></tr>");
            out.println("</table>");
