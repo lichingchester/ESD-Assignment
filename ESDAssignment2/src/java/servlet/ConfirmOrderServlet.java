@@ -13,8 +13,10 @@ import db.ShoppingCartDB;
 import db.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,10 +50,19 @@ public class ConfirmOrderServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-         String tel=(String)request.getSession().getAttribute("TestShoppingCartTel");
+        String tel = (String) request.getSession().getAttribute("TestShoppingCartTel");
         ArrayList<CartListBean> list = (ArrayList) request.getSession().getAttribute("list");
         String choose=request.getParameter("choose");
-       
+        
+        String inputDate = "";
+        if(request.getParameter("inputDate") != null || !request.getParameter("inputDate").equals("")){
+            inputDate = request.getParameter("inputDate");
+        }
+        
+        int inputTime = 0;
+        if(!request.getParameter("inputTime").equals("")){
+            inputTime = Integer.parseInt(request.getParameter("inputTime"));
+        }
        // List myList = (List)request.getAttribute("list");
        
         
@@ -69,33 +80,35 @@ public class ConfirmOrderServlet extends HttpServlet {
         
         for(CartListBean tempBean:list){//get CartListBean
 
-                    //set orderId
-                    for(int i=0;i<list.size();i++){
-                        String orderId;
-                        if(od.queryLastOrderID()==null){
-                            orderId="1";
-                        }else{
-                            lastOrderID=Integer.parseInt(od.queryLastOrderID());
-                            lastOrderID++;
-                        }
+            //set orderId
+            for(int i=0;i<list.size();i++){
+                String orderId;
+                if(od.queryLastOrderID()==null){
+                    orderId="1";
+                }else{
+                    lastOrderID=Integer.parseInt(od.queryLastOrderID());
+                    lastOrderID++;
+                }
 
-            tempItemID=tempBean.getItemID();
-            tempName=tempBean.getName();
-            tempPrice=tempBean.getPrice();
-            tempQua=tempBean.getQuantity();
-            tempSize=tempBean.getSize();
-            if(choose.equals("delivery")){
-                deliveryType="delivery";
-                ub=ud.queryItemByTel(tel);
-                deliveryAddress=ub.getAddress();
-                od.addRecord(lastOrderID, lastGroupID, tempItemID, tel, tempSize, deliveryType, deliveryDate, deliveryTime, deliveryAddress, null,0);
-            }else{
-                deliveryType="selfPick";
-                od.addRecord(lastOrderID, lastGroupID, tempItemID, tel, tempSize, deliveryType, null, 0, "shop", null,0);
+                tempItemID=tempBean.getItemID();
+                tempName=tempBean.getName();
+                tempPrice=tempBean.getPrice();
+                tempQua=tempBean.getQuantity();
+                tempSize=tempBean.getSize();
+                if(choose.equals("delivery")){
+                    deliveryType="delivery";
+                    ub=ud.queryItemByTel(tel);
+                    deliveryAddress=ub.getAddress();
+                    od.addRecord(lastOrderID, lastGroupID, tempItemID, tel, tempSize, deliveryType, inputDate, inputTime, deliveryAddress, "deliverying",0);
+                }else{
+                    ub=ud.queryItemByTel(tel);
+                    deliveryType="selfPick";
+                    od.addRecord(lastOrderID, lastGroupID, tempItemID, tel, tempSize, deliveryType, null, 0, "shop", "deliverying",0);
+                }
+                
+                scd.delRecord(tel);
             }
-        }
-
-            
+   
         }
         
         if(orderTotal>=2000){
@@ -106,7 +119,8 @@ public class ConfirmOrderServlet extends HttpServlet {
             //cookie 24hour >>>pay $500
         }
         
-        
+        RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/ItemsServlet?action=list&Tel="+ub.getTel()+"&Uname="+ub.getName()); 
+        rd.forward(request, response);
         
     }
 
