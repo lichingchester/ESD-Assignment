@@ -42,7 +42,7 @@
         <section class="header">
             <div id="bg">
                 <img src="/ESDAssignment2/img/LOGO.png">
-                <a href="#logout" class="navbar">Log out</a>
+                <a href="index.jsp" class="navbar">Log out</a>
             </div>         
         </section>
         
@@ -56,8 +56,11 @@
             <a href="/managerHandle?action=report" class="adminitemmt">Incomplete Order Report</a>
             -->
              <ul>
-                 <li>
+                 <li class="dropdown">
                      <a href="managerHandle?action=item">Items Management</a>
+                     <div class="dropdown-content">
+                         <a href="managerHandle?action=addItem">Add Item</a>
+                     </div>
                  </li>
                  <li>
                      <a href="managerHandle?action=report">Incompleted Report</a>

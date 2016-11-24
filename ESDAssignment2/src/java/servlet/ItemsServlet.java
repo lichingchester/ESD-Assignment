@@ -85,7 +85,9 @@ public class ItemsServlet extends HttpServlet {
         }        
         else if ("add".equalsIgnoreCase(action)) {
             // redirect the result to the addCustomer.jsp
-            response.sendRedirect("manage/addItem.jsp");
+            response.sendRedirect("manager/addItem.jsp");
+//            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/addItem.jsp"); 
+//            rd.forward(request, response);
         }        
         else if ("delete".equalsIgnoreCase(action)) {
             //get the id from request

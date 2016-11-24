@@ -95,6 +95,13 @@ public class managerHandle extends HttpServlet {
             RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/AdminShip.jsp"); 
             rd.forward(request, response);
  
+        }else if ("addItem".equalsIgnoreCase(action)) {
+            // set the result into the attribute
+            // redirect the result to the listCustomers.jsp	
+//            response.sendRedirect("list/main.jsp");
+            RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/manager/addItem.jsp"); 
+            rd.forward(request, response);
+ 
         }else if ("itemByName".equalsIgnoreCase(action)) {
             String name = request.getParameter("name");
             // call the query db to get retrieve for all customer
