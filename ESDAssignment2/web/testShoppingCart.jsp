@@ -12,13 +12,21 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        
+        <script>
+        function handleClick(choose) {
+            alert('Old value: delivery!!!');
+           
+    } 
+</script>
     </head>
     <body>
         <%       
             ArrayList list = (ArrayList) request.getAttribute("list");
+            String Tel=(String)request.getAttribute("Tel");
             request.getSession().setAttribute("list",list);
+            request.getSession().setAttribute("TestShoppingCartTel", Tel);
             if(list == null) out.println("safdasf");
+            //if(list!=null)out.println("pass list== "+list);
             
             double totalPrice = 0;
             
@@ -40,9 +48,14 @@
            out.println("<tr><td colspan='5'>"+"Total Price:"+"</td><td>"+totalPrice+"</td></tr>");
            out.println("</table>");
            out.println("<br><br>");
-           out.println("<form action='ConfirmOrderServlet'>");
-           out.println("<input type='hidden' name='list'>");
-           out.println("<input type='submit' value='Buy Now'>");
+           out.println("<form name='myForm' action='ConfirmOrderServlet'>");
+           out.println("<input type='hidden' name='list'>");%>
+           
+           delivery<input type="radio" name="choose" value="delivery" onclick="handleClick(this);" >
+   
+           self-pick<input type="radio" name="choose" value="selfPick"  checked="">
+           
+           <%out.println("<input type='submit' value='Buy Now'>");
            out.println("</form>");
          %>
          

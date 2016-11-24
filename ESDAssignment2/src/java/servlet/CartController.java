@@ -113,6 +113,7 @@ public class CartController extends HttpServlet{
         String Tel = request.getParameter("Tel");
         ArrayList list = db.queryItemsByTel(Tel);
         request.setAttribute("list", list);
+        request.setAttribute("Tel", Tel);
         RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/testShoppingCart.jsp"); 
         rd.forward(request, response);
      }

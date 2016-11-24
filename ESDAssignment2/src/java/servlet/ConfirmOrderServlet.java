@@ -7,8 +7,10 @@ package servlet;
 
 import bean.CartListBean;
 import bean.OrderBean;
+import bean.UserBean;
 import db.OrdersDB;
 import db.ShoppingCartDB;
+import db.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -25,15 +27,18 @@ public class ConfirmOrderServlet extends HttpServlet {
     
     OrdersDB od;
     OrderBean ob;
+    UserDB ud;
+    UserBean ub;
     ShoppingCartDB scd;
-    CartListBean clb;
+    
     
     public void init(){
         String dbUser = this.getServletContext().getInitParameter("dbUser");
         String dbPassword = this.getServletContext().getInitParameter("dbPassword");
         String dbUrl = this.getServletContext().getInitParameter("dbUrl");
         od = new OrdersDB(dbUrl, dbUser, dbPassword);
-        scd=new ShoppingCartDB(dbUrl, dbUser, dbPassword);
+        ud = new UserDB(dbUrl, dbUser, dbPassword);
+        scd= new ShoppingCartDB(dbUrl, dbUser, dbPassword);
         
     }
     
@@ -43,31 +48,56 @@ public class ConfirmOrderServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        ArrayList list = (ArrayList) request.getSession().getAttribute("list");
+        ArrayList<CartListBean> list = (ArrayList) request.getSession().getAttribute("list");
+        String choose=request.getParameter("choose");
+        String tel=(String)request.getSession().getAttribute("TestShoppingCartTel");
        // List myList = (List)request.getAttribute("list");
        
-        String GroupID;
-        int lastGroupID, orderTotal=0,BonusPoints;
+        
+        String tempItemID,tempName,tempPrice,tempQua,tempSize;
+        String  deliveryType, deliveryDate, deliveryTime, deliveryAddress, status;
+        int lastGroupID=0;int lastOrderID=0;
+        int orderTotal=0,BonusPoints;
         double doubleBonusPoints;
         if(od.queryLastGroupID()==null){
-            GroupID="1";
+            lastGroupID=1;
         }else{
             lastGroupID=Integer.parseInt(od.queryLastGroupID());
             lastGroupID++;
-            GroupID=String.valueOf(lastGroupID);
         }
         
-        
-        for(int i=0;i<list.size();i++){
-            String orderId;
-            int lastID;
-            if(od.queryLastOrderID()==null){
-                orderId="1";
+        for(CartListBean tempBean:list){//get CartListBean
+
+                    //set orderId
+                    for(int i=0;i<list.size();i++){
+                        String orderId;
+                        
+                        if(od.queryLastOrderID()==null){
+                            orderId="1";
+                        }else{
+                            lastOrderID=Integer.parseInt(od.queryLastOrderID());
+                            lastOrderID++;
+                            
+                        }
+
+            tempItemID=tempBean.getItemID();
+            tempName=tempBean.getName();
+            tempPrice=tempBean.getPrice();
+            tempQua=tempBean.getQuantity();
+            tempSize=tempBean.getSize();
+            if(choose.equals("delivery")){
+                deliveryType="delivery";
+                ub=ud.queryItemByTel(tel);
+                deliveryAddress=ub.getAddress();
+                od.addRecord(lastOrderID, lastGroupID, tempItemID, tel, tempSize, deliveryType, deliveryDate, deliveryTime, deliveryAddress, null,0);
             }else{
-                lastID=Integer.parseInt(od.queryLastOrderID());
-                lastID++;
-                orderId=String.valueOf(lastID);
-            }//set orderId
+                deliveryType="selfPick";
+                od.addRecord(lastOrderID, lastGroupID, tempItemID, tel, tempSize, deliveryType, null, 0, "shop", null,0);
+            }
+            
+            
+        }
+
             
         }
         
