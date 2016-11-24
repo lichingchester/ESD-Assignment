@@ -137,11 +137,11 @@ public class ShoppingCartDB {
 
             while (rs.next()) {
                 CartListBean cb = new CartListBean();
-                cb.setItemID(rs.getString(1));
-                cb.setName(rs.getString(2));
-                cb.setPrice(rs.getString(3));
-                cb.setQuantity(rs.getString(4));
-                cb.setSize(rs.getString(5));
+                cb.setItemID(rs.getString(2));
+                cb.setName(rs.getString(3));
+                cb.setPrice(rs.getString(4));
+                cb.setQuantity(rs.getString(5));
+                cb.setSize(rs.getString(6));
                 list.add(cb);
             }
             return list;
@@ -318,7 +318,7 @@ public class ShoppingCartDB {
                 cb.setName(rs.getString(3));
                 cb.setPrice(rs.getString(4));
                 cb.setQuantity(rs.getString(5));
-                cb.setSize(rs.getString(5));
+                cb.setSize(rs.getString(6));
                 list.add(cb);
             }
             return list;
