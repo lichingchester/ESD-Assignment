@@ -79,6 +79,10 @@ public class ItemsServlet extends HttpServlet {
             request.setAttribute("detail", detail);
             String name=request.getParameter("name");
             request.setAttribute("name", name);
+            ub = udb.queryItemByTel(request.getParameter("Tel"));
+            ArrayList olist = odb.queryOrders();
+            request.setAttribute("ub", ub);
+            request.setAttribute("ol", olist);
             // redirect the result to the listCustomers.jsp	
             //            response.sendRedirect("list/main.jsp");
             RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/itemdetail.jsp"); 
@@ -119,6 +123,10 @@ public class ItemsServlet extends HttpServlet {
                 // set the result into the attribute
                 ArrayList list = db.queryItemsByName(itemName);
                 request.setAttribute("list", list);
+                ub = udb.queryItemByTel(request.getParameter("Tel"));
+                ArrayList olist = odb.queryOrders();
+                request.setAttribute("ub", ub);
+                request.setAttribute("ol", olist);
                 // redirect the result to the listCustomers.jsp
                 RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/list/main.jsp"); 
                 rd.forward(request, response);
@@ -132,6 +140,10 @@ public class ItemsServlet extends HttpServlet {
                 ArrayList list = db.queryItemsByCategory(category);
                 // redirect the result to the listCustomers.jsp
                 request.setAttribute("list", list);
+                ub = udb.queryItemByTel(request.getParameter("Tel"));
+                ArrayList olist = odb.queryOrders();
+                request.setAttribute("ub", ub);
+                request.setAttribute("ol", olist);
                 // redirect the result to the listCustomers.jsp
                 RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/list/main.jsp"); 
                 rd.forward(request, response);

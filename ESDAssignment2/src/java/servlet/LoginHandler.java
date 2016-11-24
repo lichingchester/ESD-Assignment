@@ -91,7 +91,7 @@ public class LoginHandler extends HttpServlet {
                 url="/login/loginError.jsp";
             }
         }else{
-            ub = db.queryItemByTel(request.getParameter("tel"));
+            ub = db.queryItemByTel(request.getParameter("Tel"));
             request.setAttribute("ub", ub);
             request.setAttribute("ol", olist);
             url = "/MemberShip.jsp";
