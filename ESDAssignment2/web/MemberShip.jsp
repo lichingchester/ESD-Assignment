@@ -9,9 +9,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="css/style.css">
         <title>Order Page</title>
         
+        <link rel="stylesheet" href="css/style.css">
+
         <%@page import="bean.OrderBean"%>
         <%@page import="bean.UserBean"%>
         <%@page contentType="text/html" pageEncoding="UTF-8"%>
