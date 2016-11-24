@@ -37,7 +37,7 @@ public class DeleteOrder extends HttpServlet {
             OrderBean ob = new OrderBean();
             
             String orderID=request.getParameter("order");
-            ob.setOrderID(orderID);
+            ob.setOrderID(Integer.parseInt(orderID));
             ob.setStatus("Cancel");
             db.editRecordStatus(ob);
           //  db.delRecord(orderID);

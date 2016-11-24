@@ -55,7 +55,7 @@ public class UpdateDeliveryServlet extends HttpServlet {
             ob.setDeliveryDate(dDate);
             ob.setSize(size);
             ob.setQuantity(qty);
-            ob.setOrderID(OrderID);
+            ob.setOrderID(Integer.parseInt(OrderID));
 
             db.editRecord(ob);
             RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/MemberShip.jsp"); 

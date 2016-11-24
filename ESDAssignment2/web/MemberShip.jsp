@@ -68,7 +68,7 @@
                             for(int i=0;i<list.size();i++){
                                 OrderBean ob = (OrderBean)list.get(i);
                                 if(ob.getUserTel().equals(ub.getTel())){
-                                String orderID=ob.getOrderID();
+                                int orderID=ob.getOrderID();
                                 out.print("<tr>");
                                 out.print("<td> "+ ob.getOrderID() +" </td>");
                                 out.print("<td> "+ ob.getItemID() +" </td>");

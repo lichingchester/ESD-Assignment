@@ -42,9 +42,9 @@ public class startup extends HttpServlet {
         
         OrdersDB odb = new OrdersDB (dbUrl, dbUser, dbPassword);
         odb.createOrderTable();
-        odb.addRecord("001", "1", "1", "87654321", "M", "2", "2016-11-22", 5, "Flat2402", "deliverying", 2);
-        odb.addRecord("002", "1", "2", "12345678", "M", "2", "2016-11-22", 5, "Flat2402", "canceled", 2);
-        odb.addRecord("003", "3", "3", "43218765", "M", "5", "2016-11-23", 7, "Flat2405", "delivered", 2);
+        odb.addRecord(1, 1, "1", "87654321", "M", "2", "2016-11-22", 5, "Flat2402", "deliverying", 2);
+        odb.addRecord(2, 1, "2", "12345678", "M", "2", "2016-11-22", 5, "Flat2402", "canceled", 2);
+        odb.addRecord(3, 3, "3", "43218765", "M", "5", "2016-11-23", 7, "Flat2405", "delivered", 2);
 
         
 

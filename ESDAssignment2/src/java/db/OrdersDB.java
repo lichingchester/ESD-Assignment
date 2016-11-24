@@ -17,6 +17,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -80,8 +81,8 @@ public class OrdersDB {
             cnnct = getConnection();  // the connection 
             stmnt = cnnct.createStatement();  // create statement
             String sql = "CREATE TABLE Orders"
-                    + "(orderID  VARCHAR(10) not null,  "
-                    + "groupID VARCHAR(5),  "
+                    + "(orderID  int not null,  "
+                    + "groupID int,  "
                     + "itemID VARCHAR(10),  "
                     + "userTel VARCHAR(15),  "
                     + "size VARCHAR(10),"
@@ -114,7 +115,7 @@ public class OrdersDB {
         }
     }
      
-     public boolean addRecord(String orderID, String groupID, String itemID,String userTel, 
+     public boolean addRecord(int orderID, int groupID, String itemID,String userTel, 
              String size , String deliveryType, String deliveryDate,int deliveryTime, 
              String deliveryAddress, String status, int quantity) {
         Connection cnnct = null;
@@ -124,8 +125,8 @@ public class OrdersDB {
             cnnct = getConnection();
             String preQueryStatement = "INSERT  INTO  Orders  VALUES  (?,?,?,?,?,?,?,?,?,?,?)";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
-            pStmnt.setString(1, orderID);
-            pStmnt.setString(2, groupID);
+            pStmnt.setInt(1, orderID);
+            pStmnt.setInt(2, groupID);
             pStmnt.setString(3, itemID);
             pStmnt.setString(4, userTel);
             pStmnt.setString(5, size);
@@ -153,7 +154,7 @@ public class OrdersDB {
         return isSuccess;
     }
      
-    public OrderBean queryByID(String ID) {
+    public OrderBean queryByID(int ID) {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
 
@@ -165,15 +166,15 @@ public class OrdersDB {
             //2.  get the prepare Statement
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             //3. update the placehoder with id
-            pStmnt.setString(1, ID);
+            pStmnt.setInt(1, ID);
             ResultSet rs = null;
             //4. execute the query and assign to the result 
             rs = pStmnt.executeQuery();
             if (rs.next()) {
                 ob = new OrderBean();
                 // set the record detail to the customer bean
-                ob.setOrderID(rs.getString(1));
-                ob.setGroupID(rs.getString(2));
+                ob.setOrderID(rs.getInt(1));
+                ob.setGroupID(rs.getInt(2));
                 ob.setItemID(rs.getString(3));
                 ob.setUserTel(rs.getString(4));
                 ob.setSize(rs.getString(5));
@@ -221,8 +222,8 @@ public class OrdersDB {
             while (rs.next()) {
                 ob = new OrderBean();
                 // set the record detail to the customer bean
-                ob.setOrderID(rs.getString(1));
-                ob.setGroupID(rs.getString(2));
+                ob.setOrderID(rs.getInt(1));
+                ob.setGroupID(rs.getInt(2));
                 ob.setItemID(rs.getString(3));
                 ob.setUserTel(rs.getString(4));
                 ob.setSize(rs.getString(5));
@@ -267,8 +268,8 @@ public class OrdersDB {
             while (rs.next()) {
                 ob = new OrderBean();
                 // set the record detail to the customer bean
-                ob.setOrderID(rs.getString(1));
-                ob.setGroupID(rs.getString(2));
+                ob.setOrderID(rs.getInt(1));
+                ob.setGroupID(rs.getInt(2));
                 ob.setItemID(rs.getString(3));
                 ob.setUserTel(rs.getString(4));
                 ob.setSize(rs.getString(5));
@@ -324,8 +325,8 @@ public class OrdersDB {
             while (rs.next()) {
                 ob = new OrderBean();
                 // set the record detail to the customer bean
-                ob.setOrderID(rs.getString(1));
-                ob.setGroupID(rs.getString(2));
+                ob.setOrderID(rs.getInt(1));
+                ob.setGroupID(rs.getInt(2));
                 ob.setItemID(rs.getString(3));
                 ob.setUserTel(rs.getString(4));
                 ob.setSize(rs.getString(5));
@@ -378,8 +379,8 @@ public class OrdersDB {
 
             while (rs.next()) {
                 ob = new OrderBean();
-                ob.setOrderID(rs.getString(1));
-                ob.setGroupID(rs.getString(2));
+                ob.setOrderID(rs.getInt(1));
+                ob.setGroupID(rs.getInt(2));
                 ob.setItemID(rs.getString(3));
                 ob.setUserTel(rs.getString(4));
                 ob.setSize(rs.getString(5));
@@ -413,14 +414,19 @@ public class OrdersDB {
         PreparedStatement pStmnt = null;
          try {
             cnnct = getConnection();
-            String preQueryStatement = "SELECT TOP 1 (orderID) FROM Orders order by orderID limit 1;";
+            String preQueryStatement = "SELECT max(orderID) FROM Orders ";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             //Statement s = cnnct.createStatement();
             ResultSet rs = pStmnt.executeQuery();
+            String name="";
+            while(rs.next()){
+              name = rs.getString(1);
+            //System.out.println(name);
+            }
+            
             pStmnt.close();
             cnnct.close();
-            
-            return rs.toString();
+            return name;
         } catch (SQLException ex) {
             while (ex != null) {
                 ex.printStackTrace();
@@ -437,14 +443,19 @@ public class OrdersDB {
         PreparedStatement pStmnt = null;
          try {
             cnnct = getConnection();
-            String preQueryStatement = "SELECT groupID FROM Orders ;";
+            String preQueryStatement = "SELECT max(groupID) FROM Orders ";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             //Statement s = cnnct.createStatement();
             ResultSet rs = pStmnt.executeQuery();
+            String name="";
+           while(rs.next()){
+              name = rs.getString(1);
+            //System.out.println(name);
+            }
+            
             pStmnt.close();
             cnnct.close();
-            
-            return rs.toString();
+            return name;
         } catch (SQLException ex) {
             while (ex != null) {
                 ex.printStackTrace();
@@ -473,7 +484,7 @@ public class OrdersDB {
             pStmnt.setInt(2, ob.getDeliveryTime());
             pStmnt.setString(3, ob.getSize());
             pStmnt.setInt(4, ob.getQuantity());
-            pStmnt.setString(5, ob.getOrderID());
+            pStmnt.setInt(5, ob.getOrderID());
             
             rs = pStmnt.executeUpdate();
             
@@ -530,7 +541,7 @@ public class OrdersDB {
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             
             pStmnt.setString(1, ob.getStatus());
-            pStmnt.setString(2, ob.getOrderID());
+            pStmnt.setInt(2, ob.getOrderID());
             
            pStmnt.executeUpdate();
             

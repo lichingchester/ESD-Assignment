@@ -179,7 +179,7 @@ public class managerHandle extends HttpServlet {
  
         }else if ("editOrder".equalsIgnoreCase(action)) {
             // call the query db to get retrieve for all customer
-            String id = request.getParameter("id");
+            int id = Integer.parseInt(request.getParameter("id"));
             OrderBean ob = odb.queryByID(id);
             // set the result into the attribute
 //            request.setAttribute("ib", ib);
@@ -190,7 +190,7 @@ public class managerHandle extends HttpServlet {
             rd.forward(request, response);
         }else if ("deleteOrder".equalsIgnoreCase(action)) {
             // call the query db to get retrieve for all customer
-            String id = request.getParameter("id");
+            int id = Integer.parseInt(request.getParameter("id"));
             OrderBean ob = odb.queryByID(id);
             // set the result into the attribute
             request.setAttribute("ob", ob);

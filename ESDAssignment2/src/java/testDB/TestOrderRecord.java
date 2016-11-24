@@ -22,12 +22,15 @@ public class TestOrderRecord {
         String username = "app";
         String password = "app";
         odb = new OrdersDB (url, username, password);
-        String temp;
-        temp=odb.queryLastGroupID();
+        String temp,t2;
+        temp=odb.queryLastOrderID();
+        t2=odb.queryLastGroupID();
         if (temp==null){
             System.out.print("Auto set 0");
         }else
-             System.out.print(temp);
+             System.out.println("queryLastOrderID=  "+temp);
+        System.out.print("queryLastGroupID=  "+t2);
+        
         
        // odb.createOrderTable();
       ///  odb.addRecord("1", "1", "item001", "87654321", "M", "2", "2016-11-22", 5, "Flat2402", "deliverying", 2);

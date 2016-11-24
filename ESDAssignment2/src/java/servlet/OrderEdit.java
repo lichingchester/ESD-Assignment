@@ -48,7 +48,7 @@ public class OrderEdit extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         ob=new OrderBean();
-          ob.setOrderID(request.getParameter("orderID"));
+          ob.setOrderID(Integer.parseInt(request.getParameter("orderID")));
 //        ob.setGroupID(request.getParameter("groupID"));
 //        ob.setItemID(request.getParameter("itemID"));
 //        ob.setSize(request.getParameter("size"));

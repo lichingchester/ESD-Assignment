@@ -5,6 +5,7 @@
  */
 package servlet;
 
+import bean.CartListBean;
 import bean.OrderBean;
 import db.OrdersDB;
 import db.ShoppingCartDB;
@@ -25,6 +26,7 @@ public class ConfirmOrderServlet extends HttpServlet {
     OrdersDB od;
     OrderBean ob;
     ShoppingCartDB scd;
+    CartListBean clb;
     
     public void init(){
         String dbUser = this.getServletContext().getInitParameter("dbUser");
@@ -43,6 +45,7 @@ public class ConfirmOrderServlet extends HttpServlet {
         
         ArrayList list = (ArrayList) request.getSession().getAttribute("list");
        // List myList = (List)request.getAttribute("list");
+       
         String GroupID;
         int lastGroupID, orderTotal=0,BonusPoints;
         double doubleBonusPoints;
@@ -53,6 +56,7 @@ public class ConfirmOrderServlet extends HttpServlet {
             lastGroupID++;
             GroupID=String.valueOf(lastGroupID);
         }
+        
         
         for(int i=0;i<list.size();i++){
             String orderId;
@@ -66,6 +70,7 @@ public class ConfirmOrderServlet extends HttpServlet {
             }//set orderId
             
         }
+        
         if(orderTotal>=2000){
             doubleBonusPoints=(orderTotal*0.05);
             BonusPoints=(int)doubleBonusPoints;

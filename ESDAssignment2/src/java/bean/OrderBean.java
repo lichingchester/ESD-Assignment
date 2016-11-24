@@ -12,8 +12,8 @@ import java.sql.Date;
  * @author lichi
  */
 public class OrderBean {
-    String orderID;
-    String groupID;
+    int orderID;
+    int groupID;
     String itemID;
     String userTel;
     String size;
@@ -32,11 +32,11 @@ public class OrderBean {
         this.quantity = quantity;
     }
 
-    public String getGroupID() {
+    public int getGroupID() {
         return groupID;
     }
 
-    public void setGroupID(String groupID) {
+    public void setGroupID(int groupID) {
         this.groupID = groupID;
     }
 
@@ -48,11 +48,11 @@ public class OrderBean {
         this.userTel = userTel;
     }
     
-    public String getOrderID() {
+    public int getOrderID() {
         return orderID;
     }
 
-    public void setOrderID(String orderID) {
+    public void setOrderID(int orderID) {
         this.orderID = orderID;
     }
 
