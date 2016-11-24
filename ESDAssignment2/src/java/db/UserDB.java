@@ -131,6 +131,36 @@ public class UserDB {
         return rs;
     }
      
+      public int editBonusPoint(UserBean ub){                //ManHo edited, I don't know correct or wrong 
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        
+        int rs = 0;
+        try{
+            cnnct = getConnection();
+            String preQueryStatement = 
+                    "update CUSTOMER set BonusPoint = ?"
+                    + "where Tel = ?";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            
+            pStmnt.setInt(1, Integer.parseInt(ub.getBonusPoint()));
+            pStmnt.setString(2, ub.getTel());       
+            rs = pStmnt.executeUpdate();
+            
+            pStmnt.close();
+            cnnct.close();
+            
+        }catch(SQLException ex){
+            while(ex != null){
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+        return rs;
+    }
+     
      
      public ArrayList queryItems() {
         Connection cnnct = null;

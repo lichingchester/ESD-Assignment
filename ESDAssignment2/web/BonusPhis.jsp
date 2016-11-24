@@ -37,7 +37,7 @@
             </div>
            <br>
            <div id="container">
-               <form>
+               <form action="redeemServlet">
                   
                    <h1>Order History</h1>
                    <a href="BonusPServlet?ID=<%out.print(ub.getTel());%>" >Check Bonus Point</a>
@@ -51,14 +51,24 @@
                     %>
                     <br>
                     <tr><td><img src='img/accessories/earring.JPG'height="320" weight='240'><h4> Earring </h4><br>
-                            price:500</td>
+                            price:500 
+                            <input type="radio" name="accessories" value="500"> </td>
+                        
                         <td><img src='img/accessories/hand.jpg'   height="320" weight='240'> <h4>Bracelet</h4> <br>
-                            price:700<td></tr>
+                            price:700 
+                        <input type="radio" name="accessories" value="700"> <td></tr>
+                    
                     <tr><td><img src='img/accessories/ring.jpg' height="320" width='450'> <h4>Ring </h4><br>
-                              price:1000  </td>
+                              price:1000 
+                              <input type="radio" name="accessories" value="1000"> </td>
+                        
                         <td><img src='img/accessories/rolex.jpg' height="320" width='450' ><h4>Rolex</h4> <br>
-                              price:15000 </td></tr>
+                              price:15000 
+                              <input type="radio" name="accessories" value="15000"> </td></tr>
                </table>
+                    <input type="hidden" name="user" value="<%= ub.getTel()%>">
+                    
+                    <input type="submit" value="redeem"><br>
                </form>
                
                
