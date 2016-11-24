@@ -80,6 +80,8 @@ public class ConfirmOrderServlet extends HttpServlet {
         
         for(CartListBean tempBean:list){//get CartListBean
 
+            
+            
             //set orderId
             for(int i=0;i<list.size();i++){
                 String orderId;
@@ -89,25 +91,25 @@ public class ConfirmOrderServlet extends HttpServlet {
                     lastOrderID=Integer.parseInt(od.queryLastOrderID());
                     lastOrderID++;
                 }
-
-                tempItemID=tempBean.getItemID();
-                tempName=tempBean.getName();
-                tempPrice=tempBean.getPrice();
-                tempQua=tempBean.getQuantity();
-                tempSize=tempBean.getSize();
-                if(choose.equals("delivery")){
-                    deliveryType="delivery";
-                    ub=ud.queryItemByTel(tel);
-                    deliveryAddress=ub.getAddress();
-                    od.addRecord(lastOrderID, lastGroupID, tempItemID, tel, tempSize, deliveryType, inputDate, inputTime, deliveryAddress, "deliverying",0);
-                }else{
-                    ub=ud.queryItemByTel(tel);
-                    deliveryType="selfPick";
-                    od.addRecord(lastOrderID, lastGroupID, tempItemID, tel, tempSize, deliveryType, null, 0, "shop", "deliverying",0);
-                }
-                
-                scd.delRecord(tel);
             }
+            
+            tempItemID=tempBean.getItemID();
+            tempName=tempBean.getName();
+            tempPrice=tempBean.getPrice();
+            tempQua=tempBean.getQuantity();
+            tempSize=tempBean.getSize();
+            if(choose.equals("delivery")){
+                deliveryType="delivery";
+                ub=ud.queryItemByTel(tel);
+                deliveryAddress=ub.getAddress();
+                od.addRecord(lastOrderID, lastGroupID, tempItemID, tel, tempSize, deliveryType, inputDate, inputTime, deliveryAddress, "deliverying",0);
+            }else{
+                ub=ud.queryItemByTel(tel);
+                deliveryType="selfPick";
+                od.addRecord(lastOrderID, lastGroupID, tempItemID, tel, tempSize, deliveryType, null, 0, "shop", "deliverying",0);
+            }
+
+            scd.delRecord(tel);
    
         }
         
