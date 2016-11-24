@@ -48,9 +48,10 @@ public class ConfirmOrderServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+         String tel=(String)request.getSession().getAttribute("TestShoppingCartTel");
         ArrayList<CartListBean> list = (ArrayList) request.getSession().getAttribute("list");
         String choose=request.getParameter("choose");
-        String tel=(String)request.getSession().getAttribute("TestShoppingCartTel");
+       
        // List myList = (List)request.getAttribute("list");
        
         
@@ -71,13 +72,11 @@ public class ConfirmOrderServlet extends HttpServlet {
                     //set orderId
                     for(int i=0;i<list.size();i++){
                         String orderId;
-                        
                         if(od.queryLastOrderID()==null){
                             orderId="1";
                         }else{
                             lastOrderID=Integer.parseInt(od.queryLastOrderID());
                             lastOrderID++;
-                            
                         }
 
             tempItemID=tempBean.getItemID();
@@ -94,8 +93,6 @@ public class ConfirmOrderServlet extends HttpServlet {
                 deliveryType="selfPick";
                 od.addRecord(lastOrderID, lastGroupID, tempItemID, tel, tempSize, deliveryType, null, 0, "shop", null,0);
             }
-            
-            
         }
 
             
