@@ -81,25 +81,29 @@ and open the template in the editor.
         </section>
             <hr size="2" width="80%">
             <div id="order">
-            <a href="ItemsServlet?action=list&Tel=<%=Tel%>&Uname=<%=Uname%>);%>" id="btn" >News</a>
-            <a href="ItemsServlet?action=searchByCategory&category=short&Tel=<%=Tel%>&Uname=<%=Uname%>);%>" id="btn"  >Short</a>
-            <a href="ItemsServlet?action=searchByCategory&category=middle&Tel=<%=Tel%>&Uname=<%=Uname%>);%>"  id="btn"   >Middle</a>
-            <a href="ItemsServlet?action=searchByCategory&category=long&Tel=<%=Tel%>&Uname=<%=Uname%>);%>"  id="btn" >Long</a>
-            <a href="ItemsServlet?action=searchByCategory&category=sheath&Tel=<%=Tel%>&Uname=<%=Uname%>);%>"  id="btn"  >Sheath</a>
+            <a href="ItemsServlet?action=list&Tel=<%=Tel%>&Uname=<%=Uname%>" id="btn" >News</a>
+            <a href="ItemsServlet?action=searchByCategory&category=short&Tel=<%=Tel%>&Uname=<%=Uname%>)" id="btn"  >Short</a>
+            <a href="ItemsServlet?action=searchByCategory&category=middle&Tel=<%=Tel%>&Uname=<%=Uname%>  id="btn"   >Middle</a>
+            <a href="ItemsServlet?action=searchByCategory&category=long&Tel=<%=Tel%>&Uname=<%=Uname%>"  id="btn" >Long</a>
+            <a href="ItemsServlet?action=searchByCategory&category=sheath&Tel=<%=Tel%>&Uname=<%=Uname%>"  id="btn"  >Sheath</a>
         <%
         }else{
         %>
+        <section class="header">
+            <div id="bg">
                 <a href="index.jsp"><img src="img\LOGO.png"></a>
-                <img src="img\icon.png"><label style="color:white ;font-size:large " >Name:<%=Uname%></label>
+                <img src="img\icon.png">
+                <label style="color:white ;font-size:large " >Name:<%=Uname%></label>
                 <a href="startup" class="navbar">Logout</a>
-                
                 <a href="CartController?action=list" class="navbar">MyShoppingCart</a>
-                <a href="UpdateInfo.jsp?action=<%=Tel%>);%>&Uname=<%=Uname%>&address=<%=Address%>); %>&Tel=<%=Tel%>" class="navbar">Setting</a>
-                <a href="ItemsServlet?action=list&Tel=<%=Tel%>);%>&Uname=<%=Uname%>&address=<%=Address%>); %>&Tel=<%=Tel%>" class="navbar">BuyThings</a>
-                
-               <section class="logo">
+                <a href="UpdateInfo.jsp?action=<%=Tel%>&Uname=<%=Uname%>&address=<%=Address%>&Tel=<%=Tel%>" class="navbar">Setting</a>
+                <a href="ItemsServlet?action=list&Tel=<%=Tel%>&Uname=<%=Uname%>&address=<%=Address%>&Tel=<%=Tel%>" class="navbar">BuyThings</a>
+            </div>
+        </section>
+            
+        <section class="logo">
             <div class="brand">
-                <a href="index.jsp" class="brand-name"><font id="font-red">C</font>&<font id="font-red">F</font> <font id="font-red">D</font>ress</a>
+                <a href="#home" class="brand-name"><font id="font-red">C</font>&<font id="font-red">F</font> <font id="font-red">D</font>ress</a>
             </div>
         </section>
         
@@ -113,11 +117,11 @@ and open the template in the editor.
         </section>
             <hr size="2" width="80%">
             <div id="order">
-            <a href="ItemsServlet?action=list&Tel=<%=Tel%>&Uname=<%=Uname%>);%>" id="btn" >News</a>
-            <a href="ItemsServlet?action=searchByCategory&category=short&Tel=<%=Tel%>&Uname=<%=Uname%>);%>" id="btn"  >Short</a>
-            <a href="ItemsServlet?action=searchByCategory&category=middle&Tel=<%=Tel%>&Uname=<%=Uname%>);%>"  id="btn"   >Middle</a>
-            <a href="ItemsServlet?action=searchByCategory&category=long&Tel=<%=Tel%>&Uname=<%=Uname%>);%>"  id="btn" >Long</a>
-            <a href="ItemsServlet?action=searchByCategory&category=sheath&Tel=<%=Tel%>&Uname=<%=Uname%>);%>"  id="btn"  >Sheath</a>
+            <a href="ItemsServlet?action=list&Tel=<%=Tel%>&Uname=<%=Uname%>" id="btn" >News</a>
+            <a href="ItemsServlet?action=searchByCategory&category=short&Tel=<%=Tel%>&Uname=<%=Uname%>" id="btn"  >Short</a>
+            <a href="ItemsServlet?action=searchByCategory&category=middle&Tel=<%=Tel%>&Uname=<%=Uname%>"  id="btn"   >Middle</a>
+            <a href="ItemsServlet?action=searchByCategory&category=long&Tel=<%=Tel%>&Uname=<%=Uname%>"  id="btn" >Long</a>
+            <a href="ItemsServlet?action=searchByCategory&category=sheath&Tel=<%=Tel%>&Uname=<%=Uname%>"  id="btn"  >Sheath</a>
        <%
            }
        %>
