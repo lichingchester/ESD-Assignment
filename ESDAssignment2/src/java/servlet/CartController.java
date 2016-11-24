@@ -62,16 +62,17 @@ public class CartController extends HttpServlet{
         String price = request.getParameter("price");
         String size = request.getParameter("size");
         String quantity = request.getParameter("quantity");
+        String Tel = request.getParameter("Tel");
         
         if(db.checkByIdSize(ID,size) == true){
             db.UpdateQuantity(ID,quantity);
-            ArrayList list = db.queryItems();
+            ArrayList list = db.queryItemsByTel(Tel);
             request.setAttribute("list", list);
             RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/testShoppingCart.jsp"); 
             rd.forward(request, response);
         }else{
-            db.addRecord(ID,name,price,quantity,size);
-            ArrayList list = db.queryItems();
+            db.addRecord(Tel,ID,name,price,quantity,size);
+            ArrayList list = db.queryItemsByTel(Tel);
             request.setAttribute("list", list);
             RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/testShoppingCart.jsp"); 
             rd.forward(request, response);
@@ -80,10 +81,11 @@ public class CartController extends HttpServlet{
     
     protected void editCart(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
         
+        String Tel = request.getParameter("Tel");
         String ID = request.getParameter("ID");
         String quantity = request.getParameter("quantity");
         db.UpdateQuantity(ID,quantity);
-        ArrayList list = db.queryItems();
+        ArrayList list = db.queryItemsByTel(Tel);
         request.setAttribute("list", list);
         RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/testShoppingCart.jsp"); 
         rd.forward(request, response);
@@ -91,11 +93,12 @@ public class CartController extends HttpServlet{
      }
     
     protected void deleteCart(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-        
+       
+       String Tel = request.getParameter("Tel");
        String ID = request.getParameter("ID");
        String size = request.getParameter("size");
        db.delRecord(ID,size);
-       ArrayList list = db.queryItems();
+       ArrayList list = db.queryItemsByTel(Tel);
         request.setAttribute("list", list);
         RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/testShoppingCart.jsp"); 
         rd.forward(request, response);
@@ -107,7 +110,8 @@ public class CartController extends HttpServlet{
     }
     
      protected void ListCart(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-        ArrayList list = db.queryItems();
+        String Tel = request.getParameter("Tel");
+        ArrayList list = db.queryItemsByTel(Tel);
         request.setAttribute("list", list);
         RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/testShoppingCart.jsp"); 
         rd.forward(request, response);

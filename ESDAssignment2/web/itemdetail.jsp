@@ -30,6 +30,7 @@ and open the template in the editor.
             String ItemName="";
             String Tel=request.getParameter("Tel");
             String action="login";
+            UserBean ub = (UserBean) request.getAttribute("ub");
             double price=1;
             String ItemID="";
             String path="";
@@ -52,7 +53,8 @@ and open the template in the editor.
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <section class="header">
+        <c:when test="${Tel.equals(null)}">
+            <section class="header">
             
             <div id="bg">
                 <a href="index.jsp"><img src="img\LOGO.png"></a>
@@ -83,8 +85,22 @@ and open the template in the editor.
                 <a href="ItemsServlet?action=searchByCategory&category=middle"  id="btn"   >Middle</a>
                 <a href="ItemsServlet?action=searchByCategory&category=long"  id="btn" >Long</a>
                 <a href="ItemsServlet?action=searchByCategory&category=sheath"  id="btn"  >Sheath</a>
-
-            
+        </c:when>
+        <c:otherwise>
+            <div id="bg">
+                <% out.println("<input type='hidden' name='list'>"); %>
+                <a href="index.jsp"><img src="img\LOGO.png"></a>
+                <img src="img\icon.png"><label style="color:white ;font-size:large " >Name:<%out.print(ub.getName());%></label>
+                <a href="startup" class="navbar">Logout</a>
+                
+                <a href="CartController?action=list" class="navbar">MyShoppingCart</a>
+                <a href="UpdateInfo.jsp?action=<%out.print(ub.getTel());%>&Uname=<%out.print(ub.getName());%>&address=<%out.print(ub.getAddress()); %>&Tel=<%out.print(ub.getTel());%>" class="navbar">Setting</a>
+                <a href="ItemsServlet?action=list&Tel=<%out.print(ub.getTel());%>&UB=<%=ub%>" class="navbar">BuyThings</a>
+                
+            </div>
+        </c:otherwise>
+    </c:choose>
+   
             </div>
             <hr size="2" width="80%">
             <div id="container">
@@ -118,6 +134,7 @@ and open the template in the editor.
                          <%
                            if(!Tel.equals("null")){action = "add";}  
                          %>
+                     <input type="hidden" name="Tel" value=<%=Tel%>>
                      <input type="hidden" name="action" value=<%=action%>>
                      <input type="submit" value="Shopping Cart">
                      </form>

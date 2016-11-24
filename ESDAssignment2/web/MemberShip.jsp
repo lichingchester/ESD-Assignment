@@ -21,6 +21,7 @@
             ArrayList<OrderBean> list = null;
             if(request.getAttribute("ub") != null){
                 ub = (UserBean) request.getAttribute("ub");
+                request.getSession().setAttribute("ub",ub);
             }
             if(request.getAttribute("ol") != null){
                 list = (ArrayList) request.getAttribute("ol");
@@ -31,13 +32,17 @@
     <body>
        <section class="header">
             <div id="bg">
+                <jsp:useBean id="user" class="bean.UserBean" scope="session">
+                    <jsp:setProperty name="user" property="*"/>
+                </jsp:useBean>
+                <% out.println("<input type='hidden' name='list'>"); %>
                 <a href="index.jsp"><img src="img\LOGO.png"></a>
                 <img src="img\icon.png"><label style="color:white ;font-size:large " >Name:<%out.print(ub.getName());%></label>
                 <a href="startup" class="navbar">Logout</a>
                 
                 <a href="CartController?action=list" class="navbar">MyShoppingCart</a>
                 <a href="UpdateInfo.jsp?action=<%out.print(ub.getTel());%>&Uname=<%out.print(ub.getName());%>&address=<%out.print(ub.getAddress()); %>&Tel=<%out.print(ub.getTel());%>" class="navbar">Setting</a>
-                <a href="ItemsServlet?action=list&Tel=<%out.print(ub.getTel());%>" class="navbar">BuyThings</a>
+                <a href="ItemsServlet?action=list&Tel=<%out.print(ub.getTel());%>&UB=<%=user%>" class="navbar">BuyThings</a>
                 
             </div>
            <br>

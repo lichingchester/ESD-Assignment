@@ -33,6 +33,7 @@ and open the template in the editor.
                     out.println("</script>");
                 }
             }
+            String Tel = null;
         %>
         
     </head>
@@ -53,7 +54,7 @@ and open the template in the editor.
                    <input type="hidden" name="action" value="list" />
                    <input type="submit" class="cover-btn" style="vertical-align: middle" value="Let's get your amazing clothes!" />
                </form>-->
-                <a href="ItemsServlet?action=list" class="a-white">
+                <a href="ItemsServlet?action=list&Tel=<%=Tel%>" class="a-white">
                     <button class="cover-btn" style="vertical-align:middle">
                              <span>Let's get your amazing clothes!</span>
                     </button>

@@ -44,6 +44,7 @@ public class ShoppingCartDB {
             cnnct = getConnection();  // the connection 
             stmnt = cnnct.createStatement();  // create statement
             String sql = "CREATE  TABLE  CartList  ("
+                    + "CustTel  VARCHAR(20) ,  "
                     + "ItemID  VARCHAR(10) ,  "
                     + "Name  VARCHAR(25),"
                     + "Price VARCHAR(10),"
@@ -63,19 +64,20 @@ public class ShoppingCartDB {
         }
     }
      
-      public boolean addRecord(String ID, String name, String price , String quantity, String size) {
+      public boolean addRecord(String Tel,String ID, String name, String price , String quantity, String size) {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
         boolean isSuccess = false;
         try {
             cnnct = getConnection();
-            String preQueryStatement = "INSERT  INTO  CartList  VALUES  (?,?,?,?,?)";
+            String preQueryStatement = "INSERT  INTO  CartList  VALUES  (?,?,?,?,?,?)";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
-            pStmnt.setString(1, ID);
-            pStmnt.setString(2, name);
-            pStmnt.setString(3, price);
-            pStmnt.setString(4, quantity);
-            pStmnt.setString(5, size);
+             pStmnt.setString(1, Tel);
+            pStmnt.setString(2, ID);
+            pStmnt.setString(3, name);
+            pStmnt.setString(4, price);
+            pStmnt.setString(5, quantity);
+            pStmnt.setString(6, size);
             int rowCount = pStmnt.executeUpdate();
             if (rowCount >= 1) {
                 isSuccess = true;
@@ -296,6 +298,52 @@ public class ShoppingCartDB {
             ex.printStackTrace();
         }
            return test;
+        }
+
+    public ArrayList queryItemsByTel(String Tel){
+            Connection cnnct = null;
+            PreparedStatement pStmnt = null;
+        try {
+            cnnct = getConnection();
+            String preQueryStatement = "SELECT * FROM  CartList WHERE CustTel=?";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setString(1, Tel);
+            ResultSet rs = pStmnt.executeQuery();
+
+            ArrayList list = new ArrayList();
+
+            while (rs.next()) {
+                CartListBean cb = new CartListBean();
+                cb.setItemID(rs.getString(1));
+                cb.setName(rs.getString(2));
+                cb.setPrice(rs.getString(3));
+                cb.setQuantity(rs.getString(4));
+                cb.setSize(rs.getString(5));
+                list.add(cb);
+            }
+            return list;
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            if (pStmnt != null) {
+                try {
+                    pStmnt.close();
+                } catch (SQLException e) {
+                }
+            }
+            if (cnnct != null) {
+                try {
+                    cnnct.close();
+                } catch (SQLException sqlEx) {
+                }
+            }
+        }
+        return null;
         }
         
 }
