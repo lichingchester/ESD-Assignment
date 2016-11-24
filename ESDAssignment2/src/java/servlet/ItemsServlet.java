@@ -6,7 +6,10 @@
 package servlet;
 
 import bean.ItemBean;
+import bean.UserBean;
 import db.ItemsDB;
+import db.OrdersDB;
+import db.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.out;
@@ -26,6 +29,9 @@ import javax.servlet.http.HttpServletResponse;
 public class ItemsServlet extends HttpServlet {
     ItemsDB db;
     ItemBean ib;
+    UserDB udb;
+    UserBean ub;
+    OrdersDB odb;
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,7 +47,8 @@ public class ItemsServlet extends HttpServlet {
         String password = this.getServletContext().getInitParameter("dbPassword");
         String url = this.getServletContext().getInitParameter("dbUrl");   
         db = new ItemsDB(url, username, password);  
-        
+        udb = new UserDB(url, username, password);
+        odb = new OrdersDB(url, username, password);
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -55,6 +62,10 @@ public class ItemsServlet extends HttpServlet {
             ArrayList list = db.queryItems();
             // set the result into the attribute
             request.setAttribute("list", list);
+            ub = udb.queryItemByTel(request.getParameter("Tel"));
+            ArrayList olist = odb.queryOrders();
+            request.setAttribute("ub", ub);
+            request.setAttribute("ol", olist);
             // redirect the result to the listCustomers.jsp	
 //            response.sendRedirect("list/main.jsp");
             RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/list/main.jsp"); 

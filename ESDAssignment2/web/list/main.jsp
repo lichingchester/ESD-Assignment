@@ -29,6 +29,22 @@
             String action=request.getParameter("action");
             String Uname=request.getParameter("Uname");
             String Address=request.getParameter("address");
+            
+            UserBean ub = null;
+            if(request.getAttribute("ub") != null){
+                ub = (UserBean) request.getAttribute("ub");
+            }else{
+                out.println("userbean");
+            }
+            ArrayList olist = null;
+            if(request.getAttribute("ol") != null){
+                olist = (ArrayList) request.getAttribute("ol");
+            }else{
+                out.println("list");
+            }
+            
+//            request.setAttribute("ub", ub);
+//            request.setAttribute("ol", olist);
         %>
     </head>
     <body>
@@ -48,6 +64,7 @@
                 <a href="CartController?action=list" class="navbar">MyShoppingCart</a>
                 <a href="UpdateInfo.jsp?action=<%=Tel%>&Uname=<%=Uname%>&address=<%=Address%>&Tel=<%=Tel%>" class="navbar">Setting</a>
                 <a href="ItemsServlet?action=list&Tel=<%=Tel%>&Uname=<%=Uname%>&address=<%=Address%>&Tel=<%=Tel%>" class="navbar">BuyThings</a>
+                <a href="LoginHandler?mode=fuck&tel=<%= ub.getTel() %>" class="navbar">Member Center</a>
             </div>
         </section>
             

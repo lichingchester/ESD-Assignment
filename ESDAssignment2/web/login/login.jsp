@@ -21,7 +21,7 @@
     </section>       
          
         <div id="container">
-        <form method="post" action="../LoginHandler">
+        <form method="post" action="../LoginHandler?mode=null">
             <!--<input type="hidden" name="action" value="authenticate"/>-->
             <h1>Login</h1>
             <p>

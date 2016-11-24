@@ -26,6 +26,7 @@
             }
             if(request.getAttribute("ol") != null){
                 list = (ArrayList) request.getAttribute("ol");
+                request.getSession().setAttribute("ol", list);
             }
         
         %> 

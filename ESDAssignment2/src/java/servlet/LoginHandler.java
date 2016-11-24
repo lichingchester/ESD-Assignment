@@ -65,28 +65,38 @@ public class LoginHandler extends HttpServlet {
         ArrayList<UserBean> list = db.queryItems();
         ArrayList<OrderBean> olist = od.queryOrders();
         ArrayList<ItemBean> ilist = id.queryItems();
-
-        for(UserBean ub : list){
-            username = ub.getUsername();
-            userpwd = ub.getPassword();
-            if(loginname.equals(username)){
-                if(loginpwd.equals(userpwd)){
-                    if(ub.getUsername().equals("admin")){
-                        request.setAttribute("userBean", ub);
-                        request.setAttribute("itemsList", ilist);
-                        url = "/manager/AdminShip.jsp";
-                        break;
-                    }else{
-                        request.setAttribute("ub", ub);
-                        request.setAttribute("ol", olist);
-                        url = "/MemberShip.jsp";
-    //                    request.getSession().setAttribute("userBean", ub);	
-                        break;
+        
+//        handle login jump page
+        String mode = request.getParameter("mode");
+        if(mode.equals("null")){
+            for(UserBean ub : list){
+                username = ub.getUsername();
+                userpwd = ub.getPassword();
+                if(loginname.equals(username)){
+                    if(loginpwd.equals(userpwd)){
+                        if(ub.getUsername().equals("admin")){
+                            request.setAttribute("userBean", ub);
+                            request.setAttribute("itemsList", ilist);
+                            url = "/manager/AdminShip.jsp";
+                            break;
+                        }else{
+                            request.setAttribute("ub", ub);
+                            request.setAttribute("ol", olist);
+                            url = "/MemberShip.jsp";
+        //                    request.getSession().setAttribute("userBean", ub);	
+                            break;
+                        }
                     }
                 }
+                url="/login/loginError.jsp";
             }
-            url="/login/loginError.jsp";
+        }else{
+            ub = db.queryItemByTel(request.getParameter("tel"));
+            request.setAttribute("ub", ub);
+            request.setAttribute("ol", olist);
+            url = "/MemberShip.jsp";
         }
+
 
         RequestDispatcher rd = request.getServletContext().getRequestDispatcher(url); 
         rd.forward(request, response);
