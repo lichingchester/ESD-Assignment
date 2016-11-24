@@ -18,7 +18,6 @@
             <div id="bg">
                 <a href="#join" class="navbar">Join us</a>
                 <a href="#login" class="navbar">Login</a>
-                <a href="order.jsp" class="navbar">Order</a>
             </div>
            <div id="order">
              wait for the shopping cart

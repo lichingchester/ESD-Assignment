@@ -33,7 +33,6 @@
                 <a href="index.jsp"><img src="img\LOGO.png"></a>
                 <img src="img\icon.png"><label style="color:white ;font-size:large " >Name:<%out.print(ub.getName());%></label>
                 <a href="startup" class="navbar">Logout</a>
-                <a href="order.jsp" class="navbar">Order</a>
                 <a href="#asdf" class="navbar">asdf</a>
             </div>
            <br>

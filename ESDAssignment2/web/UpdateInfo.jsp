@@ -25,7 +25,6 @@
                 <img src="img\icon.png"><label style="color:white ;font-size:large " >Name:<%out.print(Uname); %></label>
                 <a href="#join" class="navbar">Join us</a>
                 <a href="startup" class="navbar">Logout</a>
-                <a href="order.jsp" class="navbar">Order</a>
                 <a href="order.jsp" class="navbar">Setting</a>
                 <a href="ItemsServlet?action=list&Tel=<%=Tel%>" class="navbar">BuyThings</a>
             </div>
