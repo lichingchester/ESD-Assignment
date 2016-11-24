@@ -44,7 +44,7 @@ public class UserDB {
             String sql = "CREATE  TABLE  CUSTOMER  ("
                     + " LoginID VARCHAR(25), "
                     + "Password  VARCHAR(25), "
-                    + "Name  VARCHAR(50),"
+                    + "Name  VARCHAR(30),"
                     + " Tel  VARCHAR(15)CONSTRAINT  PK_CUSTOMER  PRIMARY  KEY,  "
                     + "Email  VARCHAR(100),"
                     + "Address  VARCHAR(200),"

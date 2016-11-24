@@ -49,7 +49,7 @@ public class ShoppingCartDB {
                     + "Name  VARCHAR(25),"
                     + "Price VARCHAR(10),"
                     + "Quantity VARCHAR(20),"
-                    + "Size VARCHAR(50))";
+                    + "Size VARCHAR(10))";
             stmnt.execute(sql);
 
             stmnt.close();

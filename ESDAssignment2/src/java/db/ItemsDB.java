@@ -73,9 +73,9 @@ public class ItemsDB {
             String sql = "CREATE TABLE Items"
                     + "(itemID  VARCHAR(10) not null,  "
                     + "itemName  VARCHAR(50),  "
-                    + "description  VARCHAR(100),  "
+                    + "description  VARCHAR(70),  "
                     + "category  VARCHAR(50),"
-                    + "designerName  VARCHAR(50), "
+                    + "designerName  VARCHAR(30), "
                     + "price double, "
                     + "path VARCHAR(100), "
                     + "primary key (itemID))";
