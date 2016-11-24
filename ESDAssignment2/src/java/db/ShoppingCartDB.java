@@ -209,17 +209,17 @@ public class ShoppingCartDB {
         return isSuccess;
        }
        
-        public int delRecord(String ID, String Size){
+        public int delRecord(String tel){
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
         
         int rs = 0;
         try{
             cnnct = getConnection();
-            String preQueryStatement = "delete from CartList where ItemID='"+ ID + "' and Size='" + Size + "'";
+            String preQueryStatement = "delete from CartList where CustTel = ?";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             
-           // pStmnt.setString(1, ID);
+            pStmnt.setString(1, tel);
             
             rs = pStmnt.executeUpdate();
             

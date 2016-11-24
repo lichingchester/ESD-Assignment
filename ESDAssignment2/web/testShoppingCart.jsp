@@ -27,7 +27,10 @@
     <body>
         <%       
             ArrayList list = (ArrayList) request.getAttribute("list");
-            String Tel=(String)request.getAttribute("Tel");
+            String Tel=(String)request.getSession().getAttribute("tel");
+            
+            out.println(Tel);
+            
             request.getSession().setAttribute("list",list);
             request.getSession().setAttribute("TestShoppingCartTel", Tel);
             if(list == null) out.println("safdasf");

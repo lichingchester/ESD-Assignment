@@ -63,6 +63,7 @@ public class CartController extends HttpServlet{
         String size = request.getParameter("size");
         String quantity = request.getParameter("quantity");
         String Tel = request.getParameter("Tel");
+        request.getSession().setAttribute("tel", Tel);
         
         if(db.checkByIdSize(ID,size) == true){
             db.UpdateQuantity(ID,quantity);
@@ -97,7 +98,7 @@ public class CartController extends HttpServlet{
        String Tel = request.getParameter("Tel");
        String ID = request.getParameter("ID");
        String size = request.getParameter("size");
-       db.delRecord(ID,size);
+       db.delRecord(Tel);
        ArrayList list = db.queryItemsByTel(Tel);
         request.setAttribute("list", list);
         RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/testShoppingCart.jsp"); 
