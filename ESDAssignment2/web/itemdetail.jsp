@@ -90,13 +90,35 @@ and open the template in the editor.
         <%
         }else{
         %>
-              <a href="index.jsp"><img src="img\LOGO.png"></a>
+                <a href="index.jsp"><img src="img\LOGO.png"></a>
                 <img src="img\icon.png"><label style="color:white ;font-size:large " >Name:<%=Uname%></label>
                 <a href="startup" class="navbar">Logout</a>
                 
                 <a href="CartController?action=list" class="navbar">MyShoppingCart</a>
                 <a href="UpdateInfo.jsp?action=<%=Tel%>);%>&Uname=<%=Uname%>&address=<%=Address%>); %>&Tel=<%=Tel%>" class="navbar">Setting</a>
                 <a href="ItemsServlet?action=list&Tel=<%=Tel%>);%>&Uname=<%=Uname%>&address=<%=Address%>); %>&Tel=<%=Tel%>" class="navbar">BuyThings</a>
+                
+               <section class="logo">
+            <div class="brand">
+                <a href="index.jsp" class="brand-name"><font id="font-red">C</font>&<font id="font-red">F</font> <font id="font-red">D</font>ress</a>
+            </div>
+        </section>
+        
+        <section class="search-bar">
+            <div class="center-search-bar">
+                <input type="text" name="search" class="search-box" placeholder="Search..">
+                <button class="search-btn" style="vertical-align:middle">
+                    <span>Search</span>
+                </button>
+            </div>
+        </section>
+            <hr size="2" width="80%">
+            <div id="order">
+                <a href="ItemsServlet?action=list" id="btn"  >News</a>
+                <a href="ItemsServlet?action=searchByCategory&category=short" id="btn"  >Short</a>
+                <a href="ItemsServlet?action=searchByCategory&category=middle"  id="btn"   >Middle</a>
+                <a href="ItemsServlet?action=searchByCategory&category=long"  id="btn" >Long</a>
+                <a href="ItemsServlet?action=searchByCategory&category=sheath"  id="btn"  >Sheath</a>
        <%
            }
        %>

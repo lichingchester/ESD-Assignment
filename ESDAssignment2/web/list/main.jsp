@@ -23,6 +23,7 @@
         <%
             ArrayList list = (ArrayList) request.getAttribute("list");
             if(list == null) out.println("safdasf");
+            
             String type = request.getParameter("type");
             String Tel=request.getParameter("Tel");
             String action=request.getParameter("action");
@@ -38,7 +39,7 @@
     <%
         }else{
     %>
-              <a href="index.jsp"><img src="img\LOGO.png"></a>
+                <a href="index.jsp"><img src="img\LOGO.png"></a>
                 <img src="img\icon.png"><label style="color:white ;font-size:large " >Name:<%=Uname%></label>
                 <a href="startup" class="navbar">Logout</a>
                 
@@ -63,7 +64,7 @@
        
         <hr size="2" width="80%">
         <div id="order">
-            <a href="ItemsServlet?action=list" id="btn"  >News</a>
+            <a href="ItemsServlet?action=list" id="btn" >News</a>
             <a href="ItemsServlet?action=searchByCategory&category=short" id="btn"  >Short</a>
             <a href="ItemsServlet?action=searchByCategory&category=middle"  id="btn"   >Middle</a>
             <a href="ItemsServlet?action=searchByCategory&category=long"  id="btn" >Long</a>
@@ -80,7 +81,7 @@
                     String name=ib.getItemID();
                     out.print("<div id='item1'>"
                             +"<a href='ItemsServlet?action=itemdetail&name="
-                            +name+"&Tel="+Tel+"'>"
+                            +name+"&Tel="+Tel+"&Uname="+Uname+"'>"
                             + "<img src='"+ib.getPath()+"'></a>"+"<br/>"
                             +ib.getPrice()+"</div>");
                 }
